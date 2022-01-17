@@ -4,12 +4,58 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Account](
+	[id] int IDENTITY(1,1) not null  ,
 	[username] [varchar](100) NOT NULL,
 	[password] [varchar](100) NULL,
-	[displayname] [varchar],
+	[role] [varchar],
+	[active] bit,
+	[email] [varchar],
 PRIMARY KEY CLUSTERED 
-(
-	[username] ASC
+(	
+	[id]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+Go
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[User](
+	[userId] int IDENTITY(1,1) not null  ,
+	[fName] [varchar](100) NOT NULL,
+	[lName] [varchar](100) NULL,
+	[gender] [varchar],
+	[email] [varchar],
+	[phoneNumber] [varchar](15),
+	[avatar] image,
+	[accountId] int FOREIGN KEY REFERENCES [Account](id),
+	
+PRIMARY KEY CLUSTERED 
+(	
+	[userId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+Go
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Address](
+	[userId] int FOREIGN KEY REFERENCES [User](userId),
+	[address] [varchar],
+	
+PRIMARY KEY CLUSTERED 
+(	
+	[userId] ASC,
+	[address]
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
@@ -25,7 +71,7 @@ CREATE TABLE [dbo].[UserRequest](
 	[requestid] int IDENTITY(1,1) not null  ,
 	[reason] varchar(200),
 	[requestDate] date,
-	[username] varchar(100) FOREIGN KEY REFERENCES [Account](username),
+	[accountId] int FOREIGN KEY REFERENCES [Account](id),
 PRIMARY KEY CLUSTERED 
 (
 	[requestid] ASC
@@ -52,11 +98,11 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[GroupAccount](
 	[gid] [int] FOREIGN KEY REFERENCES [Group](gid),
-	[username] [varchar](100) not NULL FOREIGN KEY REFERENCES [Account](username),
+	[accountId] int FOREIGN KEY REFERENCES [Account](id),
 PRIMARY KEY CLUSTERED 
 (
 	[gid] ASC,
-	[username] ASC
+	[accountId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
@@ -96,3 +142,140 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
+
+
+
+
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Category](
+	[categoryId] [int] IDENTITY(1,1) not null ,
+	[nameCategory] [varchar](200),
+PRIMARY KEY CLUSTERED 
+(
+	[categoryId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Product](
+	[productId] [int] IDENTITY(1,1) not null ,
+	[nameProduct] [varchar](200),
+	[price] money,
+	[categoryId] [int] FOREIGN KEY REFERENCES [Category](categoryId),
+PRIMARY KEY CLUSTERED 
+(
+	[productId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Review](
+	[reviewId] [int] IDENTITY(1,1) not null ,
+	[productId] [int] FOREIGN KEY REFERENCES [Product](productId),
+	[userId] [int] FOREIGN KEY REFERENCES [User](userId),
+	Ratings decimal(2,1) CONSTRAINT chk_Ratings CHECK (Ratings >= 0 AND Ratings <= 5),
+	[content] text,
+	
+PRIMARY KEY CLUSTERED 
+(
+	
+	[reviewId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ProductDetail](
+	[productId] [int] FOREIGN KEY REFERENCES [Product](productId),
+	[size] [int],
+	[color] [varchar],
+	[quantity] [int],
+PRIMARY KEY CLUSTERED 
+(
+	[productId] ASC,[size],[color]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[OrderStatus](
+	[id] [int] FOREIGN KEY REFERENCES [Product](productId),
+	[description] text,
+PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Order](
+	[orderId] [int] IDENTITY(1,1) not null ,
+	[userId] [int] FOREIGN KEY REFERENCES [User](userId),
+	[orderDate] date,
+	[estimateDelivery] date,
+	[total] money,
+	[statusId] int FOREIGN KEY REFERENCES [OrderStatus](id),
+PRIMARY KEY CLUSTERED 
+(
+	[orderId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[OrderDetail](
+	[productId] [int] ,
+	[orderId] [int] FOREIGN KEY REFERENCES [Order](orderId),
+	
+	[quantity] [int],
+PRIMARY KEY CLUSTERED 
+(
+	[productId] ASC,[orderId]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
