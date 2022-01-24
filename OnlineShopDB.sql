@@ -80,8 +80,8 @@ CREATE TABLE [dbo].[Review]
 	CreatedDate timestamp		NOT NULL,
 
 	CONSTRAINT PK_review_id PRIMARY KEY(ReviewID),
-	CONSTRAINT FK_product_id FOREIGN KEY(ProductId) REFERENCES Product(ProductID),
-	CONSTRAINT FK_accinfor_id FOREIGN KEY(AccountId) REFERENCES Account(AccountID)
+	CONSTRAINT FK_product_id_1 FOREIGN KEY(ProductId) REFERENCES Product(ProductID),
+	CONSTRAINT FK_account_id_1 FOREIGN KEY(AccountId) REFERENCES Account(AccountID)
 )
 
 CREATE TABLE [dbo].[OrderStatus]
@@ -97,7 +97,7 @@ CREATE TABLE [dbo].[Order]
 	OrderID		int				IDENTITY(1,1),
 	AccountId	int				,
 	OrderDate	timestamp		NOT NULL,
-	EstimateDelivery timestamp	NOT NULL,
+	EstimateDelivery datetime2	NOT NULL,
 	Total		money			NOT NULL,
 	StatusId	int				,
 
@@ -113,7 +113,7 @@ CREATE TABLE [dbo].[OrderDetail]
 	Quantity	int				NOT NULL,
 	
 	CONSTRAINT FK_order_id FOREIGN KEY(OrderId) REFERENCES [Order](OrderID),
-	CONSTRAINT FK_product_id FOREIGN KEY(ProductId) REFERENCES Product(ProductID)
+	CONSTRAINT FK_product_id_2 FOREIGN KEY(ProductId) REFERENCES Product(ProductID)
 )
 
 CREATE TABLE [dbo].[Post]
@@ -125,7 +125,7 @@ CREATE TABLE [dbo].[Post]
 	CreatedDate timestamp		NOT NULL,
 
 	CONSTRAINT PK_post_id PRIMARY KEY(PostID),
-	CONSTRAINT FK_account_id FOREIGN KEY(AuthorId) REFERENCES Account(AccountID),
+	CONSTRAINT FK_account_id_2 FOREIGN KEY(AuthorId) REFERENCES Account(AccountID),
 )
 
 CREATE TABLE [dbo].[PostComment]
@@ -137,7 +137,7 @@ CREATE TABLE [dbo].[PostComment]
 	CreatedDate timestamp		NOT NULL,
 
 	CONSTRAINT PK_postcomment_id PRIMARY KEY(PostCommentID),
-	CONSTRAINT FK_account_id FOREIGN KEY(AccountId) REFERENCES Account(AccountID),
+	CONSTRAINT FK_account_id_3 FOREIGN KEY(AccountId) REFERENCES Account(AccountID),
 	CONSTRAINT FK_post_id FOREIGN KEY(PostId) REFERENCES Post(PostID),
 )
 
@@ -155,6 +155,6 @@ CREATE TABLE [dbo].[PostTag]
 	TagId		int				,
 
 	CONSTRAINT PK_posttag_id PRIMARY KEY(PostId, TagId),
-	CONSTRAINT FK_post_id FOREIGN KEY(PostId) REFERENCES Post(PostID),
+	CONSTRAINT FK_post_id_1 FOREIGN KEY(PostId) REFERENCES Post(PostID),
 	CONSTRAINT FK_tag_id FOREIGN KEY(TagId) REFERENCES Tag(TagID)
 )
