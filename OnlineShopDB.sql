@@ -1,4 +1,4 @@
-IF DB_ID('OnlineShopDB') IS NOT NULL
+﻿IF DB_ID('OnlineShopDB') IS NOT NULL
 BEGIN
 	USE master
 	DROP DATABASE [OnlineShopDB]
@@ -16,8 +16,8 @@ CREATE TABLE [dbo].[Account]
 	AccountID	int				IDENTITY(1,1),
 	Username	varchar(255)	NOT NULL,
 	[Password]	varchar(255)	NOT NULL,
-	FName		varchar(255)	,
-	LName		varchar(255)	,
+	FName		nvarchar(255)	,
+	LName		nvarchar(255)	,
 	Gender		bit				,
 	Email		varchar(50)		NOT NULL,
 	PhoneNumber varchar(15)		NOT NULL,
@@ -40,18 +40,26 @@ CREATE TABLE [dbo].[Address]
 CREATE TABLE [dbo].[Category]
 (
 	CategoryID	int				IDENTITY(1,1),
-	CategoryName varchar(255)	NOT NULL,
+	CategoryName nvarchar(255)	NOT NULL,
 
 	CONSTRAINT PK_category_id PRIMARY KEY(CategoryID)
+)
+
+CREATE TABLE [dbo].[BookCover]
+(
+	BookCoverID	int				IDENTITY(1,1),
+	BookCoverName nvarchar(255)	NOT NULL,
+
+	CONSTRAINT PK_bookcover_id PRIMARY KEY(BookCoverID)
 )
 
 CREATE TABLE [dbo].[Product]
 (
 	ProductID	int				IDENTITY(1,1) ,
 	CategoryId	int				,
-	ProductName varchar(200)	NOT NULL,
+	ProductName nvarchar(200)	NOT NULL,
 	[Image]		varchar(255)	NOT NULL,	
-	[Description] varchar(max)	NOT NULL,
+	[Description] nvarchar(max)	NOT NULL,
 	CreatedDate datetime2		NOT NULL,
 
 	CONSTRAINT PK_product_id PRIMARY KEY(ProductID),
@@ -60,13 +68,24 @@ CREATE TABLE [dbo].[Product]
 
 CREATE TABLE [dbo].[ProductDetail]
 (
-	ProductId	int				,
-	Size		int				NOT NULL,
-	Color		varchar(255)	NOT NULL,
-	Quantity	int				NOT NULL,
-	Price		money			NOT NULL,
+	ProductId			int			 ,
+	IssuingCompany		nvarchar(255) NOT NULL,
+	PublicationDate		datetime2	 NOT NULL,
+	CoverTypeId			int			 NOT NULL,
+	PublishingCompany	nvarchar(255) ,
+	NumberPage			int			 NOT NULL,
 
-	CONSTRAINT FK_product_id FOREIGN KEY(ProductId) REFERENCES Product(ProductID)
+	CONSTRAINT FK_product_id FOREIGN KEY(ProductId) REFERENCES Product(ProductID),
+	CONSTRAINT FK_covertype_id FOREIGN KEY(CoverTypeId) REFERENCES BookCover(BookCoverID)
+)
+
+CREATE TABLE [dbo].[WishList]
+(
+	AccountId		int				NOT NULL,
+	ProductId		int				NOT NULL,
+
+	CONSTRAINT PK_account_id2 FOREIGN KEY(AccountId) REFERENCES Account(AccountID),
+	CONSTRAINT FK_product_id2 FOREIGN KEY(ProductId) REFERENCES Product(ProductID)
 )
 
 CREATE TABLE [dbo].[Review]
@@ -120,8 +139,8 @@ CREATE TABLE [dbo].[Post]
 (
 	PostID		int				IDENTITY(1,1),
 	AuthorId	int				,
-	Title		varchar(255)	NOT NULL,
-	Content		varchar(max)	NOT NULL,
+	Title		nvarchar(255)	NOT NULL,
+	Content		nvarchar(max)	NOT NULL,
 	CreatedDate datetime2		NOT NULL,
 
 	CONSTRAINT PK_post_id PRIMARY KEY(PostID),
@@ -133,7 +152,7 @@ CREATE TABLE [dbo].[PostComment]
 	PostCommentID int			IDENTITY(1,1),
 	PostId		int				,
 	AccountId	int				,
-	Comment		varchar(255)	NOT NULL,
+	Comment		nvarchar(255)	NOT NULL,
 	CreatedDate datetime2		NOT NULL,
 
 	CONSTRAINT PK_postcomment_id PRIMARY KEY(PostCommentID),
@@ -165,14 +184,20 @@ GO
 INSERT [dbo].[Address] ([AccountId], [Address]) VALUES (1, N'Hanoi')
 INSERT [dbo].[Address] ([AccountId], [Address]) VALUES (1, N'Hung Yen')
 GO
-INSERT [dbo].[Category] ([CategoryName]) VALUES (N'Men')
-INSERT [dbo].[Category] ([CategoryName]) VALUES (N'Women')
+INSERT [dbo].[Category] ([CategoryName]) VALUES (N'Literature')
+INSERT [dbo].[Category] ([CategoryName]) VALUES (N'Economic Book')
 GO
-INSERT [dbo].[Product] ([CategoryId], [ProductName], [Image], [Description], [CreatedDate]) VALUES (1, N'Men Hat', N'men2.jpg', N'good quality', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
-INSERT [dbo].[Product] ([CategoryId], [ProductName], [Image], [Description], [CreatedDate]) VALUES (2, N'Hanes Women''s EcoSmart Crewneck Sweatshirt', N'anh2.jpg', N'cheap', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[BookCover] ([BookCoverName]) VALUES (N'Hardcover')
+INSERT [dbo].[BookCover] ([BookCoverName]) VALUES (N'Paperback')
 GO
-INSERT [dbo].[ProductDetail] ([ProductId], [Size], [Color], [Quantity], [Price]) VALUES (2, 36, N'Green', 10, 11.0000)
-INSERT [dbo].[ProductDetail] ([ProductId], [Size], [Color], [Quantity], [Price]) VALUES (2, 35, N'Red', 5, 12.0000)
+INSERT [dbo].[Product] ([CategoryId], [ProductName], [Image], [Description], [CreatedDate]) VALUES (1, N'Cây Cam Ngọt Của Tôi', N'camngot.jpg', N'good quality', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[Product] ([CategoryId], [ProductName], [Image], [Description], [CreatedDate]) VALUES (2, N'Payback Time - Ngày Đòi Nợ', N'ngaydoino.jpg', N'cheap', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[ProductDetail] ([ProductId], [IssuingCompany], [PublicationDate], [CoverTypeId], [PublishingCompany], [NumberPage]) VALUES (1, N'Nhã Nam', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), 2, N'Nhà Xuất Bản Hội Nhà Văn', 244)
+INSERT [dbo].[ProductDetail] ([ProductId], [IssuingCompany], [PublicationDate], [CoverTypeId], [PublishingCompany], [NumberPage]) VALUES (2, 'HappyLive', CAST(N'2017-08-08T00:00:00.0000000' AS DateTime2), 1, '', 280)
+GO
+INSERT INTO [dbo].[WishList] ([AccountId], [ProductId]) VALUES (2, 1)
+INSERT INTO [dbo].[WishList] ([AccountId], [ProductId]) VALUES (2, 2)
 GO
 INSERT [dbo].[OrderStatus] ([Description]) VALUES (N'Pending')
 INSERT [dbo].[OrderStatus] ([Description]) VALUES (N'Completed')
@@ -186,7 +211,7 @@ GO
 INSERT [dbo].[Post] ([AuthorId], [Title], [Content], [CreatedDate]) VALUES (1, N'The best fashion influencers to follow for sartorial inspiration', N'From our favourite UK influencers to the best missives from Milan and the coolest New Yorkers, read on some of the best fashion blogs out there, and for even more inspiration, do head to our separate black fashion influencer round-up.
 
 Fancy some shopping deals? Check out these amazing sales: Zara Black Friday, ASOS Black Friday, Missoma Black Friday and Gucci Black Friday.', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
-INSERT [dbo].[Post] ([AuthorId], [Title], [Content], [CreatedDate]) VALUES (1, N'THE HOLIDAY HOSTING HACK I LIVE BY', N'If there�s one holiday hosting hack that I live by, it�s to have your food (and drink!) double as decorations. Nothing brings more ambience to a holiday party than an on-theme spread of food and drinks and it might be easier than you think. From charcuterie boards laid out in wreaths to festive-shaped desserts, or festive drinks bring the holiday spirit to your table spread for your holiday gatherings.', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[Post] ([AuthorId], [Title], [Content], [CreatedDate]) VALUES (1, N'THE HOLIDAY HOSTING HACK I LIVE BY', N'If there’s one holiday hosting hack that I live by, it’s to have your food (and drink!) double as decorations. Nothing brings more ambience to a holiday party than an on-theme spread of food and drinks and it might be easier than you think. From charcuterie boards laid out in wreaths to festive-shaped desserts, or festive drinks bring the holiday spirit to your table spread for your holiday gatherings.', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
 
 GO
 INSERT [dbo].[PostComment] ([PostId], [AccountId], [Comment], [CreatedDate]) VALUES (1, 2, N'good', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
