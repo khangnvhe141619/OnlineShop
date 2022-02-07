@@ -1,5 +1,9 @@
 package com.shop.dao;
 
-public class UserDAO {
+import java.sql.SQLException;
 
+import fa.training.model.Member;
+
+public interface UserDAO {
+	Member getLogin(String userName, String password) throws SQLException;
 }
