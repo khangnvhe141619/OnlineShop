@@ -13,165 +13,158 @@ GO
 
 CREATE TABLE [dbo].[Account]
 (
-	AccountID	int				IDENTITY(1,1),
-	Username	varchar(255)	NOT NULL,
-	[Password]	varchar(255)	NOT NULL,
-	FName		nvarchar(255)	,
-	LName		nvarchar(255)	,
-	Gender		bit				,
-	Email		varchar(50)		NOT NULL,
-	PhoneNumber varchar(15)		NOT NULL,
-	Avatar		varchar(255)	,
-	[Role]		char(3)			NOT NULL,
-	[Active]	bit				NOT NULL,
-	CreatedDate datetime2		NOT NULL,
+	AccountID			int				IDENTITY(1,1),
+	Username			varchar(255)	NOT NULL,
+	[Password]			varchar(255)	NOT NULL,
+	FName				nvarchar(255)	,
+	LName				nvarchar(255)	,
+	Gender				bit				,
+	Email				varchar(50)		NOT NULL,
+	PhoneNumber			varchar(15)		NOT NULL,
+	Avatar				varchar(255)	,
+	[Role]				char(3)			NOT NULL,
+	[Active]			bit				NOT NULL,
+	CreatedDate			datetime2		NOT NULL,
 
 	CONSTRAINT PK_account_id PRIMARY KEY(AccountID)
 )
 
 CREATE TABLE [dbo].[Address]
 (
-	AccountId	int				,
-	[Address]	varchar(255)	NOT NULL,
+	AccountId			int				,
+	[Address]			varchar(255)	NOT NULL,
 	
-	CONSTRAINT FK_accinfor_id FOREIGN KEY(AccountId) REFERENCES Account(AccountID),
+	CONSTRAINT FK_account_id_1 FOREIGN KEY(AccountId) REFERENCES Account(AccountID),
 )
 
 CREATE TABLE [dbo].[Category]
 (
-	CategoryID	int				IDENTITY(1,1),
-	CategoryName nvarchar(255)	NOT NULL,
+	CategoryID			int				IDENTITY(1,1),
+	CategoryName		nvarchar(255)	NOT NULL,
 
 	CONSTRAINT PK_category_id PRIMARY KEY(CategoryID)
 )
 
 CREATE TABLE [dbo].[BookCover]
 (
-	BookCoverID	int				IDENTITY(1,1),
-	BookCoverName nvarchar(255)	NOT NULL,
+	BookCoverID			int				IDENTITY(1,1),
+	BookCoverName		nvarchar(255)	NOT NULL,
 
 	CONSTRAINT PK_bookcover_id PRIMARY KEY(BookCoverID)
 )
 
 CREATE TABLE [dbo].[Product]
 (
-	ProductID	int				IDENTITY(1,1) ,
-	CategoryId	int				,
-	ProductName nvarchar(200)	NOT NULL,
-	[Image]		varchar(255)	NOT NULL,	
-	[Description] nvarchar(max)	NOT NULL,
-	CreatedDate datetime2		NOT NULL,
+	ProductID			int				IDENTITY(1,1) ,
+	CategoryId			int				,
+	ProductName			nvarchar(200)	NOT NULL,
+	[Image]				varchar(255)	NOT NULL,	
+	[Description]		nvarchar(max)	NOT NULL,
+	CreatedDate			datetime2		NOT NULL,
+	IssuingCompany		nvarchar(255)	NOT NULL,
+	PublicationDate		datetime2		NOT NULL,
+	CoverTypeId			int				NOT NULL,
+	PublishingCompany	nvarchar(255)	,
+	NumberPage			int				NOT NULL,
 
 	CONSTRAINT PK_product_id PRIMARY KEY(ProductID),
 	CONSTRAINT FK_category_id FOREIGN KEY(CategoryId) REFERENCES Category(CategoryID),
-)
-
-CREATE TABLE [dbo].[ProductDetail]
-(
-	ProductId			int			 ,
-	IssuingCompany		nvarchar(255) NOT NULL,
-	PublicationDate		datetime2	 NOT NULL,
-	CoverTypeId			int			 NOT NULL,
-	PublishingCompany	nvarchar(255) ,
-	NumberPage			int			 NOT NULL,
-
-	CONSTRAINT FK_product_id FOREIGN KEY(ProductId) REFERENCES Product(ProductID),
 	CONSTRAINT FK_covertype_id FOREIGN KEY(CoverTypeId) REFERENCES BookCover(BookCoverID)
 )
 
 CREATE TABLE [dbo].[WishList]
 (
-	AccountId		int				NOT NULL,
-	ProductId		int				NOT NULL,
+	AccountId			int				NOT NULL,
+	ProductId			int				NOT NULL,
 
-	CONSTRAINT PK_account_id2 FOREIGN KEY(AccountId) REFERENCES Account(AccountID),
-	CONSTRAINT FK_product_id2 FOREIGN KEY(ProductId) REFERENCES Product(ProductID)
+	CONSTRAINT PK_account_id_1 FOREIGN KEY(AccountId) REFERENCES Account(AccountID),
+	CONSTRAINT FK_product_id_1 FOREIGN KEY(ProductId) REFERENCES Product(ProductID)
 )
 
 CREATE TABLE [dbo].[Review]
 (
-	ReviewID	int				IDENTITY(1,1),
-	ProductId	int				,
-	AccountId	int				,
-	Content		varchar(255)	,
-	Ratings		int				NOT NULL,
+	ReviewID			int				IDENTITY(1,1),
+	ProductId			int				,
+	AccountId			int				,
+	Content				varchar(255)	,
+	Ratings				int				NOT NULL,
 	CONSTRAINT CHK_Ratings CHECK (Ratings > 0 AND Ratings <= 5),
 	CreatedDate datetime2		NOT NULL,
 
 	CONSTRAINT PK_review_id PRIMARY KEY(ReviewID),
-	CONSTRAINT FK_product_id_1 FOREIGN KEY(ProductId) REFERENCES Product(ProductID),
-	CONSTRAINT FK_account_id_1 FOREIGN KEY(AccountId) REFERENCES Account(AccountID)
+	CONSTRAINT FK_product_id_2 FOREIGN KEY(ProductId) REFERENCES Product(ProductID),
+	CONSTRAINT FK_account_id_2 FOREIGN KEY(AccountId) REFERENCES Account(AccountID)
 )
 
 CREATE TABLE [dbo].[OrderStatus]
 (
-	[ID]		int				IDENTITY(1,1),
-	[Description] varchar(255)	NOT NULL,
+	[ID]				int				IDENTITY(1,1),
+	[Description]		varchar(255)	NOT NULL,
 
 	CONSTRAINT PK_orderstatus_id PRIMARY KEY(ID)
 )
 
 CREATE TABLE [dbo].[Order]
 (
-	OrderID		int				IDENTITY(1,1),
-	AccountId	int				,
-	OrderDate	datetime2		NOT NULL,
-	EstimateDelivery datetime2	NOT NULL,
-	Total		money			NOT NULL,
-	StatusId	int				,
+	OrderID				int				IDENTITY(1,1),
+	AccountId			int				,
+	OrderDate			datetime2		NOT NULL,
+	EstimateDelivery	datetime2		NOT NULL,
+	Total				money			NOT NULL,
+	StatusId			int				,
 
 	CONSTRAINT PK_order_id PRIMARY KEY(OrderID),
-	CONSTRAINT FK_account_id FOREIGN KEY(AccountId) REFERENCES Account(AccountID),
+	CONSTRAINT FK_account_id_3 FOREIGN KEY(AccountId) REFERENCES Account(AccountID),
 	CONSTRAINT FK_status_id FOREIGN KEY(StatusId) REFERENCES OrderStatus(ID)
 )
 
 CREATE TABLE [dbo].[OrderDetail]
 (
-	OrderId		int				,
-	ProductId	int				,
-	Quantity	int				NOT NULL,
+	OrderId				int				,
+	ProductId			int				,
+	Quantity			int				NOT NULL,
 	
 	CONSTRAINT FK_order_id FOREIGN KEY(OrderId) REFERENCES [Order](OrderID),
-	CONSTRAINT FK_product_id_2 FOREIGN KEY(ProductId) REFERENCES Product(ProductID)
+	CONSTRAINT FK_product_id_3 FOREIGN KEY(ProductId) REFERENCES Product(ProductID)
 )
 
 CREATE TABLE [dbo].[Post]
 (
-	PostID		int				IDENTITY(1,1),
-	AuthorId	int				,
-	Title		nvarchar(255)	NOT NULL,
-	Content		nvarchar(max)	NOT NULL,
-	CreatedDate datetime2		NOT NULL,
+	PostID				int				IDENTITY(1,1),
+	AuthorId			int				,
+	Title				nvarchar(255)	NOT NULL,
+	Content				nvarchar(max)	NOT NULL,
+	CreatedDate			datetime2		NOT NULL,
 
 	CONSTRAINT PK_post_id PRIMARY KEY(PostID),
-	CONSTRAINT FK_account_id_2 FOREIGN KEY(AuthorId) REFERENCES Account(AccountID),
+	CONSTRAINT FK_account_id_4 FOREIGN KEY(AuthorId) REFERENCES Account(AccountID),
 )
 
 CREATE TABLE [dbo].[PostComment]
 (
-	PostCommentID int			IDENTITY(1,1),
-	PostId		int				,
-	AccountId	int				,
-	Comment		nvarchar(255)	NOT NULL,
-	CreatedDate datetime2		NOT NULL,
+	PostCommentID		int			IDENTITY(1,1),
+	PostId				int				,
+	AccountId			int				,
+	Comment				nvarchar(255)	NOT NULL,
+	CreatedDate			datetime2		NOT NULL,
 
 	CONSTRAINT PK_postcomment_id PRIMARY KEY(PostCommentID),
-	CONSTRAINT FK_account_id_3 FOREIGN KEY(AccountId) REFERENCES Account(AccountID),
+	CONSTRAINT FK_account_id_5 FOREIGN KEY(AccountId) REFERENCES Account(AccountID),
 	CONSTRAINT FK_post_id FOREIGN KEY(PostId) REFERENCES Post(PostID),
 )
 
 CREATE TABLE [dbo].[Tag]
 (
-	TagID		int				IDENTITY(1,1),
-	TagName		varchar(50)		NOT NULL,
+	TagID				int				IDENTITY(1,1),
+	TagName				varchar(50)		NOT NULL,
 
 	CONSTRAINT PK_tag_id PRIMARY KEY(TagID)
 )
 
 CREATE TABLE [dbo].[PostTag]
 (
-	PostId		int				,
-	TagId		int				,
+	PostId				int				,
+	TagId				int				,
 
 	CONSTRAINT PK_posttag_id PRIMARY KEY(PostId, TagId),
 	CONSTRAINT FK_post_id_1 FOREIGN KEY(PostId) REFERENCES Post(PostID),
@@ -190,11 +183,8 @@ GO
 INSERT [dbo].[BookCover] ([BookCoverName]) VALUES (N'Hardcover')
 INSERT [dbo].[BookCover] ([BookCoverName]) VALUES (N'Paperback')
 GO
-INSERT [dbo].[Product] ([CategoryId], [ProductName], [Image], [Description], [CreatedDate]) VALUES (1, N'Cây Cam Ngọt Của Tôi', N'camngot.jpg', N'good quality', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
-INSERT [dbo].[Product] ([CategoryId], [ProductName], [Image], [Description], [CreatedDate]) VALUES (2, N'Payback Time - Ngày Đòi Nợ', N'ngaydoino.jpg', N'cheap', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
-GO
-INSERT [dbo].[ProductDetail] ([ProductId], [IssuingCompany], [PublicationDate], [CoverTypeId], [PublishingCompany], [NumberPage]) VALUES (1, N'Nhã Nam', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), 2, N'Nhà Xuất Bản Hội Nhà Văn', 244)
-INSERT [dbo].[ProductDetail] ([ProductId], [IssuingCompany], [PublicationDate], [CoverTypeId], [PublishingCompany], [NumberPage]) VALUES (2, 'HappyLive', CAST(N'2017-08-08T00:00:00.0000000' AS DateTime2), 1, '', 280)
+INSERT [dbo].[Product] ([CategoryId], [ProductName], [Image], [Description], [CreatedDate], [IssuingCompany], [PublicationDate], [CoverTypeId], [PublishingCompany], [NumberPage]) VALUES (1, N'Cây Cam Ngọt Của Tôi', N'camngot.jpg', N'good quality', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), N'Nhã Nam', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), 2, N'Nhà Xuất Bản Hội Nhà Văn', 244)
+INSERT [dbo].[Product] ([CategoryId], [ProductName], [Image], [Description], [CreatedDate], [IssuingCompany], [PublicationDate], [CoverTypeId], [PublishingCompany], [NumberPage]) VALUES (2, N'Payback Time - Ngày Đòi Nợ', N'ngaydoino.jpg', N'cheap', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), N'HappyLive', CAST(N'2017-08-08T00:00:00.0000000' AS DateTime2), 1, '', 280)
 GO
 INSERT INTO [dbo].[WishList] ([AccountId], [ProductId]) VALUES (2, 1)
 INSERT INTO [dbo].[WishList] ([AccountId], [ProductId]) VALUES (2, 2)
@@ -205,7 +195,7 @@ GO
 INSERT [dbo].[Order] ([AccountId], [OrderDate], [EstimateDelivery], [Total], [StatusId]) VALUES (2, CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), CAST(N'2022-02-02T00:00:00.0000000' AS DateTime2), 24.0000, 1)
 
 GO
-INSERT [dbo].[OrderDetail] ([OrderId], [ProductId], [Quantity]) VALUES (1, 2, 2)
+INSERT [dbo].[OrderDetail] ([OrderId], [ProductID], [Quantity]) VALUES (1, 2, 2)
 GO
 
 INSERT [dbo].[Post] ([AuthorId], [Title], [Content], [CreatedDate]) VALUES (1, N'The best fashion influencers to follow for sartorial inspiration', N'From our favourite UK influencers to the best missives from Milan and the coolest New Yorkers, read on some of the best fashion blogs out there, and for even more inspiration, do head to our separate black fashion influencer round-up.
