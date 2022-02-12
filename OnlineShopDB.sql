@@ -65,6 +65,8 @@ CREATE TABLE [dbo].[Product]
 	PublicationDate		datetime2		NOT NULL,
 	CoverTypeId			int				NOT NULL,
 	PublishingCompany	nvarchar(255)	,
+	Quantity			int				NOT NULL,
+	Price				float			NOT NULL,
 	NumberPage			int				NOT NULL,
 
 	CONSTRAINT PK_product_id PRIMARY KEY(ProductID),
@@ -183,8 +185,8 @@ GO
 INSERT [dbo].[BookCover] ([BookCoverName]) VALUES (N'Hardcover')
 INSERT [dbo].[BookCover] ([BookCoverName]) VALUES (N'Paperback')
 GO
-INSERT [dbo].[Product] ([CategoryId], [ProductName], [Image], [Description], [CreatedDate], [IssuingCompany], [PublicationDate], [CoverTypeId], [PublishingCompany], [NumberPage]) VALUES (1, N'Cây Cam Ngọt Của Tôi', N'camngot.jpg', N'good quality', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), N'Nhã Nam', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), 2, N'Nhà Xuất Bản Hội Nhà Văn', 244)
-INSERT [dbo].[Product] ([CategoryId], [ProductName], [Image], [Description], [CreatedDate], [IssuingCompany], [PublicationDate], [CoverTypeId], [PublishingCompany], [NumberPage]) VALUES (2, N'Payback Time - Ngày Đòi Nợ', N'ngaydoino.jpg', N'cheap', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), N'HappyLive', CAST(N'2017-08-08T00:00:00.0000000' AS DateTime2), 1, '', 280)
+INSERT [dbo].[Product] ([CategoryId], [ProductName], [Image], [Description], [CreatedDate], [IssuingCompany], [PublicationDate], [CoverTypeId], [PublishingCompany], [Quantity], [Price], [NumberPage]) VALUES (1, N'Cây Cam Ngọt Của Tôi', N'camngot.jpg', N'good quality', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), N'Nhã Nam', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), 2, N'Nhà Xuất Bản Hội Nhà Văn', 10, 15000, 244)
+INSERT [dbo].[Product] ([CategoryId], [ProductName], [Image], [Description], [CreatedDate], [IssuingCompany], [PublicationDate], [CoverTypeId], [PublishingCompany], [Quantity], [Price], [NumberPage]) VALUES (2, N'Payback Time - Ngày Đòi Nợ', N'ngaydoino.jpg', N'cheap', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), N'HappyLive', CAST(N'2017-08-08T00:00:00.0000000' AS DateTime2), 1, '', 15, 20000, 280)
 GO
 INSERT INTO [dbo].[WishList] ([AccountId], [ProductId]) VALUES (2, 1)
 INSERT INTO [dbo].[WishList] ([AccountId], [ProductId]) VALUES (2, 2)
