@@ -15,9 +15,12 @@ public interface ProductDAO {
 	//update product to db
 	public boolean updateProduct(Product product) throws SQLException;
 
-	//delete product from db
+	//delete product which have id="id" from db
 	public boolean deleteProduct(String id) throws SQLException;
 
 	//get total of  product
 	public List<Product> getListToTalProduct(int row) throws SQLException;
+	
+	//
+	public int countTotalProduct() throws SQLException;
 }
