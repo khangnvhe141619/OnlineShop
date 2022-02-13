@@ -16,13 +16,13 @@ import com.shop.model.Account;
  * Servlet implementation class Login
  */
 @WebServlet("/loginController")
-public class AccountController extends HttpServlet {
+public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AccountController() {
+    public LoginController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +31,7 @@ public class AccountController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("views/Account.jsp").forward(request, response);
+		request.getRequestDispatcher("views/Login.jsp").forward(request, response);
 	}
 
 	/**
@@ -52,11 +52,11 @@ public class AccountController extends HttpServlet {
 				request.setAttribute("failedLogin", true);
 				request.setAttribute("e", email);
 				request.setAttribute("p", pass);
-				request.getRequestDispatcher("views/Account.jsp").forward(request, response);
+				request.getRequestDispatcher("views/Login.jsp").forward(request, response);
 			}
 		} catch (Exception e) {
 			request.setAttribute("errorLogin", true);
-			request.getRequestDispatcher("views/Account.jsp").forward(request, response);
+			request.getRequestDispatcher("views/Login.jsp").forward(request, response);
 		}
 	}
 }

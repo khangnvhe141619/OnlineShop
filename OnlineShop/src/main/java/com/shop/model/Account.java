@@ -1,6 +1,5 @@
 package com.shop.model;
 
-import java.util.Date;
 
 public class Account {
 	private int accountId;
@@ -14,14 +13,14 @@ public class Account {
 	private String avatar;
 	private int role;
 	private int active;
-	private Date createedDate;
+	private String createedDate;
 
 	public Account() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Account(int accountId, String username, String password, String firstname, String lastname, int gender,
-			String email, String phonenumber, String avatar, int role, int active, Date createedDate) {
+			String email, String phonenumber, String avatar, int role, int active, String createedDate) {
 		super();
 		this.accountId = accountId;
 		this.username = username;
@@ -34,6 +33,23 @@ public class Account {
 		this.avatar = avatar;
 		this.role = role;
 		this.active = active;
+		this.createedDate = createedDate;
+	}
+
+	public Account(String username, String password, String email, String phonenumber) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.phonenumber = phonenumber;
+	}
+
+	public Account(String username, String password, String email, String phonenumber, String createedDate) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.phonenumber = phonenumber;
 		this.createedDate = createedDate;
 	}
 
@@ -125,11 +141,11 @@ public class Account {
 		this.active = active;
 	}
 
-	public Date getCreateedDate() {
+	public String getCreateedDate() {
 		return createedDate;
 	}
 
-	public void setCreateedDate(Date createedDate) {
+	public void setCreateedDate(String createedDate) {
 		this.createedDate = createedDate;
 	}
 	

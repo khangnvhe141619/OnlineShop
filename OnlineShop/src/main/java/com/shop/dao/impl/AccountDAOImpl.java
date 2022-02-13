@@ -2,6 +2,7 @@ package com.shop.dao.impl;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,8 +11,8 @@ import com.shop.model.Account;
 import com.shop.utils.DBConnection;
 import com.shop.utils.SQLCommand;
 
-public class AccountDAOImpl implements AccountDAO {
 
+public class AccountDAOImpl implements AccountDAO {
 	private Connection con;
 	private PreparedStatement pre;
 	private ResultSet rs;
@@ -20,14 +21,16 @@ public class AccountDAOImpl implements AccountDAO {
 	public Account getLogin(String userName, String password) throws SQLException {
 		try {
 			con = DBConnection.getInstance().getConnection();
-			pre = con.prepareStatement(SQLCommand.LOGIN);
+			pre = con.prepareStatement(SQLCommand.login);
 			pre.setString(1, userName);
 			pre.setString(2, password);
+			pre.setString(3, userName);
+			pre.setString(4, password);
 			rs = pre.executeQuery();
 			while (rs.next()) {
 				return new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
 						rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getInt(10), rs.getInt(11),
-						rs.getDate(12));
+						rs.getString(12));
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -46,13 +49,95 @@ public class AccountDAOImpl implements AccountDAO {
 		return null;
 	}
 
+	@Override
+	public boolean getCheckUsername(String username) throws SQLException {
+		boolean check = false;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.checkUsername);
+			pre.setString(1, username);
+			rs = pre.executeQuery();
+			check = rs.next();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return check;
+	}
+	
+	@Override
+	public boolean getCheckEmail(String email) throws SQLException {
+		boolean check = false;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.checkEmail);
+			pre.setString(1, email);
+			rs = pre.executeQuery();
+			check = rs.next();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return check;
+	}
+
+	@Override
+	public boolean getInsertAccount(Account account) throws SQLException {
+		boolean check = false;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.insertAccount);
+			pre.setString(1, account.getUsername());
+			pre.setString(2, account.getPassword());
+			pre.setString(3, account.getEmail());
+			pre.setString(4, account.getPhonenumber());
+			pre.setString(5, account.getCreateedDate());
+			check = pre.executeUpdate() == 1;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return check;
+	}
+	
 	public static void main(String[] args) throws SQLException {
 		AccountDAO dao = new AccountDAOImpl();
-		Account a = dao.getLogin("admin", "admin");
-		if (a != null) {
-			System.out.println("OK");
-		} else {
-			System.out.println("NOT OK");
-		}
+//		Account a = dao.getLogin("admin@gmail.com", "admin");
+//		if (a != null) {
+//			System.out.println("OK");
+//		} else {
+//			System.out.println("NOT OK");
+//		}
+		dao.getInsertAccount(new Account("dong123", "123", "dasd@gmail.com", "0312321312", "2021-02-10"));
 	}
 }

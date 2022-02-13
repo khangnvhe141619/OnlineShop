@@ -343,38 +343,36 @@
  <section id="aa-myaccount">
    <div class="container">
      <div class="row">
-       <div class="col-md-12">
         <div class="aa-myaccount-area">         
             <div class="row">
-              <div class="col-md-6">
-                <div class="aa-myaccount-login">
-                <h4>Login</h4>
-                 <form class="aa-login-form" method="POST" action="<%=request.getContextPath() %>/loginController">
-                    <c:if test="${errorLogin}">
-					<div class="text-danger">Login fail</div>
-					</c:if>
-					<c:if test="${failedLogin}">
-					<div class="text-danger">Username or Password is incorrect</div>
-					</c:if>
-                  <label for="">Username or Email address<span>*</span></label>
-                   <input type="text" placeholder="Username or email" name="email">
-                   <label for="">Password<span>*</span></label>
-                    <input type="password" placeholder="Password" name="password">
-                    <button type="submit" class="aa-browse-btn">Login</button>
-                    <label class="rememberme" for="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
-                    <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
-                  </form>
-                </div>
-              </div>
-              <div class="col-md-6">
+              <div style="margin: 0 auto; width: 50%">
                 <div class="aa-myaccount-register">                 
                  <h4>Register</h4>
-                 <form action="" class="aa-login-form">
-                    <label for="">Username or Email address<span>*</span></label>
-                    <input type="text" placeholder="Username or email">
+                 <form action="<%=request.getContextPath() %>/registerController" method="POST" class="aa-login-form">
+                 <c:if test="${failedRegister}">
+			<div class="text-danger">Register failed</div>
+		</c:if>
+		<c:if test="${errorSQL}">  
+   				<div class="text-danger" >Connect SQL Server fail</div>
+		</c:if>
+                    <label for="">Username<span>*</span></label>
+                    <input type="text" placeholder="Username" name="username">
+                    <c:if test="${errorUsername}">
+				<div class="text-danger">Username already exists</div>
+			</c:if>
                     <label for="">Password<span>*</span></label>
-                    <input type="password" placeholder="Password">
-                    <button type="submit" class="aa-browse-btn">Register</button>                    
+                    <input type="password" placeholder="Password" name="password">
+                    <label for="">Email<span>*</span></label>
+                    <input type="text" placeholder="Email" name="email">
+                    <c:if test="${errorEmail}">
+				<div class="text-danger">Email already exists</div>
+			</c:if>
+                    <label for="">Phone<span>*</span></label>
+                    <input type="text" placeholder="Phone" name="phone">
+                    <button type="submit" class="aa-browse-btn">Register</button>  
+                    <div class="rememberme">
+              		Have an account?<a href="<%=request.getContextPath() %>/views/Login.jsp" style="color: red"> Login now!</a>
+            		</div>
                   </form>
                 </div>
               </div>
@@ -382,7 +380,6 @@
          </div>
        </div>
      </div>
-   </div>
  </section>
  <!-- / Cart view section -->
 
