@@ -88,7 +88,7 @@ CREATE TABLE [dbo].[Review]
 	ReviewID			int				IDENTITY(1,1),
 	ProductId			int				,
 	AccountId			int				,
-	Content				varchar(255)	,
+	Content				nvarchar(255)	,
 	Ratings				int				NOT NULL,
 	CONSTRAINT CHK_Ratings CHECK (Ratings > 0 AND Ratings <= 5),
 	CreatedDate datetime2		NOT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE [dbo].[Review]
 CREATE TABLE [dbo].[OrderStatus]
 (
 	[ID]				int				IDENTITY(1,1),
-	[Description]		varchar(255)	NOT NULL,
+	[Description]		nvarchar(255)	NOT NULL,
 
 	CONSTRAINT PK_orderstatus_id PRIMARY KEY(ID)
 )
@@ -217,3 +217,6 @@ GO
 INSERT [dbo].[PostTag] ([PostId], [TagId]) VALUES (1, 1)
 INSERT [dbo].[PostTag] ([PostId], [TagId]) VALUES (1, 2)
 INSERT [dbo].[PostTag] ([PostId], [TagId]) VALUES (2, 4)
+GO
+INSERT [dbo].[Review] ([ProductId], [AccountId], [Content], [Ratings], [CreatedDate]) VALUES (1, 2, 'good', 5, CAST(N'2022-02-02T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[Review] ([ProductId], [AccountId], [Content], [Ratings], [CreatedDate]) VALUES (1, 2, 'hay', 5, CAST(N'2022-02-12T00:00:00.0000000' AS DateTime2))
