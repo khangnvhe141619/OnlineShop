@@ -1,10 +1,8 @@
 package com.shop.utils;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
 
 public class DBConnection {
 	private static DBConnection instance;
@@ -17,27 +15,18 @@ public class DBConnection {
 		return instance;
 	}
 
-	public Connection getConnection() throws IOException {
-		Properties properties = new Properties();
+	public Connection getConnection() {
 		try {
-			properties.load(DBConnection.class.getResourceAsStream("/dbConfig.properties"));
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			String url = "jdbc:sqlserver://localhost:1433; databaseName = OnlineShopDB";
+			String user = "sa";
+			String pass = "123";
 
-			String driver = properties.getProperty("driver");
-			String url = properties.getProperty("url");
-			String userName = properties.getProperty("userName");
-			String password = properties.getProperty("password");
-
-			Class.forName(driver);
-
-			connection = DriverManager.getConnection(url, userName, password);
+			connection = DriverManager.getConnection(url, user, pass);
 			return connection;
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
-	}
-
-	public static void main(String[] args) {
-		System.out.println(new DBConnection());
 	}
 }
