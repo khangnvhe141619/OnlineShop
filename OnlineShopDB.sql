@@ -65,8 +65,11 @@ CREATE TABLE [dbo].[Product]
 	PublicationDate		datetime2		NOT NULL,
 	CoverTypeId			int				NOT NULL,
 	PublishingCompany	nvarchar(255)	,
+<<<<<<< HEAD
+=======
 	Quantity			int				NOT NULL,
 	Price				float			NOT NULL,
+>>>>>>> main
 	NumberPage			int				NOT NULL,
 
 	CONSTRAINT PK_product_id PRIMARY KEY(ProductID),
@@ -88,7 +91,11 @@ CREATE TABLE [dbo].[Review]
 	ReviewID			int				IDENTITY(1,1),
 	ProductId			int				,
 	AccountId			int				,
+<<<<<<< HEAD
+	Content				varchar(255)	,
+=======
 	Content				nvarchar(255)	,
+>>>>>>> main
 	Ratings				int				NOT NULL,
 	CONSTRAINT CHK_Ratings CHECK (Ratings > 0 AND Ratings <= 5),
 	CreatedDate datetime2		NOT NULL,
@@ -101,7 +108,11 @@ CREATE TABLE [dbo].[Review]
 CREATE TABLE [dbo].[OrderStatus]
 (
 	[ID]				int				IDENTITY(1,1),
+<<<<<<< HEAD
+	[Description]		varchar(255)	NOT NULL,
+=======
 	[Description]		nvarchar(255)	NOT NULL,
+>>>>>>> main
 
 	CONSTRAINT PK_orderstatus_id PRIMARY KEY(ID)
 )
@@ -185,8 +196,13 @@ GO
 INSERT [dbo].[BookCover] ([BookCoverName]) VALUES (N'Hardcover')
 INSERT [dbo].[BookCover] ([BookCoverName]) VALUES (N'Paperback')
 GO
+<<<<<<< HEAD
+INSERT [dbo].[Product] ([CategoryId], [ProductName], [Image], [Description], [CreatedDate], [IssuingCompany], [PublicationDate], [CoverTypeId], [PublishingCompany], [NumberPage]) VALUES (1, N'Cây Cam Ngọt Của Tôi', N'camngot.jpg', N'good quality', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), N'Nhã Nam', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), 2, N'Nhà Xuất Bản Hội Nhà Văn', 244)
+INSERT [dbo].[Product] ([CategoryId], [ProductName], [Image], [Description], [CreatedDate], [IssuingCompany], [PublicationDate], [CoverTypeId], [PublishingCompany], [NumberPage]) VALUES (2, N'Payback Time - Ngày Đòi Nợ', N'ngaydoino.jpg', N'cheap', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), N'HappyLive', CAST(N'2017-08-08T00:00:00.0000000' AS DateTime2), 1, '', 280)
+=======
 INSERT [dbo].[Product] ([CategoryId], [ProductName], [Image], [Description], [CreatedDate], [IssuingCompany], [PublicationDate], [CoverTypeId], [PublishingCompany], [Quantity], [Price], [NumberPage]) VALUES (1, N'Cây Cam Ngọt Của Tôi', N'camngot.jpg', N'good quality', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), N'Nhã Nam', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), 2, N'Nhà Xuất Bản Hội Nhà Văn', 10, 15000, 244)
 INSERT [dbo].[Product] ([CategoryId], [ProductName], [Image], [Description], [CreatedDate], [IssuingCompany], [PublicationDate], [CoverTypeId], [PublishingCompany], [Quantity], [Price], [NumberPage]) VALUES (2, N'Payback Time - Ngày Đòi Nợ', N'ngaydoino.jpg', N'cheap', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), N'HappyLive', CAST(N'2017-08-08T00:00:00.0000000' AS DateTime2), 1, '', 15, 20000, 280)
+>>>>>>> main
 GO
 INSERT INTO [dbo].[WishList] ([AccountId], [ProductId]) VALUES (2, 1)
 INSERT INTO [dbo].[WishList] ([AccountId], [ProductId]) VALUES (2, 2)
@@ -216,7 +232,11 @@ INSERT [dbo].[Tag] ([TagName]) VALUES (N'wine')
 GO
 INSERT [dbo].[PostTag] ([PostId], [TagId]) VALUES (1, 1)
 INSERT [dbo].[PostTag] ([PostId], [TagId]) VALUES (1, 2)
+<<<<<<< HEAD
+INSERT [dbo].[PostTag] ([PostId], [TagId]) VALUES (2, 4)
+=======
 INSERT [dbo].[PostTag] ([PostId], [TagId]) VALUES (2, 4)
 GO
 INSERT [dbo].[Review] ([ProductId], [AccountId], [Content], [Ratings], [CreatedDate]) VALUES (1, 2, 'good', 5, CAST(N'2022-02-02T00:00:00.0000000' AS DateTime2))
 INSERT [dbo].[Review] ([ProductId], [AccountId], [Content], [Ratings], [CreatedDate]) VALUES (1, 2, 'hay', 5, CAST(N'2022-02-12T00:00:00.0000000' AS DateTime2))
+>>>>>>> main
