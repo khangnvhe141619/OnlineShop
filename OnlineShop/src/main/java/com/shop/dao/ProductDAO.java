@@ -19,7 +19,7 @@ public interface ProductDAO {
 	public boolean deleteProduct(String id) throws SQLException;
 
 	//get total of  product
-	public List<Product> getListToTalProduct(int row) throws SQLException;
+	public List<Product> getListAllProduct(int row) throws SQLException;
 	
 	//
 	public int countTotalProduct() throws SQLException;

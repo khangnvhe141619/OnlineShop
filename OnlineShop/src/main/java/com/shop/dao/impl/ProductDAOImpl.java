@@ -1,6 +1,5 @@
 package com.shop.dao.impl;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,8 +13,6 @@ import com.shop.model.Product;
 import com.shop.utils.DBConnection;
 import com.shop.utils.Validation;
 
-import fa.training.utils.SQLCommand;
-
 public class ProductDAOImpl implements ProductDAO {
 	private Connection con;
 	private PreparedStatement ps;
@@ -23,7 +20,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public Product getProductById(String id) throws SQLException {
-		String sql = "";
+		String sql = "SELECT * \r\n" + "FROM Product\r\n" + "WHERE ProductID = ?";
 		Product product = null;
 		try {
 			con = DBConnection.getInstance().getConnection();
@@ -37,20 +34,16 @@ public class ProductDAOImpl implements ProductDAO {
 				product.setProductName(rs.getString("ProductName"));
 				product.setImage(rs.getString("Image"));
 				product.setDescription(rs.getString("Description"));
-				String cDate = rs.getString("CreatedDate");
-				LocalDateTime createdDate = Validation.getLocalDateTime(cDate);
-				product.setCreatedDate(createdDate);
+				product.setCreatedDate(rs.getTimestamp("CreatedDate").toLocalDateTime());
 				product.setIssuingCompany(rs.getString("IssuingCompany"));
-				String pDate = rs.getString("PublicationDate");
-				LocalDateTime publicationDate = Validation.getLocalDateTime(pDate);
-				product.setPublicationDate(publicationDate);
+				product.setPublicationDate(rs.getTimestamp("PublicationDate").toLocalDateTime());
 				product.setCoverType(rs.getInt("CoverTypeId"));
 				product.setPublishingCompany(rs.getString("PublishingCompany"));
 				product.setQuantity(rs.getInt("Quantity"));
 				product.setPrice(rs.getDouble("Price"));
 				product.setNumberPage(rs.getInt("NumberPage"));
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
@@ -69,7 +62,8 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public boolean insertProduct(Product product) throws SQLException {
-		String sql = "";
+		String sql = "INSERT [dbo].[Product] ([CategoryId], [ProductName], [Image], [Description], [CreatedDate], [IssuingCompany], [PublicationDate], [CoverTypeId], [PublishingCompany], [Quantity], [Price], [NumberPage]) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		int row = 0;
 		try {
 			con = DBConnection.getInstance().getConnection();
@@ -79,16 +73,16 @@ public class ProductDAOImpl implements ProductDAO {
 			ps.setString(2, product.getProductName());
 			ps.setString(3, product.getImage());
 			ps.setString(4, product.getDescription());
-			ps.setString(5, product.getCreatedDate().toString());
+			ps.setString(5, Validation.getStringFromLocalDateTime(product.getCreatedDate()));
 			ps.setString(6, product.getIssuingCompany());
-			ps.setString(7, product.getPublicationDate().toString());
+			ps.setString(7, Validation.getStringFromLocalDateTime(product.getPublicationDate()));
 			ps.setInt(8, product.getCoverType());
 			ps.setString(9, product.getPublishingCompany());
 			ps.setInt(10, product.getQuantity());
 			ps.setDouble(11, product.getPrice());
 			ps.setInt(12, product.getNumberPage());
 			row = ps.executeUpdate();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
@@ -107,7 +101,11 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public boolean updateProduct(Product product) throws SQLException {
-		String sql = "";
+		String sql = "UPDATE Product\r\n"
+				+ "SET [CategoryId] = ?, [ProductName] = ?, [Image] = ?, [Description] = ?, [CreatedDate] = ?,\r\n"
+				+ "[IssuingCompany] = ?, [PublicationDate] = ?, [CoverTypeId] = ?,\r\n"
+				+ "[PublishingCompany] = ?, [Quantity] = ?, [Price] = ?, [NumberPage] = ?\r\n"
+				+ " WHERE ProductID = ?";
 		int row = 0;
 		try {
 			con = DBConnection.getInstance().getConnection();
@@ -117,16 +115,17 @@ public class ProductDAOImpl implements ProductDAO {
 			ps.setString(2, product.getProductName());
 			ps.setString(3, product.getImage());
 			ps.setString(4, product.getDescription());
-			ps.setString(5, product.getCreatedDate().toString());
+			ps.setString(5, Validation.getStringFromLocalDateTime(product.getCreatedDate()));
 			ps.setString(6, product.getIssuingCompany());
-			ps.setString(7, product.getPublicationDate().toString());
+			ps.setString(7, Validation.getStringFromLocalDateTime(product.getPublicationDate()));
 			ps.setInt(8, product.getCoverType());
 			ps.setString(9, product.getPublishingCompany());
 			ps.setInt(10, product.getQuantity());
 			ps.setDouble(11, product.getPrice());
 			ps.setInt(12, product.getNumberPage());
+			ps.setInt(13, product.getProductID());
 			row = ps.executeUpdate();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
@@ -145,14 +144,14 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public boolean deleteProduct(String id) throws SQLException {
-		String sql = "";
+		String sql = "DELETE FROM Product WHERE ProductID = ?";
 		int row = 0;
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, id);
 			row = ps.executeUpdate();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -160,7 +159,7 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public List<Product> getListToTalProduct(int row) throws SQLException {
+	public List<Product> getListAllProduct(int row) throws SQLException {
 		String sql = "";
 		Product product = null;
 		List<Product> lstProduct = new ArrayList<Product>();
@@ -176,13 +175,9 @@ public class ProductDAOImpl implements ProductDAO {
 				product.setProductName(rs.getString("ProductName"));
 				product.setImage(rs.getString("Image"));
 				product.setDescription(rs.getString("Description"));
-				String cDate = rs.getString("CreatedDate");
-				LocalDateTime createdDate = Validation.getLocalDateTime(cDate);
-				product.setCreatedDate(createdDate);
+				product.setCreatedDate(rs.getTimestamp("CreatedDate").toLocalDateTime());
 				product.setIssuingCompany(rs.getString("IssuingCompany"));
-				String pDate = rs.getString("PublicationDate");
-				LocalDateTime publicationDate = Validation.getLocalDateTime(pDate);
-				product.setPublicationDate(publicationDate);
+				product.setPublicationDate(rs.getTimestamp("PublicationDate").toLocalDateTime());
 				product.setCoverType(rs.getInt("CoverTypeId"));
 				product.setPublishingCompany(rs.getString("PublishingCompany"));
 				product.setQuantity(rs.getInt("Quantity"));
@@ -190,7 +185,7 @@ public class ProductDAOImpl implements ProductDAO {
 				product.setNumberPage(rs.getInt("NumberPage"));
 				lstProduct.add(product);
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
@@ -209,7 +204,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public int countTotalProduct() throws SQLException {
-		String sql = "";
+		String sql = "SELECT COUNT(*) FROM Product";
 		int count = 0;
 		try {
 			con = DBConnection.getInstance().getConnection();
@@ -218,7 +213,7 @@ public class ProductDAOImpl implements ProductDAO {
 			while (rs.next()) {
 				count = rs.getInt(1);
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
