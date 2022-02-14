@@ -13,14 +13,14 @@ public class Account {
 	private String avatar;
 	private int role;
 	private int active;
-	private String createedDate;
+	private String createdDate;
 
 	public Account() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Account(int accountId, String username, String password, String firstname, String lastname, int gender,
-			String email, String phonenumber, String avatar, int role, int active, String createedDate) {
+			String email, String phonenumber, String avatar, int role, int active, String createdDate) {
 		super();
 		this.accountId = accountId;
 		this.username = username;
@@ -33,7 +33,7 @@ public class Account {
 		this.avatar = avatar;
 		this.role = role;
 		this.active = active;
-		this.createedDate = createedDate;
+		this.createdDate = createdDate;
 	}
 
 	public Account(String username, String password, String email, String phonenumber) {
@@ -44,13 +44,13 @@ public class Account {
 		this.phonenumber = phonenumber;
 	}
 
-	public Account(String username, String password, String email, String phonenumber, String createedDate) {
+	public Account(String username, String password, String email, String phonenumber, String createdDate) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.phonenumber = phonenumber;
-		this.createedDate = createedDate;
+		this.createdDate = createdDate;
 	}
 
 	public int getAccountId() {
@@ -141,12 +141,12 @@ public class Account {
 		this.active = active;
 	}
 
-	public String getCreateedDate() {
-		return createedDate;
+	public String getcreatedDate() {
+		return createdDate;
 	}
 
-	public void setCreateedDate(String createedDate) {
-		this.createedDate = createedDate;
+	public void setcreatedDate(String createdDate) {
+		this.createdDate = createdDate;
 	}
 	
 	

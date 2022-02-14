@@ -1,33 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
-    <title>Daily Shop | Account Page</title>
+    <title>Daily Shop | Contact</title>
     
     <!-- Font awesome -->
-    <link href="<%=request.getContextPath() %>/resources/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="<%=request.getContextPath()%>/resources/css/font-awesome.css" rel="stylesheet">
     <!-- Bootstrap -->
-    <link href="<%=request.getContextPath() %>/resources/css/bootstrap.css" rel="stylesheet" type="text/css"> 
+    <link href="<%=request.getContextPath()%>/resources/css/bootstrap.css" rel="stylesheet">   
     <!-- SmartMenus jQuery Bootstrap Addon CSS -->
-    <link href="<%=request.getContextPath() %>/resources/css/jquery.smartmenus.bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="<%=request.getContextPath()%>/resources/css/jquery.smartmenus.bootstrap.css" rel="stylesheet">
     <!-- Product view slider -->
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/jquery.simpleLens.css">    
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/jquery.simpleLens.css">    
     <!-- slick slider -->
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/slick.css">
     <!-- price picker slider -->
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/nouislider.css">
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/nouislider.css">
     <!-- Theme color -->
-    <link id="switcher" href="<%=request.getContextPath() %>/resources/css/theme-color/default-theme.css" rel="stylesheet">
+    <link id="switcher" href="<%=request.getContextPath()%>/resources/css/theme-color/default-theme.css" rel="stylesheet">
     <!-- Top Slider CSS -->
-    <link href="<%=request.getContextPath() %>/resources/css/sequence-theme.modern-slide-in.css" rel="stylesheet" media="all">
+    <link href="<%=request.getContextPath()%>/resources/css/sequence-theme.modern-slide-in.css" rel="stylesheet" media="all">
 
     <!-- Main style sheet -->
-    <link href="<%=request.getContextPath() %>/resources/css/style.css" rel="stylesheet">    
+    <link href="<%=request.getContextPath()%>/resources/css/style.css" rel="stylesheet">    
 
     <!-- Google Font -->
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
@@ -42,18 +39,17 @@
     <![endif]-->
 
   </head>
-  <body>
-  
-   <!-- wpf loader Two -->
+  <body> 
+    <!-- wpf loader Two -->
     <div id="wpf-loader-two">          
       <div class="wpf-loader-two-inner">
         <span>Loading</span>
       </div>
     </div> 
     <!-- / wpf loader Two -->       
- <!-- SCROLL TOP BUTTON -->
+    <!-- SCROLL TOP BUTTON -->
     <a class="scrollToTop" href="#"><i class="fa fa-chevron-up"></i></a>
-  <!-- END SCROLL TOP BUTTON -->
+    <!-- END SCROLL TOP BUTTON -->
 
 
   <!-- Start header section -->
@@ -70,12 +66,12 @@
                 <div class="aa-language">
                   <div class="dropdown">
                     <a class="btn dropdown-toggle" href="#" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                      <img src="<%=request.getContextPath() %>/resources/img/flag/english.jpg" alt="english flag">ENGLISH
+                      <img src="<%=request.getContextPath()%>/resources/img/flag/english.jpg" alt="english flag">ENGLISH
                       <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                      <li><a href="#"><img src="<%=request.getContextPath() %>/resources/img/flag/french.jpg" alt="">FRENCH</a></li>
-                      <li><a href="#"><img src="<%=request.getContextPath() %>/resources/img/flag/english.jpg" alt="">ENGLISH</a></li>
+                      <li><a href="#"><img src="<%=request.getContextPath()%>/resources/img/flag/french.jpg" alt="">FRENCH</a></li>
+                      <li><a href="#"><img src="<%=request.getContextPath()%>/resources/img/flag/english.jpg" alt="">ENGLISH</a></li>
                     </ul>
                   </div>
                 </div>
@@ -104,10 +100,10 @@
               <!-- / header top left -->
               <div class="aa-header-top-right">
                 <ul class="aa-head-top-nav-right">
-                  <li><a href="account.html">My Account</a></li>
-                  <li class="hidden-xs"><a href="wishlist.html">Wishlist</a></li>
-                  <li class="hidden-xs"><a href="cart.html">My Cart</a></li>
-                  <li class="hidden-xs"><a href="checkout.html">Checkout</a></li>
+                  <li><a href="Account-detail.jsp">My Account</a></li>
+                  <li class="hidden-xs"><a href="Wishlist.jsp">Wishlist</a></li>
+                  <li class="hidden-xs"><a href="Cart.jsp">My Cart</a></li>
+                  <li class="hidden-xs"><a href="Checkout.jsp">Checkout</a></li>
                   <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
                 </ul>
               </div>
@@ -127,7 +123,7 @@
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="index.html">
+                <a href="Index.jsp">
                   <span class="fa fa-shopping-cart"></span>
                   <p>daily<strong>Shop</strong> <span>Your Shopping Partner</span></p>
                 </a>
@@ -145,7 +141,7 @@
                 <div class="aa-cartbox-summary">
                   <ul>
                     <li>
-                      <a class="aa-cartbox-img" href="#"><img src="<%=request.getContextPath() %>/resources/img/woman-small-2.jpg" alt="img"></a>
+                      <a class="aa-cartbox-img" href="#"><img src="<%=request.getContextPath()%>/resources/img/woman-small-2.jpg" alt="img"></a>
                       <div class="aa-cartbox-info">
                         <h4><a href="#">Product Name</a></h4>
                         <p>1 x $250</p>
@@ -153,7 +149,7 @@
                       <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
                     </li>
                     <li>
-                      <a class="aa-cartbox-img" href="#"><img src="<%=request.getContextPath() %>/resources/img/woman-small-1.jpg" alt="img"></a>
+                      <a class="aa-cartbox-img" href="#"><img src="<%=request.getContextPath()%>/resources/img/woman-small-1.jpg" alt="img"></a>
                       <div class="aa-cartbox-info">
                         <h4><a href="#">Product Name</a></h4>
                         <p>1 x $250</p>
@@ -206,7 +202,7 @@
           <div class="navbar-collapse collapse">
             <!-- Left nav -->
             <ul class="nav navbar-nav">
-              <li><a href="index.html">Home</a></li>
+              <li><a href="Index.jsp">Home</a></li>
               <li><a href="#">Men <span class="caret"></span></a>
                 <ul class="dropdown-menu">                
                   <li><a href="#">Casual</a></li>
@@ -298,19 +294,18 @@
                 </ul>
               </li>
               <li><a href="#">Furniture</a></li>            
-              <li><a href="blog-archive.html">Blog <span class="caret"></span></a>
+              <li><a href="Blog-archive.jsp">Blog <span class="caret"></span></a>
                 <ul class="dropdown-menu">                
-                  <li><a href="blog-archive.html">Blog Style 1</a></li>
-                  <li><a href="blog-archive-2.html">Blog Style 2</a></li>
-                  <li><a href="blog-single.html">Blog Single</a></li>                
+                  <li><a href="Blog-archive.jsp">Blog Style 1</a></li>
+                  <li><a href="Blog-detail.jsp">Blog Single</a></li>                
                 </ul>
               </li>
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="Contact.jsp">Contact</a></li>
               <li><a href="#">Pages <span class="caret"></span></a>
                 <ul class="dropdown-menu">                
-                  <li><a href="product.html">Shop Page</a></li>
-                  <li><a href="product-detail.html">Shop Single</a></li>                
-                  <li><a href="404.html">404 Page</a></li>                
+                  <li><a href="Product.jsp">Shop Page</a></li>
+                  <li><a href="Product-detail.jsp">Shop Single</a></li>                
+                  <li><a href="404.jsp">404 Page</a></li>                
                 </ul>
               </li>
             </ul>
@@ -324,64 +319,109 @@
  
   <!-- catg header banner section -->
   <section id="aa-catg-head-banner">
-    <img src="<%=request.getContextPath() %>/resources/img/fashion/fashion-header-bg-8.jpg" alt="fashion img">
-    <div class="aa-catg-head-banner-area">
+   <img src="<%=request.getContextPath()%>/resources/img/fashion/fashion-header-bg-8.jpg" alt="fashion img">
+   <div class="aa-catg-head-banner-area">
      <div class="container">
       <div class="aa-catg-head-banner-content">
-        <h2>Account Page</h2>
+        <h2>Contact</h2>
         <ol class="breadcrumb">
-          <li><a href="index.html">Home</a></li>                   
-          <li class="active">Account</li>
+          <li><a href="Index.jsp">Home</a></li>         
+          <li class="active">Contact</li>
         </ol>
       </div>
      </div>
    </div>
   </section>
   <!-- / catg header banner section -->
-
- <!-- Cart view section -->
- <section id="aa-myaccount">
+<!-- start contact section -->
+ <section id="aa-contact">
    <div class="container">
      <div class="row">
-        <div class="aa-myaccount-area">         
-            <div class="row">
-              <div style="margin: 0 auto; width: 50%">
-                <div class="aa-myaccount-register">                 
-                 <h4>Register</h4>
-                 <form action="<%=request.getContextPath() %>/registerController" method="POST" class="aa-login-form" onsubmit="return Validate()" >
-                 <c:if test="${failedRegister}">
-			<div class="text-danger">Register failed</div>
-		</c:if>
-		<c:if test="${errorSQL}">  
-   				<div class="text-danger" >Connect SQL Server fail</div>
-		</c:if>
-                    <label for="">Username<span>*</span></label>
-                    <input id="username" type="text" placeholder="Username" name="username">
-                    <c:if test="${errorUsername}">
-				<div class="text-danger">Username already exists</div>
-			</c:if>
-                    <label for="">Password<span>*</span></label>
-                    <input id="password" type="password" placeholder="Password" name="password">
-                    <label for="">Email<span>*</span></label>
-                    <input id="email" type="text" placeholder="Email" name="email">
-                    <c:if test="${errorEmail}">
-				<div class="text-danger">Email already exists</div>
-			</c:if>
-                    <label for="">Phone<span>*</span></label>
-                    <input id="phone" type="text" placeholder="Phone" name="phone">
-                    <button type="submit" class="aa-browse-btn">Register</button>  
-                    <div class="rememberme">
-              		Have an account?<a href="<%=request.getContextPath() %>/views/Login.jsp" style="color: red"> Login now!</a>
-            		</div>
+       <div class="col-md-12">
+         <div class="aa-contact-area">
+           <div class="aa-contact-top">
+             <h2>We are wating to assist you..</h2>
+             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, quos.</p>
+           </div>
+           <!-- contact map -->
+           <div class="aa-contact-map">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.336017750673!2d105.52189931440721!3d21.019236993480487!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1f84f39598892f4f!2zMjHCsDAxJzA5LjIiTiAxMDXCsDMxJzI2LjciRQ!5e0!3m2!1sen!2s!4v1644810897514!5m2!1sen!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+           </div>
+           <!-- Contact address -->
+           <div class="aa-contact-address">
+             <div class="row">
+               <div class="col-md-8">
+                 <div class="aa-contact-address-left">
+                   <form class="comments-form contact-form" action="">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">                        
+                          <input type="text" placeholder="Your Name" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">                        
+                          <input type="email" placeholder="Email" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                     <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">                        
+                          <input type="text" placeholder="Subject" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">                        
+                          <input type="text" placeholder="Company" class="form-control">
+                        </div>
+                      </div>
+                    </div>                  
+                     
+                    <div class="form-group">                        
+                      <textarea class="form-control" rows="3" placeholder="Message"></textarea>
+                    </div>
+                    <button class="aa-secondary-btn">Send</button>
                   </form>
-                </div>
-              </div>
-            </div>          
+                 </div>
+               </div>
+               <div class="col-md-4">
+                 <div class="aa-contact-address-right">
+                   <address>
+                     <h4>DailyShop</h4>
+                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum modi dolor facilis! Nihil error, eius.</p>
+                     <p><span class="fa fa-home"></span>Huntsville, AL 35813, USA</p>
+                     <p><span class="fa fa-phone"></span>+ 021.343.7575</p>
+                     <p><span class="fa fa-envelope"></span>Email: support@dailyshop.com</p>
+                   </address>
+                 </div>
+               </div>
+             </div>
+           </div>
          </div>
        </div>
      </div>
+   </div>
  </section>
- <!-- / Cart view section -->
+
+  <!-- Subscribe section -->
+  <section id="aa-subscribe">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="aa-subscribe-area">
+            <h3>Subscribe our newsletter </h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, velit!</p>
+            <form action="" class="aa-subscribe-form">
+              <input type="email" name="" id="" placeholder="Enter your Email">
+              <input type="submit" value="Subscribe">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- / Subscribe section -->
 
   <!-- footer -->  
   <footer id="aa-footer">
@@ -492,7 +532,7 @@
             <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
             <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
             <div class="aa-register-now">
-              Don't have an account?<a href="account.html">Register now!</a>
+              Don't have an account?<a href="#">Register now!</a>
             </div>
           </form>
         </div>                        
@@ -501,28 +541,27 @@
   </div>
 
 
-    
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="<%=request.getContextPath() %>/resources/js/bootstrap.js"></script>  
+  <script src="<%=request.getContextPath()%>/resources/js/bootstrap.js"></script>  
   <!-- SmartMenus jQuery plugin -->
-  <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery.smartmenus.js"></script>
+  <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.smartmenus.js"></script>
   <!-- SmartMenus jQuery Bootstrap Addon -->
-  <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery.smartmenus.bootstrap.js"></script>  
+  <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.smartmenus.bootstrap.js"></script>  
   <!-- To Slider JS -->
-  <script src="<%=request.getContextPath() %>/resources/js/sequence.js"></script>
-  <script src="<%=request.getContextPath() %>/resources/js/sequence-theme.modern-slide-in.js"></script>  
+  <script src="<%=request.getContextPath()%>/resources/js/sequence.js"></script>
+  <script src="<%=request.getContextPath()%>/resources/js/sequence-theme.modern-slide-in.js"></script>  
   <!-- Product view slider -->
-  <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery.simpleGallery.js"></script>
-  <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery.simpleLens.js"></script>
+  <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.simpleGallery.js"></script>
+  <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.simpleLens.js"></script>
   <!-- slick slider -->
-  <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/slick.js"></script>
+  <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/slick.js"></script>
   <!-- Price picker slider -->
-  <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/nouislider.js"></script>
+  <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/nouislider.js"></script>
   <!-- Custom js -->
-  <script src="<%=request.getContextPath() %>/resources/js/custom.js"></script> 
-  <script src="<%=request.getContextPath() %>/resources/js/Register.js"></script>
+  <script src="<%=request.getContextPath()%>/resources/js/custom.js"></script> 
+  
 
   </body>
 </html>

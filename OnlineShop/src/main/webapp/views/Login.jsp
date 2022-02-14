@@ -347,7 +347,7 @@
               <div style="margin: 0 auto; width: 50%">
                 <div class="aa-myaccount-login">
                 <h4>Login</h4>
-                 <form class="aa-login-form" method="POST" action="<%=request.getContextPath() %>/loginController">
+                 <form class="aa-login-form" method="POST" action="<%=request.getContextPath() %>/loginController" onsubmit="return Validate()">
                     <c:if test="${errorLogin}">
 					<div class="text-danger">Login fail</div>
 					</c:if>
@@ -355,9 +355,9 @@
 					<div class="text-danger">Username or Password is incorrect</div>
 					</c:if>
                   <label for="">Username or Email address<span>*</span></label>
-                   <input type="text" placeholder="Username or email" name="email">
+                   <input id="email" type="text" placeholder="Username or email" name="email">
                    <label for="">Password<span>*</span></label>
-                    <input type="password" placeholder="Password" name="password">
+                    <input id="password" type="password" placeholder="Password" name="password">
                     <button type="submit" class="aa-browse-btn">Login</button>
                     <label class="rememberme" for="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
                     <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
@@ -514,7 +514,7 @@
   <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/nouislider.js"></script>
   <!-- Custom js -->
   <script src="<%=request.getContextPath() %>/resources/js/custom.js"></script> 
-  
+  <script src="<%=request.getContextPath() %>/resources/js/Login.js "></script>
 
   </body>
 </html>

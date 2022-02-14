@@ -23,9 +23,8 @@ public class AccountDAOImpl implements AccountDAO {
 			con = DBConnection.getInstance().getConnection();
 			pre = con.prepareStatement(SQLCommand.login);
 			pre.setString(1, userName);
-			pre.setString(2, password);
-			pre.setString(3, userName);
-			pre.setString(4, password);
+			pre.setString(2, userName);
+			pre.setString(3, password);
 			rs = pre.executeQuery();
 			while (rs.next()) {
 				return new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
@@ -111,7 +110,7 @@ public class AccountDAOImpl implements AccountDAO {
 			pre.setString(2, account.getPassword());
 			pre.setString(3, account.getEmail());
 			pre.setString(4, account.getPhonenumber());
-			pre.setString(5, account.getCreateedDate());
+			pre.setString(5, account.getcreatedDate());
 			check = pre.executeUpdate() == 1;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -128,16 +127,5 @@ public class AccountDAOImpl implements AccountDAO {
 			}
 		}
 		return check;
-	}
-	
-	public static void main(String[] args) throws SQLException {
-		AccountDAO dao = new AccountDAOImpl();
-//		Account a = dao.getLogin("admin@gmail.com", "admin");
-//		if (a != null) {
-//			System.out.println("OK");
-//		} else {
-//			System.out.println("NOT OK");
-//		}
-		dao.getInsertAccount(new Account("dong123", "123", "dasd@gmail.com", "0312321312", "2021-02-10"));
 	}
 }

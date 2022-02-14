@@ -1,7 +1,7 @@
 package com.shop.utils;
 
 public class SQLCommand {
-	public static final String login = "SELECT * FROM Account WHERE Username LIKE ? AND Password LIKE ? OR Email LIKE ? AND Password LIKE ?";
+	public static final String login = "SELECT * FROM Account WHERE (Username LIKE ? OR Email LIKE ?) AND Password LIKE ?";
 	
 	public static final String checkUsername = "SELECT * FROM Account WHERE Username like ?";
 	
