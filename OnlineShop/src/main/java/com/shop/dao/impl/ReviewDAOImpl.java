@@ -59,9 +59,21 @@ public  class ReviewDAOImpl implements ReviewDAO {
 //		} catch (Exception e) {
 //			// TODO: handle exception
 //		}
-		List<Review> ls = rv.getReviews(1);
-		for (Review review : ls) {
-			System.out.println(review.toString());
+//		List<Review> ls = rv.getReviews(1);
+//		for (Review review : ls) {
+//			System.out.println(review.toString());
+//		}
+		try {
+			
+			boolean kq = rv.deleteComment(8);
+			if(kq==true) {
+				System.out.println("sccc");
+			}else {
+				System.err.println("failes");
+			}
+				
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 		
 	}
@@ -97,6 +109,23 @@ public  class ReviewDAOImpl implements ReviewDAO {
 			ps.setInt(2, review.getRatings());
 			ps.setDate(3, review.getCreatedate());
 			ps.setInt(4, review.getReviewid());
+			row = ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return row>0;
+	}
+
+	@Override
+	public boolean deleteComment(int reviewid) {
+		int row=0;
+		try {
+			String sql = "DELETE Review\r\n"
+					+ "WHERE ReviewID =?";
+			conn = DBConnection.getInstance().getConnection();
+			ps= conn.prepareStatement(sql);
+			ps.setInt(1, reviewid);
 			row = ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
