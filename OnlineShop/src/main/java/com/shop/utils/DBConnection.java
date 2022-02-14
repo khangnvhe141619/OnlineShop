@@ -20,12 +20,7 @@ public class DBConnection {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			String url = "jdbc:sqlserver://localhost:1433; databaseName = OnlineShopDB";
 			String user = "sa";
-<<<<<<< HEAD
 			String pass = "123";
-=======
-			String pass = "sa";
->>>>>>> synv
-
 			connection = DriverManager.getConnection(url, user, pass);
 			return connection;
 		} catch (ClassNotFoundException | SQLException e) {

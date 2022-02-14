@@ -1,8 +1,6 @@
 package com.shop.dao.impl;
 
-import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,7 +29,7 @@ public class AccountDAOImpl implements AccountDAO {
 						rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getInt(10), rs.getInt(11),
 						rs.getString(12));
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
@@ -57,7 +55,7 @@ public class AccountDAOImpl implements AccountDAO {
 			pre.setString(1, username);
 			rs = pre.executeQuery();
 			check = rs.next();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
@@ -83,7 +81,7 @@ public class AccountDAOImpl implements AccountDAO {
 			pre.setString(1, email);
 			rs = pre.executeQuery();
 			check = rs.next();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
@@ -112,7 +110,7 @@ public class AccountDAOImpl implements AccountDAO {
 			pre.setString(4, account.getPhonenumber());
 			pre.setString(5, account.getcreatedDate());
 			check = pre.executeUpdate() == 1;
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
