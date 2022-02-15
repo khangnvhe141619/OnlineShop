@@ -10,7 +10,14 @@ CREATE DATABASE [OnlineShopDB]
 GO
 USE [OnlineShopDB]
 GO
+CREATE TABLE [dbo].[Department]
+(
+	DepartmentID		int				IDENTITY(1,1),
+	DepartmentName		nvarchar(255)	NOT NULL,
+	DepartmentDesc		nvarchar(255)	,
 
+	CONSTRAINT PK_department_id PRIMARY KEY(DepartmentID)
+)
 CREATE TABLE [dbo].[Account]
 (
 	AccountID			int				IDENTITY(1,1),
@@ -22,11 +29,12 @@ CREATE TABLE [dbo].[Account]
 	Email				varchar(50)		NOT NULL,
 	PhoneNumber			varchar(15)		NOT NULL,
 	Avatar				varchar(255)	,
-	[Role]				char(3)			NOT NULL,
+	[Role]				int				NOT NULL,
 	[Active]			bit				NOT NULL,
 	CreatedDate			datetime2		NOT NULL,
 
-	CONSTRAINT PK_account_id PRIMARY KEY(AccountID)
+	CONSTRAINT PK_account_id PRIMARY KEY(AccountID),
+	CONSTRAINT FK_role FOREIGN KEY([Role]) REFERENCES Department(DepartmentID),
 )
 
 CREATE TABLE [dbo].[Address]
@@ -72,6 +80,25 @@ CREATE TABLE [dbo].[Product]
 	CONSTRAINT PK_product_id PRIMARY KEY(ProductID),
 	CONSTRAINT FK_category_id FOREIGN KEY(CategoryId) REFERENCES Category(CategoryID),
 	CONSTRAINT FK_covertype_id FOREIGN KEY(CoverTypeId) REFERENCES BookCover(BookCoverID)
+)
+
+CREATE TABLE [dbo].[Discount]
+(
+	DiscountID			varchar(10)		,
+	DiscountDesc			nvarchar(255)	,
+	DiscountPercent		decimal			NOT NULL,
+	Quantity			int				NOT NULL,
+
+	CONSTRAINT PK_discount_id PRIMARY KEY(DiscountID),
+)
+
+CREATE TABLE [dbo].[Offer]
+(
+	ProductId			int				,
+	DiscountId			varchar(10)		,
+
+	CONSTRAINT FK_product_id_0 FOREIGN KEY(ProductId) REFERENCES Product(ProductID),
+	CONSTRAINT FK_discount_id FOREIGN KEY(DiscountId) REFERENCES Discount(DiscountID)
 )
 
 CREATE TABLE [dbo].[WishList]
@@ -173,8 +200,11 @@ CREATE TABLE [dbo].[PostTag]
 	CONSTRAINT FK_tag_id FOREIGN KEY(TagId) REFERENCES Tag(TagID)
 )
 GO
-INSERT [dbo].[Account] ([Username], [Password], [FName], [LName], [Gender], [Email], [PhoneNumber], [Avatar], [Role], [Active], [CreatedDate]) VALUES (N'admin', N'admin', NULL, NULL, NULL, N'admin@gmail.com', N'0111111111', NULL, N'1  ', 1, CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
-INSERT [dbo].[Account] ([Username], [Password], [FName], [LName], [Gender], [Email], [PhoneNumber], [Avatar], [Role], [Active], [CreatedDate]) VALUES (N'khang123', N'khang123', NULL, NULL, NULL, N'khang@gmail.com', N'0123456789', NULL, N'0  ', 1, CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[Department] ([DepartmentName], [DepartmentDesc]) VALUES ('Admin', '')
+INSERT [dbo].[Department] ([DepartmentName], [DepartmentDesc]) VALUES ('Customer', '')
+GO
+INSERT [dbo].[Account] ([Username], [Password], [FName], [LName], [Gender], [Email], [PhoneNumber], [Avatar], [Role], [Active], [CreatedDate]) VALUES (N'admin', N'admin', NULL, NULL, NULL, N'admin@gmail.com', N'0111111111', NULL, 1 , 1, CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[Account] ([Username], [Password], [FName], [LName], [Gender], [Email], [PhoneNumber], [Avatar], [Role], [Active], [CreatedDate]) VALUES (N'khang123', N'khang123', NULL, NULL, NULL, N'khang@gmail.com', N'0123456789', NULL, 2, 1, CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
 GO
 INSERT [dbo].[Address] ([AccountId], [Address]) VALUES (1, N'Hanoi')
 INSERT [dbo].[Address] ([AccountId], [Address]) VALUES (1, N'Hung Yen')
@@ -187,6 +217,12 @@ INSERT [dbo].[BookCover] ([BookCoverName]) VALUES (N'Paperback')
 GO
 INSERT [dbo].[Product] ([CategoryId], [ProductName], [Image], [Description], [CreatedDate], [IssuingCompany], [PublicationDate], [CoverTypeId], [PublishingCompany], [Quantity], [Price], [NumberPage]) VALUES (1, N'Cây Cam Ngọt Của Tôi', N'camngot.jpg', N'good quality', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), N'Nhã Nam', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), 2, N'Nhà Xuất Bản Hội Nhà Văn', 10, 15000, 244)
 INSERT [dbo].[Product] ([CategoryId], [ProductName], [Image], [Description], [CreatedDate], [IssuingCompany], [PublicationDate], [CoverTypeId], [PublishingCompany], [Quantity], [Price], [NumberPage]) VALUES (2, N'Payback Time - Ngày Đòi Nợ', N'ngaydoino.jpg', N'cheap', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), N'HappyLive', CAST(N'2017-08-08T00:00:00.0000000' AS DateTime2), 1, '', 15, 20000, 280)
+GO
+INSERT [dbo].[Discount] ([DiscountID], [DiscountDesc], [DiscountPercent], [Quantity]) VALUES ('NAMMOI2022', N'Chúc mừng năm mới', 50, 10)
+INSERT [dbo].[Discount] ([DiscountID], [DiscountDesc], [DiscountPercent], [Quantity]) VALUES ('VALUNLUON', N'', 10, 10)
+GO
+INSERT [dbo].[Offer] ([ProductId], [DiscountId]) VALUES (1, 'NAMMOI2022')
+INSERT [dbo].[Offer] ([ProductId], [DiscountId]) VALUES (2, 'VALUNLUON')
 GO
 INSERT INTO [dbo].[WishList] ([AccountId], [ProductId]) VALUES (2, 1)
 INSERT INTO [dbo].[WishList] ([AccountId], [ProductId]) VALUES (2, 2)
