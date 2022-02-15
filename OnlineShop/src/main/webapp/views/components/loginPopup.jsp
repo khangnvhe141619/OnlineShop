@@ -1,5 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<head>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,73 +42,30 @@
     <![endif]-->
   
 
-  </head>
-  <body>   
-   <!-- wpf loader Two -->
-    <div id="wpf-loader-two">          
-      <div class="wpf-loader-two-inner">
-        <span>Loading</span>
-      </div>
-    </div> 
-    <!-- / wpf loader Two -->       
- <!-- SCROLL TOP BUTTON -->
-    <a class="scrollToTop" href="#"><i class="fa fa-chevron-up"></i></a>
-  <!-- END SCROLL TOP BUTTON -->
-
-
-  <!-- Start header section -->
-  <jsp:include page="components/header.jsp"></jsp:include>
-  <!-- / header section -->
-  <!-- menu -->
-  <jsp:include page="components/menu.jsp"></jsp:include>
-  <!-- / menu -->  
- 
+</head>
+<body>
+ <div class="modal-dialog">
+      <div class="modal-content">                      
+        <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4>Login or Register</h4>
+          <form class="aa-login-form" action="">
+            <label for="">Username or Email address<span>*</span></label>
+            <input type="text" placeholder="Username or email">
+            <label for="">Password<span>*</span></label>
+            <input type="password" placeholder="Password">
+            <button class="aa-browse-btn" type="submit">Login</button>
+            <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
+            <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
+            <div class="aa-register-now">
+              Don't have an account?<a href="#">Register now!</a>
+            </div>
+          </form>
+        </div>                        
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
   
-  <!-- 404 error section -->
-  <section id="aa-error">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="aa-error-area">
-            <h2>404</h2>
-            <span>Sorry! Page Not Found</span>
-            <p>Sorry this content has been moved Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, amet perferendis, nemo facere excepturi quis.</p>
-            <a href="#"> Go to Homepage</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- / 404 error section -->
-
-  <!-- Subscribe section -->
-  <section id="aa-subscribe">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="aa-subscribe-area">
-            <h3>Subscribe our newsletter </h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, velit!</p>
-            <form action="" class="aa-subscribe-form">
-              <input type="email" name="" id="" placeholder="Enter your Email">
-              <input type="submit" value="Subscribe">
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- / Subscribe section -->
-
-  <!-- footer -->  
- <jsp:include page="components/footer.jsp"></jsp:include>
-  <!-- / footer -->
-  <!-- Login Modal -->  
-  <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <jsp:include page="components/loginPopup.jsp"></jsp:include>
-  </div>   
-
-    <!-- jQuery library -->
+  <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<%=request.getContextPath()%>/resources/js/bootstrap.js"></script>  
@@ -125,7 +85,5 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/nouislider.js"></script>
     <!-- Custom js -->
     <script src="<%=request.getContextPath()%>/resources/js/custom.js"></script> 
-  
-
-  </body>
+</body>
 </html>
