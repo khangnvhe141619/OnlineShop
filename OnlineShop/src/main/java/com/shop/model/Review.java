@@ -12,6 +12,23 @@ public class Review {
 	public Review() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Review( String content, int ratings, Date createdate) {
+		super();
+
+		this.content = content;
+		this.ratings = ratings;
+		this.createdate = createdate;
+	}
+	
+	
+	public Review(int reviewid, int productid, int ratings) {
+		super();
+		this.reviewid = reviewid;
+		this.productid = productid;
+		this.ratings = ratings;
+	}
+
 	public Review(int reviewid, int productid, int accountid, String content, int ratings, Date createdate) {
 		super();
 		this.reviewid = reviewid;
@@ -77,7 +94,7 @@ public class Review {
 	@Override
 	public String toString() {
 		return "Review [reviewid=" + reviewid + ", productid=" + productid + ", accountid=" + accountid + ", content="
-				+ content + ", ratings=" + ratings + ", createdate=" + createdate + "]";
+				+ content + ", ratings=" + ratings + ", createdate=" + "]";
 	}
 	
 }
