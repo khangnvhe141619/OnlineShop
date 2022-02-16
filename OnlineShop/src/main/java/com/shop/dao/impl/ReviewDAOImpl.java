@@ -105,4 +105,10 @@ public  class ReviewDAOImpl implements ReviewDAO {
 		return row>0;
 	}
 
+	@Override
+	public boolean deleteReview(int reviewid) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
