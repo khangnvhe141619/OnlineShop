@@ -44,6 +44,8 @@ public class LoginController extends HttpServlet {
 			Account account = accountDAO.getLogin(email, pass);
 			if(account != null) {
 				request.getRequestDispatcher("views/Index.jsp").forward(request, response);
+				request.getRequestDispatcher("views/Index.jsp").forward(request, response);
+				request.getRequestDispatcher("views/Index.jsp").forward(request, response);
 			} else {
 				request.setAttribute("failedLogin", true);
 				request.setAttribute("e", email);
