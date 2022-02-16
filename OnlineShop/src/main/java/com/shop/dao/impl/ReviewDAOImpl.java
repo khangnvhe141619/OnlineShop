@@ -110,7 +110,7 @@ public  class ReviewDAOImpl implements ReviewDAO {
 		int row=0;
 		try {
 			String sql = "DELETE Review\r\n"
-					+ "WHERE ReviewID=? ";
+					+ "WHERE ReviewID";
 			conn = DBConnection.getInstance().getConnection();
 			ps= conn.prepareStatement(sql);
 			ps.setInt(1, reviewid);
