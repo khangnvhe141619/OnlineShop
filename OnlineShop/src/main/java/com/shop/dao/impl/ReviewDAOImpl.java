@@ -107,8 +107,19 @@ public  class ReviewDAOImpl implements ReviewDAO {
 
 	@Override
 	public boolean deleteReview(int reviewid) {
-		// TODO Auto-generated method stub
-		return false;
+		int row=0;
+		try {
+			String sql = "DELETE Review\r\n"
+					+ "WHERE ReviewID =?";
+			conn = DBConnection.getInstance().getConnection();
+			ps= conn.prepareStatement(sql);
+			ps.setInt(1, reviewid);
+			row = ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return row>0;
 	}
 
 }
