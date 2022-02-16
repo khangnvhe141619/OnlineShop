@@ -9,6 +9,7 @@ import com.shop.dao.AccountDAO;
 import com.shop.dao.ProductDAO;
 import com.shop.dao.impl.AccountDAOImpl;
 import com.shop.dao.impl.ProductDAOImpl;
+import com.shop.dao.impl.ReviewDAOImpl;
 import com.shop.model.Account;
 import com.shop.model.Product;
 
@@ -39,5 +40,36 @@ public class Test {
 //			System.out.println("NOT OK");
 //		}
 		dao.getInsertAccount(new Account("dong123", "123", "dasd@gmail.com", "0312321312", "2021-02-10"));
-	}
+		ReviewDAOImpl rv = new ReviewDAOImpl();
+//		String str= "2017-1-1";
+//		Date date = Date.valueOf(str);
+//		try {
+//			Review a= new Review(1, "cho", 5, date);
+//			boolean kq = rv.editReview(a);
+//			if(kq==true) {
+//				System.out.println("sccc");
+//			}else {
+//				System.err.println("failes");
+//			}
+//				
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
+//		List<Review> ls = rv.getReviews(1);
+//		for (Review review : ls) {
+//			System.out.println(review.toString());
+//		}
+//		try {
+//			
+//			boolean kq = rv.deleteComment(8);
+//			if(kq==true) {
+//				System.out.println("sccc");
+//			}else {
+//				System.err.println("failes");
+//			}
+//				
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
+//	}
 }
