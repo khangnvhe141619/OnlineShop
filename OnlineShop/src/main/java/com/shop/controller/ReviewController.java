@@ -36,7 +36,7 @@ public class ReviewController extends HttpServlet {
 		ReviewDAOImpl rvImp= new ReviewDAOImpl();
 		int pid = Integer.parseInt(request.getParameter("pid"));
 		List<Review> lsrv= rvImp.getReviews(pid);
-		request.getRequestDispatcher(getServletInfo()).forward(request, response);
+		
 	}
 
 	/**
