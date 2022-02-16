@@ -97,7 +97,7 @@
 					<div class="text-danger">Username or Password is incorrect</div>
 					</c:if>
                   <label for="">Username or Email address<span>*</span></label>
-                   <input id="email" type="text" placeholder="Username or email" name="email">
+                   <input id="email" type="text" placeholder="Username or email" name="email" value="${e}">
                    <label for="">Password<span>*</span></label>
                     <input id="password" type="password" placeholder="Password" name="password">
                     <button type="submit" class="aa-browse-btn">Login</button>
@@ -113,7 +113,6 @@
          </div>
        </div>
      </div>
-   </div>
  </section>
  <!-- / Cart view section -->
 

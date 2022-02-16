@@ -7,5 +7,6 @@ import com.shop.model.Review;
 public interface ReviewDAO  {
 	List<Review> getReviews(int productid);
 	boolean addReview(Review review);
-	boolean editReview(Review review) ;
+	boolean editReview(Review review);
+	boolean deleteReview(int reviewid);
 } 
