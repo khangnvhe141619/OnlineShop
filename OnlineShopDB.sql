@@ -133,9 +133,20 @@ CREATE TABLE [dbo].[OrderStatus]
 	CONSTRAINT PK_orderstatus_id PRIMARY KEY(ID)
 )
 
+CREATE TABLE [dbo].[Shipper]
+(
+	ShipperID			int				IDENTITY(1,1),
+	ShipperName			nvarchar(255)	NOT NULL,
+	Email				varchar(255)	NOT NULL,
+	Phone				varchar(15)		NOT NULL
+
+	CONSTRAINT PK_shipper_id PRIMARY KEY(ShipperID)
+)
+
 CREATE TABLE [dbo].[Order]
 (
 	OrderID				int				IDENTITY(1,1),
+	ShipperId			int				,
 	AccountId			int				,
 	OrderDate			datetime2		NOT NULL,
 	EstimateDelivery	datetime2		NOT NULL,
@@ -143,6 +154,7 @@ CREATE TABLE [dbo].[Order]
 	StatusId			int				,
 
 	CONSTRAINT PK_order_id PRIMARY KEY(OrderID),
+	CONSTRAINT FK_shipper_id FOREIGN KEY(ShipperId) REFERENCES Shipper(ShipperID),
 	CONSTRAINT FK_account_id_3 FOREIGN KEY(AccountId) REFERENCES Account(AccountID),
 	CONSTRAINT FK_status_id FOREIGN KEY(StatusId) REFERENCES OrderStatus(ID)
 )
@@ -199,6 +211,14 @@ CREATE TABLE [dbo].[PostTag]
 	CONSTRAINT FK_post_id_1 FOREIGN KEY(PostId) REFERENCES Post(PostID),
 	CONSTRAINT FK_tag_id FOREIGN KEY(TagId) REFERENCES Tag(TagID)
 )
+
+CREATE TABLE [dbo].[Contact]
+(
+	Email				varchar(255)	NOT NULL,
+	Phone				varchar(30)		NOT NULL,
+	[Address]			varchar(255)	NOT NULL,
+
+)
 GO
 INSERT [dbo].[Department] ([DepartmentName], [DepartmentDesc]) VALUES ('Admin', '')
 INSERT [dbo].[Department] ([DepartmentName], [DepartmentDesc]) VALUES ('Customer', '')
@@ -230,7 +250,10 @@ GO
 INSERT [dbo].[OrderStatus] ([Description]) VALUES (N'Pending')
 INSERT [dbo].[OrderStatus] ([Description]) VALUES (N'Completed')
 GO
-INSERT [dbo].[Order] ([AccountId], [OrderDate], [EstimateDelivery], [Total], [StatusId]) VALUES (2, CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), CAST(N'2022-02-02T00:00:00.0000000' AS DateTime2), 24.0000, 1)
+INSERT [dbo].[Shipper] ([ShipperName], [Email], [Phone]) VALUES ('Nguyen Van An','an@gmail.com', '0111111111')
+INSERT [dbo].[Shipper] ([ShipperName], [Email], [Phone]) VALUES ('Phan Van Be','bgio@gmail.com', '0111112222')
+GO
+INSERT [dbo].[Order] ([ShipperId], [AccountId], [OrderDate], [EstimateDelivery], [Total], [StatusId]) VALUES (1, 2, CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), CAST(N'2022-02-02T00:00:00.0000000' AS DateTime2), 24.0000, 1)
 
 GO
 INSERT [dbo].[OrderDetail] ([OrderId], [ProductID], [Quantity]) VALUES (1, 2, 2)
@@ -256,3 +279,5 @@ INSERT [dbo].[PostTag] ([PostId], [TagId]) VALUES (2, 4)
 GO
 INSERT [dbo].[Review] ([ProductId], [AccountId], [Content], [Ratings], [CreatedDate]) VALUES (1, 2, 'good', 5, CAST(N'2022-02-02T00:00:00.0000000' AS DateTime2))
 INSERT [dbo].[Review] ([ProductId], [AccountId], [Content], [Ratings], [CreatedDate]) VALUES (1, 2, 'hay', 5, CAST(N'2022-02-12T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[Contact] ([Email], [Phone], [Address]) VALUES ('dailyshop@gmail.com', '+84 1122 3344 11', 'Hanoi, Vietnam')
