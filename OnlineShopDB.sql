@@ -219,6 +219,15 @@ CREATE TABLE [dbo].[Contact]
 	[Address]			varchar(255)	NOT NULL,
 
 )
+
+CREATE TABLE [dbo].[Subcribe]
+(
+	Email				varchar(255)	,
+	SubcribeDate		datetime2		NOT NULL
+
+	CONSTRAINT PK_email_s PRIMARY KEY(Email)
+)
+
 GO
 INSERT [dbo].[Department] ([DepartmentName], [DepartmentDesc]) VALUES ('Admin', '')
 INSERT [dbo].[Department] ([DepartmentName], [DepartmentDesc]) VALUES ('Customer', '')
@@ -281,3 +290,6 @@ INSERT [dbo].[Review] ([ProductId], [AccountId], [Content], [Ratings], [CreatedD
 INSERT [dbo].[Review] ([ProductId], [AccountId], [Content], [Ratings], [CreatedDate]) VALUES (1, 2, 'hay', 5, CAST(N'2022-02-12T00:00:00.0000000' AS DateTime2))
 GO
 INSERT [dbo].[Contact] ([Email], [Phone], [Address]) VALUES ('dailyshop@gmail.com', '+84 1122 3344 11', 'Hanoi, Vietnam')
+GO
+INSERT [dbo].[Subcribe] ([Email], [SubcribeDate]) VALUES ('khang@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[Subcribe] ([Email], [SubcribeDate]) VALUES ('abcxyz@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
