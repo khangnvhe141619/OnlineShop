@@ -104,6 +104,15 @@ public class Cart {
 	public void setNumberPage(int numberPage) {
 		this.numberPage = numberPage;
 	}
+	@Override
+	public String toString() {
+		return "Cart [productID=" + productID + ", categoryId=" + categoryId + ", categoryName=" + categoryName
+				+ ", productName=" + productName + ", image=" + image + ", description=" + description
+				+ ", createdDate=" + createdDate + ", issuingCompany=" + issuingCompany + ", publicationDate="
+				+ publicationDate + ", coverType=" + coverType + ", publishingCompany=" + publishingCompany
+				+ ", quantity=" + quantity + ", price=" + price + ", numberPage=" + numberPage + "]";
+	}
+	
 	
 
 }
