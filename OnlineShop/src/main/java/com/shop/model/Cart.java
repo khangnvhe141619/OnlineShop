@@ -40,6 +40,47 @@ public class Cart {
 		this.price = price;
 		this.numberPage = numberPage;
 	}
+	
+	public Cart(int productID, int categoryId, String categoryName, String productName, String image,
+			String description) {
+		super();
+		this.productID = productID;
+		this.categoryId = categoryId;
+		this.categoryName = categoryName;
+		this.productName = productName;
+		this.image = image;
+		this.description = description;
+	}
+
+	public Cart(int productID, int categoryId, String categoryName, String image, LocalDateTime createdDate,
+			LocalDateTime publicationDate, String publishingCompany, double price) {
+		super();
+		this.productID = productID;
+		this.categoryId = categoryId;
+		this.categoryName = categoryName;
+		this.image = image;
+		this.createdDate = createdDate;
+		this.publicationDate = publicationDate;
+		this.publishingCompany = publishingCompany;
+		this.price = price;
+	}
+
+	public Cart(int productID, int categoryId, String categoryName, String productName, String description,
+			LocalDateTime publicationDate, int coverType, String publishingCompany, int quantity, double price,
+			int numberPage) {
+		super();
+		this.productID = productID;
+		this.categoryId = categoryId;
+		this.categoryName = categoryName;
+		this.productName = productName;
+		this.description = description;
+		this.publicationDate = publicationDate;
+		this.coverType = coverType;
+		this.publishingCompany = publishingCompany;
+		this.quantity = quantity;
+		this.price = price;
+		this.numberPage = numberPage;
+	}
 
 	public int getProductID() {
 		return productID;
