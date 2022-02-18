@@ -20,6 +20,27 @@ public class Cart {
 	public Cart() {
 		// TODO Auto-generated constructor stub
 	}
+
+	public Cart(int productID, int categoryId, String categoryName, String productName, String image,
+			String description, LocalDateTime createdDate, String issuingCompany, LocalDateTime publicationDate,
+			int coverType, String publishingCompany, int quantity, double price, int numberPage) {
+		super();
+		this.productID = productID;
+		this.categoryId = categoryId;
+		this.categoryName = categoryName;
+		this.productName = productName;
+		this.image = image;
+		this.description = description;
+		this.createdDate = createdDate;
+		this.issuingCompany = issuingCompany;
+		this.publicationDate = publicationDate;
+		this.coverType = coverType;
+		this.publishingCompany = publishingCompany;
+		this.quantity = quantity;
+		this.price = price;
+		this.numberPage = numberPage;
+	}
+
 	public int getProductID() {
 		return productID;
 	}
