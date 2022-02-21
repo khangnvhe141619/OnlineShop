@@ -11,7 +11,7 @@ public interface CategoryDAO {
 	
 	public Category getCategoryByID(String categoryId) throws SQLException;
 	
-	public List<Product> getProductByCategory(String categoryId) throws SQLException;
+	public List<Product> getListProductByCategory(String categoryId) throws SQLException;
 	
 	public boolean insertCategory(Category category) throws SQLException;
 	
