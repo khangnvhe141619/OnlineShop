@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import com.shop.dao.AccountDAO;
 import com.shop.model.Account;
 import com.shop.utils.DBConnection;
@@ -128,8 +130,29 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 
 	@Override
-	public boolean getListAccount(Account account) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
+	public List<Account> getListAccount() throws SQLException {
+		List<Account> accounts = new ArrayList<>();
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.listAccount);
+			rs = pre.executeQuery();
+			while (rs.next()) {
+				accounts.add(new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+						rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getInt(10), rs.getInt(11),
+						rs.getString(12)));
+			}
+			
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return accounts;
 	}
 }
