@@ -11,6 +11,7 @@ import com.shop.dao.CategoryDAO;
 import com.shop.model.Category;
 import com.shop.model.Product;
 import com.shop.utils.DBConnection;
+import com.shop.utils.Validation;
 
 public class CategoryDAOImpl implements CategoryDAO {
 	private Connection con;
@@ -51,33 +52,84 @@ public class CategoryDAOImpl implements CategoryDAO {
 	}
 
 	@Override
-	public Category getCategoryByID() throws SQLException {
+	public Category getCategoryByID(String categoryId) throws SQLException {
+		String sql = "SELECT * FROM Category WHERE CategoryID = ?";
+		Category category = null;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, categoryId);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				category = new Category();
+				category.setCategoryID(0);
+				category.setCategoryName(categoryId);				
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return category;
+
+	}
+
+	@Override
+	public List<Product> getProductByCategory(String categoryId) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Product> getProductByCategory() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean insertCategory(Category category) throws SQLException {
+		String sql = "INSERT [dbo].[Category] ([CategoryID], [CategoryName]) "
+				+ "VALUES (?, ?)";
+		int row = 0;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareStatement(sql);
+
+			ps.setInt(1, category.getCategoryID());
+			ps.setString(2, category.getCategoryName());	
+			
+			row = ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return row > 0;
 	}
 
 	@Override
-	public boolean insertCategory() throws SQLException {
+	public boolean updateCategory(Category category) throws SQLException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean updateCategory() throws SQLException {
+	public boolean deleteCategory(String categoryId) throws SQLException {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-	@Override
-	public boolean deleteCategory() throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 
 }

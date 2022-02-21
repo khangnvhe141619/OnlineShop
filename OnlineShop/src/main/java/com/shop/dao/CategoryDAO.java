@@ -9,14 +9,14 @@ import com.shop.model.Product;
 public interface CategoryDAO {
 	public List<Category> getListAllCategory() throws SQLException;
 	
-	public Category getCategoryByID() throws SQLException;
+	public Category getCategoryByID(String categoryId) throws SQLException;
 	
-	public List<Product> getProductByCategory() throws SQLException;
+	public List<Product> getProductByCategory(String categoryId) throws SQLException;
 	
-	public boolean insertCategory() throws SQLException;
+	public boolean insertCategory(Category category) throws SQLException;
 	
-	public boolean updateCategory() throws SQLException;
+	public boolean updateCategory(Category category) throws SQLException;
 	
-	public boolean deleteCategory() throws SQLException;
+	public boolean deleteCategory(String categoryId) throws SQLException;
 	
 }
