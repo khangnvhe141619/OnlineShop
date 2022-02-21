@@ -55,9 +55,8 @@
 
 
   <!-- Start header section -->
-<<<<<<< HEAD
+
   <jsp:include page="components/header.jsp"></jsp:include>
-=======
   <header id="aa-header">
     <!-- start header top  -->
     <div class="aa-header-top">
