@@ -149,7 +149,7 @@
                         <p>1 x $250</p>
                       </div>
                       <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
-                    </li>
+                    </li>	
                     <li>
                       <a class="aa-cartbox-img" href="#"><img src="<%=request.getContextPath()%>/resources/img/woman-small-1.jpg" alt="img"></a>
                       <div class="aa-cartbox-info">

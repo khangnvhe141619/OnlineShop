@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.shop.dao.CategoryDAO;
 import com.shop.model.Category;
+import com.shop.model.Product;
 import com.shop.utils.DBConnection;
 
 public class CategoryDAOImpl implements CategoryDAO {
@@ -47,6 +48,36 @@ public class CategoryDAOImpl implements CategoryDAO {
 		}
 		return lstCategory;
 
+	}
+
+	@Override
+	public Category getCategoryByID() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Product> getProductByCategory() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean insertCategory() throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateCategory() throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteCategory() throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
