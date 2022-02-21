@@ -10,5 +10,7 @@ public class SQLCommand {
 	
 	public static final String insertAccount = "INSERT INTO Account(Username, Password, Email, PhoneNumber, CreatedDate, Role, Active)\r\n"
 			+ "VALUES(?,?,?,?,?,1,1)";
+	
+	public static final String listAccount = "SELECT * FROM Account";
 
 }
