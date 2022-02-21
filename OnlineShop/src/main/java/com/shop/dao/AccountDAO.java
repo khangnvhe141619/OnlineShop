@@ -11,4 +11,6 @@ public interface AccountDAO {
 	boolean getCheckEmail(String email) throws SQLException;
 	
 	boolean getInsertAccount(Account account) throws SQLException;
+	
+	boolean getListAccount(Account account) throws SQLException;
 }

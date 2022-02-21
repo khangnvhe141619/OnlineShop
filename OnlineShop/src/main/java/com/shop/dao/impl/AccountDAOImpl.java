@@ -126,4 +126,10 @@ public class AccountDAOImpl implements AccountDAO {
 		}
 		return check;
 	}
+
+	@Override
+	public boolean getListAccount(Account account) throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
