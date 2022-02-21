@@ -1,6 +1,8 @@
 package com.shop.dao;
 
 import java.sql.SQLException;
+import java.util.List;
+
 import com.shop.model.Account;
 
 public interface AccountDAO {
@@ -12,5 +14,5 @@ public interface AccountDAO {
 	
 	boolean getInsertAccount(Account account) throws SQLException;
 	
-	boolean getListAccount(Account account) throws SQLException;
+	List<Account> getListAccount() throws SQLException;
 }
