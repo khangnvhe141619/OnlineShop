@@ -84,9 +84,47 @@ public class CategoryDAOImpl implements CategoryDAO {
 	}
 
 	@Override
-	public List<Product> getProductByCategory(String categoryId) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Product> getListProductByCategory(String categoryId) throws SQLException {
+		String sql = "SELECT * FROM Product WHERE CategoryID = ?";
+		Product product = null;
+		List<Product> lstProduct = new ArrayList<Product>();
+		try {
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, categoryId);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				product = new Product();
+				product.setProductID(rs.getInt("ProductID"));
+				product.setCategoryId(rs.getInt("CategoryId"));
+				product.setProductName(rs.getString("ProductName"));
+				product.setImage(rs.getString("Image"));
+				product.setDescription(rs.getString("Description"));
+				product.setCreatedDate(rs.getTimestamp("CreatedDate").toLocalDateTime());
+				product.setIssuingCompany(rs.getString("IssuingCompany"));
+				product.setPublicationDate(rs.getTimestamp("PublicationDate").toLocalDateTime());
+				product.setCoverType(rs.getInt("CoverTypeId"));
+				product.setPublishingCompany(rs.getString("PublishingCompany"));
+				product.setQuantity(rs.getInt("Quantity"));
+				product.setPrice(rs.getDouble("Price"));
+				product.setNumberPage(rs.getInt("NumberPage"));
+				lstProduct.add(product);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return lstProduct;
 	}
 
 	@Override
