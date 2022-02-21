@@ -6,6 +6,7 @@
 package com.shop.model;
 
 import java.sql.Date;
+import javafx.stage.PopupWindow;
 
 /**
  *
@@ -15,24 +16,31 @@ public class Post {
     private int postId;
     private int authorId;
     private String tittle;
+    //private String shortDesc;
     private String content;
-    private Date createdDate;
-
+    private Date createdDate;    
+    private String shortDesc = content.substring(0, 200) ;
     public Post() {
     }
 
-    public Post(int postId, int authorId, String tittle, String content, Date createdDate) {
-        this.postId = postId;
+    public Post(int authorId, String tittle, String shortDesc, String content, Date createdDate) {
+        super();
         this.authorId = authorId;
         this.tittle = tittle;
+        this.shortDesc = shortDesc;
         this.content = content;
         this.createdDate = createdDate;
     }
-
-    public Post(int postId, String tittle, String content) {
+    
+    
+    public Post(int postId, int authorId, String tittle, String shortDesc, String content, Date createdDate) {
+        super();
         this.postId = postId;
+        this.authorId = authorId;
         this.tittle = tittle;
+        this.shortDesc = shortDesc;
         this.content = content;
+        this.createdDate = createdDate;
     }
 
     public int getPostId() {
@@ -59,6 +67,14 @@ public class Post {
         this.tittle = tittle;
     }
 
+    public String getShortDesc() {
+        return shortDesc;
+    }
+
+    public void setShortDesc(String shortDesc) {
+        this.shortDesc = shortDesc;
+    }
+
     public String getContent() {
         return content;
     }
@@ -77,7 +93,9 @@ public class Post {
 
     @Override
     public String toString() {
-        return "Post{" + "postId=" + postId + ", authorId=" + authorId + ", tittle=" + tittle + ", content=" + content + ", createdDate=" + createdDate + '}';
+        return "Post{" + "postId=" + postId + ", authorId=" + authorId + ", tittle=" + tittle + ", shortDesc=" + shortDesc + ", content=" + content + ", createdDate=" + createdDate + '}';
     }
+    
+    
     
 }
