@@ -28,17 +28,17 @@ public class Test {
 //		boolean add=pd.insertProduct(p1);
 //		System.out.println(add);
 		
-		Product p2=new Product(4 ,1, "PP", "pp.jpg", "bb", cDate, "vv", pDate, 1, "alo", 10, 20000, 40);
-		boolean up=pd.updateProduct(p2);
-		System.out.println(up);
+//		Product p2=new Product(4 ,1, "PP", "pp.jpg", "bb", cDate, "vv", pDate, 1, "alo", 10, 20000, 40);
+//		boolean up=pd.updateProduct(p2);
+//		System.out.println(up);
 
 		AccountDAO dao = new AccountDAOImpl();
-//		Account a = dao.getLogin("admin@gmail.com", "admin");
-//		if (a != null) {
-//			System.out.println("OK");
-//		} else {
-//			System.out.println("NOT OK");
-//		}
+		Account a = dao.getLogin("admin@gmail.com", "admin");
+		if (a != null) {
+			System.out.println("OK");
+		} else {
+			System.out.println("NOT OK");
+		}
 		dao.getInsertAccount(new Account("dong123", "123", "dasd@gmail.com", "0312321312", "2021-02-10"));
 		ReviewDAOImpl rv = new ReviewDAOImpl();
 //		String str= "2017-1-1";

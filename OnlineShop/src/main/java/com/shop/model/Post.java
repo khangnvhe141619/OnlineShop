@@ -6,7 +6,6 @@
 package com.shop.model;
 
 import java.sql.Date;
-import javafx.stage.PopupWindow;
 
 /**
  *
