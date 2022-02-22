@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,11 +14,9 @@
             <div class="aa-sidebar-widget">
               <h3>Category</h3>
               <ul class="aa-catg-nav">
-                <li><a href="#">Men</a></li>
-                <li><a href="">Women</a></li>
-                <li><a href="">Kids</a></li>
-                <li><a href="">Electornics</a></li>
-                <li><a href="">Sports</a></li>
+              <c:forEach var="i" begin="1" end="5" >
+              	<li><a href="#">Men</a></li>                
+              </c:forEach>                
               </ul>
             </div>
             <!-- single sidebar -->
