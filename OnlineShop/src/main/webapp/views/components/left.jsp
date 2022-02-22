@@ -14,8 +14,8 @@
             <div class="aa-sidebar-widget">
               <h3>Category</h3>
               <ul class="aa-catg-nav">
-              <c:forEach var="i" begin="1" end="5" >
-              	<li><a href="#">Men</a></li>                
+              <c:forEach var="category" items="${listCategory }" >
+              	<li><a href="#">${category.categoryName }</a></li>                
               </c:forEach>                
               </ul>
             </div>
