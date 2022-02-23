@@ -86,10 +86,10 @@
 		<div class="aa-catg-head-banner-area">
 			<div class="container">
 				<div class="aa-catg-head-banner-content">
-					<h2>Login Page</h2>
+					<h2>Reset-Password Page</h2>
 					<ol class="breadcrumb">
 						<li><a href="index.html">Home</a></li>
-						<li class="active">Login</li>
+						<li class="active">Reset password</li>
 					</ol>
 				</div>
 			</div>
@@ -105,33 +105,15 @@
 					<div class="row">
 						<div style="margin: 0 auto; width: 50%">
 							<div class="aa-myaccount-login">
-								<h4>Login</h4>
+								<h4>Reset Password</h4>
 								<form class="aa-login-form" method="POST"
-									action="<%=request.getContextPath()%>/loginController"
-									onsubmit="return validateLogin()">
-									<c:if test="${errorLogin}">
-										<div class="text-danger">Login fail</div>
-									</c:if>
-									<c:if test="${failedLogin}">
-										<div class="text-danger">Username or Password is
-											incorrect</div>
-									</c:if>
-									<label for="">Username or Email address<span>*</span></label> <input
-										id="email" type="text" placeholder="Username or email"
-										name="email" value="${e}"> <label for="">Password<span>*</span></label>
-									<input id="password" type="password" placeholder="Password"
-										name="password">
-									<button type="submit" class="aa-browse-btn">Login</button>
-									<label class="rememberme" for="rememberme"><input
-										type="checkbox" id="rememberme"> Remember me </label>
-									<p class="aa-lost-password">
-										<a href="#">Lost your password?</a>
-									</p>
-									<div class="aa-register-now">
-										Don't have an account?<a
-											href="<%=request.getContextPath()%>/views/Register.jsp"
-											style="color: red"> Register now!</a>
-									</div>
+									action="<%=request.getContextPath()%>/resetPasswordController"
+									onsubmit="return Validate()">									
+									<label for="">Email address<span>*</span></label> <input
+										id="email" type="text" placeholder="Email"
+										name="email" value=""> 
+									<button type="submit" class="aa-browse-btn">Reset my password</button>
+									
 								</form>
 							</div>
 						</div>

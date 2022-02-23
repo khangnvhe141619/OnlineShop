@@ -294,6 +294,8 @@ INSERT [dbo].[Contact] ([Email], [Phone], [Address]) VALUES ('dailyshop@gmail.co
 GO
 INSERT [dbo].[Subcribe] ([Email], [SubcribeDate]) VALUES ('khang@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
 INSERT [dbo].[Subcribe] ([Email], [SubcribeDate]) VALUES ('abcxyz@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
+
+
 /*Gmail:
 hotroswp@gmail
 admin123@

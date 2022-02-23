@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.management.InvalidApplicationException;
+
 import com.shop.dao.AccountDAO;
 import com.shop.dao.ProductDAO;
 import com.shop.dao.impl.AccountDAOImpl;
@@ -12,6 +14,8 @@ import com.shop.dao.impl.ProductDAOImpl;
 import com.shop.dao.impl.ReviewDAOImpl;
 import com.shop.model.Account;
 import com.shop.model.Product;
+import com.shop.service.EmailMessage;
+import com.shop.service.EmailUtility;
 
 public class Test {
 
@@ -32,14 +36,14 @@ public class Test {
 //		boolean up=pd.updateProduct(p2);
 //		System.out.println(up);
 
-		AccountDAO dao = new AccountDAOImpl();
-		Account a = dao.getLogin("admin@gmail.com", "admin");
-		if (a != null) {
-			System.out.println("OK");
-		} else {
-			System.out.println("NOT OK");
-		}
-		dao.getInsertAccount(new Account("dong123", "123", "dasd@gmail.com", "0312321312", "2021-02-10"));
+//		AccountDAO dao = new AccountDAOImpl();
+//		Account a = dao.getLogin("admin@gmail.com", "admin");
+//		if (a != null) {
+//			System.out.println("OK");
+//		} else {
+//			System.out.println("NOT OK");
+//		}
+//		dao.getInsertAccount(new Account("dong123", "123", "dasd@gmail.com", "0312321312", "2021-02-10"));
 		ReviewDAOImpl rv = new ReviewDAOImpl();
 //		String str= "2017-1-1";
 //		Date date = Date.valueOf(str);
@@ -72,5 +76,13 @@ public class Test {
 //			// TODO: handle exception
 //		}
 //	}
+		EmailMessage msg=new EmailMessage();
+	    msg.setTo("khang2k0@gmail.com");
+	    msg.setMessage("Hii");
+	    try {
+	      EmailUtility.sendMail(msg);
+	    } catch (InvalidApplicationException e) {
+	      // TODO Auto-generated catch block
+	    }
 }
 }

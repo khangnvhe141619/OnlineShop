@@ -9,6 +9,16 @@ function Validate() {
         alert("You have entered an invalid email address!");
         return false;
     }
+    return true;
+}
+
+function validateLogin() {
+
+    var email = document.getElementById("email").value;
+    if (email.length > 50) {
+        alert("Email must be less than 50 characters in length!");
+        return false;
+    } 
 
     var password = document.getElementById("password").value;
     if (password == "" || password == null) {
