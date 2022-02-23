@@ -103,13 +103,6 @@
 			</c:if>
                     <label for="">Password<span>*</span></label>
                     <input id="password" type="password" placeholder="Password" name="password" value="${account.password}">
-                    <label for="">Email<span>*</span></label>
-                    <input id="email" type="text" placeholder="Email" name="email" value="${account.email}">
-                    <c:if test="${errorEmail}">
-				<div class="text-danger">Email already exists</div>
-			</c:if>
-                    <label for="">Phone<span>*</span></label>
-                    <input id="phone" type="text" placeholder="Phone" name="phone" value="${account.phonenumber}">
                     <button type="submit" class="aa-browse-btn">Register</button>  
                     <div class="rememberme">
               		Have an account?<a href="<%=request.getContextPath() %>/views/Login.jsp" style="color: red"> Login now!</a>
