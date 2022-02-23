@@ -1,7 +1,3 @@
-function validatePhone(phone) {
-	let isPhone = /^[0-9]{7,11}$/;
-	return isPhone.test(phone);
-}
 
 function Validate() {
 
@@ -22,22 +18,12 @@ function Validate() {
 		alert("Password must be less than 50 characters in length!");
 	}
 
-	var email = document.getElementById("email").value;
-	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-	if (email.length > 50) {
-		alert("Email must be less than 50 characters in length!");
-		return false;
-	} else if (!email.match(mailformat)) {
-		alert("You have entered an invalid email address!");
-		return false;
-	}
-
-	var phone = document.getElementById("phone").value;
-	if (!validatePhone(phone)) {
-		alert("Phone number must be minimum 7 positive integers");
-		return false;
-	} else if (phone === "" || phone == null) {
-		alert("Phone is not empty!")
-		return false;
-	}
+	var re_password = document.getElementById("re-password").value;
+    if (re_password === "" || re_password === null) {
+        alert("Re-Password is not empty!")
+        return false;
+    } else if (re_password != password) {
+        alert("Re-Password must match the password!")
+        return false;
+    }
 }
