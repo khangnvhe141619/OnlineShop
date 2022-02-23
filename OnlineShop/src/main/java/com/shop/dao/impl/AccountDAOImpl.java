@@ -81,9 +81,7 @@ public class AccountDAOImpl implements AccountDAO {
 			pre = con.prepareStatement(SQLCommand.insertAccount);
 			pre.setString(1, account.getUsername());
 			pre.setString(2, account.getPassword());
-			pre.setString(3, account.getEmail());
-			pre.setString(4, account.getPhonenumber());
-			pre.setString(5, account.getcreatedDate());
+			pre.setString(3, account.getcreatedDate());
 			check = pre.executeUpdate() == 1;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
