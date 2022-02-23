@@ -73,10 +73,10 @@ public class SendMail {
 
         return test;
     }
-    public static void main(String[] args) {
-		SendMail sm=new SendMail();
-		Account a=new Account("abc", "123", "khang2k0@gmail.com", "0312321312", "2021-02-10");
-		boolean f=sm.sendEmail(a);
-		System.out.println(f);
-	}
+//    public static void main(String[] args) {
+//		SendMail sm=new SendMail();
+//		Account a=new Account("abc", "123", "khang2k0@gmail.com", "0312321312", "2021-02-10");
+//		boolean f=sm.sendEmail(a);
+//		System.out.println(f);
+//	}
 }
