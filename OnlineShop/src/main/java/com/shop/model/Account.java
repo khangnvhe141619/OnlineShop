@@ -44,12 +44,10 @@ public class Account {
 		this.phonenumber = phonenumber;
 	}
 
-	public Account(String username, String password, String email, String phonenumber, String createdDate) {
+	public Account(String username, String password, String createdDate) {
 		super();
 		this.username = username;
 		this.password = password;
-		this.email = email;
-		this.phonenumber = phonenumber;
 		this.createdDate = createdDate;
 	}
 

@@ -39,20 +39,14 @@ public class RegisterController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
-		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		String phone = request.getParameter("phone");
 		LocalDate localDate = java.time.LocalDate.now();
 		String date = localDate.toString();
-		Account account = new Account(username, password, email, phone, date);
+		Account account = new Account(username, password, date);
 		AccountDAO accountDAO = new AccountDAOImpl();
 		try {
 			if(accountDAO.getCheckUsername(username)) {
 				request.setAttribute("errorUsername", true);
-				request.setAttribute("account", account);
-				request.getRequestDispatcher("views/Register.jsp").forward(request, response);
-			} else if(accountDAO.getCheckEmail(email)) {
-				request.setAttribute("errorEmail", true);
 				request.setAttribute("account", account);
 				request.getRequestDispatcher("views/Register.jsp").forward(request, response);
 			} else if(accountDAO.getInsertAccount(account)) {

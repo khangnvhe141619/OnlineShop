@@ -74,32 +74,6 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 
 	@Override
-	public boolean getCheckEmail(String email) throws SQLException {
-		boolean check = false;
-		try {
-			con = DBConnection.getInstance().getConnection();
-			pre = con.prepareStatement(SQLCommand.checkEmail);
-			pre.setString(1, email);
-			rs = pre.executeQuery();
-			check = rs.next();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			if (rs != null) {
-				rs.close();
-			}
-			if (pre != null) {
-				pre.close();
-			}
-			if (con != null) {
-				con.close();
-			}
-		}
-		return check;
-	}
-
-	@Override
 	public boolean getInsertAccount(Account account) throws SQLException {
 		boolean check = false;
 		try {
@@ -107,9 +81,7 @@ public class AccountDAOImpl implements AccountDAO {
 			pre = con.prepareStatement(SQLCommand.insertAccount);
 			pre.setString(1, account.getUsername());
 			pre.setString(2, account.getPassword());
-			pre.setString(3, account.getEmail());
-			pre.setString(4, account.getPhonenumber());
-			pre.setString(5, account.getcreatedDate());
+			pre.setString(3, account.getcreatedDate());
 			check = pre.executeUpdate() == 1;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
