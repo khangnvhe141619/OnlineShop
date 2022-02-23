@@ -26,12 +26,12 @@ CREATE TABLE [dbo].[Account]
 	FName				nvarchar(255)	,
 	LName				nvarchar(255)	,
 	Gender				bit				,
-	Email				varchar(50)		NOT NULL,
-	PhoneNumber			varchar(15)		NOT NULL,
+	Email				varchar(50)		,
+	PhoneNumber			varchar(15)		,
 	Avatar				varchar(255)	,
 	[Role]				int				NOT NULL,
 	[Active]			bit				NOT NULL,
-	CreatedDate			datetime2		NOT NULL,
+	CreatedDate			datetime2		,
 
 	CONSTRAINT PK_account_id PRIMARY KEY(AccountID),
 	CONSTRAINT FK_role FOREIGN KEY([Role]) REFERENCES Department(DepartmentID),
@@ -295,6 +295,6 @@ GO
 INSERT [dbo].[Subcribe] ([Email], [SubcribeDate]) VALUES ('khang@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
 INSERT [dbo].[Subcribe] ([Email], [SubcribeDate]) VALUES ('abcxyz@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
 /*Gmail:
-hotroswp@gmail
+hotroswp@gmail.com
 admin123@
 */
