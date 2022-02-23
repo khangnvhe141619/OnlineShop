@@ -125,7 +125,7 @@
 									<label class="rememberme" for="rememberme"><input
 										type="checkbox" id="rememberme"> Remember me </label>
 									<p class="aa-lost-password">
-										<a href="#">Lost your password?</a>
+										<a href="<%=request.getContextPath()%>/views/Reset-password.jsp">Lost your password?</a>
 									</p>
 									<div class="aa-register-now">
 										Don't have an account?<a
