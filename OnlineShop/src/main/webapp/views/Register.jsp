@@ -103,6 +103,8 @@
 			</c:if>
                     <label for="">Password<span>*</span></label>
                     <input id="password" type="password" placeholder="Password" name="password" value="${account.password}">
+                    <label for="">Password<span>*</span></label>
+                    <input id="re-password" type="password" placeholder="Re-Password" name="re-password">
                     <button type="submit" class="aa-browse-btn">Register</button>  
                     <div class="rememberme">
               		Have an account?<a href="<%=request.getContextPath() %>/views/Login.jsp" style="color: red"> Login now!</a>
