@@ -82,23 +82,23 @@ CREATE TABLE [dbo].[Product]
 	CONSTRAINT FK_covertype_id FOREIGN KEY(CoverTypeId) REFERENCES BookCover(BookCoverID)
 )
 
-CREATE TABLE [dbo].[Discount]
+CREATE TABLE [dbo].[Coupon]
 (
-	DiscountID			varchar(10)		,
-	DiscountDesc			nvarchar(255)	,
+	CouponID			varchar(10)		,
+	CouponDesc			nvarchar(255)	,
 	DiscountPercent		decimal			NOT NULL,
 	Quantity			int				NOT NULL,
 
-	CONSTRAINT PK_discount_id PRIMARY KEY(DiscountID),
+	CONSTRAINT PK_discount_id PRIMARY KEY(CouponID),
 )
 
 CREATE TABLE [dbo].[Offer]
 (
 	ProductId			int				,
-	DiscountId			varchar(10)		,
+	CouponId			varchar(10)		,
 
 	CONSTRAINT FK_product_id_0 FOREIGN KEY(ProductId) REFERENCES Product(ProductID),
-	CONSTRAINT FK_discount_id FOREIGN KEY(DiscountId) REFERENCES Discount(DiscountID)
+	CONSTRAINT FK_discount_id FOREIGN KEY(CouponId) REFERENCES Coupon(CouponID)
 )
 
 CREATE TABLE [dbo].[WishList]
@@ -248,11 +248,11 @@ GO
 INSERT [dbo].[Product] ([CategoryId], [ProductName], [Image], [Description], [CreatedDate], [IssuingCompany], [PublicationDate], [CoverTypeId], [PublishingCompany], [Quantity], [Price], [NumberPage]) VALUES (1, N'Cây Cam Ngọt Của Tôi', N'camngot.jpg', N'good quality', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), N'Nhã Nam', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), 2, N'Nhà Xuất Bản Hội Nhà Văn', 10, 15000, 244)
 INSERT [dbo].[Product] ([CategoryId], [ProductName], [Image], [Description], [CreatedDate], [IssuingCompany], [PublicationDate], [CoverTypeId], [PublishingCompany], [Quantity], [Price], [NumberPage]) VALUES (2, N'Payback Time - Ngày Đòi Nợ', N'ngaydoino.jpg', N'cheap', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), N'HappyLive', CAST(N'2017-08-08T00:00:00.0000000' AS DateTime2), 1, '', 15, 20000, 280)
 GO
-INSERT [dbo].[Discount] ([DiscountID], [DiscountDesc], [DiscountPercent], [Quantity]) VALUES ('NAMMOI2022', N'Chúc mừng năm mới', 50, 10)
-INSERT [dbo].[Discount] ([DiscountID], [DiscountDesc], [DiscountPercent], [Quantity]) VALUES ('VALUNLUON', N'', 10, 10)
+INSERT [dbo].[Coupon] ([CouponID], [CouponDesc], [DiscountPercent], [Quantity]) VALUES ('NAMMOI2022', N'Chúc mừng năm mới', 50, 10)
+INSERT [dbo].[Coupon] ([CouponID], [CouponDesc], [DiscountPercent], [Quantity]) VALUES ('VALUNLUON', N'', 10, 10)
 GO
-INSERT [dbo].[Offer] ([ProductId], [DiscountId]) VALUES (1, 'NAMMOI2022')
-INSERT [dbo].[Offer] ([ProductId], [DiscountId]) VALUES (2, 'VALUNLUON')
+INSERT [dbo].[Offer] ([ProductId], [CouponId]) VALUES (1, 'NAMMOI2022')
+INSERT [dbo].[Offer] ([ProductId], [CouponId]) VALUES (2, 'VALUNLUON')
 GO
 INSERT INTO [dbo].[WishList] ([AccountId], [ProductId]) VALUES (2, 1)
 INSERT INTO [dbo].[WishList] ([AccountId], [ProductId]) VALUES (2, 2)
