@@ -68,7 +68,7 @@ CREATE TABLE [dbo].[Product]
 	ProductName			nvarchar(200)	NOT NULL,
 	[Image]				varchar(255)	NOT NULL,	
 	[Description]		nvarchar(max)	NOT NULL,
-	CreatedDate			datetime2		NOT NULL,
+	CreatedDate			datetime2		,
 	IssuingCompany		nvarchar(255)	NOT NULL,
 	PublicationDate		datetime2		NOT NULL,
 	CoverTypeId			int				NOT NULL,
@@ -118,7 +118,7 @@ CREATE TABLE [dbo].[Review]
 	Content				nvarchar(255)	,
 	Ratings				int				NOT NULL,
 	CONSTRAINT CHK_Ratings CHECK (Ratings > 0 AND Ratings <= 5),
-	CreatedDate datetime2		NOT NULL,
+	CreatedDate datetime2				,
 
 	CONSTRAINT PK_review_id PRIMARY KEY(ReviewID),
 	CONSTRAINT FK_product_id_2 FOREIGN KEY(ProductId) REFERENCES Product(ProductID),
@@ -176,7 +176,7 @@ CREATE TABLE [dbo].[Post]
 	Title				nvarchar(255)	NOT NULL,
 	ShortDesc			nvarchar(max)	NOT NULL,
 	Content				nvarchar(max)	NOT NULL,
-	CreatedDate			datetime2		NOT NULL,
+	CreatedDate			datetime2		,
 
 	CONSTRAINT PK_post_id PRIMARY KEY(PostID),
 	CONSTRAINT FK_account_id_4 FOREIGN KEY(AuthorId) REFERENCES Account(AccountID),
@@ -188,7 +188,7 @@ CREATE TABLE [dbo].[PostComment]
 	PostId				int				,
 	AccountId			int				,
 	Comment				nvarchar(255)	NOT NULL,
-	CreatedDate			datetime2		NOT NULL,
+	CreatedDate			datetime2		,
 
 	CONSTRAINT PK_postcomment_id PRIMARY KEY(PostCommentID),
 	CONSTRAINT FK_account_id_5 FOREIGN KEY(AccountId) REFERENCES Account(AccountID),
