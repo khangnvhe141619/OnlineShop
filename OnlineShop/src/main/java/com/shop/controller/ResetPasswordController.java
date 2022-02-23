@@ -51,26 +51,28 @@ public class ResetPasswordController extends HttpServlet {
 		String email = request.getParameter("email").trim();
 		try {
 			account = accountDAO.findPassword(email);
-			//set subject for email
-			emailBean.setSubject("Reset Your Password");
-			//set the email of the user to send to
-			emailBean.setTo(email);
-			//set content of email
-			emailBean.setMessage("Hi " + account.getUsername() + "! Your password is: " + account.getPassword());
+			if (account == null) {
+				request.setAttribute("emailError", true);
+				request.getRequestDispatcher("views/Reset-password.jsp").forward(request, response);
+			} else {
+				// set subject for email
+				emailBean.setSubject("Reset Your Password");
+				// set the email of the user to send to
+				emailBean.setTo(email);
+				// set content of email
+				emailBean.setMessage("Hi " + account.getUsername() + "! Your password is: " + account.getPassword());
+				try {
+					// send mail for user
+					EmailUtility.sendMail(emailBean);
+					request.getRequestDispatcher("views/Login.jsp").forward(request, response);
 
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		try {
-			//send mail for user
-			EmailUtility.sendMail(emailBean);
-			request.getRequestDispatcher("views/Login.jsp").forward(request, response);
-
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
 	}
-
 }
