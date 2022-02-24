@@ -15,6 +15,30 @@ public class Order {
 	public Order() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Order(int orderId, int accountId, Double total, int productId, int quantity) {
+		super();
+		this.orderId = orderId;
+		this.accountId = accountId;
+		this.total = total;
+		this.productId = productId;
+		this.quantity = quantity;
+	}
+
+	public Order(int orderId, int shipId, int accountId, Date orderDate, Date estimateDelivery, Double total,
+			int statusId, int productId, int quantity) {
+		super();
+		this.orderId = orderId;
+		this.shipId = shipId;
+		this.accountId = accountId;
+		this.orderDate = orderDate;
+		EstimateDelivery = estimateDelivery;
+		this.total = total;
+		this.statusId = statusId;
+		this.productId = productId;
+		this.quantity = quantity;
+	}
+
 	public int getOrderId() {
 		return orderId;
 	}
@@ -68,6 +92,13 @@ public class Order {
 	}
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+	@Override
+	public String toString() {
+		return "Order [orderId=" + orderId + ", shipId=" + shipId + ", accountId=" + accountId + ", orderDate="
+				+ orderDate + ", EstimateDelivery=" + EstimateDelivery + ", total=" + total + ", statusId=" + statusId
+				+ ", productId=" + productId + ", quantity=" + quantity + "]";
 	}
 	
 }
