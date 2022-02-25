@@ -40,7 +40,7 @@
             <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg "
                     href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i
                         class="ti-menu"></i></a>
-                <div class="top-left-part"><a class="logo" href="index.html"><b><img src="<%=request.getContextPath()%>/resources/admin/plugins/images/icon.png"
+                <div class="top-left-part"><a class="logo" href="A-Home.jsp"><b><img src="<%=request.getContextPath()%>/resources/admin/plugins/images/icon.png"
                                 style="width: 30px; height: 30px;" alt="home" /></b><span
                             class="hidden-xs"><b>Company</b></span></a></div>
                 <ul class="nav navbar-top-links navbar-left hidden-xs">
@@ -89,8 +89,8 @@
                         </ul>
                     </li>
                     <li class="nav-small-cap m-t-10">--- Main Menu</li>
-                    <li> <a href="admin/A-Home.jsp" class="waves-effect active"><i class="linea-icon linea-basic fa-fw"
-                                data-icon="v"></i> <span class="hide-menu"> Dashboard </a>
+                    <li> <a href="A-Home.jsp" class="waves-effect active"><i class="linea-icon linea-basic fa-fw"
+                                data-icon="v"></i> <span class="hide-menu"> Dashboard </span></span></a>
                     </li>
 
                     <li> <a href="#" class="waves-effect"><i data-icon=";" class="linea-icon fa fa-group"></i> <span
@@ -120,7 +120,7 @@
                         <ul class="nav nav-second-level">
                             <li><a href="list-product.html">List Products</a></li>
                             <li><a href="new-product.html">Create Product</a></li>
-                            </li>
+                            
                         </ul>
                     </li>
                     <li> <a href="#" class="waves-effect"><i data-icon="&#xe00b;"
@@ -317,7 +317,7 @@
                             </div>
                             <div class="table-responsive">
                                 <table class="table ">
-                                    <i style='color:brown;'>No Posts Yet :( Upload Company's first blog post today! </i>
+                                    <i style="color:brown;">No Posts Yet :( Upload Company's first blog post today! </i>
                                     <thead>
                                         <tr>
                                             <th>TITLE</th>
@@ -366,7 +366,7 @@
                                 <li>
                                     <div class="checkbox checkbox-success">
                                         <input id="checkbox4" type="checkbox" class="open-close">
-                                        <label for="checkbox4"> Toggle Sidebar </label>
+                                        <label for="checkbox4"> Toggle Side bar </label>
                                     </div>
                                 </li>
                             </ul>
