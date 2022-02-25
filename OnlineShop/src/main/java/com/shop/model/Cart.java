@@ -39,4 +39,11 @@ public class Cart {
 			items.remove(getIteamById(id));
 		}
 	}
+	public double getTotalMoney() {
+		double t= 0;
+		for (Item i : items) {
+			t+=i.getQuantity()*i.getPrice();
+		}
+		return t;
+	}
 }
