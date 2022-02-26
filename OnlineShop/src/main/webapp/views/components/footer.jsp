@@ -89,9 +89,9 @@
                   <div class="aa-footer-widget">
                     <h3>Contact Us</h3>
                     <address>
-                      <p> 25 Astor Pl, NY 10003, USA</p>
-                      <p><span class="fa fa-phone"></span>+1 212-982-4589</p>
-                      <p><span class="fa fa-envelope"></span>dailyshop@gmail.com</p>
+                      <p> ${contact.getAddress()}</p>
+                      <p><span class="fa fa-phone"></span>${contact.getPhone()}</p>
+                      <p><span class="fa fa-envelope"></span>${contact.getEmail()}</p>
                     </address>
                     <div class="aa-footer-social">
                       <a href="#"><span class="fa fa-facebook"></span></a>
