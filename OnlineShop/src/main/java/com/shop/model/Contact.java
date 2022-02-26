@@ -1,5 +1,6 @@
 package com.shop.model;
 
+
 public class Contact {
 	private String email;
 	private String phone;
@@ -9,7 +10,7 @@ public class Contact {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Contact(String email, String phone, String address) {
+	public Contact(String email, String phone, String address){
 		super();
 		this.email = email;
 		this.phone = phone;

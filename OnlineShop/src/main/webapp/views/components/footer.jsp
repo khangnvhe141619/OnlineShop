@@ -1,3 +1,7 @@
+<%@page import="java.sql.SQLException"%>
+<%@page import="com.shop.model.Contact"%>
+<%@page import="com.shop.dao.impl.ContactDAOImpl"%>
+<%@page import="com.shop.dao.ContactDAO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -88,11 +92,22 @@
                 <div class="aa-footer-widget">
                   <div class="aa-footer-widget">
                     <h3>Contact Us</h3>
+                    <%
+                    ContactDAO contactDAO = new ContactDAOImpl();
+                    try {
+            			Contact contact = contactDAO.getInformation();                 
+            			%>
                     <address>
-                      <p> ${contact.getAddress()}</p>
-                      <p><span class="fa fa-phone"></span>${contact.getPhone()}</p>
-                      <p><span class="fa fa-envelope"></span>${contact.getEmail()}</p>
-                    </address>
+                      <p> <%=contact.getAddress()%></p>
+                      <p><span class="fa fa-phone"></span><%=contact.getPhone()%></p>
+                      <p><span class="fa fa-envelope"></span><%=contact.getEmail()%></p>
+                    </address> 
+                    <%
+                    } catch (SQLException e) {
+            			// TODO Auto-generated catch block
+            			e.printStackTrace();
+            		} 
+                    %>                                           
                     <div class="aa-footer-social">
                       <a href="#"><span class="fa fa-facebook"></span></a>
                       <a href="#"><span class="fa fa-twitter"></span></a>

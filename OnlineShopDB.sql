@@ -222,12 +222,14 @@ CREATE TABLE [dbo].[Contact]
 
 )
 
-CREATE TABLE [dbo].[Subcribe]
+CREATE TABLE [dbo].[Subscriber]
 (
+	ID					int				IDENTITY(1,1),
 	Email				varchar(255)	,
-	SubcribeDate		datetime2		NOT NULL
+	SubscribeDate		datetime2		NOT NULL
 
-	CONSTRAINT PK_email_s PRIMARY KEY(Email)
+	CONSTRAINT PK_id_s PRIMARY KEY(ID),
+	CONSTRAINT UNI_email UNIQUE(Email)
 )
 
 GO
@@ -309,12 +311,12 @@ INSERT [dbo].[Review] ([ProductId], [AccountId], [Content], [Ratings], [CreatedD
 GO
 INSERT [dbo].[Contact] ([Email], [Phone], [Address]) VALUES ('hotroswp@gmail.com', '+84 1122 3344 11', 'Hanoi, Vietnam')
 GO
-INSERT [dbo].[Subcribe] ([Email], [SubcribeDate]) VALUES ('khang@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
-INSERT [dbo].[Subcribe] ([Email], [SubcribeDate]) VALUES ('abcxyz@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
-INSERT [dbo].[Subcribe] ([Email], [SubcribeDate]) VALUES ('khang2@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
-INSERT [dbo].[Subcribe] ([Email], [SubcribeDate]) VALUES ('khang3@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
-INSERT [dbo].[Subcribe] ([Email], [SubcribeDate]) VALUES ('khang4@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
-INSERT [dbo].[Subcribe] ([Email], [SubcribeDate]) VALUES ('khang5@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[Subscriber] ([Email], [SubscribeDate]) VALUES ('khang@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[Subscriber] ([Email], [SubscribeDate]) VALUES ('abcxyz@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[Subscriber] ([Email], [SubscribeDate]) VALUES ('khang2@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[Subscriber] ([Email], [SubscribeDate]) VALUES ('khang3@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[Subscriber] ([Email], [SubscribeDate]) VALUES ('khang4@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[Subscriber] ([Email], [SubscribeDate]) VALUES ('khang5@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
 /*Gmail:
 hotroswp@gmail.com
 admin123@
