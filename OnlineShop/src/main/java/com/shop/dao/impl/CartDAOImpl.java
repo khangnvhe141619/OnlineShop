@@ -43,9 +43,9 @@ public class CartDAOImpl implements CartDAO {
 			if(rs.next()) {
 				int oid= rs.getInt(1);
 				for (Item i : cart.getItems()) {
-					String sql3 ="INSERT INTO [OrderDetail]\r\n"
+					String sql4 ="INSERT INTO [OrderDetail]\r\n"
 							+ "VALUES(?,?,?)";
-					PreparedStatement pre3= con.prepareStatement(sql3);
+					PreparedStatement pre3= con.prepareStatement(sql4);
 					pre3.setInt(1, oid);
 					pre3.setInt(2,i.getProduct().getProductID());
 					pre3.setInt(3, i.getQuantity());
