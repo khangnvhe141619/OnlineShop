@@ -1,13 +1,14 @@
 package com.shop.model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Order {
 	private int orderId;
 	private int shipId;
 	private int accountId;
-	private Date orderDate;
-	private Date EstimateDelivery;
+	private LocalDate orderDate;
+	private LocalDate EstimateDelivery;
 	private Double total;
 	private int statusId;
 	private int productId;
@@ -29,7 +30,10 @@ public class Order {
 
 
 
-	public Order(int orderId, int shipId, int accountId, Date orderDate, Date estimateDelivery, Double total,
+
+
+
+	public Order(int orderId, int shipId, int accountId, LocalDate orderDate, LocalDate estimateDelivery, Double total,
 			int statusId, int productId, int quantity) {
 		super();
 		this.orderId = orderId;
@@ -63,18 +67,31 @@ public class Order {
 	public void setAccountId(int accountId) {
 		this.accountId = accountId;
 	}
-	public Date getOrderDate() {
+
+	public LocalDate getOrderDate() {
 		return orderDate;
 	}
-	public void setOrderDate(Date orderDate) {
+
+
+
+	public void setOrderDate(LocalDate orderDate) {
 		this.orderDate = orderDate;
 	}
-	public Date getEstimateDelivery() {
+
+
+
+	public LocalDate getEstimateDelivery() {
 		return EstimateDelivery;
 	}
-	public void setEstimateDelivery(Date estimateDelivery) {
+
+
+
+	public void setEstimateDelivery(LocalDate estimateDelivery) {
 		EstimateDelivery = estimateDelivery;
 	}
+
+
+
 	public Double getTotal() {
 		return total;
 	}
