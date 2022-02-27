@@ -31,5 +31,9 @@ public class Orderdetail {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	@Override
+	public String toString() {
+		return "Orderdetail [orderId=" + orderId + ", productId=" + productId + ", quantity=" + quantity + "]";
+	}
 	
 }
