@@ -15,10 +15,10 @@ public class Post {
     private int postId;
     private int authorId;
     private String tittle;
-    //private String shortDesc;
+    private String shortDesc;
     private String content;
     private Date createdDate;    
-    private String shortDesc = content.substring(0, 200) ;
+    
     public Post() {
     }
 

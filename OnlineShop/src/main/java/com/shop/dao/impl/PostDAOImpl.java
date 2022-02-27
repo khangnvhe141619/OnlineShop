@@ -47,7 +47,7 @@ public class PostDAOImpl implements PostDAO{
     public boolean createPost(Post post){
         int row=0;
         try{
-            String sql = "NSERT INTO [dbo].[Post]\n" +
+            String sql = "INSERT INTO [dbo].[Post]\n" +
 "           ([AuthorId]\n" +
 "           ,[Title]\n" +
 "           ,[ShortDesc]\n" +
@@ -60,7 +60,7 @@ public class PostDAOImpl implements PostDAO{
             ps = conn.prepareStatement(sql);
             ps.setInt(1,post.getAuthorId());
             ps.setString(2, post.getTittle());
-            ps.setString(3, post.getShortDesc());
+            ps.setString(3, post.getContent().substring(0, 200));
             ps.setString(4, post.getContent());
             ps.setDate(5, post.getCreatedDate());
             row = ps.executeUpdate();
@@ -77,7 +77,7 @@ public class PostDAOImpl implements PostDAO{
 			conn = DBConnection.getInstance().getConnection();
 			ps= conn.prepareStatement(sql);
 			ps.setString(1, post.getTittle());
-                        ps.setString(2, post.getShortDesc());
+                        ps.setString(2, post.getContent().substring(0, 200));
 			ps.setString(3, post.getContent());
 			ps.setInt(4, post.getPostId());
 			row = ps.executeUpdate();
