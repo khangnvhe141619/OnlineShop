@@ -15,6 +15,13 @@ public class Cart {
 		this.items = items;
 	}
 	
+	
+	public List<Item> getItems() {
+		return items;
+	}
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
 	private Item getIteamById(int id) {
 		for (Item i : items) {
 			if(i.getProduct().getProductID()==id)
