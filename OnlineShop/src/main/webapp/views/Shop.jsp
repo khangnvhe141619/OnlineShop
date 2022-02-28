@@ -121,7 +121,7 @@
                                 <div class="col-sm-6 col-md-4 col-lg-4">
                                     <div class="shop-item">
                                         <div class="shop-item-image"><img src="https://elead.com.vn/wp-content/uploads/2020/04/anh-dep-hoa-huong-duong-va-mat-troi_022805970-1-1181x800-6.jpg" alt="anh product"/>
-                                            <div class="shop-item-detail"><a href="#" class="btn btn-round btn-b"><span class="icon-basket">View Detail Product</span></a></div>
+                                            <div class="shop-item-detail"><a href="<%=request.getContextPath()%>/details?id=${p.productID}" class="btn btn-round btn-b"><span class="icon-basket">View Detail Product</span></a></div>
                                         </div>
                                         <h4 class="shop-item-title font-alt"><a href="#">${p.productName}</a></h4>
                                         <h5>${p.price}</h5>
@@ -134,7 +134,7 @@
                                 <div class="pagination font-alt " id="pagger">
                                   <a href="#"><i class="fa fa-angle-left"></i></a>
                                    <c:forEach begin="1" end="${endpage }" var="i">
-                                   		<a href="#">${i }</a>
+                                   		<a href="<%=request.getContextPath()%>/list?index=${i}">${i }</a>
                                    </c:forEach>
                                     <a href="#"><i class="fa fa-angle-right"></i></a>
                                 </div>
