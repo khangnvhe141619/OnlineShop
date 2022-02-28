@@ -5,8 +5,7 @@ public class Account {
 	private int accountId;
 	private String username;
 	private String password;
-	private String firstname;
-	private String lastname;
+	private String fullname;
 	private int gender;
 	private String email;
 	private String phonenumber;
@@ -19,14 +18,13 @@ public class Account {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Account(int accountId, String username, String password, String firstname, String lastname, int gender,
-			String email, String phonenumber, String avatar, int role, int active, String createdDate) {
+	public Account(int accountId, String username, String password, String fullname, int gender, String email,
+			String phonenumber, String avatar, int role, int active, String createdDate) {
 		super();
 		this.accountId = accountId;
 		this.username = username;
 		this.password = password;
-		this.firstname = firstname;
-		this.lastname = lastname;
+		this.fullname = fullname;
 		this.gender = gender;
 		this.email = email;
 		this.phonenumber = phonenumber;
@@ -36,25 +34,11 @@ public class Account {
 		this.createdDate = createdDate;
 	}
 
-	public Account(String username, String password, String email, String phonenumber) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.phonenumber = phonenumber;
-	}
-
 	public Account(String username, String password, String createdDate) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.createdDate = createdDate;
-	}
-
-	public Account(String username, String password) {
-		super();
-		this.email = username;
-		this.password = password;
 	}
 
 	public int getAccountId() {
@@ -81,20 +65,12 @@ public class Account {
 		this.password = password;
 	}
 
-	public String getFirstname() {
-		return firstname;
+	public String getFullname() {
+		return fullname;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-
-	public String getLastname() {
-		return lastname;
-	}
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
 	}
 
 	public int getGender() {
@@ -145,14 +121,11 @@ public class Account {
 		this.active = active;
 	}
 
-	public String getcreatedDate() {
+	public String getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setcreatedDate(String createdDate) {
+	public void setCreatedDate(String createdDate) {
 		this.createdDate = createdDate;
 	}
-	
-	
-
 }

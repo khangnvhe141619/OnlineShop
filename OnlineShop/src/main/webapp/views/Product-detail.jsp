@@ -1,666 +1,234 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Daily Shop | Product Detail</title>
+<html lang="en-US" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--  
+        Document Title
+        =============================================
+        -->
+        <title>Teemo</title>
+        <!--  
+        Favicons
+        =============================================
+        -->
+        <link rel="apple-touch-icon" sizes="57x57" href="<%=request.getContextPath()%>/resources/common/assets/images/favicons/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="<%=request.getContextPath()%>/resources/common/assets/images/favicons/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="<%=request.getContextPath()%>/resources/common/assets/images/favicons/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="<%=request.getContextPath()%>/resources/common/assets/images/favicons/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="<%=request.getContextPath()%>/resources/common/assets/images/favicons/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="<%=request.getContextPath()%>/resources/common/assets/images/favicons/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="<%=request.getContextPath()%>/resources/common/assets/images/favicons/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="<%=request.getContextPath()%>/resources/common/assets/images/favicons/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="<%=request.getContextPath()%>/resources/common/assets/images/favicons/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="<%=request.getContextPath()%>/resources/common/assets/images/favicons/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="<%=request.getContextPath()%>/resources/common/assets/images/favicons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="<%=request.getContextPath()%>/resources/common/assets/images/favicons/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="<%=request.getContextPath()%>/resources/common/assets/images/favicons/favicon-16x16.png">
+        <link rel="manifest" href="/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="<%=request.getContextPath()%>/resources/common/assets/images/favicons/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+        <!--  
+        Stylesheets
+        =============================================
+        
+        -->
+        <!-- Default stylesheets-->
+        <link href="<%=request.getContextPath()%>/resources/common/assets/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Template specific stylesheets-->
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Volkhov:400i" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+        <link href="<%=request.getContextPath()%>/resources/common/assets/lib/animate.css/animate.css" rel="stylesheet">
+        <link href="<%=request.getContextPath()%>/resources/common/assets/lib/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="<%=request.getContextPath()%>/resources/common/assets/lib/et-line-font/et-line-font.css" rel="stylesheet">
+        <link href="<%=request.getContextPath()%>/resources/common/assets/lib/flexslider/flexslider.css" rel="stylesheet">
+        <link href="<%=request.getContextPath()%>/resources/common/assets/lib/owl.carousel/dist/assets/owl.carousel.min.css" rel="stylesheet">
+        <link href="<%=request.getContextPath()%>/resources/common/assets/lib/owl.carousel/dist/assets/owl.theme.default.min.css" rel="stylesheet">
+        <link href="<%=request.getContextPath()%>/resources/common/assets/lib/magnific-popup/dist/magnific-popup.css" rel="stylesheet">
+        <link href="<%=request.getContextPath()%>/resources/common/assets/lib/simple-text-rotator/simpletextrotator.css" rel="stylesheet">
+        <!-- Main stylesheet and color file-->
+        <link href="<%=request.getContextPath()%>/resources/common/css/starability-all.min.css" rel="stylesheet" type="text/css"/>
+        <link href="<%=request.getContextPath()%>/resources/common/assets/css/style.css" rel="stylesheet">
+        <link id="color-scheme" href="<%=request.getContextPath()%>/resources/common/assets/css/colors/default.css" rel="stylesheet">
+    </head>
+    <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
+        <main>
+            <div class="page-loader">
+                <div class="loader">Loading...</div>
+            </div>
+           <!-- header -->
+		<jsp:include page="components/header.jsp"></jsp:include>
+		<!-- end header -->
+            <div class="main">
+                <section class="module" style="padding-top: 0px">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-6 mb-sm-40"><a class="gallery" href="<%=request.getContextPath()%>/resources/common/images/${requestScope.p.img}"><img src="images/${requestScope.p.img}" alt="Single Product Image"/></a>
+                                
+                            </div>
+                            <div class="col-sm-6" style="padding-top: 100px">
+                                <div class="row">
+                                    <div class="col-sm-12">
 
-<!-- Font awesome -->
-<link
-	href="<%=request.getContextPath()%>/resources/css/font-awesome.css"
-	rel="stylesheet">
-<!-- Bootstrap -->
-<link href="<%=request.getContextPath()%>/resources/css/bootstrap.css"
-	rel="stylesheet">
-<!-- SmartMenus jQuery Bootstrap Addon CSS -->
-<link
-	href="<%=request.getContextPath()%>/resources/css/jquery.smartmenus.bootstrap.css"
-	rel="stylesheet">
-<!-- Product view slider -->
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/css/jquery.simpleLens.css">
-<!-- slick slider -->
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/css/slick.css">
-<!-- price picker slider -->
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/css/nouislider.css">
-<!-- Theme color -->
-<link id="switcher"
-	href="<%=request.getContextPath()%>/resources/css/theme-color/default-theme.css"
-	rel="stylesheet">
-<!-- Top Slider CSS -->
-<link
-	href="<%=request.getContextPath()%>/resources/css/sequence-theme.modern-slide-in.css"
-	rel="stylesheet" media="all">
+                                        <h1 class="product-title font-alt" >${requestScope.p.name}</h1>
+                                    </div>
+                                </div>
+                                    <div class="starability-result" data-rating="${requestScope.avgrating}"> </div>
+                                <div class="row mb-20">
+                                    <div class="col-sm-12">
+                                        <div class="price font-alt"><span class="amount">$${requestScope.p.price}</span></div>
+                                    </div>
+                                </div>
+                                <div class="row mb-20">
+                                    <div class="col-sm-12">
+                                        <div class="description">
+                                            <p>The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-20">
+                                    <form action="addcart" method="POST">
+                                        <div class="col-sm-4 mb-sm-20">
+                                            <input class="form-control input-lg" type="number" name="quantity" value="1" max="40" min="1" required="required"/>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input type="hidden" name="id" value="${requestScope.p.id}"/>
+                                            <input class="btn btn-lg btn-block btn-round btn-b" type="submit" value="Add To Cart"/>
+                                        </div>
+                                    </form>
+                                </div>
 
-<!-- Main style sheet -->
-<link href="<%=request.getContextPath()%>/resources/css/style.css"
-	rel="stylesheet">
+                            </div>
+                        </div>
+                        <div class="row mt-70">
+                            <div class="col-sm-12">
+                                <ul class="nav nav-tabs font-alt" role="tablist">
+                                    <li class="active"><a href="#reviews" data-toggle="tab"><span class="icon-tools-2"></span>Reviews (${requestScope.rvsize})</a></li>
+                                    <li><a href="#description" data-toggle="tab"><span class="icon-tools-2"></span>Description</a></li>
+                                    <li><a href="#data-sheet" data-toggle="tab"><span class="icon-tools-2"></span>Data sheet</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="reviews">
+                                        <div class="comments reviews">
+                                            <c:forEach items="${requestScope.rvs}" var="r">
+                                                <div class="comment clearfix">
+                                                    <div class="comment-avatar"><img src="<%=request.getContextPath()%>/resources/common/avatar/${r.user.avatar}" /></div>
+                                                    <div class="comment-content clearfix">
+                                                        <div class="comment-author font-alt"><a href="">${r.user.name}</a></div>
+                                                        <div class="comment-body">
+                                                            ${r.content}
+                                                        </div>
+                                                        <div class="starability-result" data-rating="${r.rating}"> </div>
+                                                    </div>
+                                                </div>
+                                            </c:forEach>
+                                        </div>
+                                        <div class="comment-form mt-30">
+                                            <h4 class="comment-form-title font-alt">Add review</h4>
+                                            <form method="GET" action="addreview">
 
-<!-- Google Font -->
-<link href='https://fonts.googleapis.com/css?family=Lato'
-	rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Raleway'
-	rel='stylesheet' type='text/css'>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <textarea class="form-control" id="" name="content" rows="4" placeholder="Review"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <c:if test="${requestScope.error != null}" >
+                                                        <h5 style="color:red">${requestScope.error}</h5>
+                                                    </c:if>
+                                                    <div class="col-sm-12">
+                                                        <fieldset class="starability-basic">
+                                                            <h3>Your Rating:</h3>
+                                                            <input type="radio" id="rate1" name="rating" value="1" />
+                                                            <label for="rate1">1 star.</label>
 
+                                                            <input type="radio" id="rate2" name="rating" value="2" />
+                                                            <label for="rate2">2 stars.</label>
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+                                                            <input type="radio" id="rate3" name="rating" value="3" />
+                                                            <label for="rate3">3 stars.</label>
 
+                                                            <input type="radio" id="rate4" name="rating" value="4" />
+                                                            <label for="rate4">4 stars.</label>
 
-</head>
-<body>
-	<!-- wpf loader Two -->
-	<div id="wpf-loader-two">
-		<div class="wpf-loader-two-inner">
-			<span>Loading</span>
-		</div>
-	</div>
-	<!-- / wpf loader Two -->
-	<!-- SCROLL TOP BUTTON -->
-	<a class="scrollToTop" href="#"><i class="fa fa-chevron-up"></i></a>
-	<!-- END SCROLL TOP BUTTON -->
+                                                            <input type="radio" checked="true" id="rate5" name="rating" value="5" />
+                                                            <label for="rate5">5 stars.</label>
 
+                                                            <span class="starability-focus-ring"></span>
+                                                        </fieldset>
+                                                        <br><br>
+                                                        <input type="hidden" name="id" value="${requestScope.p.id}"/>
+                                                        <input type="submit" class="btn btn-round btn-d" value="Submit Review" >
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="description">
+                                        <p>Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators. To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words. If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages.</p>
+                                        <p>The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words.</p>
+                                    </div>
+                                    <div class="tab-pane" id="data-sheet">
+                                        <table class="table table-striped ds-table table-responsive">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Title</th>
+                                                    <th>Info</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>Compositions</td>
+                                                    <td>Jeans</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Size</td>
+                                                    <td>44, 46, 48</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Color</td>
+                                                    <td>Black</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Brand</td>
+                                                    <td>Somebrand</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
 
-	<!-- Start header section -->
-	<jsp:include page="components/header.jsp"></jsp:include>
-	<!-- / header section -->
-	<!-- menu -->
-	<jsp:include page="components/menu.jsp"></jsp:include>
-	<!-- / menu -->
-
-	<!-- catg header banner section -->
-	<section id="aa-catg-head-banner">
-		<img
-			src="<%=request.getContextPath()%>/resources/img/fashion/fashion-header-bg-8.jpg"
-			alt="fashion img">
-		<div class="aa-catg-head-banner-area">
-			<div class="container">
-				<div class="aa-catg-head-banner-content">
-					<h2>T-Shirt</h2>
-					<ol class="breadcrumb">
-						<li><a href="Index.jsp">Home</a></li>
-						<li><a href="#">Product</a></li>
-						<li class="active">T-shirt</li>
-					</ol>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- / catg header banner section -->
-
-	<!-- product category -->
-	<section id="aa-product-details">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="aa-product-details-area">
-						<div class="aa-product-details-content">
-							<div class="row">
-								<!-- Modal view slider -->
-								<div class="col-md-5 col-sm-5 col-xs-12">
-									<div class="aa-product-view-slider">
-										<div id="demo-1" class="simpleLens-gallery-container">
-											<div class="simpleLens-container">
-												<div class="simpleLens-big-image-container">
-													<a
-														data-lens-image="<%=request.getContextPath()%>/resources/img/view-slider/large/polo-shirt-1.png"
-														class="simpleLens-lens-image"><img
-														src="<%=request.getContextPath()%>/resources/img/view-slider/medium/polo-shirt-1.png"
-														class="simpleLens-big-image"></a>
-												</div>
-											</div>
-											<div class="simpleLens-thumbnails-container">
-												<a
-													data-big-image="<%=request.getContextPath()%>/resources/img/view-slider/medium/polo-shirt-1.png"
-													data-lens-image="img/view-slider/large/polo-shirt-1.png"
-													class="simpleLens-thumbnail-wrapper" href="#"> <img
-													src="<%=request.getContextPath()%>/resources/img/view-slider/thumbnail/polo-shirt-1.png">
-												</a> <a
-													data-big-image="<%=request.getContextPath()%>/resources/img/view-slider/medium/polo-shirt-3.png"
-													data-lens-image="img/view-slider/large/polo-shirt-3.png"
-													class="simpleLens-thumbnail-wrapper" href="#"> <img
-													src="<%=request.getContextPath()%>/resources/img/view-slider/thumbnail/polo-shirt-3.png">
-												</a> <a
-													data-big-image="<%=request.getContextPath()%>/resources/img/view-slider/medium/polo-shirt-4.png"
-													data-lens-image="img/view-slider/large/polo-shirt-4.png"
-													class="simpleLens-thumbnail-wrapper" href="#"> <img
-													src="<%=request.getContextPath()%>/resources/img/view-slider/thumbnail/polo-shirt-4.png">
-												</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- Modal view content -->
-								<div class="col-md-7 col-sm-7 col-xs-12">
-									<div class="aa-product-view-content">
-										<h3>T-Shirt</h3>
-										<div class="aa-price-block">
-											<span class="aa-product-view-price">$34.99</span>
-											<p class="aa-product-avilability">
-												Avilability: <span>In stock</span>
-											</p>
-										</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-											elit. Officiis animi, veritatis quae repudiandae quod nulla
-											porro quidem, itaque quis quaerat!</p>
-
-										<div class="aa-prod-quantity">
-											<form action="">
-												<select id="" name="">
-													<option selected="1" value="0">1</option>
-													<option value="1">2</option>
-													<option value="2">3</option>
-													<option value="3">4</option>
-													<option value="4">5</option>
-													<option value="5">6</option>
-												</select>
-											</form>
-											<p class="aa-prod-category">
-												Category: <a href="#">Polo T-Shirt</a>
-											</p>
-										</div>
-										<div class="aa-prod-view-bottom">
-											<a class="aa-add-to-cart-btn" href="#">Add To Cart</a> <a
-												class="aa-add-to-cart-btn" href="#">Wishlist</a> <a
-												class="aa-add-to-cart-btn" href="#">Compare</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="aa-product-details-bottom">
-							<ul class="nav nav-tabs" id="myTab2">
-								<li><a href="#description" data-toggle="tab">Description</a></li>
-								<li><a href="#review" data-toggle="tab">Reviews</a></li>
-							</ul>
-
-							<!-- Tab panes -->
-							<div class="tab-content">
-								<div class="tab-pane fade in active" id="description">
-									<p>Lorem Ipsum is simply dummy text of the printing and
-										typesetting industry. Lorem Ipsum has been the industry's
-										standard dummy text ever since the 1500s, when an unknown
-										printer took a galley of type and scrambled it to make a type
-										specimen book. It has survived not only five centuries, but
-										also the leap into electronic typesetting, remaining
-										essentially unchanged. It was popularised in the 1960s with
-										the release of Letraset sheets containing Lorem Ipsum
-										passages, and more recently with desktop publishing software
-										like Aldus PageMaker including versions of Lorem Ipsum.</p>
-									<ul>
-										<li>Lorem ipsum dolor sit amet, consectetur adipisicing
-											elit. Quod, culpa!</li>
-										<li>Lorem ipsum dolor sit amet.</li>
-										<li>Lorem ipsum dolor sit amet, consectetur adipisicing
-											elit.</li>
-										<li>Lorem ipsum dolor sit amet, consectetur adipisicing
-											elit. Dolor qui eius esse!</li>
-										<li>Lorem ipsum dolor sit amet, consectetur adipisicing
-											elit. Quibusdam, modi!</li>
-									</ul>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit. Illum, iusto earum voluptates autem esse molestiae
-										ipsam, atque quam amet similique ducimus aliquid voluptate
-										perferendis, distinctio!</p>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit. Blanditiis ea, voluptas! Aliquam facere quas cumque
-										rerum dolore impedit, dicta ducimus repellat dignissimos,
-										fugiat, minima quaerat necessitatibus? Optio adipisci ab,
-										obcaecati, porro unde accusantium facilis repudiandae.</p>
-								</div>
-								<div class="tab-pane fade " id="review">
-									<div class="aa-product-review-area">
-										<h4>2 Reviews for T-Shirt</h4>
-										<ul class="aa-review-nav">
-											<li>
-												<div class="media">
-													<div class="media-left">
-														<a href="#"> <img class="media-object"
-															src="<%=request.getContextPath()%>/resources/img/testimonial-img-3.jpg"
-															alt="girl image">
-														</a>
-													</div>
-													<div class="media-body">
-														<h4 class="media-heading">
-															<strong>Marla Jobs</strong> - <span>March 26, 2016</span>
-														</h4>
-														<div class="aa-product-rating">
-															<span class="fa fa-star"></span> <span class="fa fa-star"></span>
-															<span class="fa fa-star"></span> <span class="fa fa-star"></span>
-															<span class="fa fa-star-o"></span>
-														</div>
-														<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-															elit.</p>
-													</div>
-												</div>
-											</li>
-											<li>
-												<div class="media">
-													<div class="media-left">
-														<a href="#"> <img class="media-object"
-															src="<%=request.getContextPath()%>/resources/img/testimonial-img-3.jpg"
-															alt="girl image">
-														</a>
-													</div>
-													<div class="media-body">
-														<h4 class="media-heading">
-															<strong>Marla Jobs</strong> - <span>March 26, 2016</span>
-														</h4>
-														<div class="aa-product-rating">
-															<span class="fa fa-star"></span> <span class="fa fa-star"></span>
-															<span class="fa fa-star"></span> <span class="fa fa-star"></span>
-															<span class="fa fa-star-o"></span>
-														</div>
-														<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-															elit.</p>
-													</div>
-												</div>
-											</li>
-										</ul>
-										<h4>Add a review</h4>
-										<div class="aa-your-rating">
-											<p>Your Rating</p>
-											<a href="#"><span class="fa fa-star-o"></span></a> <a
-												href="#"><span class="fa fa-star-o"></span></a> <a href="#"><span
-												class="fa fa-star-o"></span></a> <a href="#"><span
-												class="fa fa-star-o"></span></a> <a href="#"><span
-												class="fa fa-star-o"></span></a>
-										</div>
-										<!-- review form -->
-										<form action="" class="aa-review-form">
-											<div class="form-group">
-												<label for="message">Your Review</label>
-												<textarea class="form-control" rows="3" id="message"></textarea>
-											</div>
-											<div class="form-group">
-												<label for="name">Name</label> <input type="text"
-													class="form-control" id="name" placeholder="Name">
-											</div>
-											<div class="form-group">
-												<label for="email">Email</label> <input type="email"
-													class="form-control" id="email"
-													placeholder="example@gmail.com">
-											</div>
-
-											<button type="submit"
-												class="btn btn-default aa-review-submit">Submit</button>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Related product -->
-						<div class="aa-product-related-item">
-							<h3>Related Products</h3>
-							<ul class="aa-product-catg aa-related-item-slider">
-								<!-- start single product item -->
-								<li>
-									<figure>
-										<a class="aa-product-img" href="#"><img
-											src="<%=request.getContextPath()%>/resources/img/man/polo-shirt-2.png"
-											alt="polo shirt img"></a>
-										<a class="aa-add-card-btn" href="#"><span
-											class="fa fa-shopping-cart"></span>Add To Cart</a>
-										<figcaption>
-											<h4 class="aa-product-title">
-												<a href="#">Polo T-Shirt</a>
-											</h4>
-											<span class="aa-product-price">$45.50</span><span
-												class="aa-product-price"><del>$65.50</del></span>
-										</figcaption>
-									</figure>
-									<div class="aa-product-hvr-content">
-										<a href="#" data-toggle="tooltip" data-placement="top"
-											title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
-										<a href="#" data-toggle="tooltip" data-placement="top"
-											title="Compare"><span class="fa fa-exchange"></span></a> <a
-											href="#" data-toggle2="tooltip" data-placement="top"
-											title="Quick View" data-toggle="modal"
-											data-target="#quick-view-modal"><span
-											class="fa fa-search"></span></a>
-									</div> <!-- product badge --> <span class="aa-badge aa-sale" href="#">SALE!</span>
-								</li>
-								<!-- start single product item -->
-								<li>
-									<figure>
-										<a class="aa-product-img" href="#"><img
-											src="<%=request.getContextPath()%>/resources/img/women/girl-2.png"
-											alt="polo shirt img"></a>
-										<a class="aa-add-card-btn" href="#"><span
-											class="fa fa-shopping-cart"></span>Add To Cart</a>
-										<figcaption>
-											<h4 class="aa-product-title">
-												<a href="#">Lorem ipsum doller</a>
-											</h4>
-											<span class="aa-product-price">$45.50</span>
-										</figcaption>
-									</figure>
-									<div class="aa-product-hvr-content">
-										<a href="#" data-toggle="tooltip" data-placement="top"
-											title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
-										<a href="#" data-toggle="tooltip" data-placement="top"
-											title="Compare"><span class="fa fa-exchange"></span></a> <a
-											href="#" data-toggle2="tooltip" data-placement="top"
-											title="Quick View" data-toggle="modal"
-											data-target="#quick-view-modal"><span
-											class="fa fa-search"></span></a>
-									</div> <!-- product badge --> <span class="aa-badge aa-sold-out"
-									href="#">Sold Out!</span>
-								</li>
-								<!-- start single product item -->
-								<li>
-									<figure>
-										<a class="aa-product-img" href="#"><img
-											src="<%=request.getContextPath()%>/resources/img/man/t-shirt-1.png"
-											alt="polo shirt img"></a>
-										<a class="aa-add-card-btn" href="#"><span
-											class="fa fa-shopping-cart"></span>Add To Cart</a>
-									</figure>
-									<figcaption>
-										<h4 class="aa-product-title">
-											<a href="#">T-Shirt</a>
-										</h4>
-										<span class="aa-product-price">$45.50</span>
-									</figcaption>
-									<div class="aa-product-hvr-content">
-										<a href="#" data-toggle="tooltip" data-placement="top"
-											title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
-										<a href="#" data-toggle="tooltip" data-placement="top"
-											title="Compare"><span class="fa fa-exchange"></span></a> <a
-											href="#" data-toggle2="tooltip" data-placement="top"
-											title="Quick View" data-toggle="modal"
-											data-target="#quick-view-modal"><span
-											class="fa fa-search"></span></a>
-									</div> <!-- product badge --> <span class="aa-badge aa-hot" href="#">HOT!</span>
-								</li>
-								<!-- start single product item -->
-								<li>
-									<figure>
-										<a class="aa-product-img" href="#"><img
-											src="<%=request.getContextPath()%>/resources/img/women/girl-3.png"
-											alt="polo shirt img"></a>
-										<a class="aa-add-card-btn" href="#"><span
-											class="fa fa-shopping-cart"></span>Add To Cart</a>
-										<figcaption>
-											<h4 class="aa-product-title">
-												<a href="#">Lorem ipsum doller</a>
-											</h4>
-											<span class="aa-product-price">$45.50</span><span
-												class="aa-product-price"><del>$65.50</del></span>
-										</figcaption>
-									</figure>
-									<div class="aa-product-hvr-content">
-										<a href="#" data-toggle="tooltip" data-placement="top"
-											title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
-										<a href="#" data-toggle="tooltip" data-placement="top"
-											title="Compare"><span class="fa fa-exchange"></span></a> <a
-											href="#" data-toggle2="tooltip" data-placement="top"
-											title="Quick View" data-toggle="modal"
-											data-target="#quick-view-modal"><span
-											class="fa fa-search"></span></a>
-									</div>
-								</li>
-								<!-- start single product item -->
-								<li>
-									<figure>
-										<a class="aa-product-img" href="#"><img
-											src="<%=request.getContextPath()%>/resources/img/man/polo-shirt-1.png"
-											alt="polo shirt img"></a>
-										<a class="aa-add-card-btn" href="#"><span
-											class="fa fa-shopping-cart"></span>Add To Cart</a>
-										<figcaption>
-											<h4 class="aa-product-title">
-												<a href="#">Polo T-Shirt</a>
-											</h4>
-											<span class="aa-product-price">$45.50</span><span
-												class="aa-product-price"><del>$65.50</del></span>
-										</figcaption>
-									</figure>
-									<div class="aa-product-hvr-content">
-										<a href="#" data-toggle="tooltip" data-placement="top"
-											title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
-										<a href="#" data-toggle="tooltip" data-placement="top"
-											title="Compare"><span class="fa fa-exchange"></span></a> <a
-											href="#" data-toggle2="tooltip" data-placement="top"
-											title="Quick View" data-toggle="modal"
-											data-target="#quick-view-modal"><span
-											class="fa fa-search"></span></a>
-									</div>
-								</li>
-								<!-- start single product item -->
-								<li>
-									<figure>
-										<a class="aa-product-img" href="#"><img
-											src="<%=request.getContextPath()%>/resources/img/women/girl-4.png"
-											alt="polo shirt img"></a>
-										<a class="aa-add-card-btn" href="#"><span
-											class="fa fa-shopping-cart"></span>Add To Cart</a>
-										<figcaption>
-											<h4 class="aa-product-title">
-												<a href="#">Lorem ipsum doller</a>
-											</h4>
-											<span class="aa-product-price">$45.50</span><span
-												class="aa-product-price"><del>$65.50</del></span>
-										</figcaption>
-									</figure>
-									<div class="aa-product-hvr-content">
-										<a href="#" data-toggle="tooltip" data-placement="top"
-											title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
-										<a href="#" data-toggle="tooltip" data-placement="top"
-											title="Compare"><span class="fa fa-exchange"></span></a> <a
-											href="#" data-toggle2="tooltip" data-placement="top"
-											title="Quick View" data-toggle="modal"
-											data-target="#quick-view-modal"><span
-											class="fa fa-search"></span></a>
-									</div> <!-- product badge --> <span class="aa-badge aa-sold-out"
-									href="#">Sold Out!</span>
-								</li>
-								<!-- start single product item -->
-								<li>
-									<figure>
-										<a class="aa-product-img" href="#"><img
-											src="<%=request.getContextPath()%>/resources/img/man/polo-shirt-4.png"
-											alt="polo shirt img"></a>
-										<a class="aa-add-card-btn" href="#"><span
-											class="fa fa-shopping-cart"></span>Add To Cart</a>
-										<figcaption>
-											<h4 class="aa-product-title">
-												<a href="#">Polo T-Shirt</a>
-											</h4>
-											<span class="aa-product-price">$45.50</span><span
-												class="aa-product-price"><del>$65.50</del></span>
-										</figcaption>
-									</figure>
-									<div class="aa-product-hvr-content">
-										<a href="#" data-toggle="tooltip" data-placement="top"
-											title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
-										<a href="#" data-toggle="tooltip" data-placement="top"
-											title="Compare"><span class="fa fa-exchange"></span></a> <a
-											href="#" data-toggle2="tooltip" data-placement="top"
-											title="Quick View" data-toggle="modal"
-											data-target="#quick-view-modal"><span
-											class="fa fa-search"></span></a>
-									</div> <!-- product badge --> <span class="aa-badge aa-hot" href="#">HOT!</span>
-								</li>
-								<!-- start single product item -->
-								<li>
-									<figure>
-										<a class="aa-product-img" href="#"><img
-											src="<%=request.getContextPath()%>/resources/img/women/girl-1.png"
-											alt="polo shirt img"></a>
-										<a class="aa-add-card-btn" href="#"><span
-											class="fa fa-shopping-cart"></span>Add To Cart</a>
-										<figcaption>
-											<h4 class="aa-product-title">
-												<a href="#">This is Title</a>
-											</h4>
-											<span class="aa-product-price">$45.50</span><span
-												class="aa-product-price"><del>$65.50</del></span>
-										</figcaption>
-									</figure>
-									<div class="aa-product-hvr-content">
-										<a href="#" data-toggle="tooltip" data-placement="top"
-											title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
-										<a href="#" data-toggle="tooltip" data-placement="top"
-											title="Compare"><span class="fa fa-exchange"></span></a> <a
-											href="#" data-toggle2="tooltip" data-placement="top"
-											title="Quick View" data-toggle="modal"
-											data-target="#quick-view-modal"><span
-											class="fa fa-search"></span></a>
-									</div> <!-- product badge --> <span class="aa-badge aa-sale" href="#">SALE!</span>
-								</li>
-							</ul>
-							<!-- quick view modal -->
-							<div class="modal fade" id="quick-view-modal" tabindex="-1"
-								role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-body">
-											<button type="button" class="close" data-dismiss="modal"
-												aria-hidden="true">&times;</button>
-											<div class="row">
-												<!-- Modal view slider -->
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<div class="aa-product-view-slider">
-														<div class="simpleLens-gallery-container" id="demo-1">
-															<div class="simpleLens-container">
-																<div class="simpleLens-big-image-container">
-																	<a class="simpleLens-lens-image"
-																		data-lens-image="<%=request.getContextPath()%>/resources/img/view-slider/large/polo-shirt-1.png">
-																		<img
-																		src="<%=request.getContextPath()%>/resources/img/view-slider/medium/polo-shirt-1.png"
-																		class="simpleLens-big-image">
-																	</a>
-																</div>
-															</div>
-															<div class="simpleLens-thumbnails-container">
-																<a href="#" class="simpleLens-thumbnail-wrapper"
-																	data-lens-image="<%=request.getContextPath()%>/resources/img/view-slider/large/polo-shirt-1.png"
-																	data-big-image="<%=request.getContextPath()%>/resources/img/view-slider/medium/polo-shirt-1.png">
-																	<img
-																	src="<%=request.getContextPath()%>/resources/img/view-slider/thumbnail/polo-shirt-1.png">
-																</a> <a href="#" class="simpleLens-thumbnail-wrapper"
-																	data-lens-image="<%=request.getContextPath()%>/resources/img/view-slider/large/polo-shirt-3.png"
-																	data-big-image="<%=request.getContextPath()%>/resources/img/view-slider/medium/polo-shirt-3.png">
-																	<img
-																	src="<%=request.getContextPath()%>/resources/img/view-slider/thumbnail/polo-shirt-3.png">
-																</a> <a href="#" class="simpleLens-thumbnail-wrapper"
-																	data-lens-image="<%=request.getContextPath()%>/resources/img/view-slider/large/polo-shirt-4.png"
-																	data-big-image="<%=request.getContextPath()%>/resources/img/view-slider/medium/polo-shirt-4.png">
-																	<img
-																	src="<%=request.getContextPath()%>/resources/img/view-slider/thumbnail/polo-shirt-4.png">
-																</a>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!-- Modal view content -->
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<div class="aa-product-view-content">
-														<h3>T-Shirt</h3>
-														<div class="aa-price-block">
-															<span class="aa-product-view-price">$34.99</span>
-															<p class="aa-product-avilability">
-																Avilability: <span>In stock</span>
-															</p>
-														</div>
-														<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-															elit. Officiis animi, veritatis quae repudiandae quod
-															nulla porro quidem, itaque quis quaerat!</p>
-														<h4>Size</h4>
-														<div class="aa-prod-view-size">
-															<a href="#">S</a> <a href="#">M</a> <a href="#">L</a> <a
-																href="#">XL</a>
-														</div>
-														<div class="aa-prod-quantity">
-															<form action="">
-																<select name="" id="">
-																	<option value="0" selected="1">1</option>
-																	<option value="1">2</option>
-																	<option value="2">3</option>
-																	<option value="3">4</option>
-																	<option value="4">5</option>
-																	<option value="5">6</option>
-																</select>
-															</form>
-															<p class="aa-prod-category">
-																Category: <a href="#">Polo T-Shirt</a>
-															</p>
-														</div>
-														<div class="aa-prod-view-bottom">
-															<a href="#" class="aa-add-to-cart-btn"><span
-																class="fa fa-shopping-cart"></span>Add To Cart</a> <a
-																href="#" class="aa-add-to-cart-btn">View Details</a>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!-- /.modal-content -->
-								</div>
-								<!-- /.modal-dialog -->
-							</div>
-							<!-- / quick view modal -->
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- / product category -->
-
-
-	<!-- Subscribe section -->
-	<jsp:include page="components/subcribe.jsp"></jsp:include>
-	<!-- / Subscribe section -->
-
-	<!-- footer -->
-	<jsp:include page="components/footer.jsp"></jsp:include>
-	<!-- / footer -->
-	<!-- Login Modal -->
-	<div class="modal fade" id="login-modal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<jsp:include page="components/loginPopup.jsp"></jsp:include>
-	</div>
-
-
-
-	<!-- jQuery library -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="<%=request.getContextPath()%>/resources/js/bootstrap.js"></script>
-	<!-- SmartMenus jQuery plugin -->
-	<script type="text/javascript"
-		src="<%=request.getContextPath()%>/resources/js/jquery.smartmenus.js"></script>
-	<!-- SmartMenus jQuery Bootstrap Addon -->
-	<script type="text/javascript"
-		src="<%=request.getContextPath()%>/resources/js/jquery.smartmenus.bootstrap.js"></script>
-	<!-- To Slider JS -->
-	<script src="<%=request.getContextPath()%>/resources/js/sequence.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/js/sequence-theme.modern-slide-in.js"></script>
-	<!-- Product view slider -->
-	<script type="text/javascript"
-		src="<%=request.getContextPath()%>/resources/js/jquery.simpleGallery.js"></script>
-	<script type="text/javascript"
-		src="<%=request.getContextPath()%>/resources/js/jquery.simpleLens.js"></script>
-	<!-- slick slider -->
-	<script type="text/javascript"
-		src="<%=request.getContextPath()%>/resources/js/slick.js"></script>
-	<!-- Price picker slider -->
-	<script type="text/javascript"
-		src="<%=request.getContextPath()%>/resources/js/nouislider.js"></script>
-	<!-- Custom js -->
-	<script src="<%=request.getContextPath()%>/resources/js/custom.js"></script>
-
-</body>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <hr class="divider-w">
+                 <!-- footer -->
+                <jsp:include page="components/footer.jsp"></jsp:include>
+                <!-- end footer -->
+            </div>
+            <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
+        </main>
+        <!--  
+        JavaScripts
+        =============================================
+        -->
+        <script src="<%=request.getContextPath()%>/resources/common/assets/lib/jquery/dist/jquery.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/common/assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/common/assets/lib/wow/dist/wow.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/common/assets/lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/common/assets/lib/isotope/dist/isotope.pkgd.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/common/assets/lib/imagesloaded/imagesloaded.pkgd.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/common/assets/lib/flexslider/jquery.flexslider.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/common/assets/lib/owl.carousel/dist/owl.carousel.min.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/common/assets/lib/smoothscroll.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/common/assets/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/common/assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/common/assets/js/plugins.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/common/assets/js/main.js"></script>
+    </body>
 </html>

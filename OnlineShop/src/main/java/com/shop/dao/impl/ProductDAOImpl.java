@@ -201,32 +201,35 @@ public class ProductDAOImpl implements ProductDAO {
 		return lstProduct;
 	}
 
+
 	@Override
-	public int countTotalProduct() throws SQLException {
-		String sql = "SELECT COUNT(*) FROM Product";
-		int count = 0;
-		try {
-			con = DBConnection.getInstance().getConnection();
-			ps = con.prepareStatement(sql);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				count = rs.getInt(1);
+	public int countProduct() throws SQLException {
+			String sql = "SELECT COUNT(*) FROM Product";
+			int count = 0;
+			try {
+				con = DBConnection.getInstance().getConnection();
+				ps = con.prepareStatement(sql);
+				rs = ps.executeQuery();
+				while (rs.next()) {
+					count = rs.getInt(1);
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				if (rs != null) {
+					rs.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+				if (con != null) {
+					con.close();
+				}
 			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			if (rs != null) {
-				rs.close();
-			}
-			if (ps != null) {
-				ps.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			return count;
 		}
-		return count;
-	}
+
+	
 
 }
