@@ -51,6 +51,37 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 	}
 
+	@Override
+	public Category getCategoryByID(String categoryId) throws SQLException {
+		String sql = "SELECT * FROM Category WHERE CategoryID = ?";
+		Category category = null;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, categoryId);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				category = new Category();
+				category.setCategoryID(0);
+				category.setCategoryName(categoryId);				
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return category;
+
+	}
 
 	
 
