@@ -25,23 +25,7 @@
                 <div class="signup-content">
                     <div class="signup-form">
                         <h2 class="form-title">Sign up</h2>
-                        <form action="signup" method="POST" class="register-form" id="register-form">
-                            <div class="form-group">
-                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="name" id="name" placeholder="Your Name" value="${param.name}"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                <input type="email" name="email" id="email" placeholder="Your Email" value="${param.email}"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="email"><i class="zmdi zmdi-phone"></i></label>
-                                <input type="text" name="phone"  placeholder="Your Phone Number" pattern="[0-9]{9,12}" value="${param.phone}"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="email"><i class="zmdi zmdi-airplane"></i></label>
-                                <input type="text" name="address"  placeholder="Your Address" value="${param.address}"/>
-                            </div>
+                        <form action="signup" method="POST" class="register-form" id="register-form">                                                                       
                             <div class="form-group">
                                 <label for="name"><i class="zmdi zmdi-account-circle"></i></label>
                                 <input type="text" name="username" required="true" id="name" placeholder="Username" value="${param.username}"/>
@@ -52,7 +36,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                                <input type="password" name="repass" required="true" id="re_pass" placeholder="Repeat your password" value="${param.repass}">
+                                <input type="password" name="repass" required="true" id="re_password" placeholder="Repeat your password" value="${param.repass}">
                             </div>
                             <c:if test="${requestScope.error != null}" >
                                 <p style="color:red">${requestScope.error}</p>
