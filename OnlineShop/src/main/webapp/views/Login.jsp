@@ -31,7 +31,7 @@
 								src="<%=request.getContextPath()%>/resources/common/images/login-img.jpg"
 								alt="sing up image">
 						</figure>
-						<a href="signup.jsp" class="signup-image-link"
+						<a href="<%=request.getContextPath()%>/views/Signup.jsp" class="signup-image-link"
 							style="text-decoration: none;">Create an account</a>
 					</div>
 					<div class="signin-form">
