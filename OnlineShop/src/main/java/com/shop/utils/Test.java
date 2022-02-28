@@ -26,8 +26,8 @@ public class Test {
 		for (Product product : lp) {
 			System.out.println(product.toString());
 		}
-//		Product p = pd.getProductById("1");
-//		System.out.println(p);
+		Product p = pd.getProductById(1);
+		System.out.println(p);
 		LocalDateTime cDate=Validation.getLocalDateTime("2022-02-12 20:10:15");
 		LocalDateTime pDate=Validation.getLocalDateTime("2022-02-13 20:10:15");
 //		System.out.println(cDate+" - "+pDate);

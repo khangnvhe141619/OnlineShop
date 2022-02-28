@@ -69,20 +69,20 @@
                 <section class="module" style="padding-top: 0px">
                     <div class="container">
                         <div class="row">
-                            <div class="col-sm-6 mb-sm-40"><a class="gallery" href="<%=request.getContextPath()%>/resources/common/images/${requestScope.p.img}"><img src="images/${requestScope.p.img}" alt="Single Product Image"/></a>
+                             <div class="shop-item-detail"><a href="<%=request.getContextPath()%>/details?id=${p.productID}" class="btn btn-round btn-b"><span class="icon-basket">View Detail Product</span></a></div>
                                 
                             </div>
                             <div class="col-sm-6" style="padding-top: 100px">
                                 <div class="row">
                                     <div class="col-sm-12">
 
-                                        <h1 class="product-title font-alt" >${requestScope.p.name}</h1>
+                                        <h1 class="product-title font-alt" >${p.productName}</h1>
                                     </div>
                                 </div>
-                                    <div class="starability-result" data-rating="${requestScope.avgrating}"> </div>
+                                    <div class="starability-result" data-rating="${p.price}"> </div>
                                 <div class="row mb-20">
                                     <div class="col-sm-12">
-                                        <div class="price font-alt"><span class="amount">$${requestScope.p.price}</span></div>
+                                        <div class="price font-alt"><span class="amount">${p.price}</span></div>
                                     </div>
                                 </div>
                                 <div class="row mb-20">
@@ -98,7 +98,7 @@
                                             <input class="form-control input-lg" type="number" name="quantity" value="1" max="40" min="1" required="required"/>
                                         </div>
                                         <div class="col-sm-8">
-                                            <input type="hidden" name="id" value="${requestScope.p.id}"/>
+                                            <input type="hidden" name="id" value="${p.productID}"/>
                                             <input class="btn btn-lg btn-block btn-round btn-b" type="submit" value="Add To Cart"/>
                                         </div>
                                     </form>
@@ -109,22 +109,22 @@
                         <div class="row mt-70">
                             <div class="col-sm-12">
                                 <ul class="nav nav-tabs font-alt" role="tablist">
-                                    <li class="active"><a href="#reviews" data-toggle="tab"><span class="icon-tools-2"></span>Reviews (${requestScope.rvsize})</a></li>
+                                    <li class="active"><a href="#reviews" data-toggle="tab"><span class="icon-tools-2"></span>Reviews </a></li>
                                     <li><a href="#description" data-toggle="tab"><span class="icon-tools-2"></span>Description</a></li>
                                     <li><a href="#data-sheet" data-toggle="tab"><span class="icon-tools-2"></span>Data sheet</a></li>
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="reviews">
                                         <div class="comments reviews">
-                                            <c:forEach items="${requestScope.rvs}" var="r">
+                                            <c:forEach items="" var="r">
                                                 <div class="comment clearfix">
-                                                    <div class="comment-avatar"><img src="<%=request.getContextPath()%>/resources/common/avatar/${r.user.avatar}" /></div>
+                                                    <div class="comment-avatar"><img src="" /></div>
                                                     <div class="comment-content clearfix">
-                                                        <div class="comment-author font-alt"><a href="">${r.user.name}</a></div>
+                                                        <div class="comment-author font-alt"><a href=""></a></div>
                                                         <div class="comment-body">
-                                                            ${r.content}
+                                                           
                                                         </div>
-                                                        <div class="starability-result" data-rating="${r.rating}"> </div>
+                                                        <div class="starability-result" data-rating=""> </div>
                                                     </div>
                                                 </div>
                                             </c:forEach>
@@ -139,8 +139,8 @@
                                                             <textarea class="form-control" id="" name="content" rows="4" placeholder="Review"></textarea>
                                                         </div>
                                                     </div>
-                                                    <c:if test="${requestScope.error != null}" >
-                                                        <h5 style="color:red">${requestScope.error}</h5>
+                                                    <c:if test="" >
+                                                        <h5 style="color:red"></h5>
                                                     </c:if>
                                                     <div class="col-sm-12">
                                                         <fieldset class="starability-basic">
@@ -163,7 +163,7 @@
                                                             <span class="starability-focus-ring"></span>
                                                         </fieldset>
                                                         <br><br>
-                                                        <input type="hidden" name="id" value="${requestScope.p.id}"/>
+                                                        <input type="hidden" name="id" value=""/>
                                                         <input type="submit" class="btn btn-round btn-d" value="Submit Review" >
                                                     </div>
                                                 </div>
@@ -171,31 +171,34 @@
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="description">
-                                        <p>Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators. To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words. If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages.</p>
-                                        <p>The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words.</p>
+                                        <p>${p.description }</p>
                                     </div>
                                     <div class="tab-pane" id="data-sheet">
                                         <table class="table table-striped ds-table table-responsive">
                                             <tbody>
                                                 <tr>
                                                     <th>Title</th>
-                                                    <th>Info</th>
+                                                    <th>Infor</th>
                                                 </tr>
                                                 <tr>
-                                                    <td>Compositions</td>
-                                                    <td>Jeans</td>
+                                                    <td>Name</td>
+                                                    <td>${p.productName}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Size</td>
-                                                    <td>44, 46, 48</td>
+                                                    <td>Isussing Company</td>
+                                                    <td>${p.issuingCompany }</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Color</td>
-                                                    <td>Black</td>
+                                                    <td>publishingCompany</td>
+                                                    <td>${p.publishingCompany }</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Brand</td>
-                                                    <td>Somebrand</td>
+                                                    <td>quantity</td>
+                                                    <td>${p.quantity }</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>publicationDate</td>
+                                                    <td>${p.publicationDate }</td>
                                                 </tr>
                                             </tbody>
                                         </table>

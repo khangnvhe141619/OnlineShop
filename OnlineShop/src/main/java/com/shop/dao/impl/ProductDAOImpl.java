@@ -18,13 +18,13 @@ public class ProductDAOImpl implements ProductDAO {
 	private ResultSet rs;
 
 	@Override
-	public Product getProductById(String id) throws SQLException {
+	public Product getProductById(int id) throws SQLException {
 		String sql = "SELECT * \r\n" + "FROM Product\r\n" + "WHERE ProductID = ?";
 		Product product = null;
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, id);
+			ps.setInt(1, id);
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				product = new Product();
