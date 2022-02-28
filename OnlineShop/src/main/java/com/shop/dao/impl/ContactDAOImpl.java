@@ -45,5 +45,7 @@ public class ContactDAOImpl implements ContactDAO {
 		}
 		return contact;
 	}
-
+    public static void main(String[] args) {
+        
+    }
 }
