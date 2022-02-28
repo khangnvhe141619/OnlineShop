@@ -36,6 +36,11 @@ public class Offer {
     public void setDiscountId(int discountId) {
         this.discountId = discountId;
     }
+
+    @Override
+    public String toString() {
+        return "Offer{" + "productId=" + productId + ", discountId=" + discountId + '}';
+    }
     
     
 }
