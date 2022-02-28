@@ -203,5 +203,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 		return row > 0;
 	}
 	
-
+    public static void main(String[] args) {
+        
+    }
 }
