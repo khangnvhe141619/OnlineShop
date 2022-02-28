@@ -156,4 +156,7 @@ public class AccountDAOImpl implements AccountDAO {
 		return account;
 
 	}
+        public static void main(String[] args) {
+        
+    }
 }
