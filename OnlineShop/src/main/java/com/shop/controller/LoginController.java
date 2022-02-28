@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.shop.dao.AccountDAO;
 import com.shop.dao.impl.AccountDAOImpl;
@@ -43,6 +44,9 @@ public class LoginController extends HttpServlet {
 			AccountDAO accountDAO = new AccountDAOImpl();
 			Account account = accountDAO.getLogin(email, pass);
 			if(account != null) {
+				HttpSession session = request.getSession();
+				session.setAttribute("email", email);
+				session.setAttribute("account",account.getAccountId());
 				request.getRequestDispatcher("views/Home.jsp").forward(request, response);
 			} else {
 				request.setAttribute("failedLogin", true);
