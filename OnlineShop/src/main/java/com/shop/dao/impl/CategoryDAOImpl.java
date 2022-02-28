@@ -127,6 +127,35 @@ public class CategoryDAOImpl implements CategoryDAO {
 		return lstProduct;
 	}
 
+	@Override
+	public boolean insertCategory(Category category) throws SQLException {
+		String sql = "INSERT [dbo].[Category] ([CategoryID], [CategoryName]) "
+				+ "VALUES (?, ?)";
+		int row = 0;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareStatement(sql);
+
+			ps.setInt(1, category.getCategoryID());
+			ps.setString(2, category.getCategoryName());	
+			
+			row = ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return row > 0;
+	}
 
 
 
