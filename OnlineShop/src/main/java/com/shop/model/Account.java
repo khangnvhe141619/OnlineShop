@@ -34,6 +34,13 @@ public class Account {
 		this.createdDate = createdDate;
 	}
 
+	public Account(String username, String password, String createdDate) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.createdDate = createdDate;
+	}
+
 	public int getAccountId() {
 		return accountId;
 	}
