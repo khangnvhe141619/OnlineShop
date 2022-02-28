@@ -187,6 +187,21 @@ public class CategoryDAOImpl implements CategoryDAO {
 		return row > 0;
 	}
 
+	@Override
+	public boolean deleteCategory(String categoryId) throws SQLException {
+		String sql = "DELETE FROM Category WHERE CategoryID = ?";
+		int row = 0;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, categoryId);
+			row = ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return row > 0;
+	}
 	
 
 }
