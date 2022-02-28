@@ -8,7 +8,7 @@ import com.shop.model.Product;
 public interface ProductDAO {
 	//get product by id
 	public Product getProductById(String id) throws SQLException;
-
+	
 	//add product to db
 	public boolean insertProduct(Product product) throws SQLException;
 
@@ -21,6 +21,5 @@ public interface ProductDAO {
 	//get total of  product
 	public List<Product> getListAllProduct(int row) throws SQLException;
 	
-	//
-	public int countTotalProduct() throws SQLException;
+	public int countProduct() throws SQLException;
 }
