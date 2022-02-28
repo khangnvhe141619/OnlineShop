@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.shop.dao.ProductDAO;
+import com.shop.dao.impl.ProductDAOImpl;
+import com.shop.model.Product;
+
 /**
  * Servlet implementation class ListProductController
  */
@@ -26,7 +30,21 @@ public class ListProductController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		try {
+			ProductDAOImpl pd = new ProductDAOImpl();
+			int count = pd.countProduct();
+			int pageSize = 3;
+			int endPage = 0;
+			endPage=count/pageSize;
+			if(count%pageSize!=0) {
+				endPage++;
+				
+			}
+			request.setAttribute("endpage", endPage);
+			request.getRequestDispatcher("views/Shop.jsp").forward(request, response);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 	/**
