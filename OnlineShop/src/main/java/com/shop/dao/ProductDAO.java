@@ -7,7 +7,7 @@ import com.shop.model.Product;
 
 public interface ProductDAO {
 	//get product by id
-	public Product getProductById(String id) throws SQLException;
+	public Product getProductById(int id) throws SQLException;
 	
 	//add product to db
 	public boolean insertProduct(Product product) throws SQLException;
