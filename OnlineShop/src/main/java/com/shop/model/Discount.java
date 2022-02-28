@@ -56,5 +56,10 @@ public class Discount {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    @Override
+    public String toString() {
+        return "Discount{" + "discountId=" + discountId + ", discountDesc=" + discountDesc + ", discountPercent=" + discountPercent + ", quantity=" + quantity + '}';
+    }
     
 }
