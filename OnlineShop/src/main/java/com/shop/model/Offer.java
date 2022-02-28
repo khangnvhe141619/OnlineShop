@@ -12,4 +12,14 @@ package com.shop.model;
 public class Offer {
     private int productId;
     private int discountId;
+
+    public Offer() {
+    }
+
+    public Offer(int productId, int discountId) {
+        this.productId = productId;
+        this.discountId = discountId;
+    }
+    
+    
 }
