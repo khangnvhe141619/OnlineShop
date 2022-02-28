@@ -36,7 +36,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                                <input type="password" name="repass" required="true" id="re_pass" placeholder="Repeat your password" value="${param.repass}">
+                                <input type="password" name="repass" required="true" id="re_password" placeholder="Repeat your password" value="${param.repass}">
                             </div>
                             <c:if test="${requestScope.error != null}" >
                                 <p style="color:red">${requestScope.error}</p>
