@@ -38,16 +38,16 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			String email = request.getParameter("email");
+			String email = request.getParameter("username");
 			String pass = request.getParameter("password");
 			AccountDAO accountDAO = new AccountDAOImpl();
 			Account account = accountDAO.getLogin(email, pass);
 			if(account != null) {
-				request.getRequestDispatcher("views/Index.jsp").forward(request, response);
+				request.getRequestDispatcher("views/Home.jsp").forward(request, response);
 			} else {
 				request.setAttribute("failedLogin", true);
-				request.setAttribute("e", email);
-				request.setAttribute("p", pass);
+				request.setAttribute("email", email);
+				request.setAttribute("pass", pass);
 				request.getRequestDispatcher("views/Login.jsp").forward(request, response);
 			}
 		} catch (Exception e) {
