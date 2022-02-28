@@ -47,7 +47,7 @@
                                 </div>
                             </form>
                                 <div class="" style="margin: 10% 0 5%;">
-                                    <span class=""><a href="" style="text-decoration: none; color: black">Forgot your password?</a></span>
+                                    <span class=""><a href="Forgot-password.jsp" style="text-decoration: none; color: black">Forgot your password?</a></span>
                             </div>
                             <div class="social-login">
                                 <span class="social-label">Or login with</span>
@@ -62,7 +62,6 @@
                     </div>
                 </div>
             </section>
-
         </div>
 
         <!-- JS -->

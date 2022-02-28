@@ -15,15 +15,15 @@
                     </div>
                     <div class="collapse navbar-collapse" id="custom-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="home.jsp">Home</a></li>
-                            <li class="dropdown"><a class="dropdown-toggle" href="shop" data-toggle="dropdown">Shop</a>
+                            <li><a href="Home.jsp">Home</a></li>
+                            <li class="dropdown"><a class="dropdown-toggle" href="Shop.jsp" data-toggle="dropdown">Shop</a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="shop?typeid=1">Smart Phone</a></li>
                                     <li><a href="shop?typeid=2">Laptop - Macbook</a></li>
                                     <li><a href="shop?typeid=6">KeyBoard</a></li>
                                 </ul>
                             </li>
-                            <li><a href="cart">View Cart[
+                            <li><a href="Cart.jsp">View Cart[
                                     <c:if test="${sessionScope.size == null}">
                                         0
                                     </c:if>
@@ -31,12 +31,12 @@
                                         ${sessionScope.size}
                                     </c:if>
                                     ]</a></li>
-                                    <li><a href="login">Contact</a></li>
+                                    <li><a href="Contact.jsp">Contact</a></li>
                                     <c:if test="${sessionScope.login == null}">
-                                <li><a href="login">Login</a></li>
+                                <li><a href="Login.jsp">Login</a></li>
                                 </c:if>
                                 <c:if test="${sessionScope.login != null}">
-                                <li><a style="color:red" href="updateaccount.jsp">${sessionScope.login.name}</a></li>
+                                <li><a style="color:red" href="Update-account.jsp">${sessionScope.login.name}</a></li>
                                 <li><a href="signout">Sign Out</a></li>
                                 </c:if>
 
