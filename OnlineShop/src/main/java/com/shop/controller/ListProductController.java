@@ -34,9 +34,11 @@ public class ListProductController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			ProductDAOImpl pd = new ProductDAOImpl();
-//			String indexp = request.getParameter("index");
-//			int index= Integer.parseInt(indexp);
-//			System.out.println(indexp);
+			String pageIn=request.getParameter("index");
+			if(pageIn==null) {
+				pageIn="1";
+			}
+			int index= Integer.parseInt(pageIn);
 			int count = pd.countProduct();
 			int pageSize = 3;
 			int endPage = 0;
@@ -45,7 +47,7 @@ public class ListProductController extends HttpServlet {
 				endPage++;
 				
 			}
-			List<Product> listP= pd.getListAllProduct(1);
+			List<Product> listP= pd.getListAllProduct(index);
 			request.setAttribute("listp", listP);
 			request.setAttribute("endpage", endPage);
 //			request.setAttribute("tag", index);
