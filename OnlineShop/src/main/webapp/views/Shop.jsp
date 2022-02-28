@@ -132,12 +132,11 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="pagination font-alt " id="pagger">
-<!--                                    <a href="#"><i class="fa fa-angle-left"></i></a>
-                                    <a class="active" href="#">1</a>
-                                    <a href="#">2</a>
-                                    <a href="#">3</a>
-                                    <a href="#">4</a>
-                                    <a href="#"><i class="fa fa-angle-right"></i></a>-->
+                                  <a href="#"><i class="fa fa-angle-left"></i></a>
+                                   <c:forEach begin="1" end="${endpage }" var="i">
+                                   		<a href="#">${i }</a>
+                                   </c:forEach>
+                                    <a href="#"><i class="fa fa-angle-right"></i></a>
                                 </div>
                             </div>
                         </div>
