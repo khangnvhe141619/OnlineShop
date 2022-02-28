@@ -157,7 +157,35 @@ public class CategoryDAOImpl implements CategoryDAO {
 		return row > 0;
 	}
 
+	@Override
+	public boolean updateCategory(Category category) throws SQLException {
+		String sql = "UPDATE Category\r\n"
+				+ "SET [CategoryName] = ?\r\n"
+				+ " WHERE CategoryID = ?";
+		int row = 0;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareStatement(sql);
 
+			ps.setString(1, category.getCategoryName());
+			ps.setInt(2, category.getCategoryID());			
+			row = ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return row > 0;
+	}
 
 	
 
