@@ -3,9 +3,9 @@ package com.shop.model;
 import java.time.LocalDateTime;
 
 public class Product {
+	private int stt;
 	private int productID;
 	private int categoryId;
-	private String categoryName;
 	private String productName;
 	private String image;
 	private String description;
@@ -20,6 +20,34 @@ public class Product {
 
 	public Product() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public Product(int stt, int productID, int categoryId, String productName, String image, String description,
+			LocalDateTime createdDate, String issuingCompany, LocalDateTime publicationDate, int coverType,
+			String publishingCompany, int quantity, double price, int numberPage) {
+		super();
+		this.stt = stt;
+		this.productID = productID;
+		this.categoryId = categoryId;
+		this.productName = productName;
+		this.image = image;
+		this.description = description;
+		this.createdDate = createdDate;
+		this.issuingCompany = issuingCompany;
+		this.publicationDate = publicationDate;
+		this.coverType = coverType;
+		this.publishingCompany = publishingCompany;
+		this.quantity = quantity;
+		this.price = price;
+		this.numberPage = numberPage;
+	}
+
+	public int getStt() {
+		return stt;
+	}
+
+	public void setStt(int stt) {
+		this.stt = stt;
 	}
 
 	public Product(int productID, int categoryId, String productName, String image, String description,
@@ -75,13 +103,7 @@ public class Product {
 		this.categoryId = categoryId;
 	}
 
-	public String getCategoryName() {
-		return categoryName;
-	}
 
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
-	}
 
 	public String getProductName() {
 		return productName;
