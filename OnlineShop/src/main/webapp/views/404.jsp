@@ -1,119 +1,77 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
+<head>
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">    
-    <title>Daily Shop | 404</title>
-    
-    <!-- Font awesome -->
-    <link href="<%=request.getContextPath()%>/resources/css/font-awesome.css" rel="stylesheet">
-    <!-- Bootstrap -->
-    <link href="<%=request.getContextPath()%>/resources/css/bootstrap.css" rel="stylesheet">   
-    <!-- SmartMenus jQuery Bootstrap Addon CSS -->
-    <link href="<%=request.getContextPath()%>/resources/css/jquery.smartmenus.bootstrap.css" rel="stylesheet">
-    <!-- Product view slider -->
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/jquery.simpleLens.css">    
-    <!-- slick slider -->
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/slick.css">
-    <!-- price picker slider -->
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/nouislider.css">
-    <!-- Theme color -->
-    <link id="switcher" href="<%=request.getContextPath()%>/resources/css/theme-color/default-theme.css" rel="stylesheet">
-    <!-- Top Slider CSS -->
-    <link href="<%=request.getContextPath()%>/resources/css/sequence-theme.modern-slide-in.css" rel="stylesheet" media="all">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .page_404 {
+            padding: 40px 0;
+            background: #fff;
+            font-family: 'Arvo', serif;
+        }
+        .page_404 img {
+            width: 100%;
+        }
+        .four_zero_four_bg {
+            background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+            height: 400px;
+            background-position: center;
+        }
+        .four_zero_four_bg h1 {
+            font-size: 80px;
+        }
+        .four_zero_four_bg h3 {
+            font-size: 80px;
+        }
 
-    <!-- Main style sheet -->
-    <link href="<%=request.getContextPath()%>/resources/css/style.css" rel="stylesheet">    
+        .text-center {
+            text-align: center;
+        }
+        .link_404 {
+            color: #fff !important;
+            padding: 10px 20px;
+            background: #39ac31;
+            margin: 20px 0;
+            display: inline-block;
 
-    <!-- Google Font -->
-    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-    
+        }
+        .contant_box_404 {
+            margin-top: -50px;
+            text-align: center;
+        }
+        .contant_box_404 h3 {
+            text-align: center;
+        }
+        .contant_box_404 p {
+            text-align: center;
+        }
+    </style>
+</head>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  
-
-  </head>
-  <body>   
-   <!-- wpf loader Two -->
-    <div id="wpf-loader-two">          
-      <div class="wpf-loader-two-inner">
-        <span>Loading</span>
-      </div>
-    </div> 
-    <!-- / wpf loader Two -->       
- <!-- SCROLL TOP BUTTON -->
-    <a class="scrollToTop" href="#"><i class="fa fa-chevron-up"></i></a>
-  <!-- END SCROLL TOP BUTTON -->
-
-
-  <!-- Start header section -->
-  <jsp:include page="components/header.jsp"></jsp:include>
-  <!-- / header section -->
-  <!-- menu -->
-  <jsp:include page="components/menu.jsp"></jsp:include>
-  <!-- / menu -->  
- 
-  
-  <!-- 404 error section -->
-  <section id="aa-error">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="aa-error-area">
-            <h2>404</h2>
-            <span>Sorry! Page Not Found</span>
-            <p>Sorry this content has been moved Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, amet perferendis, nemo facere excepturi quis.</p>
-            <a href="#"> Go to Homepage</a>
-          </div>
+<body>
+    <section class="page_404">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="col-sm-10 col-sm-offset-1  text-center">
+                        <div class="four_zero_four_bg">
+                            <h1 class="text-center ">404</h1>
+                        </div>
+                        <div class="contant_box_404">
+                            <h3 class="h2">
+                                Look like you're lost
+                            </h3>
+                            <p>The page you are looking for not avaible!</p>
+                            <a href="" class="link_404">Go to Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
-  <!-- / 404 error section -->
-
-  <!-- Subscribe section -->
-  <jsp:include page="components/subcribe.jsp"></jsp:include>
-  <!-- / Subscribe section -->
-
-  <!-- footer -->  
- <jsp:include page="components/footer.jsp"></jsp:include>
-  <!-- / footer -->
-  <!-- Login Modal -->  
-  <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <jsp:include page="components/loginPopup.jsp"></jsp:include>
-  </div>   
-
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="<%=request.getContextPath()%>/resources/js/bootstrap.js"></script>  
-    <!-- SmartMenus jQuery plugin -->
-    <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.smartmenus.js"></script>
-    <!-- SmartMenus jQuery Bootstrap Addon -->
-    <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.smartmenus.bootstrap.js"></script>  
-    <!-- To Slider JS -->
-    <script src="<%=request.getContextPath()%>/resources/js/sequence.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/js/sequence-theme.modern-slide-in.js"></script>  
-    <!-- Product view slider -->
-    <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.simpleGallery.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.simpleLens.js"></script>
-    <!-- slick slider -->
-    <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/slick.js"></script>
-    <!-- Price picker slider -->
-    <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/nouislider.js"></script>
-    <!-- Custom js -->
-    <script src="<%=request.getContextPath()%>/resources/js/custom.js"></script> 
-  
-
-  </body>
+    </section>
+</body>
 </html>

@@ -1,130 +1,84 @@
-<%@page import="java.sql.SQLException"%>
-<%@page import="com.shop.model.Contact"%>
-<%@page import="com.shop.dao.impl.ContactDAOImpl"%>
-<%@page import="com.shop.dao.ContactDAO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">    
-    <title>Daily Shop | Home</title>
-    
-    <!-- Font awesome -->
-    <link href="<%=request.getContextPath()%>/resources/css/font-awesome.css" rel="stylesheet">
-    <!-- Bootstrap -->
-    <link href="<%=request.getContextPath()%>/resources/css/bootstrap.css" rel="stylesheet">   
-    <!-- SmartMenus jQuery Bootstrap Addon CSS -->
-    <link href="<%=request.getContextPath()%>/resources/css/jquery.smartmenus.bootstrap.css" rel="stylesheet">
-    <!-- Product view slider -->
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/jquery.simpleLens.css">    
-    <!-- slick slider -->
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/slick.css">
-    <!-- price picker slider -->
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/nouislider.css">
-    <!-- Theme color -->
-    <link id="switcher" href="<%=request.getContextPath()%>/resources/css/theme-color/default-theme.css" rel="stylesheet">
-    <!-- <link id="switcher" href="css/theme-color/bridge-theme.css" rel="stylesheet"> -->
-    <!-- Top Slider CSS -->
-    <link href="<%=request.getContextPath()%>/resources/css/sequence-theme.modern-slide-in.css" rel="stylesheet" media="all">
-
-    <!-- Main style sheet -->
-    <link href="<%=request.getContextPath()%>/resources/css/style.css" rel="stylesheet">    
-
-    <!-- Google Font -->
-    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-    
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
 <body>
-
-  <!-- footer -->  
-  <footer id="aa-footer">
-    <!-- footer bottom -->
-    <div class="aa-footer-top">
-     <div class="container">
-        <div class="row">
-        <div class="col-md-12">
-          <div class="aa-footer-top-area">
-            <div class="row">
-              <div class="col-md-3 col-sm-6">
-                <div class="aa-footer-widget">
-                  <h3>Main Menu</h3>
-                  <ul class="aa-footer-nav">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Our Services</a></li>
-                    <li><a href="#">Our Products</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-6">
-                <div class="aa-footer-widget">
-                  <div class="aa-footer-widget">
-                    <h3>Knowledge Base</h3>
-                    <ul class="aa-footer-nav">
-                      <li><a href="#">Delivery</a></li>
-                      <li><a href="#">Returns</a></li>
-                      <li><a href="#">Services</a></li>
-                      <li><a href="#">Discount</a></li>
-                      <li><a href="#">Special Offer</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-6">
-                <div class="aa-footer-widget">
-                  <div class="aa-footer-widget">
-                    <h3>Useful Links</h3>
-                    <ul class="aa-footer-nav">
-                      <li><a href="#">Site Map</a></li>
-                      <li><a href="#">Search</a></li>
-                      <li><a href="#">Advanced Search</a></li>
-                      <li><a href="#">Suppliers</a></li>
-                      <li><a href="#">FAQ</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-6">
-                <div class="aa-footer-widget">
-                  <div class="aa-footer-widget">
-                    <h3>Contact Us</h3>
-                    <%
-                    ContactDAO contactDAO = new ContactDAOImpl();
-                    try {
-            			Contact contact = contactDAO.getInformation();                 
-            			%>
-                    <address>
-                      <p> <%=contact.getAddress()%></p>
-                      <p><span class="fa fa-phone"></span><%=contact.getPhone()%></p>
-                      <p><span class="fa fa-envelope"></span><%=contact.getEmail()%></p>
-                    </address> 
-                    <%
-                    } catch (SQLException e) {
-            			// TODO Auto-generated catch block
-            			e.printStackTrace();
-            		} 
-                    %>                                           
-                    <div class="aa-footer-social">
-                      <a href="#"><span class="fa fa-facebook"></span></a>
-                      <a href="#"><span class="fa fa-twitter"></span></a>
-                      <a href="#"><span class="fa fa-google-plus"></span></a>
-                      <a href="#"><span class="fa fa-youtube"></span></a>
+<div class="module-small bg-dark">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="widget">
+                                    <h5 class="widget-title font-alt">About Teemo</h5>
+                                    <p>The languages only differ in their grammar, their pronunciation and their most common words.</p>
+                                    <p>Phone: +1 234 567 89 10</p>Fax: +1 234 567 89 10
+                                    <p>Email:<a href="#">somecompany@example.com</a></p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="widget">
+                                    <h5 class="widget-title font-alt">Recent Comments</h5>
+                                    <ul class="icon-list">
+                                        <li>Maria on <a href="#">Designer Desk Essentials</a></li>
+                                        <li>John on <a href="#">Realistic Business Card Mockup</a></li>
+                                        <li>Andy on <a href="#">Eco bag Mockup</a></li>
+                                        <li>Jack on <a href="#">Bottle Mockup</a></li>
+                                        <li>Mark on <a href="#">Our trip to the Alps</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="widget">
+                                    <h5 class="widget-title font-alt">Blog Categories</h5>
+                                    <ul class="icon-list">
+                                        <li><a href="#">Photography - 7</a></li>
+                                        <li><a href="#">Web Design - 3</a></li>
+                                        <li><a href="#">Illustration - 12</a></li>
+                                        <li><a href="#">Marketing - 1</a></li>
+                                        <li><a href="#">Wordpress - 16</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="widget">
+                                    <h5 class="widget-title font-alt">Popular Posts</h5>
+                                    <ul class="widget-posts">
+                                        <li class="clearfix">
+                                            <div class="widget-posts-image"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/assets/images/rp-1.jpg" alt="Post Thumbnail"/></a></div>
+                                            <div class="widget-posts-body">
+                                                <div class="widget-posts-title"><a href="#">Designer Desk Essentials</a></div>
+                                                <div class="widget-posts-meta">23 january</div>
+                                            </div>
+                                        </li>
+                                        <li class="clearfix">
+                                            <div class="widget-posts-image"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/assets/images/rp-2.jpg" alt="Post Thumbnail"/></a></div>
+                                            <div class="widget-posts-body">
+                                                <div class="widget-posts-title"><a href="#">Realistic Business Card Mockup</a></div>
+                                                <div class="widget-posts-meta">15 February</div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-     </div>
-    </div>
-    <!-- footer-bottom -->
-  </footer>
-  <!-- / footer -->
+                <hr class="divider-d">
+                <footer class="footer bg-dark">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p class="copyright font-alt">&copy; 2022&nbsp;<a href="index.html">Teemo</a>, All Rights Reserved</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="footer-social-links"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a><a href="#"><i class="fa fa-skype"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
 </body>
 </html>

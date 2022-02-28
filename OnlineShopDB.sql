@@ -18,13 +18,13 @@ CREATE TABLE [dbo].[Department]
 
 	CONSTRAINT PK_department_id PRIMARY KEY(DepartmentID)
 )
+
 CREATE TABLE [dbo].[Account]
 (
 	AccountID			int				IDENTITY(1,1),
 	Username			varchar(255)	NOT NULL,
 	[Password]			varchar(255)	NOT NULL,
-	FName				nvarchar(255)	,
-	LName				nvarchar(255)	,
+	FullName			nvarchar(255)	,
 	Gender				bit				,
 	Email				varchar(50)		,
 	PhoneNumber			varchar(15)		,
@@ -118,11 +118,11 @@ CREATE TABLE [dbo].[Review]
 	Content				nvarchar(255)	,
 	Ratings				int				NOT NULL,
 	CONSTRAINT CHK_Ratings CHECK (Ratings > 0 AND Ratings <= 5),
-	CreatedDate datetime2				,
+	CreatedDate			datetime2		,
 
 	CONSTRAINT PK_review_id PRIMARY KEY(ReviewID),
-	CONSTRAINT FK_product_id_2 FOREIGN KEY(ProductId) REFERENCES Product(ProductID),
-	CONSTRAINT FK_account_id_2 FOREIGN KEY(AccountId) REFERENCES Account(AccountID)
+	CONSTRAINT PK_account_id_a1 FOREIGN KEY(AccountId) REFERENCES Account(AccountID),
+	CONSTRAINT FK_product_id_2 FOREIGN KEY(ProductId) REFERENCES Product(ProductID)
 )
 
 CREATE TABLE [dbo].[OrderStatus]
@@ -144,19 +144,27 @@ CREATE TABLE [dbo].[Shipper]
 	CONSTRAINT UNI_email_phone_Shipper UNIQUE(Email, Phone)
 )
 
+CREATE TABLE [dbo].[Cart](
+	AccountId			int				,
+	ProductId			int				,
+	Quantity			int				NOT NULL,
+
+	CONSTRAINT PK_account_id_a2 FOREIGN KEY(AccountId) REFERENCES Account(AccountID),
+	CONSTRAINT FK_product_id_a2 FOREIGN KEY(ProductId) REFERENCES Product(ProductID)
+)
+
 CREATE TABLE [dbo].[Order]
 (
 	OrderID				int				IDENTITY(1,1),
 	ShipperId			int				,
 	AccountId			int				,
 	OrderDate			datetime2		NOT NULL,
-	EstimateDelivery	datetime2		NOT NULL,
 	Total				money			NOT NULL,
 	StatusId			int				,
 
 	CONSTRAINT PK_order_id PRIMARY KEY(OrderID),
 	CONSTRAINT FK_shipper_id FOREIGN KEY(ShipperId) REFERENCES Shipper(ShipperID),
-	CONSTRAINT FK_account_id_3 FOREIGN KEY(AccountId) REFERENCES Account(AccountID),
+	CONSTRAINT PK_account_id_2 FOREIGN KEY(AccountId) REFERENCES Account(AccountID),
 	CONSTRAINT FK_status_id FOREIGN KEY(StatusId) REFERENCES OrderStatus(ID)
 )
 
@@ -173,14 +181,13 @@ CREATE TABLE [dbo].[OrderDetail]
 CREATE TABLE [dbo].[Post]
 (
 	PostID				int				IDENTITY(1,1),
-	AuthorId			int				,
+	Author				nvarchar(255)	NOT NULL,
 	Title				nvarchar(255)	NOT NULL,
 	ShortDesc			nvarchar(max)	NOT NULL,
 	Content				nvarchar(max)	NOT NULL,
 	CreatedDate			datetime2		,
 
 	CONSTRAINT PK_post_id PRIMARY KEY(PostID),
-	CONSTRAINT FK_account_id_4 FOREIGN KEY(AuthorId) REFERENCES Account(AccountID),
 )
 
 CREATE TABLE [dbo].[PostComment]
@@ -216,6 +223,8 @@ CREATE TABLE [dbo].[PostTag]
 
 CREATE TABLE [dbo].[Contact]
 (
+	ShopName			nvarchar(255)	NOT NULL,
+	[Desc]				nvarchar(255)	NOT NULL,
 	Email				varchar(255)	NOT NULL,
 	Phone				varchar(30)		NOT NULL,
 	[Address]			varchar(255)	NOT NULL,
@@ -225,7 +234,8 @@ CREATE TABLE [dbo].[Contact]
 CREATE TABLE [dbo].[Subscriber]
 (
 	ID					int				IDENTITY(1,1),
-	Email				varchar(255)	,
+	FullName			nvarchar(255)	NOT NULL,
+	Email				varchar(255)	NOT NULL,
 	SubscribeDate		datetime2		NOT NULL
 
 	CONSTRAINT PK_id_s PRIMARY KEY(ID),
@@ -236,8 +246,8 @@ GO
 INSERT [dbo].[Department] ([DepartmentName], [DepartmentDesc]) VALUES ('Admin', '')
 INSERT [dbo].[Department] ([DepartmentName], [DepartmentDesc]) VALUES ('Customer', '')
 GO
-INSERT [dbo].[Account] ([Username], [Password], [FName], [LName], [Gender], [Email], [PhoneNumber], [Avatar], [Role], [Active], [CreatedDate]) VALUES (N'admin', N'admin', NULL, NULL, NULL, N'hotroswp@gmail.com', N'0111111111', NULL, 1 , 1, CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
-INSERT [dbo].[Account] ([Username], [Password], [FName], [LName], [Gender], [Email], [PhoneNumber], [Avatar], [Role], [Active], [CreatedDate]) VALUES (N'khang123', N'khang123', NULL, NULL, NULL, N'khacongkenh@gmail.com', N'0123456789', NULL, 2, 1, CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[Account] ([Username], [Password], [FullName], [Gender], [Email], [PhoneNumber], [Avatar], [Role], [Active], [CreatedDate]) VALUES (N'admin', N'admin', NULL, NULL, N'hotroswp@gmail.com', N'0111111111', NULL, 1 , 1, CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[Account] ([Username], [Password], [FullName], [Gender], [Email], [PhoneNumber], [Avatar], [Role], [Active], [CreatedDate]) VALUES (N'khang123', N'khang123', NULL, NULL, N'khacongkenh@gmail.com', N'0123456789', NULL, 2, 1, CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
 GO
 INSERT [dbo].[Address] ([AccountId], [Address]) VALUES (1, N'Hanoi')
 INSERT [dbo].[Address] ([AccountId], [Address]) VALUES (1, N'Hung Yen')
@@ -279,19 +289,19 @@ INSERT [dbo].[Shipper] ([ShipperName], [Email], [Phone]) VALUES ('Phan Van Be','
 INSERT [dbo].[Shipper] ([ShipperName], [Email], [Phone]) VALUES ('Pham Van Bach','vlback@gmail.com', '0111111111')
 INSERT [dbo].[Shipper] ([ShipperName], [Email], [Phone]) VALUES ('Nguyen Thai Binh','binhnv@gmail.com', '0111112222')
 GO
-INSERT [dbo].[Order] ([ShipperId], [AccountId], [OrderDate], [EstimateDelivery], [Total], [StatusId]) VALUES (1, 2, CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), CAST(N'2022-02-02T00:00:00.0000000' AS DateTime2), 24.0000, 1)
+INSERT [dbo].[Order] ([ShipperId], [AccountId], [OrderDate], [Total], [StatusId]) VALUES (1, 2, CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), 24.0000, 1)
 
 GO
 INSERT [dbo].[OrderDetail] ([OrderId], [ProductID], [Quantity]) VALUES (1, 2, 2)
 GO
-INSERT [dbo].[Post] ([AuthorId], [Title], [ShortDesc], [Content], [CreatedDate]) VALUES (1, N'The best fashion influencers to follow for sartorial inspiration', N'From our favourite UK influencers to the best missives from Milan and the coolest New Yorkers, read on some of the best fashion blogs out there, and for even more inspiration, do head to our separate black fashion influencer round-up.', N'From our favourite UK influencers to the best missives from Milan and the coolest New Yorkers, read on some of the best fashion blogs out there, and for even more inspiration, do head to our separate black fashion influencer round-up.
+INSERT [dbo].[Post] ([Author], [Title], [ShortDesc], [Content], [CreatedDate]) VALUES ('David', N'The best fashion influencers to follow for sartorial inspiration', N'From our favourite UK influencers to the best missives from Milan and the coolest New Yorkers, read on some of the best fashion blogs out there, and for even more inspiration, do head to our separate black fashion influencer round-up.', N'From our favourite UK influencers to the best missives from Milan and the coolest New Yorkers, read on some of the best fashion blogs out there, and for even more inspiration, do head to our separate black fashion influencer round-up.
 Fancy some shopping deals? Check out these amazing sales: Zara Black Friday, ASOS Black Friday, Missoma Black Friday and Gucci Black Friday.', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
-INSERT [dbo].[Post] ([AuthorId], [Title], [ShortDesc], [Content], [CreatedDate]) VALUES (1, N'THE HOLIDAY HOSTING HACK I LIVE BY', N'If there’s one holiday hosting hack that I live by, it’s to have your food (and drink!) double as decorations.', N'If there’s one holiday hosting hack that I live by, it’s to have your food (and drink!) double as decorations. Nothing brings more ambience to a holiday party than an on-theme spread of food and drinks and it might be easier than you think. From charcuterie boards laid out in wreaths to festive-shaped desserts, or festive drinks bring the holiday spirit to your table spread for your holiday gatherings.', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
-INSERT [dbo].[Post] ([AuthorId], [Title], [ShortDesc], [Content], [CreatedDate]) VALUES (1, N'The Pacific Spiny Lumpsucker Is Armed to the Teeth', N'The nightmare of the Pacific spiny lumpsucker starts with the teeth: needle-sharp, lining the rim of bulbous lips. ', N'The nightmare of the Pacific spiny lumpsucker starts with the teeth: needle-sharp, lining the rim of bulbous lips. A single fin crowns the fish’s head like a mohawk, and spiked studs cover nearly every inch of its body, recalling an armored car from a “Mad Max” movie.
+INSERT [dbo].[Post] ([Author], [Title], [ShortDesc], [Content], [CreatedDate]) VALUES ('Ha Lan', N'THE HOLIDAY HOSTING HACK I LIVE BY', N'If there’s one holiday hosting hack that I live by, it’s to have your food (and drink!) double as decorations.', N'If there’s one holiday hosting hack that I live by, it’s to have your food (and drink!) double as decorations. Nothing brings more ambience to a holiday party than an on-theme spread of food and drinks and it might be easier than you think. From charcuterie boards laid out in wreaths to festive-shaped desserts, or festive drinks bring the holiday spirit to your table spread for your holiday gatherings.', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[Post] ([Author], [Title], [ShortDesc], [Content], [CreatedDate]) VALUES ('Tom', N'The Pacific Spiny Lumpsucker Is Armed to the Teeth', N'The nightmare of the Pacific spiny lumpsucker starts with the teeth: needle-sharp, lining the rim of bulbous lips. ', N'The nightmare of the Pacific spiny lumpsucker starts with the teeth: needle-sharp, lining the rim of bulbous lips. A single fin crowns the fish’s head like a mohawk, and spiked studs cover nearly every inch of its body, recalling an armored car from a “Mad Max” movie.
 But the nightmare passes quickly: The Pacific spiny lumpsucker is barely three inches long.
 “Pacific spiny lumpsuckers are certainly one of the cutest fish that you can find,” Karly Cohen, a Ph.D. candidate in biology at the University of Washington, said recently.', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
-INSERT [dbo].[Post] ([AuthorId], [Title], [ShortDesc], [Content], [CreatedDate]) VALUES (1, N'The Paradox of the Lizard Tail, Solved', N'It can break off in an instant but also stay firmly attached. Scientists have figured out the microscopic structures that make this survival skill possible.', N'It can break off in an instant but also stay firmly attached. Scientists have figured out the microscopic structures that make this survival skill possible. When choosing between life and limb, many animals willingly sacrifice the limb. The ability to drop appendages is known as autotomy, or self-amputation. When backed into a corner, spiders let go of legs, crabs drop claws and some small rodents shed clumps of skin. Some sea slugs will even decapitate themselves to rid themselves of their parasite-infested bodies.', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
-INSERT [dbo].[Post] ([AuthorId], [Title], [ShortDesc], [Content], [CreatedDate]) VALUES (1, N'On Mars, a Year of Surprise and Discovery', N'The past 12 months on Mars have been both “exciting” and “exhausting” for scientists and engineers minding the Perseverance rover and Ingenuity helicopter. ', N'The past 12 months on Mars have been both “exciting” and “exhausting” for scientists and engineers minding the Perseverance rover and Ingenuity helicopter. A year ago, NASA’s Perseverance rover was accelerating to a collision with Mars, nearing its destination after a 290-million-mile, seven-month journey from Earth.
+INSERT [dbo].[Post] ([Author], [Title], [ShortDesc], [Content], [CreatedDate]) VALUES ('Jerry Mous', N'The Paradox of the Lizard Tail, Solved', N'It can break off in an instant but also stay firmly attached. Scientists have figured out the microscopic structures that make this survival skill possible.', N'It can break off in an instant but also stay firmly attached. Scientists have figured out the microscopic structures that make this survival skill possible. When choosing between life and limb, many animals willingly sacrifice the limb. The ability to drop appendages is known as autotomy, or self-amputation. When backed into a corner, spiders let go of legs, crabs drop claws and some small rodents shed clumps of skin. Some sea slugs will even decapitate themselves to rid themselves of their parasite-infested bodies.', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[Post] ([Author], [Title], [ShortDesc], [Content], [CreatedDate]) VALUES ('Zessika', N'On Mars, a Year of Surprise and Discovery', N'The past 12 months on Mars have been both “exciting” and “exhausting” for scientists and engineers minding the Perseverance rover and Ingenuity helicopter. ', N'The past 12 months on Mars have been both “exciting” and “exhausting” for scientists and engineers minding the Perseverance rover and Ingenuity helicopter. A year ago, NASA’s Perseverance rover was accelerating to a collision with Mars, nearing its destination after a 290-million-mile, seven-month journey from Earth.
 On Feb. 18 last year, the spacecraft carrying the rover pierced the Martian atmosphere at 13,000 miles per hour. In just seven minutes — what NASA engineers call “seven minutes of terror” — it had to pull off a series of maneuvers to place Perseverance gently on the surface.', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
 GO
 INSERT [dbo].[PostComment] ([PostId], [AccountId], [Comment], [CreatedDate]) VALUES (1, 2, N'good', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
@@ -309,14 +319,14 @@ GO
 INSERT [dbo].[Review] ([ProductId], [AccountId], [Content], [Ratings], [CreatedDate]) VALUES (1, 2, 'good', 5, CAST(N'2022-02-02T00:00:00.0000000' AS DateTime2))
 INSERT [dbo].[Review] ([ProductId], [AccountId], [Content], [Ratings], [CreatedDate]) VALUES (1, 2, 'hay', 5, CAST(N'2022-02-12T00:00:00.0000000' AS DateTime2))
 GO
-INSERT [dbo].[Contact] ([Email], [Phone], [Address]) VALUES ('hotroswp@gmail.com', '+84 1122 3344 11', 'Hanoi, Vietnam')
+INSERT [dbo].[Contact] ([ShopName], [Desc], [Email], [Phone], [Address]) VALUES ('Teemo', 'This is out websites', 'hotroswp@gmail.com', '+84 1122 3344 11', 'Hanoi, Vietnam')
 GO
-INSERT [dbo].[Subscriber] ([Email], [SubscribeDate]) VALUES ('khang@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
-INSERT [dbo].[Subscriber] ([Email], [SubscribeDate]) VALUES ('abcxyz@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
-INSERT [dbo].[Subscriber] ([Email], [SubscribeDate]) VALUES ('khang2@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
-INSERT [dbo].[Subscriber] ([Email], [SubscribeDate]) VALUES ('khang3@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
-INSERT [dbo].[Subscriber] ([Email], [SubscribeDate]) VALUES ('khang4@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
-INSERT [dbo].[Subscriber] ([Email], [SubscribeDate]) VALUES ('khang5@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[Subscriber] ([FullName], [Email], [SubscribeDate]) VALUES ('Khang', 'khang@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[Subscriber] ([FullName], [Email], [SubscribeDate]) VALUES ('Khang', 'abcxyz@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[Subscriber] ([FullName], [Email], [SubscribeDate]) VALUES ('Khang', 'khang2@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[Subscriber] ([FullName], [Email], [SubscribeDate]) VALUES ('Khang', 'khang3@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[Subscriber] ([FullName], [Email], [SubscribeDate]) VALUES ('Khang', 'khang4@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[Subscriber] ([FullName], [Email], [SubscribeDate]) VALUES ('Khang', 'khang5@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
 /*Gmail:
 hotroswp@gmail.com
 admin123@
