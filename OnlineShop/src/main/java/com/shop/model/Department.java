@@ -22,5 +22,29 @@ public class Department {
         this.departtmentName = departtmentName;
         this.departnemtDesc = departnemtDesc;
     }
+
+    public int getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public String getDeparttmentName() {
+        return departtmentName;
+    }
+
+    public void setDeparttmentName(String departtmentName) {
+        this.departtmentName = departtmentName;
+    }
+
+    public String getDepartnemtDesc() {
+        return departnemtDesc;
+    }
+
+    public void setDepartnemtDesc(String departnemtDesc) {
+        this.departnemtDesc = departnemtDesc;
+    }
     
 }
