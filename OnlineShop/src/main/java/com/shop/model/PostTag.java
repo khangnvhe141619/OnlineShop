@@ -12,4 +12,13 @@ package com.shop.model;
 public class PostTag {
     private int postId;
     private int tagId;
+
+    public PostTag() {
+    }
+
+    public PostTag(int postId, int tagId) {
+        this.postId = postId;
+        this.tagId = tagId;
+    }
+    
 }
