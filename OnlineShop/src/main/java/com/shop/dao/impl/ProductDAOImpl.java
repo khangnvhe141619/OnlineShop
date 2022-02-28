@@ -158,14 +158,17 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public List<Product> getListAllProduct(int row) throws SQLException {
-		String sql = "";
+	public List<Product> getListAllProduct(int index) throws SQLException {
+		String sql = "SELECT * FROM PRODUCT\r\n"
+				+ "ORDER BY ProductID\r\n"
+				+ "OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY";
 		Product product = null;
 		List<Product> lstProduct = new ArrayList<Product>();
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, row);
+			ps.setInt(1, (index-1)*3);
+			
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				product = new Product();
