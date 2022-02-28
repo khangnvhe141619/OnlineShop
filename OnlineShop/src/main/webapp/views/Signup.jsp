@@ -67,7 +67,7 @@
 								src="<%=request.getContextPath()%>/resources/common/images/signup-image.jpg"
 								alt="sing up image">
 						</figure>
-						<a href="views/Login.jsp" class="signup-image-link">I am already
+						<a href="<%=request.getContextPath()%>/views/Login.jsp" class="signup-image-link">I am already
 							member</a>
 					</div>
 				</div>
