@@ -31,7 +31,7 @@ public class RegisterController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("views/Register.jsp").forward(request, response);
+		request.getRequestDispatcher("views/Signup.jsp").forward(request, response);
 	}
 
 	/**
@@ -39,27 +39,31 @@ public class RegisterController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+		String password = request.getParameter("pass");
+		String repassword = request.getParameter("repass");
 		LocalDate localDate = java.time.LocalDate.now();
 		String date = localDate.toString();
 		Account account = new Account(username, password, date);
 		AccountDAO accountDAO = new AccountDAOImpl();
 		try {
-			if(accountDAO.getCheckUsername(username)) {
+			if(!password.equals(repassword)){
+	            request.setAttribute("error", "Password and Re-Password isn't match !!!");
+	            request.getRequestDispatcher("views/Signup.jsp").forward(request, response);
+	        }else if(accountDAO.getCheckUsername(username)) {
 				request.setAttribute("errorUsername", true);
 				request.setAttribute("account", account);
-				request.getRequestDispatcher("views/Register.jsp").forward(request, response);
+				request.getRequestDispatcher("views/Signup.jsp").forward(request, response);
 			} else if(accountDAO.getInsertAccount(account)) {
 				response.sendRedirect(request.getContextPath()+ "/loginController");
 			} else {
 				request.setAttribute("failedRegister", true);
 				request.setAttribute("account", account);
-				request.getRequestDispatcher("views/Register.jsp").forward(request, response);
+				request.getRequestDispatcher("views/Signup.jsp").forward(request, response);
 			}
 		} catch (SQLException e) {
 			request.setAttribute("errorSQL", true);
 			request.setAttribute("account", account);
-			request.getRequestDispatcher("views/Register.jsp").forward(request, response);
+			request.getRequestDispatcher("views/Signup.jsp").forward(request, response);
 			e.printStackTrace();
 		}
 	}

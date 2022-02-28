@@ -22,9 +22,12 @@ public class Test {
 	public static void main(String[] args) throws SQLException {
 		// TODO Auto-generated method stub
 		ProductDAO pd = new ProductDAOImpl();
-		List<Product> lp = new ArrayList<Product>();
-		Product p = pd.getProductById("1");
-		System.out.println(p);
+		List<Product> lp = pd.getListAllProduct(1);
+		for (Product product : lp) {
+			System.out.println(product.toString());
+		}
+//		Product p = pd.getProductById("1");
+//		System.out.println(p);
 		LocalDateTime cDate=Validation.getLocalDateTime("2022-02-12 20:10:15");
 		LocalDateTime pDate=Validation.getLocalDateTime("2022-02-13 20:10:15");
 //		System.out.println(cDate+" - "+pDate);
@@ -76,13 +79,13 @@ public class Test {
 //			// TODO: handle exception
 //		}
 //	}
-		EmailMessage msg=new EmailMessage();
-	    msg.setTo("khang2k0@gmail.com");
-	    msg.setMessage("Hii");
-	    try {
-	      EmailUtility.sendMail(msg);
-	    } catch (InvalidApplicationException e) {
-	      // TODO Auto-generated catch block
-	    }
+//		EmailMessage msg=new EmailMessage();
+//	    msg.setTo("khang2k0@gmail.com");
+//	    msg.setMessage("Hii");
+//	    try {
+//	      EmailUtility.sendMail(msg);
+//	    } catch (InvalidApplicationException e) {
+//	      // TODO Auto-generated catch block
+//	    }
 }
 }
