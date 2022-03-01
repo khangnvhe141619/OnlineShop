@@ -17,13 +17,15 @@ public class SubscriberDAOImpl implements SubscriberDAO{
 	
 	@Override
 	public boolean insertSubscriber(Subscriber subscriber) throws SQLException{
-		String sql = "INSERT [dbo].[Subscriber] ([Email], [SubscribeDate]) VALUES (?, ?)";
+		String sql = "INSERT [dbo].[Subscriber] ([FullName], [Email], [SubscribeDate]) VALUES (?, ?, ?)";
 		int row = 0;
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, subscriber.getEmail());
-			ps.setString(2, Validation.getStringFromLocalDateTime(subscriber.getSubscribeDate()));
+			ps.setString(2, subscriber.getFullName());
+			ps.setString(3, Validation.getStringFromLocalDateTime(subscriber.getSubscribeDate()));
+			
 			row = ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

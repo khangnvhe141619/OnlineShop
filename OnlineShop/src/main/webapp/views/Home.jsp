@@ -209,7 +209,7 @@
                             <div class="row finance-image-content">
                                 <div class="col-md-10 col-md-offset-1">
                                     <h2 class="module-title font-alt align-left">Subscribe</h2>
-                                    <form id="contactForm" role="form" method="post" action="#">
+                                    <form id="contactForm" role="form" method="post" action="<%=request.getContextPath()%>/subscribeController">
                                         <div class="form-group">
                                             <label class="sr-only" for="name">Name</label>
                                             <input class="form-control" type="text" id="name" name="name" placeholder="Your Name*" required="required" data-validation-required-message="Please enter your name."/>

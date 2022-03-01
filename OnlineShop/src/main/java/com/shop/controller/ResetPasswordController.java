@@ -53,7 +53,7 @@ public class ResetPasswordController extends HttpServlet {
 			account = accountDAO.findPassword(email);
 			if (account == null) {
 				request.setAttribute("emailError", true);
-				request.getRequestDispatcher("views/Reset-password.jsp").forward(request, response);
+				request.getRequestDispatcher("views/Forgot-password.jsp").forward(request, response);
 			} else {
 				// set subject for email
 				emailBean.setSubject("Reset Your Password");

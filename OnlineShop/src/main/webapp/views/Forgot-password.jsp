@@ -25,7 +25,7 @@
                 <div class="signup-content">
                     <div class="signup-form">
                         <h2 class="form-title">Forgot password</h2>
-                        <form action="#" method="POST" class="register-form" id="register-form">
+                        <form action="<%=request.getContextPath()%>/resetPasswordController" method="POST" class="register-form" id="register-form">
                            
                             <div class="form-group">
                                 <label for="email"><i class="zmdi zmdi-email"></i></label>

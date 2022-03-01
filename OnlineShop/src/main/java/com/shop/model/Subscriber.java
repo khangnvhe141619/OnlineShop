@@ -3,6 +3,8 @@ package com.shop.model;
 import java.time.LocalDateTime;
 
 public class Subscriber {
+	private int id;
+	private String fullName;
 	private String email;
 	private LocalDateTime subscribeDate;
 
@@ -10,10 +12,35 @@ public class Subscriber {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Subscriber(String email, LocalDateTime subscribeDate) {
+	public Subscriber(int id, String fullName, String email, LocalDateTime subscribeDate) {
 		super();
+		this.id = id;
+		this.fullName = fullName;
 		this.email = email;
 		this.subscribeDate = subscribeDate;
+	}
+
+	public Subscriber(String fullName, String email, LocalDateTime subscribeDate) {
+		super();
+		this.fullName = fullName;
+		this.email = email;
+		this.subscribeDate = subscribeDate;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 
 	public String getEmail() {
@@ -30,11 +57,6 @@ public class Subscriber {
 
 	public void setSubscribeDate(LocalDateTime subscribeDate) {
 		this.subscribeDate = subscribeDate;
-	}
-
-	@Override
-	public String toString() {
-		return "Subscriber [email=" + email + ", subscribeDate=" + subscribeDate + "]";
 	}
 
 }

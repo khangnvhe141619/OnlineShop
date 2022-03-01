@@ -47,12 +47,13 @@ public class SubscribeController extends HttpServlet {
 		EmailMessage emailBean = new EmailMessage();
 		Subscriber subscriber = null;
 		String email = request.getParameter("email");
+		String fullname = request.getParameter("name");
 		LocalDateTime date = LocalDateTime.now();
 		try {
-			subscriber = new Subscriber(email, date);
+			subscriber = new Subscriber(fullname, email, date);
 			boolean add = subscriberDAO.insertSubscriber(subscriber);
 			if (!add) {
-				request.getRequestDispatcher("views/Index.jsp").forward(request, response);
+				request.getRequestDispatcher("views/Home.jsp").forward(request, response);
 			} else {
 				// set subject for email
 				emailBean.setSubject("Thank for subscribing our website");
@@ -65,7 +66,7 @@ public class SubscribeController extends HttpServlet {
 				try {
 					// send mail for user
 					EmailUtility.sendMail(emailBean);
-					request.getRequestDispatcher("views/Index.jsp").forward(request, response);
+					request.getRequestDispatcher("views/Home.jsp").forward(request, response);
 
 				} catch (Exception e) {
 					// TODO: handle exception
