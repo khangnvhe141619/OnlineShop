@@ -20,7 +20,7 @@ public class AccountDAOImpl implements AccountDAO {
 	public Account getLogin(String userName, String password) throws SQLException {
 		try {
 			con = DBConnection.getInstance().getConnection();
-			pre = con.prepareStatement(SQLCommand.login);
+			pre = con.prepareStatement(SQLCommand.LOGIN);
 			pre.setString(1, userName);
 			pre.setString(2, userName);
 			pre.setString(3, password);
@@ -51,7 +51,7 @@ public class AccountDAOImpl implements AccountDAO {
 		boolean check = false;
 		try {
 			con = DBConnection.getInstance().getConnection();
-			pre = con.prepareStatement(SQLCommand.checkUsername);
+			pre = con.prepareStatement(SQLCommand.GET_ACCOUNT_FROM_ACCOUNT);
 			pre.setString(1, username);
 			rs = pre.executeQuery();
 			check = rs.next();
@@ -77,7 +77,7 @@ public class AccountDAOImpl implements AccountDAO {
 		boolean check = false;
 		try {
 			con = DBConnection.getInstance().getConnection();
-			pre = con.prepareStatement(SQLCommand.insertAccount);
+			pre = con.prepareStatement(SQLCommand.INSERT_ACCOUNT);
 			pre.setString(1, account.getUsername());
 			pre.setString(2, account.getPassword());
 			pre.setString(3, account.getCreatedDate());
@@ -97,6 +97,32 @@ public class AccountDAOImpl implements AccountDAO {
 			}
 		}
 		return check;
+	}
+	
+	@Override
+	public List<Account> getListAccount() throws SQLException {
+		List<Account> accounts = new ArrayList<>();
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.LIST_ACCOUNT);
+			rs = pre.executeQuery();
+			while (rs.next()) {
+				accounts.add(new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), 
+						rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getString(11)));
+			}
+
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return accounts;
 	}
 
 	@Override
