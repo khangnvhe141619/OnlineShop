@@ -150,6 +150,13 @@ public class AccountDAOImpl implements AccountDAO {
 		return null;
 	}
 	
+
+	@Override
+	public boolean getUpdateAccount(Account account) throws SQLException {
+		
+		return false;
+	}
+	
 	public static void main(String[] args) throws SQLException {
 		AccountDAO accountDAO = new AccountDAOImpl();
 		Account acc = accountDAO.getInfoAcc("lenovo5");
@@ -188,4 +195,5 @@ public class AccountDAOImpl implements AccountDAO {
 		return account;
 
 	}
+
 }
