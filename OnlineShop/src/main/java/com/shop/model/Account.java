@@ -128,4 +128,13 @@ public class Account {
 	public void setCreatedDate(String createdDate) {
 		this.createdDate = createdDate;
 	}
+
+	@Override
+	public String toString() {
+		return "Account [accountId=" + accountId + ", username=" + username + ", password=" + password + ", fullname="
+				+ fullname + ", gender=" + gender + ", email=" + email + ", phonenumber=" + phonenumber + ", avatar="
+				+ avatar + ", role=" + role + ", active=" + active + ", createdDate=" + createdDate + "]";
+	}
+	
+	
 }
