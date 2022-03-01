@@ -100,17 +100,16 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 
 	@Override
-	public List<Account> getListAccount() throws SQLException {
-		List<Account> accounts = new ArrayList<>();
+	public Account getInfoAcc(String email) throws SQLException {
 		try {
 			con = DBConnection.getInstance().getConnection();
-			pre = con.prepareStatement(SQLCommand.listAccount);
+			pre = con.prepareStatement(SQLCommand.GET_ACCOUNT_FROM_ACCOUNT);
+			pre.setString(1, email);
 			rs = pre.executeQuery();
 			while (rs.next()) {
-				accounts.add(new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), 
-						rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getString(11)));
+				return new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), 
+						rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getString(11));
 			}
-
 		} finally {
 			if (rs != null) {
 				rs.close();
@@ -122,7 +121,7 @@ public class AccountDAOImpl implements AccountDAO {
 				con.close();
 			}
 		}
-		return accounts;
+		return null;
 	}
 
 	@Override
