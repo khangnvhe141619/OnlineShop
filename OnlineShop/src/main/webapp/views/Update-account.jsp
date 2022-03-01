@@ -11,7 +11,7 @@
         Document Title
         =============================================
         -->
-        <title>Teemo </title>
+        <title>Update profile </title>
         <!--  
         Favicons
         =============================================

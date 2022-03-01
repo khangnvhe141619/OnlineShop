@@ -11,8 +11,11 @@
         Document Title
         =============================================
         -->
-        <title>Cart </title>
-
+        <title>Thank you </title>
+        <!--  
+        Favicons
+        =============================================
+        -->
         <link rel="apple-touch-icon" sizes="57x57" href="<%=request.getContextPath()%>/resources/common/assets/images/favicons/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="<%=request.getContextPath()%>/resources/common/assets/images/favicons/apple-icon-60x60.png">
         <link rel="apple-touch-icon" sizes="72x72" href="<%=request.getContextPath()%>/resources/common/assets/images/favicons/apple-icon-72x72.png">
@@ -30,6 +33,7 @@
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="<%=request.getContextPath()%>/resources/common/assets/images/favicons/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
+        <script src="<%=request.getContextPath()%>/resources/common/js/script.js" type="text/javascript"></script>
         <!--  
         Stylesheets
         =============================================
@@ -52,121 +56,31 @@
         <!-- Main stylesheet and color file-->
         <link href="<%=request.getContextPath()%>/resources/common/assets/css/style.css" rel="stylesheet">
         <link id="color-scheme" href="<%=request.getContextPath()%>/resources/common/assets/css/colors/default.css" rel="stylesheet">
-
+        
     </head>
     <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
         <main>
             <div class="page-loader">
                 <div class="loader">Loading...</div>
             </div>
-           <!-- header -->
+		<!-- header -->
 		<jsp:include page="components/header.jsp"></jsp:include>
 		<!-- end header -->
-            <div class="main">
-                <section class="module">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-6 col-sm-offset-3">
-                                <h1 class="module-title font-alt">Checkout</h1>
-                            </div>
-                        </div>
-                        <hr class="divider-w pt-20">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <table class="table table-striped table-border checkout-table">
-                                    <!--<tbody>-->
-                                    <tr>
-                                        <th class="hidden-xs" style="width: 150px; ">Item</th>
-                                        <th style="width: 500px;">Name</th>
-                                        <th class="hidden-xs">Price</th>
-                                        <th>Quantity</th>
-                                        <th>Total</th>
-                                        <th>Remove</th>
-                                    </tr>
-                                    <c:forEach items="${sessionScope.items}" var="i">
-                                        <tr>
-                                            <td class="hidden-xs"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/images/${i.pro.img}" style="margin-top: 0px" alt=""/></a></td>
-                                            <td>
-                                                <h5 class="product-title font-alt"><a href="detailproduct?id=${i.pro.id}">${i.pro.name}</a></h5>
-                                            </td>
-                                            <td class="hidden-xs">
-                                                <h5 class="product-title font-alt">$${i.pro.price}</h5>
-                                            </td>
-                                            <td>
-                                                <!--<input type="button" value=" - " onclick="remove(${i.pro.id})" />-->
-                                                <a style="border: ridge  1px; padding: 5px" href="addcart?id=${i.pro.id}&quantity=-1" >-</a>
-                                                <input  type="text" disabled="true" name="" value="${i.quantity}" style="width: 60px"/>
-                                                <a style="border: ridge  1px; padding: 5px" href="addcart?id=${i.pro.id}&quantity=1" >+</a>
-                                                <!--<input  type="button" value=" + " onclick="updown(${i.pro.id},1)"  />-->
-                                            </td>
-                                            <td>
-                                                <h5 class="product-title font-alt">$${i.quantity * i.pro.price}</h5>
-                                            </td>
-                                            <td class="pr-remove"><a href="addcart?id=${i.pro.id}&quantity=${0-i.quantity}" title="Remove"><i class="fa fa-times"></i></a></td>
-                                        </tr>
-                                    </c:forEach>
-                                    <!--</tbody>-->
-                                </table>
-                            </div>
-                        </div>
-                        <!--                        <div class="row">
-                                                    <div class="col-sm-3">
-                                                        <div class="form-group">
-                                                            <input class="form-control" type="text" id="" name="" placeholder="Coupon code"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-3">
-                                                        <div class="form-group">
-                                                            <button class="btn btn-round btn-g" type="submit">Apply</button>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-3 col-sm-offset-3">
-                                                        <div class="form-group">
-                                                            <button class="btn btn-block btn-round btn-d pull-right" type="submit">Update Cart</button>
-                                                        </div>
-                                                    </div>
-                                                </div>-->
-                        <hr class="divider-w">
-                        <div class="row mt-70">
-                            <div class="col-sm-5 col-sm-offset-7">
-                                <div class="shop-Cart-totalbox">
-                                    <h4 class="font-alt">Cart Totals</h4>
-                                    <table class="table table-striped table-border checkout-table">
-                                        <tbody>
-                                            <tr>
-                                                <th>Cart Subtotal :</th>
-                                                <td>$${sessionScope.total}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>VAT (10%) :</th>
-                                                <td>$${sessionScope.total * 0.1}</td>
-                                            </tr>
-                                            <tr class="shop-Cart-totalprice">
-                                                <th>Total :</th>
-                                                <td>$${sessionScope.total * 1.1}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <c:if test="${requestScope.error != null}" >
-                                        <h5 style="color:red">${requestScope.error}</h5>
-                                    </c:if>
-                                    <a href="checkout" class="btn btn-lg btn-block btn-round btn-d" >Proceed to Checkout</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- footer -->
+		<div class="main">
+			<section class="module bg-dark-60 shop-page-header"
+				style="background: #fcf8e3;">
+				<div class="container">
+					<h1 style="font-weight: bold; font-size: 80px; color: black;">${title}</h1>
+					<h3 style="color: black;">${describe}</h3>
+				</div>
+			</section>
+			<hr class="divider-w">
+			<!-- footer -->
                 <jsp:include page="components/footer.jsp"></jsp:include>
                 <!-- end footer -->
             </div>
             <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
         </main>
-        <style>
-            .pl{
-                border: 1px;
-            }
-        </style>
         <!--  
         JavaScripts
         =============================================
@@ -184,5 +98,9 @@
         <script src="<%=request.getContextPath()%>/resources/common/assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
         <script src="<%=request.getContextPath()%>/resources/common/assets/js/plugins.js"></script>
         <script src="<%=request.getContextPath()%>/resources/common/assets/js/main.js"></script>
+        <script>
+            pagger(${requestScope.pageindex},${requestScope.totalpage}, 2, "pagger","${param.name}", "${param.typeid}","${param.manuid}");
+
+        </script>
     </body>
 </html>

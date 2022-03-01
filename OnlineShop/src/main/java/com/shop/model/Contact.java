@@ -2,6 +2,8 @@ package com.shop.model;
 
 
 public class Contact {
+	private String name;
+	private String desc;
 	private String email;
 	private String phone;
 	private String address;
@@ -10,11 +12,20 @@ public class Contact {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Contact(String email, String phone, String address){
-		super();
-		this.email = email;
-		this.phone = phone;
-		this.address = address;
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
 
 	public String getEmail() {
@@ -43,7 +54,8 @@ public class Contact {
 
 	@Override
 	public String toString() {
-		return "Contact [email=" + email + ", phone=" + phone + ", address=" + address + "]";
+		return "Contact [name=" + name + ", desc=" + desc + ", email=" + email + ", phone=" + phone + ", address="
+				+ address + "]";
 	}
 
 }

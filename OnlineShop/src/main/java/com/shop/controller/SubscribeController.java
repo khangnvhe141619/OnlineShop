@@ -36,9 +36,8 @@ public class SubscribeController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("views/Home.jsp").forward(request, response);
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -62,12 +61,13 @@ public class SubscribeController extends HttpServlet {
 				// set content of email
 				emailBean.setMessage("Thank you for liking and subscribing to our website. We hope you have a good experience using our products.\r\n"
 						+ "Regards\r\n"
-						+ "Admin");
+						+ "Admin");				
 				try {
 					// send mail for user
 					EmailUtility.sendMail(emailBean);
-					request.getRequestDispatcher("views/Home.jsp").forward(request, response);
-
+					request.setAttribute("title", "Thank you!");
+					request.setAttribute("describe", "Your data has been successfully submitted. Thank for subscribing our website.");
+					request.getRequestDispatcher("views/Thankyou.jsp").forward(request, response);
 				} catch (Exception e) {
 					// TODO: handle exception
 				}

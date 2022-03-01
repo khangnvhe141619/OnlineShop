@@ -22,8 +22,8 @@ public class SubscriberDAOImpl implements SubscriberDAO{
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, subscriber.getEmail());
-			ps.setString(2, subscriber.getFullName());
+			ps.setString(1, subscriber.getFullName());
+			ps.setString(2, subscriber.getEmail());
 			ps.setString(3, Validation.getStringFromLocalDateTime(subscriber.getSubscribeDate()));
 			
 			row = ps.executeUpdate();

@@ -7,7 +7,6 @@ import java.sql.SQLException;
 
 import com.shop.dao.ContactDAO;
 import com.shop.model.Contact;
-import com.shop.model.Product;
 import com.shop.utils.DBConnection;
 
 public class ContactDAOImpl implements ContactDAO {
@@ -25,6 +24,8 @@ public class ContactDAOImpl implements ContactDAO {
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				contact = new Contact();
+				contact.setName(rs.getString("ShopName"));
+				contact.setDesc(rs.getString("Desc"));
 				contact.setEmail(rs.getString("Email"));
 				contact.setPhone(rs.getString("Phone"));
 				contact.setAddress(rs.getString("Address"));
@@ -46,6 +47,13 @@ public class ContactDAOImpl implements ContactDAO {
 		return contact;
 	}
     public static void main(String[] args) {
-        
+        ContactDAOImpl cd=new ContactDAOImpl();
+        try {
+			Contact c=cd.getInformation();
+			System.out.println(c);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }

@@ -9,7 +9,7 @@
         Document Title
         =============================================
         -->
-        <title>Teemo </title>
+        <title>Contact</title>
         <!--  
         Favicons
         =============================================

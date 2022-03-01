@@ -25,14 +25,14 @@
                 <div class="signup-content">
                     <div class="signup-form">
                         <h2 class="form-title">Forgot password</h2>
-                        <form action="<%=request.getContextPath()%>/resetPasswordController" method="POST" class="register-form" id="register-form">
+                        <form action="<%=request.getContextPath()%>/forgotPasswordController" method="POST">
                            
                             <div class="form-group">
                                 <label for="email"><i class="zmdi zmdi-email"></i></label>
                                 <input type="email" name="email" id="email" placeholder="Your Email" value=""/>
                             </div>                                                                      
                             <div class="form-group form-button">
-                                <input type="submit" name="signup" id="signup" class="form-submit" value="Reset my password"/>
+                                <input type="submit" name="signup" class="form-submit" value="Reset my password"/>
                             </div>
                         </form>
                     </div>

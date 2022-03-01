@@ -16,35 +16,31 @@ import com.shop.service.EmailMessage;
 import com.shop.service.EmailUtility;
 
 /**
- * Servlet implementation class ResetPasswordController
+ * Servlet implementation class ForgotPasswordController
  */
-@WebServlet("/resetPasswordController")
-public class ResetPasswordController extends HttpServlet {
+@WebServlet("/forgotPasswordController")
+public class ForgotPasswordController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ForgotPasswordController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public ResetPasswordController() {
-		super();
-		// TODO Auto-generated constructor stub
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("views/Forgot-password.jsp").forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		request.getRequestDispatcher("views/Reset-password.jsp").forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AccountDAO accountDAO = new AccountDAOImpl();
 		EmailMessage emailBean = new EmailMessage();
 		Account account = null;
@@ -64,8 +60,9 @@ public class ResetPasswordController extends HttpServlet {
 				try {
 					// send mail for user
 					EmailUtility.sendMail(emailBean);
-					request.getRequestDispatcher("views/Login.jsp").forward(request, response);
-
+					request.setAttribute("title", "Forgot password!");
+					request.setAttribute("describe", "Your data has been successfully submitted. We sent your password via the email.");
+					request.getRequestDispatcher("views/Thankyou.jsp").forward(request, response);
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
@@ -75,4 +72,5 @@ public class ResetPasswordController extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
+
 }
