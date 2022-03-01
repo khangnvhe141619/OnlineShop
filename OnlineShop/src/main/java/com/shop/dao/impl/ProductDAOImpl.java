@@ -233,6 +233,8 @@ public class ProductDAOImpl implements ProductDAO {
 			return count;
 		}
 
-	
+	   public static void main(String[] args) {
+        
+    }
 
 }

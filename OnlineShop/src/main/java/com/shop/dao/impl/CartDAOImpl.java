@@ -57,5 +57,7 @@ public class CartDAOImpl implements CartDAO {
 		}
 	}
 
-
+    public static void main(String[] args) {
+        
+    }
 }

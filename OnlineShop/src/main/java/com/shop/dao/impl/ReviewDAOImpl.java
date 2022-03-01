@@ -43,28 +43,28 @@ public  class ReviewDAOImpl implements ReviewDAO {
 		return list;
 	}
 
-	public static void main(String[] args)  {
-		ReviewDAOImpl rv = new ReviewDAOImpl();
-//		String str= "2017-1-1";
-//		Date date = Date.valueOf(str);
-//		try {
-//			Review a= new Review(1, "cho", 5, date);
-//			boolean kq = rv.editReview(a);
-//			if(kq==true) {
-//				System.out.println("sccc");
-//			}else {
-//				System.err.println("failes");
-//			}
-//				
-//		} catch (Exception e) {
-//			// TODO: handle exception
+//	public static void main(String[] args)  {
+//		ReviewDAOImpl rv = new ReviewDAOImpl();
+////		String str= "2017-1-1";
+////		Date date = Date.valueOf(str);
+////		try {
+////			Review a= new Review(1, "cho", 5, date);
+////			boolean kq = rv.editReview(a);
+////			if(kq==true) {
+////				System.out.println("sccc");
+////			}else {
+////				System.err.println("failes");
+////			}
+////				
+////		} catch (Exception e) {
+////			// TODO: handle exception
+////		}
+//		List<Review> ls = rv.getReviews(1);
+//		for (Review review : ls) {
+//			System.out.println(review.toString());
 //		}
-		List<Review> ls = rv.getReviews(1);
-		for (Review review : ls) {
-			System.out.println(review.toString());
-		}
-		
-	}
+//		
+//	}
 
 	public boolean addReview(Review review) {
 		int row=0;
@@ -121,5 +121,7 @@ public  class ReviewDAOImpl implements ReviewDAO {
 		}
 		return row>0;
 	}
-
+    public static void main(String[] args) {
+        
+    }
 }

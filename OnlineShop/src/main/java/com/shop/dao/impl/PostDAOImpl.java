@@ -104,4 +104,7 @@ public class PostDAOImpl implements PostDAO{
 		}
         return row>0; 
     }
+    public static void main(String[] args) {
+        
+    }
 }
