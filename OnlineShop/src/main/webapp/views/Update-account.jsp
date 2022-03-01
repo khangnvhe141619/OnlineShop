@@ -82,16 +82,16 @@
                             <hr class="divider-w mt-10 mb-20">
                             <form class="form" role="form" action="updateaccount" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <input class="form-control input-lg" type="text" name="name"  value="${sessionScope.login.name}" required>
+                                    <input class="form-control input-lg" type="text" name="username"  value="${account.username}" required>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control input-lg" type="text" name="email"  value="${sessionScope.login.email}" required>
+                                    <input class="form-control input-lg" type="text" name="fullname"  value="${account.fullname}" required>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control input-lg" type="text" name="phone"  value="${sessionScope.login.phone}" required>
+                                    <input class="form-control input-lg" type="text" name="email"  value="${account.email}" required>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control input-lg" type="text" name="address"  value="${sessionScope.login.address}" required>
+                                    <input class="form-control input-lg" type="text" name="phonenumber"  value="${account.phonenumber}" required>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control input-lg" type="file" name="avatar" accept="image/png,image/jpeg" size="10" >
