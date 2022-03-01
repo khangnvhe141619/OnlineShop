@@ -13,7 +13,7 @@ public class SQLCommand {
 	
 	public static final String LIST_ACCOUNT = "SELECT * FROM Account";
 	
-	public static final String UPDATE_ACCOUNT = "UPDATE Account SET Username = ?, FullName = ?, Email = ?, PhoneNumber = '?\r\n"
+	public static final String UPDATE_ACCOUNT = "UPDATE Account SET Username = ?, FullName = ?, Email = ?, PhoneNumber = ?\r\n"
 			+ "WHERE AccountID = ?\r\n";
 
 }

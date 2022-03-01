@@ -15,7 +15,7 @@ import com.shop.model.Account;
 /**
  * Servlet implementation class UpdateAccountController
  */
-@WebServlet("/UpdateAccountController")
+@WebServlet("/update")
 public class UpdateAccountController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -46,15 +46,27 @@ public class UpdateAccountController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String username = request.getParameter("username");
+		String username = request.getParameter("username"); 
 		String fullname = request.getParameter("fullname");
 		String email = request.getParameter("email");
 		String phonenumber = request.getParameter("phonenumber");
+		HttpSession session = request.getSession();
+		int accountID = (int) session.getAttribute("account");
+		AccountDAO accountDAO = new AccountDAOImpl();
+		Account account = new Account(accountID, username, fullname, email, phonenumber);
 		try {
-			
+			if(accountDAO.getUpdateAccount(account)) {
+				request.setAttribute("account", account);
+				request.getRequestDispatcher("views/Update-account.jsp").forward(request, response);
+			} else {
+				request.setAttribute("failedUpdate", true);
+				request.setAttribute("account", account);
+				request.getRequestDispatcher("views/Update-account.jsp").forward(request, response);
+			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			request.setAttribute("errorSQL", true);
+			request.getRequestDispatcher("views/Update-account.jsp").forward(request, response);
+			e.printStackTrace();
 		}
 	}
-
 }

@@ -80,29 +80,26 @@
                         <div class="col-sm-8 col-sm-offset-2">
                             <h4 class="font-alt mb-0">User Information</h4>
                             <hr class="divider-w mt-10 mb-20">
-                            <form class="form" role="form" action="updateaccount" method="post" enctype="multipart/form-data">
+                            <form class="form" role="form" action="<%=request.getContextPath()%>/update" method="post" onsubmit="return Validate()">
                                 <div class="form-group">
-                                    <input class="form-control input-lg" type="text" name="username"  value="${account.username}" required>
+                                    <input class="form-control input-lg" type="text"  name="username" id="username" value="${account.username}" required readonly="readonly">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control input-lg" type="text" name="fullname"  value="${account.fullname}" required>
+                                    <input class="form-control input-lg" type="text" name="fullname" id="fullname" value="${account.fullname}" required>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control input-lg" type="text" name="email"  value="${account.email}" required>
+                                    <input class="form-control input-lg" type="text" name="email" id="email" value="${account.email}" required>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control input-lg" type="text" name="phonenumber"  value="${account.phonenumber}" required>
+                                    <input class="form-control input-lg" type="text" name="phonenumber" id="phonenumber" value="${account.phonenumber}" required>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control input-lg" type="file" name="avatar" accept="image/png,image/jpeg" size="10" >
-                                    
                                 </div>
                                 <div class="form-group " >
                                     <input class="btn btn-lg btn-block btn-round btn-b" type="submit" value="Update"/>
                                 </div>
                             </form>
-                            
-                            
                         </div>
                     </div>
                 </div>
@@ -112,6 +109,7 @@
         JavaScripts
         =============================================
         -->
+        <script src="<%=request.getContextPath()%>/resources/common/js/EditProfile.js"></script>
         <script src="<%=request.getContextPath()%>/resources/common/assets/lib/jquery/dist/jquery.js"></script>
         <script src="<%=request.getContextPath()%>/resources/common/assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="<%=request.getContextPath()%>/resources/common/assets/lib/wow/dist/wow.js"></script>
