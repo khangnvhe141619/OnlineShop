@@ -149,6 +149,13 @@ public class AccountDAOImpl implements AccountDAO {
 		}
 		return null;
 	}
+	
+	public static void main(String[] args) throws SQLException {
+		AccountDAO accountDAO = new AccountDAOImpl();
+		Account acc = accountDAO.getInfoAcc("lenovo5");
+		System.out.println(acc);
+	}
+
 
 	@Override
 	public Account findPassword(String email) throws SQLException {
@@ -181,7 +188,4 @@ public class AccountDAOImpl implements AccountDAO {
 		return account;
 
 	}
-        public static void main(String[] args) {
-        
-    }
 }
