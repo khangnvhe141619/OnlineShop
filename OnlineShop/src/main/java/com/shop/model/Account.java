@@ -40,6 +40,15 @@ public class Account {
 		this.password = password;
 		this.createdDate = createdDate;
 	}
+	
+	public Account(int accountId, String username, String fullname, String email, String phonenumber) {
+		super();
+		this.accountId = accountId;
+		this.username = username;
+		this.fullname = fullname;
+		this.email = email;
+		this.phonenumber = phonenumber;
+	}
 
 	public int getAccountId() {
 		return accountId;
