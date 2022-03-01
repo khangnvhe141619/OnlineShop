@@ -18,5 +18,5 @@ public interface AccountDAO {
 	
 	Account getInfoAcc(String email) throws SQLException;
 	
-	boolean getUpdateAccount(Account account) throws SQLException;
+	boolean getUpdateAccount(String accountID) throws SQLException;
 }

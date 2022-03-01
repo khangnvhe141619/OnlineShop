@@ -152,7 +152,7 @@ public class AccountDAOImpl implements AccountDAO {
 	
 
 	@Override
-	public boolean getUpdateAccount(Account account) throws SQLException {
+	public boolean getUpdateAccount(String accountID) throws SQLException {
 		
 		return false;
 	}
