@@ -84,6 +84,7 @@ public class SearchProductController extends HttpServlet {
 				request.setAttribute("lsct", lsct);
 				request.setAttribute("listp", listP);
 				request.setAttribute("name", name);
+				request.setAttribute("tag", index);
 				request.setAttribute("endpage", endPage);
 				request.setAttribute("cate", cateid);
 				request.getRequestDispatcher("views/Shop.jsp").forward(request, response);
