@@ -107,6 +107,9 @@
                 </section>
                 <hr class="divider-w">
                 <section class="module-small">
+                <p style="color: red; margin-left: 40px">
+			<%=request.getAttribute("mess")!=null?request.getAttribute("mess"):"" %></p>
+                
                     <div class="container">
                         <div class="row multi-columns-row">
                             <c:forEach items="${listp}" var="p">
