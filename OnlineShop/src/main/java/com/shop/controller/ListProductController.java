@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.shop.dao.ProductDAO;
+import com.shop.dao.impl.CategoryDAOImpl;
 import com.shop.dao.impl.ProductDAOImpl;
+import com.shop.model.Category;
 import com.shop.model.Product;
 
 /**
@@ -34,6 +36,11 @@ public class ListProductController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			ProductDAOImpl pd = new ProductDAOImpl();
+			CategoryDAOImpl ct = new CategoryDAOImpl();
+//			
+//			String cate = request.getParameter("cateid");
+//			System.out.println(cate);
+//			int cateid = Integer.parseInt(cate);
 			String pageIn=request.getParameter("index");
 			if(pageIn==null) {
 				pageIn="1";
@@ -48,6 +55,9 @@ public class ListProductController extends HttpServlet {
 				
 			}
 			List<Product> listP= pd.getListAllProduct(index);
+			List<Category> lsct = ct.getListAllCategory();
+//			request.setAttribute("cateid", cateid);
+			request.setAttribute("lsct", lsct);
 			request.setAttribute("listp", listP);
 			request.setAttribute("endpage", endPage);
 //			request.setAttribute("tag", index);
