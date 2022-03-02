@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tomee</title>
+    <title>404</title>
     <style>
         .page_404 {
             padding: 40px 0;
@@ -17,7 +17,7 @@
             width: 100%;
         }
         .four_zero_four_bg {
-            background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+            background-image: url('../resources/common/assets/images/404_bg.gif');
             height: 400px;
             background-position: center;
         }
@@ -66,7 +66,7 @@
                                 Look like you're lost
                             </h3>
                             <p>The page you are looking for not avaible!</p>
-                            <a href="" class="link_404">Go to Home</a>
+                            <a href="Home.jsp" class="link_404">Go to Home</a>
                         </div>
                     </div>
                 </div>

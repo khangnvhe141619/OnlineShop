@@ -11,7 +11,7 @@
 <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
                 <div class="container">
                     <div class="navbar-header">
-                        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="home.jsp">Teemo</a>
+                        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="home.jsp">Tomee</a>
                     </div>
                     <div class="collapse navbar-collapse" id="custom-collapse">
                         <ul class="nav navbar-nav navbar-right">
@@ -33,6 +33,7 @@
                                     ]</a></li>
                                     <li><a href="Contact.jsp">Contact</a></li>
                                     <c:if test="${sessionScope.login == null}">
+                                <li><a href="FAQ.jsp">FAQ</a></li>
                                 <li><a href="Login.jsp">Login</a></li>
                                 </c:if>
                                 <c:if test="${sessionScope.login != null}">

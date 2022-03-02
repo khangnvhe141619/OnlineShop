@@ -57,6 +57,7 @@
         <link id="color-scheme" href="<%=request.getContextPath()%>/resources/common/assets/css/colors/default.css" rel="stylesheet">
     </head>
     <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
+    
         <main>
             
 		<!-- header -->
