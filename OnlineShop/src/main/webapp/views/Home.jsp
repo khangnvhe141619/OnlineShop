@@ -57,190 +57,276 @@
         <link id="color-scheme" href="<%=request.getContextPath()%>/resources/common/assets/css/colors/default.css" rel="stylesheet">
     </head>
     <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
-        <main>
-            
+	<main>
+		<div class="page-loader">
+			<div class="loader">Loading...</div>
+		</div>
 		<!-- header -->
 		<jsp:include page="components/header.jsp"></jsp:include>
 		<!-- end header -->
-		<section class="home-section bg-dark-30" id="home" data-background="<%=request.getContextPath()%>/resources/common/assets/images/finance/finance_header_bg.png">
-                <div class="video-player" data-property="{videoURL:'https://www.youtube.com/watch?v=oj8_wufhE28&list=RDvsi1ivi03sE&index=2', containment:'.home-section', startAt:30, mute:true, autoPlay:true, loop:true, opacity:1, showControls:false, showYTLogo:false, vol:25}"></div>
-                <div class="video-controls-box">
-                    <div class="container">
-                        <div class="video-controls"><a class="fa fa-volume-up" id="video-volume" href="#">&nbsp;</a><a class="fa fa-pause" id="video-play" href="#">&nbsp;</a></div>
-                    </div>
-                </div>
-                <div class="titan-caption">
-                    <div class="caption-content">
-                        <div class="font-alt mb-30 titan-title-size-1">Hello &amp; welcome</div>
-                        <div class="font-alt mb-40 titan-title-size-4">We are Teemo Shop</div><a class="section-scroll btn btn-border-w btn-round" href="shop">Shopping Now</a>
-                    </div>
-                </div>
-            </section>
-            <div class="main">
-                <section class="module-extra-small bg-dark">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-6 col-md-8 col-lg-6 col-lg-offset-2">
-                                <div class="callout-text font-alt">
-                                    <h4 style="margin-top: 0px;">looking for a first-class business consultant?</h4>
-                                    <p style="margin-bottom: 0px;">We are always here for you</p>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-4 col-lg-2">
-                                <div class="callout-btn-box"><a class="btn btn-w btn-round" href="#">get a quote</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="module pt-0 pb-0">
-                    <div class="row position-relative m-0">
-                        <div class="col-xs-12 col-md-6 side-image" data-background="<%=request.getContextPath()%>/resources/common/images/home1.jpg"></div>
-                        <div class="col-xs-12 col-md-6 col-md-offset-6">
-                            <div class="row finance-image-content">
-                                <div class="col-md-10 col-md-offset-1">
-                                    <h2 class="module-title font-alt align-left">Practice Areas</h2>
-                                    <div class="row multi-columns-row">
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <div class="alt-features-item">
-                                                <div class="alt-features-icon"><span class="icon-briefcase"></span></div>
-                                                <h3 class="alt-features-title font-alt">Business consulting</h3>A wonderful serenity has taken possession of my entire soul like these sweet mornings.
-                                            </div>
-                                            <div class="alt-features-item">
-                                                <div class="alt-features-icon"><span class="icon-puzzle"></span></div>
-                                                <h3 class="alt-features-title font-alt">Marketing Strategy</h3>A wonderful serenity has taken possession of my entire soul like these sweet mornings.
-                                            </div>
-                                            <div class="alt-features-item">
-                                                <div class="alt-features-icon"><span class="icon-pricetags"></span></div>
-                                                <h3 class="alt-features-title font-alt">Taxes Advisory</h3>A wonderful serenity has taken possession of my entire soul like these sweet mornings.
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <div class="alt-features-item">
-                                                <div class="alt-features-icon"><span class="icon-wallet"></span></div>
-                                                <h3 class="alt-features-title font-alt">Investment planning</h3>A wonderful serenity has taken possession of my entire soul like these sweet mornings.
-                                            </div>
-                                            <div class="alt-features-item">
-                                                <div class="alt-features-icon"><span class="icon-laptop"></span></div>
-                                                <h3 class="alt-features-title font-alt">IT management</h3>A wonderful serenity has taken possession of my entire soul like these sweet mornings.
-                                            </div>
-                                            <div class="alt-features-item">
-                                                <div class="alt-features-icon"><span class="icon-linegraph"></span></div>
-                                                <h3 class="alt-features-title font-alt">Data Analytics</h3>A wonderful serenity has taken possession of my entire soul like these sweet mornings.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="module sliding-portfolio">
-                    <div class="row">
-                        <div class="col-sm-6 col-sm-offset-3">
-                            <h2 class="module-title font-alt">Our Product</h2>
-                        </div>
-                    </div>
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="owl-carousel text-center" data-items="4" data-pagination="false" data-navigation="false">
-                                
-                                <div class="owl-item">
-                                    <div class="col-sm-12">
-                                        <div class="work-item"><a href="shop?typeid=2">
-                                                <div class="work-image"><img src="<%=request.getContextPath()%>/resources/common/images/109.jpg" alt=""/></div>
-                                                <div class="work-caption font-alt">
-                                                    <h3 class="work-title">Laptop - Macbook</h3>
-                                                    <!--<div class="work-descr">Illustration</div>-->
-                                                </div></a></div>
-                                    </div>
-                                </div>
-                                <div class="owl-item">
-                                    <div class="col-sm-12">
-                                        <div class="work-item"><a href="#">
-                                                <div class="work-image"><img src="<%=request.getContextPath()%>/resources/common/images/SmartTV.jpg" /></div>
-                                                <div class="work-caption font-alt">
-                                                    <h3 class="work-title">Smart TV</h3>
-                                                    <!--<div class="work-descr">Illustration</div>-->
-                                                </div></a></div>
-                                    </div>
-                                </div>
-                                <div class="owl-item">
-                                    <div class="col-sm-12">
-                                        <div class="work-item"><a href="shop?typeid=1">
-                                                <div class="work-image"><img src="<%=request.getContextPath()%>/resources/common/images/115.jpg" alt=""/></div>
-                                                <div class="work-caption font-alt">
-                                                    <h3 class="work-title">Smart Phone</h3>
-                                                    <!--<div class="work-descr">Illustration</div>-->
-                                                </div></a></div>
-                                    </div>
-                                </div>
-                                <div class="owl-item">
-                                    <div class="col-sm-12">
-                                        <div class="work-item"><a href="shop?typeid=6">
-                                                <div class="work-image"><img src="<%=request.getContextPath()%>/resources/common/images/101.jpg" alt=""/></div>
-                                                <div class="work-caption font-alt">
-                                                    <h3 class="work-title">Keyboard</h3>
-                                                    <!--<div class="work-descr">Illustration</div>-->
-                                                </div></a></div>
-                                    </div>
-                                </div>
-                                <div class="owl-item">
-                                    <div class="col-sm-12">
-                                        <div class="work-item"><a href="#">
-                                                <div class="work-image"><img src="<%=request.getContextPath()%>/resources/common/images/tulanh.jpg" /></div>
-                                                <div class="work-caption font-alt">
-                                                    <h3 class="work-title">Refrigerator</h3>
-                                                    <!--<div class="work-descr">Marketing</div>-->
-                                                </div></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="text-center"><a class="btn btn-border-d btn-circle mt-50" href="shop">View All</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="module pt-0 pb-0" id="contact">
-                    <div class="row position-relative m-0">
-                        <div class="col-xs-12 col-md-6">
-                            <div class="row finance-image-content">
-                                <div class="col-md-10 col-md-offset-1">
-                                    <h2 class="module-title font-alt align-left">Subscribe</h2>
-                                    <form  method="post" action="<%=request.getContextPath()%>/subscribeController">
-                                        <div class="form-group">
-                                            <label class="sr-only" for="name">Name</label>
-                                            <input class="form-control" type="text" id="name" name="name" placeholder="Your Name*" required="required" data-validation-required-message="Please enter your name."/>
-                                            <p class="help-block text-danger"></p>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="sr-only" for="email">Email</label>
-                                            <input class="form-control" type="email" id="email" name="email" placeholder="Your Email*" required="required" data-validation-required-message="Please enter your email address."/>
-                                            <p class="help-block text-danger"></p>
-                                        </div>
-                                        
-                                        <div class="text-center">
-                                            <button class="btn btn-block btn-round btn-d" type="submit">Subscribe</button>
-                                        </div>
-                                    </form>
-                                    <div class="ajax-response font-alt" id="contactFormResponse"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-md-6 col-md-offset-6 side-image p-0">
-                            <section id="map-section">
-                                <div id="map"></div>
-                            </section>
-                        </div>
-                    </div>
-                </section>
-                 <!-- footer -->
-                <jsp:include page="components/footer.jsp"></jsp:include>
-                <!-- end footer -->
-            </div>
-            <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
-        </main>
-        <!--  
+		<section class="home-section bg-dark-30" id="home"
+			data-background="<%=request.getContextPath()%>/resources/common/assets/images/finance/finance_header_bg.png">
+			<div class="video-player"
+				data-property="{videoURL:'https://www.youtube.com/watch?v=oj8_wufhE28&list=RDvsi1ivi03sE&index=2', containment:'.home-section', startAt:30, mute:true, autoPlay:true, loop:true, opacity:1, showControls:false, showYTLogo:false, vol:25}"></div>
+			<div class="video-controls-box">
+				<div class="container">
+					<div class="video-controls">
+						<a class="fa fa-volume-up" id="video-volume" href="#">&nbsp;</a><a
+							class="fa fa-pause" id="video-play" href="#">&nbsp;</a>
+					</div>
+				</div>
+			</div>
+			<div class="titan-caption">
+				<div class="caption-content">
+					<div class="font-alt mb-30 titan-title-size-1">Hello &amp;
+						welcome</div>
+					<div class="font-alt mb-40 titan-title-size-4">We are Teemo
+						Shop</div>
+					<a class="section-scroll btn btn-border-w btn-round" href="shop">Shopping
+						Now</a>
+				</div>
+			</div>
+		</section>
+		<div class="main">
+			<section class="module-extra-small bg-dark">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-6 col-md-8 col-lg-6 col-lg-offset-2">
+							<div class="callout-text font-alt">
+								<h4 style="margin-top: 0px;">looking for a first-class
+									business consultant?</h4>
+								<p style="margin-bottom: 0px;">We are always here for you</p>
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-4 col-lg-2">
+							<div class="callout-btn-box">
+								<a class="btn btn-w btn-round" href="#">get a quote</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="module pt-0 pb-0">
+				<div class="row position-relative m-0">
+					<div class="col-xs-12 col-md-6 side-image"
+						data-background="<%=request.getContextPath()%>/resources/common/images/home1.jpg"></div>
+					<div class="col-xs-12 col-md-6 col-md-offset-6">
+						<div class="row finance-image-content">
+							<div class="col-md-10 col-md-offset-1">
+								<h2 class="module-title font-alt align-left">Practice Areas</h2>
+								<div class="row multi-columns-row">
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<div class="alt-features-item">
+											<div class="alt-features-icon">
+												<span class="icon-briefcase"></span>
+											</div>
+											<h3 class="alt-features-title font-alt">Business
+												consulting</h3>
+											A wonderful serenity has taken possession of my entire soul
+											like these sweet mornings.
+										</div>
+										<div class="alt-features-item">
+											<div class="alt-features-icon">
+												<span class="icon-puzzle"></span>
+											</div>
+											<h3 class="alt-features-title font-alt">Marketing
+												Strategy</h3>
+											A wonderful serenity has taken possession of my entire soul
+											like these sweet mornings.
+										</div>
+										<div class="alt-features-item">
+											<div class="alt-features-icon">
+												<span class="icon-pricetags"></span>
+											</div>
+											<h3 class="alt-features-title font-alt">Taxes Advisory</h3>
+											A wonderful serenity has taken possession of my entire soul
+											like these sweet mornings.
+										</div>
+									</div>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<div class="alt-features-item">
+											<div class="alt-features-icon">
+												<span class="icon-wallet"></span>
+											</div>
+											<h3 class="alt-features-title font-alt">Investment
+												planning</h3>
+											A wonderful serenity has taken possession of my entire soul
+											like these sweet mornings.
+										</div>
+										<div class="alt-features-item">
+											<div class="alt-features-icon">
+												<span class="icon-laptop"></span>
+											</div>
+											<h3 class="alt-features-title font-alt">IT management</h3>
+											A wonderful serenity has taken possession of my entire soul
+											like these sweet mornings.
+										</div>
+										<div class="alt-features-item">
+											<div class="alt-features-icon">
+												<span class="icon-linegraph"></span>
+											</div>
+											<h3 class="alt-features-title font-alt">Data Analytics</h3>
+											A wonderful serenity has taken possession of my entire soul
+											like these sweet mornings.
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="module sliding-portfolio">
+				<div class="row">
+					<div class="col-sm-6 col-sm-offset-3">
+						<h2 class="module-title font-alt">Our Product</h2>
+					</div>
+				</div>
+				<div class="container-fluid">
+					<div class="row">
+						<div class="owl-carousel text-center" data-items="4"
+							data-pagination="false" data-navigation="false">
+
+							<div class="owl-item">
+								<div class="col-sm-12">
+									<div class="work-item">
+										<a href="shop?typeid=2">
+											<div class="work-image">
+												<img
+													src="<%=request.getContextPath()%>/resources/common/images/109.jpg"
+													alt="" />
+											</div>
+											<div class="work-caption font-alt">
+												<h3 class="work-title">Laptop - Macbook</h3>
+												<!--<div class="work-descr">Illustration</div>-->
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="owl-item">
+								<div class="col-sm-12">
+									<div class="work-item">
+										<a href="#">
+											<div class="work-image">
+												<img
+													src="<%=request.getContextPath()%>/resources/common/images/SmartTV.jpg" />
+											</div>
+											<div class="work-caption font-alt">
+												<h3 class="work-title">Smart TV</h3>
+												<!--<div class="work-descr">Illustration</div>-->
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="owl-item">
+								<div class="col-sm-12">
+									<div class="work-item">
+										<a href="shop?typeid=1">
+											<div class="work-image">
+												<img
+													src="<%=request.getContextPath()%>/resources/common/images/115.jpg"
+													alt="" />
+											</div>
+											<div class="work-caption font-alt">
+												<h3 class="work-title">Smart Phone</h3>
+												<!--<div class="work-descr">Illustration</div>-->
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="owl-item">
+								<div class="col-sm-12">
+									<div class="work-item">
+										<a href="shop?typeid=6">
+											<div class="work-image">
+												<img
+													src="<%=request.getContextPath()%>/resources/common/images/101.jpg"
+													alt="" />
+											</div>
+											<div class="work-caption font-alt">
+												<h3 class="work-title">Keyboard</h3>
+												<!--<div class="work-descr">Illustration</div>-->
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="owl-item">
+								<div class="col-sm-12">
+									<div class="work-item">
+										<a href="#">
+											<div class="work-image">
+												<img
+													src="<%=request.getContextPath()%>/resources/common/images/tulanh.jpg" />
+											</div>
+											<div class="work-caption font-alt">
+												<h3 class="work-title">Refrigerator</h3>
+												<!--<div class="work-descr">Marketing</div>-->
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-12">
+							<div class="text-center">
+								<a class="btn btn-border-d btn-circle mt-50" href="shop">View
+									All</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="module pt-0 pb-0" id="contact">
+				<div class="row position-relative m-0">
+					<div class="col-xs-12 col-md-6">
+						<div class="row finance-image-content">
+							<div class="col-md-10 col-md-offset-1">
+								<h2 class="module-title font-alt align-left">Subscribe</h2>
+								<form method="post"
+									action="<%=request.getContextPath()%>/subscribeController">
+									<div class="form-group">
+										<label class="sr-only" for="name">Name</label> <input
+											class="form-control" type="text" id="name" name="name"
+											placeholder="Your Name*" required="required"
+											data-validation-required-message="Please enter your name." />
+										<p class="help-block text-danger"></p>
+									</div>
+									<div class="form-group">
+										<label class="sr-only" for="email">Email</label> <input
+											class="form-control" type="email" id="email" name="email"
+											placeholder="Your Email*" required="required"
+											data-validation-required-message="Please enter your email address." />
+										<p class="help-block text-danger"></p>
+									</div>
+
+									<div class="text-center">
+										<button class="btn btn-block btn-round btn-d" type="submit">Subscribe</button>
+									</div>
+								</form>
+								<div class="ajax-response font-alt" id="contactFormResponse"></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-md-6 col-md-offset-6 side-image p-0">
+						<section id="map-section">
+							<div id="map"></div>
+						</section>
+					</div>
+				</div>
+			</section>
+			<!-- footer -->
+			<jsp:include page="components/footer.jsp"></jsp:include>
+			<!-- end footer -->
+		</div>
+		<div class="scroll-up">
+			<a href="#totop"><i class="fa fa-angle-double-up"></i></a>
+		</div>
+	</main>
+	<!--  
         JavaScripts
         =============================================
         -->

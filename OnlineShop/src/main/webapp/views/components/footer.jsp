@@ -1,7 +1,7 @@
 <%@page import="java.sql.SQLException"%>
+<%@page import="com.shop.model.Contact"%>
 <%@page import="com.shop.dao.impl.ContactDAOImpl"%>
 <%@page import="com.shop.dao.ContactDAO"%>
-<%@page import="com.shop.model.Contact"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -17,23 +17,15 @@
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="widget">
-						<%
-						ContactDAO contactDAO = new ContactDAOImpl();
-						try {
-							Contact contact = contactDAO.getInformation();
-						%>
-
-						<h5 class="widget-title font-alt">About ${contact.name}</h5>
-						<p>${contact.desc}.</p>
-						<p>Phone: ${contact.phone}</p>
-						Fax: +1 234 567 89 10
-						<p>Email: ${contact.email}</p>
-						<%
-						} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-						}
-						%>
+					<%
+					ContactDAO cd = new ContactDAOImpl();
+					Contact c = cd.getInformation();
+					%>
+					<h5 class="widget-title font-alt">About <%=c.getName()%></h5>
+						<p><%=c.getDesc()%>.</p>						
+						<p>Email: <a href="Getintouch.jsp"><%=c.getEmail()%></a></p>
+						<p>Phone: <%=c.getPhone()%></p>
+						Address: <%=c.getAddress()%>				
 					</div>
 				</div>
 				<div class="col-sm-3">
@@ -102,7 +94,7 @@
 			<div class="row">
 				<div class="col-sm-6">
 					<p class="copyright font-alt">
-						&copy; 2022&nbsp;<a href="index.html">Tomee</a>, All Rights
+						&copy; 2022&nbsp;<a href="Home.jsp"><%=c.getName()%></a>, All Rights
 						Reserved
 					</p>
 				</div>

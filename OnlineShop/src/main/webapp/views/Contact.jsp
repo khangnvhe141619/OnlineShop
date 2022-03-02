@@ -64,6 +64,7 @@
             <!-- header -->
 		<jsp:include page="components/header.jsp"></jsp:include>
 		<!-- end header -->
+		
             <div class="main">
                 <section class="module bg-dark-60 shop-page-header" data-background="<%=request.getContextPath()%>/resources/common/images/contact_us_1.png">
                     <div class="container">
@@ -75,6 +76,24 @@
                         </div>
                     </div>
                 </section>
+                <div class="">
+                    <div class="aa-contact-address-right" style="text-align: center;">
+                        <address>
+                            <h1 style="font-weight: 60px;">${contact.name}</h1>
+                            <p>${contact.desc}</p>
+                            <p >
+                                <span class="fa fa-home"></span>${contact.address}
+                            </p>
+                            <p>
+                                <span class="fa fa-phone"></span>${contact.phone}
+                            </p>
+                            <p>
+                                <span class="fa fa-envelope"></span>Email:
+                                <a href="#">${contact.email}</a>
+                            </p>
+                        </address>
+                    </div>
+                </div>
                 <section class="module-small">
                     <div class="container">
                         <div class="aa-contact-map">
@@ -86,25 +105,7 @@
                     </div>
 
                 </section>                
-                <div class="">
-                    <div class="aa-contact-address-right" style="text-align: center;">
-                        <address>
-                            <h4>DailyShop</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing
-                                elit. Rerum modi dolor facilis! Nihil error, eius.</p>
-                            <p>
-                                <span class="fa fa-home"></span>Huntsville, AL 35813, USA
-                            </p>
-                            <p>
-                                <span class="fa fa-phone"></span>+ 021.343.7575
-                            </p>
-                            <p>
-                                <span class="fa fa-envelope"></span>Email:
-                                support@dailyshop.com
-                            </p>
-                        </address>
-                    </div>
-                </div>
+                
                  <!-- footer -->
                 <jsp:include page="components/footer.jsp"></jsp:include>
                 <!-- end footer -->

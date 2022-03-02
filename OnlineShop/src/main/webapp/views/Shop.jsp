@@ -55,6 +55,7 @@
         <link href="<%=request.getContextPath()%>/resources/common/assets/lib/simple-text-rotator/simpletextrotator.css" rel="stylesheet">
         <!-- Main stylesheet and color file-->
         <link href="<%=request.getContextPath()%>/resources/common/assets/css/style.css" rel="stylesheet">
+        <link href="<%=request.getContextPath()%>/resources/common/assets/css/style3.css" rel="stylesheet">
         <link id="color-scheme" href="<%=request.getContextPath()%>/resources/common/assets/css/colors/default.css" rel="stylesheet">
         
     </head>
@@ -79,12 +80,12 @@
                 </section>
                 <section class="module-small">
                     <div class="container">
-                        <form class="row" action="shop" method="GET">
+                        <form class="row" action="<%=request.getContextPath()%>/search" method="GET">
                             <div class="col-sm-3 mb-sm-20">
                                 <input class="form-control" type="text" name="name" placeholder="Find Product Name" value="${param.name}"/>
                             </div>
                             <div class="col-sm-3 mb-sm-20">
-                                <select class="form-control" name="typeid">
+                                <select class="form-control" name="category">
                                     <option selected="selected" value="-1">All Type</option>
                                     <c:forEach items="${lsct}" var="t">
                                         <option ${cateid == t.categoryID ? "selected":"" } value="${t.categoryID}">${t.categoryName}</option>
@@ -93,10 +94,10 @@
                             </div>
                             <div class="col-sm-3 mb-sm-20">
                                 <div class="col-sm-5 mb-sm-20">
-                                <input class="form-control" type="text" name="to" placeholder="to" value="${param.name}"/>
+                                <input class="form-control" type="text" name="to" placeholder="to" value="${param.to}"/>
                            		 </div>
                            		 <div class="col-sm-5 mb-sm-20">
-                                <input class="form-control" type="text" name="end" placeholder="end" value="${param.name}"/>
+                                <input class="form-control" type="text" name="end" placeholder="end" value="${param.end}"/>
                            		 </div>
                             </div>
                             <div class="col-sm-3">
@@ -107,6 +108,9 @@
                 </section>
                 <hr class="divider-w">
                 <section class="module-small">
+                <p style="color: red; margin-left: 40px">
+			<%=request.getAttribute("mess")!=null?request.getAttribute("mess"):"" %></p>
+                
                     <div class="container">
                         <div class="row multi-columns-row">
                             <c:forEach items="${listp}" var="p">
@@ -124,11 +128,11 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="pagination font-alt " id="pagger">
-                                  <a href="#"><i class="fa fa-angle-left"></i></a>
+                                  <a href="<%=request.getContextPath()%>/search?index=${tag-1==0?1:tag-1}&&category=${cate}&&name=${name}&&to=${to}&&end=${end}"><i class="fa fa-angle-left"></i></a>
                                    <c:forEach begin="1" end="${endpage }" var="i">
-                                   		<a href="<%=request.getContextPath()%>/list?index=${i}">${i }</a>
+                                   		<a class="${tag == i ? "active" :"" }"  href="<%=request.getContextPath()%>/search?index=${i}&&category=${cate}&&name=${name}&&to=${to}&&end=${end}" >${i }</a>
                                    </c:forEach>
-                                    <a href="#"><i class="fa fa-angle-right"></i></a>
+                                    <a href="<%=request.getContextPath()%>/search?index=${tag+1>endPage?tag:tag+1}&&category=${cate}&&name=${name}&&to=${to}&&end=${end}"><i class="fa fa-angle-right"></i></a>
                                 </div>
                             </div>
                         </div>
