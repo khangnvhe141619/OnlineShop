@@ -80,7 +80,7 @@
                 </section>
                 <section class="module-small">
                     <div class="container">
-                        <form class="row" action="<%=request.getContextPath()%>/search" method="GET">
+                        <form name="myform" class="row" action="<%=request.getContextPath()%>/search" method="GET" onsubmit="return validate()">
                             <div class="col-sm-3 mb-sm-20">
                                 <input class="form-control" type="text" name="name" placeholder="Find Product Name" value="${param.name}"/>
                             </div>
@@ -165,5 +165,21 @@
             pagger(${requestScope.pageindex},${requestScope.totalpage}, 2, "pagger","${param.name}", "${param.typeid}","${param.manuid}");
 
         </script>
+        <script>
+    	function validate() {
+       	 var numto = document.myform.to.value;
+       	 var numend = document.myform.end.value;
+       	
+        if (isNaN(numto) || isNaN(numend)) {
+        	alert("please enter the number!!! ");
+            return false;
+        } else if(numto > numend) {
+        	alert("please enter end > to ");
+        	 return false;
+        }else{
+        	return true;
+        }
+    }
+</script>
     </body>
 </html>
