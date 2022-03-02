@@ -23,7 +23,7 @@
                                     <li><a href="shop?typeid=6">KeyBoard</a></li>
                                 </ul>
                             </li>
-                            <li><a href="Cart.jsp">View Cart[
+                            <li><a href="views/Cart.jsp">View Cart[
                                     <c:if test="${sessionScope.size == null}">
                                         0
                                     </c:if>
@@ -33,11 +33,11 @@
                                     ]</a></li>
                                     <li><a href="<%=request.getContextPath()%>/contactController">Contact</a></li>
                                     <c:if test="${sessionScope.login == null}">
-                                <li><a href="FAQ.jsp">FAQ</a></li>
-                                <li><a href="Login.jsp">Login</a></li>
+                                <li><a href="views/FAQ.jsp">FAQ</a></li>
+                                <li><a href="views/Login.jsp">Login</a></li>
                                 </c:if>
                                 <c:if test="${sessionScope.login != null}">
-                                <li><a style="color:red" href="Update-account.jsp">${sessionScope.login.name}</a></li>
+                                <li><a style="color:red" href="views/Update-account.jsp">${sessionScope.login.name}</a></li>
                                 <li><a href="signout">Sign Out</a></li>
                                 </c:if>
 

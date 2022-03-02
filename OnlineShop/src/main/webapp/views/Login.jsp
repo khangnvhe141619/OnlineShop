@@ -64,7 +64,7 @@
 							</div>
 						</form>
 						<div class="" style="margin: 10% 0 5%;">
-							<span class=""><a href="Forgot-password.jsp"
+							<span class=""><a href="<%=request.getContextPath()%>/forgotPasswordController"
 								style="text-decoration: none; color: black">Forgot your
 									password?</a></span>
 						</div>
