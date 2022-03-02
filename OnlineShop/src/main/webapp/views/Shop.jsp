@@ -79,12 +79,12 @@
                 </section>
                 <section class="module-small">
                     <div class="container">
-                        <form class="row" action="shop" method="GET">
+                        <form class="row" action="<%=request.getContextPath()%>/search" method="GET">
                             <div class="col-sm-3 mb-sm-20">
                                 <input class="form-control" type="text" name="name" placeholder="Find Product Name" value="${param.name}"/>
                             </div>
                             <div class="col-sm-3 mb-sm-20">
-                                <select class="form-control" name="typeid">
+                                <select class="form-control" name="category">
                                     <option selected="selected" value="-1">All Type</option>
                                     <c:forEach items="${lsct}" var="t">
                                         <option ${cateid == t.categoryID ? "selected":"" } value="${t.categoryID}">${t.categoryName}</option>
@@ -93,10 +93,10 @@
                             </div>
                             <div class="col-sm-3 mb-sm-20">
                                 <div class="col-sm-5 mb-sm-20">
-                                <input class="form-control" type="text" name="to" placeholder="to" value="${param.name}"/>
+                                <input class="form-control" type="text" name="to" placeholder="to" value="${param.to}"/>
                            		 </div>
                            		 <div class="col-sm-5 mb-sm-20">
-                                <input class="form-control" type="text" name="end" placeholder="end" value="${param.name}"/>
+                                <input class="form-control" type="text" name="end" placeholder="end" value="${param.end}"/>
                            		 </div>
                             </div>
                             <div class="col-sm-3">

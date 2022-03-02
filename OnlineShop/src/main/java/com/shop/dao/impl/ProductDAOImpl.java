@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.chainsaw.Main;
 
@@ -105,8 +107,7 @@ public class ProductDAOImpl implements ProductDAO {
 		String sql = "UPDATE Product\r\n"
 				+ "SET [CategoryId] = ?, [ProductName] = ?, [Image] = ?, [Description] = ?, [CreatedDate] = ?,\r\n"
 				+ "[IssuingCompany] = ?, [PublicationDate] = ?, [CoverTypeId] = ?,\r\n"
-				+ "[PublishingCompany] = ?, [Quantity] = ?, [Price] = ?, [NumberPage] = ?\r\n"
-				+ " WHERE ProductID = ?";
+				+ "[PublishingCompany] = ?, [Quantity] = ?, [Price] = ?, [NumberPage] = ?\r\n" + " WHERE ProductID = ?";
 		int row = 0;
 		try {
 			con = DBConnection.getInstance().getConnection();
@@ -161,16 +162,14 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public List<Product> getListAllProduct(int index) throws SQLException {
-		String sql = "SELECT * FROM PRODUCT\r\n"
-				+ "ORDER BY ProductID\r\n"
-				+ "OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY";
+		String sql = "SELECT * FROM PRODUCT\r\n" + "ORDER BY ProductID\r\n" + "OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY";
 		Product product = null;
 		List<Product> lstProduct = new ArrayList<Product>();
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, (index-1)*3);
-			
+			ps.setInt(1, (index - 1) * 3);
+
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				product = new Product();
@@ -206,74 +205,206 @@ public class ProductDAOImpl implements ProductDAO {
 		return lstProduct;
 	}
 
-
 	@Override
 	public int countProduct() throws SQLException {
-			String sql = "SELECT COUNT(*) FROM Product";
-			int count = 0;
-			try {
-				con = DBConnection.getInstance().getConnection();
-				ps = con.prepareStatement(sql);
-				rs = ps.executeQuery();
-				while (rs.next()) {
-					count = rs.getInt(1);
-				}
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} finally {
-				if (rs != null) {
-					rs.close();
-				}
-				if (ps != null) {
-					ps.close();
-				}
-				if (con != null) {
-					con.close();
-				}
+		String sql = "SELECT COUNT(*) FROM Product";
+		int count = 0;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				count = rs.getInt(1);
 			}
-			return count;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (con != null) {
+				con.close();
+			}
 		}
-
-	
-	
-	public static void main(String[] args) throws SQLException {
-		ProductDAOImpl pd = new ProductDAOImpl();
-		int c = pd.countSearch(1, "a", 10000, 20000);
-		System.out.println(c);
+		return count;
 	}
 
+	public static void main(String[] args) throws SQLException {
+		ProductDAOImpl pd = new ProductDAOImpl();
+//		List<Product> ls = pd.searchProduct(1,1,"a", 10000, 20000);
+//		for (Product product : ls) {
+//			System.out.println(product.toString());
+//		}
+		int c = pd.countSearch(1, null, 10000, 20000);
+			System.out.println(c);
+		}
+
 	public int countSearch(int cateid, String pname, int to, int end) throws SQLException {
-		String sql= "SELECT COUNT(*)\r\n"
-				+ "From Product\r\n"
-				+ "WHERE 1=1  ";
-		if(cateid != -1) {
-			sql+=" and CategoryId =?";
+		String sql = "SELECT COUNT(*)\r\n" + "From Product\r\n" + "WHERE 1=1  ";
+		int paramCount = 0;
+		HashMap<Integer, Object[]> params = new HashMap<>();
+		if (cateid != -1) {
+			sql += " and CategoryId =?";
+			paramCount++;
+			Object[] param = new Object[2];
+			param[0] = "INT";
+			param[1] = cateid;
+			params.put(paramCount, param);
 		}
-		if(pname!= null || pname!=" ") {
-			sql+=" and ProductName like '%'+?+'%'";
+		if (pname != null && pname.trim().length() > 0) {
+			sql += " and ProductName like '%'+?+'%' ";
+			paramCount++;
+			Object[] param = new Object[2];
+			param[0] = "STRING";
+			param[1] = pname;
+			params.put(paramCount, param);
 		}
-		if(to != -1 && end !=-1) {
-			sql+= " and Price between ? and ?";
+		if (to != -1) {
+			sql += " and Price between ? ";
+			paramCount++;
+			Object[] param = new Object[2];
+			param[0] = "DATE";
+			param[1] = to;
+			params.put(paramCount, param);
+		}
+		if (end != -1) {
+			sql += " and ?";
+			paramCount++;
+			Object[] param = new Object[2];
+			param[0] = "END";
+			param[1] = end;
+			params.put(paramCount, param);
 		}
 		int count = 0;
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, cateid);
-			ps.setString(2, pname);
-			ps.setInt(3, to);
-			ps.setInt(4, end);
-			rs = ps.executeQuery();
-			while(rs.next()) {
-				count= rs.getInt(1);
+			for (Map.Entry<Integer, Object[]> entry : params.entrySet()) {
+				Integer index = entry.getKey();
+				Object[] value = entry.getValue();
+				switch (value[0].toString()) {
+				case "INT":
+					ps.setInt(index, Integer.parseInt(value[1].toString()));
+					break;
+				case "STRING":
+					ps.setString(index, value[1].toString());
+					break;
+				case "DATE":
+					ps.setInt(index, Integer.parseInt(value[1].toString()));
+					break;
+				case "END":
+					ps.setInt(index, Integer.parseInt(value[1].toString()));
+					break;
+				default:
+					break;
+				}
 			}
-		}catch (Exception e) {
+
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (Exception e) {
 			System.out.println("ngu");
 		}
-		
-	return count;
+
+		return count;
 	}
 
+	@Override
+	public List<Product> searchProduct(int index, int cateid, String pname, int to, int end) throws SQLException {
+		List<Product> list = new ArrayList<Product>();
+		String sql = "SELECT ROW_NUMBER() over (order by productID) as stt ,* FROM Product\n" + "WHERE 1=1 ";
+		int paramCount = 0;
+		HashMap<Integer, Object[]> params = new HashMap<>();
+		if (cateid != -1) {
+			sql += " and CategoryId =?";
+			paramCount++;
+			Object[] param = new Object[2];
+			param[0] = "INT";
+			param[1] = cateid;
+			params.put(paramCount, param);
+		}
+		if (pname != null && pname.trim().length() > 0) {
+			sql += " and ProductName like '%'+?+'%'";
+			paramCount++;
+			Object[] param = new Object[2];
+			param[0] = "STRING";
+			param[1] = pname;
+			params.put(paramCount, param);
+		}
+		if (to != -1) {
+			sql += " and Price between ? ";
+			paramCount++;
+			Object[] param = new Object[2];
+			param[0] = "DATE";
+			param[1] = to;
+			params.put(paramCount, param);
+		}
+		if (end != -1) {
+			sql += " and ?";
+			paramCount++;
+			Object[] param = new Object[2];
+			param[0] = "END";
+			param[1] = end;
+			params.put(paramCount, param);
+		}
+		sql = " WITH x as (" + sql + ") SELECT * from x where stt between ? and ?";
+		try {
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareStatement(sql);
+			for (Map.Entry<Integer, Object[]> entry : params.entrySet()) {
+				Integer i = entry.getKey();
+				Object[] value = entry.getValue();
+				switch (value[0].toString()) {
+				case "INT":
+					ps.setInt(i, Integer.parseInt(value[1].toString()));
+					break;
+				case "STRING":
+					ps.setString(i, value[1].toString());
+					break;
+				case "DATE":
+					ps.setInt(i, Integer.parseInt(value[1].toString()));
+					break;
+				case "END":
+					ps.setInt(i, Integer.parseInt(value[1].toString()));
+					break;
+				default:
+					break;
+				}
+
+			}
+			ps.setInt(paramCount+1, index * 3 - 2);
+			ps.setInt(paramCount+2, index * 3 );
+			
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				Product product = new Product();
+				product.setStt(rs.getInt("stt"));
+				product.setProductID(rs.getInt("ProductID"));
+				product.setCategoryId(rs.getInt("CategoryId"));
+				product.setProductName(rs.getString("ProductName"));
+				product.setImage(rs.getString("Image"));
+				product.setDescription(rs.getString("Description"));
+				product.setCreatedDate(rs.getTimestamp("CreatedDate").toLocalDateTime());
+				product.setIssuingCompany(rs.getString("IssuingCompany"));
+				product.setPublicationDate(rs.getTimestamp("PublicationDate").toLocalDateTime());
+				product.setCoverType(rs.getInt("CoverTypeId"));
+				product.setPublishingCompany(rs.getString("PublishingCompany"));
+				product.setQuantity(rs.getInt("Quantity"));
+				product.setPrice(rs.getDouble("Price"));
+				product.setNumberPage(rs.getInt("NumberPage"));
+				list.add(product);
+			}
+		} catch (Exception e) {
+			System.out.println("ngu");
+		}
+
+		return list;
+	}
 
 }
