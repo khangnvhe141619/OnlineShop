@@ -22,4 +22,5 @@ public interface ProductDAO {
 	public List<Product> getListAllProduct(int index) throws SQLException;
 	
 	public int countProduct() throws SQLException;
+	public int countSearch(int cateid,String pname,int to, int end ) throws SQLException;
 }
