@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.chainsaw.Main;
+
 import com.shop.dao.ProductDAO;
 import com.shop.model.Product;
 import com.shop.utils.DBConnection;
@@ -233,8 +235,45 @@ public class ProductDAOImpl implements ProductDAO {
 			return count;
 		}
 
-	   public static void main(String[] args) {
-        
-    }
+	
+	
+	public static void main(String[] args) throws SQLException {
+		ProductDAOImpl pd = new ProductDAOImpl();
+		int c = pd.countSearch(1, "a", 10000, 20000);
+		System.out.println(c);
+	}
+
+	public int countSearch(int cateid, String pname, int to, int end) throws SQLException {
+		String sql= "SELECT COUNT(*)\r\n"
+				+ "From Product\r\n"
+				+ "WHERE 1=1  ";
+		if(cateid != -1) {
+			sql+=" and CategoryId =?";
+		}
+		if(pname!= null || pname!=" ") {
+			sql+=" and ProductName like '%'+?+'%'";
+		}
+		if(to != -1 && end !=-1) {
+			sql+= " and Price between ? and ?";
+		}
+		int count = 0;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, cateid);
+			ps.setString(2, pname);
+			ps.setInt(3, to);
+			ps.setInt(4, end);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				count= rs.getInt(1);
+			}
+		}catch (Exception e) {
+			System.out.println("ngu");
+		}
+		
+	return count;
+	}
+
 
 }
