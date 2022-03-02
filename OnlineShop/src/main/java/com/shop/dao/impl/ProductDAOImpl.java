@@ -235,13 +235,13 @@ public class ProductDAOImpl implements ProductDAO {
 
 	public static void main(String[] args) throws SQLException {
 		ProductDAOImpl pd = new ProductDAOImpl();
-		List<Product> ls = pd.searchProduct(3, -1, null, -1, -1);
-		for (Product product : ls) {
-			System.out.println(product.toString());
+//		List<Product> ls = pd.searchProduct(1,1,"a", 10000, 20000);
+//		for (Product product : ls) {
+//			System.out.println(product.toString());
+//		}
+		int c = pd.countSearch(1, null, 10000, 20000);
+			System.out.println(c);
 		}
-//		int c = pd.countSearch(-1, null, 10000, 20000);
-//		System.out.println(c);
-	}
 
 	public int countSearch(int cateid, String pname, int to, int end) throws SQLException {
 		String sql = "SELECT COUNT(*)\r\n" + "From Product\r\n" + "WHERE 1=1  ";
@@ -256,7 +256,7 @@ public class ProductDAOImpl implements ProductDAO {
 			params.put(paramCount, param);
 		}
 		if (pname != null && pname.trim().length() > 0) {
-			sql += " and ProductName like '%'+?+'%'";
+			sql += " and ProductName like '%'+?+'%' ";
 			paramCount++;
 			Object[] param = new Object[2];
 			param[0] = "STRING";
@@ -290,7 +290,7 @@ public class ProductDAOImpl implements ProductDAO {
 				case "INT":
 					ps.setInt(index, Integer.parseInt(value[1].toString()));
 					break;
-				case "String":
+				case "STRING":
 					ps.setString(index, value[1].toString());
 					break;
 				case "DATE":
@@ -364,7 +364,7 @@ public class ProductDAOImpl implements ProductDAO {
 				case "INT":
 					ps.setInt(i, Integer.parseInt(value[1].toString()));
 					break;
-				case "String":
+				case "STRING":
 					ps.setString(i, value[1].toString());
 					break;
 				case "DATE":
