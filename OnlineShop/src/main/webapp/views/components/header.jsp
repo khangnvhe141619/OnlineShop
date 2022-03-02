@@ -31,7 +31,7 @@
                                         ${sessionScope.size}
                                     </c:if>
                                     ]</a></li>
-                                    <li><a href="Contact.jsp">Contact</a></li>
+                                    <li><a href="<%=request.getContextPath()%>/contactController">Contact</a></li>
                                     <c:if test="${sessionScope.login == null}">
                                 <li><a href="FAQ.jsp">FAQ</a></li>
                                 <li><a href="Login.jsp">Login</a></li>

@@ -23,7 +23,7 @@
 					%>
 					<h5 class="widget-title font-alt">About <%=c.getName()%></h5>
 						<p><%=c.getDesc()%>.</p>						
-						<p>Email: <a href="#"><%=c.getEmail()%></a></p>
+						<p>Email: <a href="Getintouch.jsp"><%=c.getEmail()%></a></p>
 						<p>Phone: <%=c.getPhone()%></p>
 						Address: <%=c.getAddress()%>				
 					</div>
