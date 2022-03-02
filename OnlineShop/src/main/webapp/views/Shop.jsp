@@ -55,6 +55,7 @@
         <link href="<%=request.getContextPath()%>/resources/common/assets/lib/simple-text-rotator/simpletextrotator.css" rel="stylesheet">
         <!-- Main stylesheet and color file-->
         <link href="<%=request.getContextPath()%>/resources/common/assets/css/style.css" rel="stylesheet">
+        <link href="<%=request.getContextPath()%>/resources/common/assets/css/style3.css" rel="stylesheet">
         <link id="color-scheme" href="<%=request.getContextPath()%>/resources/common/assets/css/colors/default.css" rel="stylesheet">
         
     </head>
@@ -127,11 +128,11 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="pagination font-alt " id="pagger">
-                                  <a href="#"><i class="fa fa-angle-left"></i></a>
+                                  <a href="<%=request.getContextPath()%>/search?index=${tag-1==0?1:tag-1}&&category=${cate}&&name=${name}&&to=${to}&&end=${end}"><i class="fa fa-angle-left"></i></a>
                                    <c:forEach begin="1" end="${endpage }" var="i">
-                                   		<a href="<%=request.getContextPath()%>/search?index=${i}&&category=${cate}&&name=${name}&&to=${to}&&end=${end}">${i }</a>
+                                   		<a class="${tag == i ? "active" :"" }"  href="<%=request.getContextPath()%>/search?index=${i}&&category=${cate}&&name=${name}&&to=${to}&&end=${end}" >${i }</a>
                                    </c:forEach>
-                                    <a href="#"><i class="fa fa-angle-right"></i></a>
+                                    <a href="<%=request.getContextPath()%>/search?index=${tag+1>endPage?tag:tag+1}&&category=${cate}&&name=${name}&&to=${to}&&end=${end}"><i class="fa fa-angle-right"></i></a>
                                 </div>
                             </div>
                         </div>
