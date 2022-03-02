@@ -11,7 +11,7 @@
         Document Title
         =============================================
         -->
-        <title>Shop </title>
+        <title>Teemo </title>
         <!--  
         Favicons
         =============================================
@@ -86,26 +86,18 @@
                             <div class="col-sm-3 mb-sm-20">
                                 <select class="form-control" name="typeid">
                                     <option selected="selected" value="-1">All Type</option>
-                                    <c:forEach items="${requestScope.types}" var="t">
-                                        <option value="${t.typeid}"
-                                                <c:if test="${param.typeid == t.typeid}" >
-                                                    selected="selected"
-                                                </c:if>
-                                                >${t.typename}</option>
+                                    <c:forEach items="${lsct}" var="t">
+                                        <option ${cateid == t.categoryID ? "selected":"" } value="${t.categoryID}">${t.categoryName}</option>
                                     </c:forEach>
                                 </select>
                             </div>
                             <div class="col-sm-3 mb-sm-20">
-                                <select class="form-control" name="manuid">
-                                    <option selected="selected" value="-1">All Manufactures</option>
-                                    <c:forEach items="${requestScope.manues}" var="t">
-                                        <option value="${t.manufacturerid}"
-                                                <c:if test="${param.manuid == t.manufacturerid}" >
-                                                    selected="selected"
-                                                </c:if>
-                                                >${t.manufacturername}</option>
-                                    </c:forEach>
-                                </select>
+                                <div class="col-sm-5 mb-sm-20">
+                                <input class="form-control" type="text" name="to" placeholder="to" value="${param.name}"/>
+                           		 </div>
+                           		 <div class="col-sm-5 mb-sm-20">
+                                <input class="form-control" type="text" name="end" placeholder="end" value="${param.name}"/>
+                           		 </div>
                             </div>
                             <div class="col-sm-3">
                                 <button class="btn btn-block btn-round btn-g" type="submit">Search</button>
