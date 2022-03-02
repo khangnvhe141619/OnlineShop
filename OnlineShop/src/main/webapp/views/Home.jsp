@@ -80,9 +80,9 @@
 				<div class="caption-content">
 					<div class="font-alt mb-30 titan-title-size-1">Hello &amp;
 						welcome</div>
-					<div class="font-alt mb-40 titan-title-size-4">We are Teemo
+					<div class="font-alt mb-40 titan-title-size-4">We are Tomee
 						Shop</div>
-					<a class="section-scroll btn btn-border-w btn-round" href="shop">Shopping
+					<a class="section-scroll btn btn-border-w btn-round" href="<%=request.getContextPath()%>/list">Shopping
 						Now</a>
 				</div>
 			</div>
@@ -109,7 +109,7 @@
 			<section class="module pt-0 pb-0">
 				<div class="row position-relative m-0">
 					<div class="col-xs-12 col-md-6 side-image"
-						data-background="<%=request.getContextPath()%>/resources/common/images/home1.jpg"></div>
+						data-background="<%=request.getContextPath()%>/resources/common/images/home_img.jpg"></div>
 					<div class="col-xs-12 col-md-6 col-md-offset-6">
 						<div class="row finance-image-content">
 							<div class="col-md-10 col-md-offset-1">
@@ -273,7 +273,7 @@
 						</div>
 						<div class="col-sm-12">
 							<div class="text-center">
-								<a class="btn btn-border-d btn-circle mt-50" href="shop">View
+								<a class="btn btn-border-d btn-circle mt-50" href="<%=request.getContextPath()%>/list">View
 									All</a>
 							</div>
 						</div>
@@ -283,7 +283,7 @@
 			<section class="module pt-0 pb-0" id="contact">
 				<div class="row position-relative m-0">
 					<div class="col-xs-12 col-md-6">
-						<div class="row finance-image-content">
+						<div class="row finance-image-content" style="border: none;">
 							<div class="col-md-10 col-md-offset-1">
 								<h2 class="module-title font-alt align-left">Subscribe</h2>
 								<form method="post"
@@ -311,11 +311,29 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-12 col-md-6 col-md-offset-6 side-image p-0">
-						<section id="map-section">
-							<div id="map"></div>
-						</section>
-					</div>
+					<div class="col-sm-6">
+                <h4 class="font-alt mb-30">Our Expertises</h4>
+                <h6 class="font-alt"><span class="icon-tools-2"></span> Development
+                </h6>
+                <div class="progress">
+                  <div class="progress-bar pb-dark" aria-valuenow="60" role="progressbar" aria-valuemin="0" aria-valuemax="100"><span class="font-alt"></span></div>
+                </div>
+                <h6 class="font-alt"><span class="icon-strategy"></span> Branding
+                </h6>
+                <div class="progress">
+                  <div class="progress-bar pb-dark" aria-valuenow="80" role="progressbar" aria-valuemin="0" aria-valuemax="100"><span class="font-alt"></span></div>
+                </div>
+                <h6 class="font-alt"><span class="icon-camera"></span> Photography
+                </h6>
+                <div class="progress">
+                  <div class="progress-bar pb-dark" aria-valuenow="90" role="progressbar" aria-valuemin="0" aria-valuemax="100"><span class="font-alt"></span></div>
+                </div>
+                <h6 class="font-alt"><span class="icon-pencil"></span> Designing
+                </h6>
+                <div class="progress">
+                  <div class="progress-bar pb-dark" aria-valuenow="70" role="progressbar" aria-valuemin="0" aria-valuemax="100"><span class="font-alt"></span></div>
+                </div>
+              </div>
 				</div>
 			</section>
 			<!-- footer -->

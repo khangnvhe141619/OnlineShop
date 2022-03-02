@@ -1,5 +1,6 @@
 package com.shop.model;
 
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
 
 public class Product {
@@ -17,7 +18,7 @@ public class Product {
 	private int quantity;
 	private double price;
 	private int numberPage;
-
+	
 	public Product() {
 		// TODO Auto-generated constructor stub
 	}

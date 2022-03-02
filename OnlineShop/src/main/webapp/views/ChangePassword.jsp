@@ -11,7 +11,7 @@
         Document Title
         =============================================
         -->
-<title>Update profile</title>
+<title>Change Password</title>
 <!--  
         Favicons
         =============================================

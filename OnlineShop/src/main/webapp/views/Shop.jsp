@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@page import="java.text.NumberFormat"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
@@ -11,7 +11,7 @@
         Document Title
         =============================================
         -->
-        <title>Teemo </title>
+        <title>Shop </title>
         <!--  
         Favicons
         =============================================
@@ -60,7 +60,11 @@
         
     </head>
     <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
-        <main>
+	<%
+	NumberFormat nf = NumberFormat.getInstance();
+	nf.setMinimumFractionDigits(0);
+	%>
+	<main>
             <div class="page-loader">
                 <div class="loader">Loading...</div>
             </div>
@@ -116,11 +120,11 @@
                             <c:forEach items="${listp}" var="p">
                                 <div class="col-sm-6 col-md-4 col-lg-4">
                                     <div class="shop-item">
-                                        <div class="shop-item-image"><img src="https://elead.com.vn/wp-content/uploads/2020/04/anh-dep-hoa-huong-duong-va-mat-troi_022805970-1-1181x800-6.jpg" alt="anh product"/>
+                                        <div class="shop-item-image"><img style="width: 100%;height: 350px;" src="<%=request.getContextPath()%>/resources/common/images/products/${p.image}" alt="anh product"/>
                                             <div class="shop-item-detail"><a href="<%=request.getContextPath()%>/details?id=${p.productID}" class="btn btn-round btn-b"><span class="icon-basket">View Detail Product</span></a></div>
                                         </div>
                                         <h4 class="shop-item-title font-alt"><a href="#">${p.productName}</a></h4>
-                                        <h5>${p.price}</h5>
+                                        <h5>${p.price} VND</h5>
                                     </div>
                                 </div>
                             </c:forEach>
