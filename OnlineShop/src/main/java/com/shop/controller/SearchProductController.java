@@ -69,12 +69,26 @@ public class SearchProductController extends HttpServlet {
 			}
 			List<Product> listP= pd.searchProduct(index, cateid, name, to, end);
 			List<Category> lsct = ct.getListAllCategory();
-			request.setAttribute("lsct", lsct);
-			request.setAttribute("listp", listP);
-			request.setAttribute("to", to);
-			request.setAttribute("endpage", endPage);
-			request.setAttribute("cateid", cateid);
-			request.getRequestDispatcher("views/Shop.jsp").forward(request, response);
+			if(listP.isEmpty()) {
+				request.setAttribute("mess", "Can not find");
+				request.setAttribute("lsct", lsct);
+				request.setAttribute("listp", listP);
+				request.setAttribute("to", to);
+				request.setAttribute("endpage", endPage);
+				request.setAttribute("cateid", cateid);
+				request.getRequestDispatcher("views/Shop.jsp").forward(request, response);
+				request.getRequestDispatcher("views/Shop.jsp").forward(request, response);
+			}else {
+				request.setAttribute("mess", "There are "+count +" search results for");
+				request.setAttribute("lsct", lsct);
+				request.setAttribute("listp", listP);
+				request.setAttribute("to", to);
+				request.setAttribute("endpage", endPage);
+				request.setAttribute("cateid", cateid);
+				request.getRequestDispatcher("views/Shop.jsp").forward(request, response);
+			}
+			
+
 		} catch (Exception e) {
 			System.out.println("loi");
 		}
