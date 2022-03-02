@@ -38,9 +38,13 @@ public class SearchProductController extends HttpServlet {
 			CategoryDAOImpl ct = new CategoryDAOImpl();
 			String name =request.getParameter("name");
 			String cate= request.getParameter("category");
-			int cateid= Integer.parseInt(cate);
 			String t=request.getParameter("to");
 			String e= request.getParameter("end");
+			if(name=="" && cate=="" &&t=="" &&e=="") {
+				request.getRequestDispatcher("/list").forward(request, response);
+			}
+			int cateid= Integer.parseInt(cate);
+			
 			if(t == null || t.trim().length()==0) {
 				t="-1";
 			}
@@ -49,8 +53,6 @@ public class SearchProductController extends HttpServlet {
 			}
 			int to = Integer.parseInt(t);
 			int end= Integer.parseInt(e);
-			
-			
 			System.out.println(cateid);
 			System.out.println(name.toUpperCase());
 			
@@ -67,24 +69,23 @@ public class SearchProductController extends HttpServlet {
 				endPage++;
 				
 			}
+			
 			List<Product> listP= pd.searchProduct(index, cateid, name, to, end);
 			List<Category> lsct = ct.getListAllCategory();
 			if(listP.isEmpty()) {
 				request.setAttribute("mess", "Can not find");
 				request.setAttribute("lsct", lsct);
 				request.setAttribute("listp", listP);
-				request.setAttribute("to", to);
 				request.setAttribute("endpage", endPage);
-				request.setAttribute("cateid", cateid);
 				request.getRequestDispatcher("views/Shop.jsp").forward(request, response);
 				request.getRequestDispatcher("views/Shop.jsp").forward(request, response);
 			}else {
 				request.setAttribute("mess", "There are "+count +" search results for");
 				request.setAttribute("lsct", lsct);
 				request.setAttribute("listp", listP);
-				request.setAttribute("to", to);
+				request.setAttribute("name", name);
 				request.setAttribute("endpage", endPage);
-				request.setAttribute("cateid", cateid);
+				request.setAttribute("cate", cateid);
 				request.getRequestDispatcher("views/Shop.jsp").forward(request, response);
 			}
 			
