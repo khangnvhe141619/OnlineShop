@@ -80,8 +80,16 @@
                         <div class="col-sm-8 col-sm-offset-2">
                             <h4 class="font-alt mb-0">User Information</h4>
                             <hr class="divider-w mt-10 mb-20">
-                            <form class="form" role="form" action="<%=request.getContextPath()%>/update" method="post" onsubmit="return Validate()">
-                                <div class="form-group">
+                            <form class="form" role="form" action="<%=request.getContextPath()%>/update" method="post" onsubmit="return Validate()" enctype="multipart/form-data">
+                                 <div class="col-sm-4">
+                                 <img alt="" src="uploads/${account.avatar}" width="115px" height="10px" style="border-radius: 100px; display: flex;" />
+                                 <p>
+                                 <div class="form-group">
+                                    <input class="form-control input-lg" type="file" name="avatar" accept="image/png,image/jpeg">
+                                </div>
+                                </div>
+                                 <div class="col-sm-8">
+                                 <div class="form-group">
                                     <input class="form-control input-lg" type="text"  name="username" id="username" value="${account.username}" required readonly="readonly">
                                 </div>
                                 <div class="form-group">
@@ -93,8 +101,6 @@
                                 <div class="form-group">
                                     <input class="form-control input-lg" type="text" name="phonenumber" id="phonenumber" value="${account.phonenumber}" required>
                                 </div>
-                                <div class="form-group">
-                                    <input class="form-control input-lg" type="file" name="avatar" accept="image/png,image/jpeg" size="10" >
                                 </div>
                                 <div class="form-group " >
                                     <input class="btn btn-lg btn-block btn-round btn-b" type="submit" value="Update"/>

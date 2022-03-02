@@ -51,7 +51,7 @@ public class AccountDAOImpl implements AccountDAO {
 		boolean check = false;
 		try {
 			con = DBConnection.getInstance().getConnection();
-			pre = con.prepareStatement(SQLCommand.GET_ACCOUNT_FROM_ACCOUNT);
+			pre = con.prepareStatement(SQLCommand.GET_ACCOUNT_FROM_USERNAME);
 			pre.setString(1, username);
 			rs = pre.executeQuery();
 			check = rs.next();
@@ -126,11 +126,11 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 
 	@Override
-	public Account getInfoAcc(String email) throws SQLException {
+	public Account getInfoAcc(String username) throws SQLException {
 		try {
 			con = DBConnection.getInstance().getConnection();
-			pre = con.prepareStatement(SQLCommand.GET_ACCOUNT_FROM_ACCOUNT);
-			pre.setString(1, email);
+			pre = con.prepareStatement(SQLCommand.GET_ACCOUNT_FROM_USERNAME);
+			pre.setString(1, username);
 			rs = pre.executeQuery();
 			while (rs.next()) {
 				return new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), 
@@ -161,7 +161,8 @@ public class AccountDAOImpl implements AccountDAO {
 			pre.setString(2, account.getFullname());
 			pre.setString(3, account.getEmail());
 			pre.setString(4, account.getPhonenumber());
-			pre.setInt(5, account.getAccountId());
+			pre.setString(5, account.getAvatar());
+			pre.setInt(6, account.getAccountId());
 			check = pre.executeUpdate() == 1;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -181,7 +182,7 @@ public class AccountDAOImpl implements AccountDAO {
 	
 	public static void main(String[] args) throws SQLException {
 		AccountDAO accountDAO = new AccountDAOImpl();
-		Account account = new Account(7, "khang", "vankhang", "khang@gmail.com", "03213213");
+		Account account = new Account(7, "khaffng", "vankhffang", "khang@gmaffil.com", "03213fsdfs213","ddfesd");
 		boolean check = accountDAO.getUpdateAccount(account);
 		if(check == true) {
 			System.out.println("true");

@@ -41,13 +41,14 @@ public class Account {
 		this.createdDate = createdDate;
 	}
 	
-	public Account(int accountId, String username, String fullname, String email, String phonenumber) {
+	public Account(int accountId, String username, String fullname, String email, String phonenumber, String avatar) {
 		super();
 		this.accountId = accountId;
 		this.username = username;
 		this.fullname = fullname;
 		this.email = email;
 		this.phonenumber = phonenumber;
+		this.avatar = avatar;
 	}
 
 	public int getAccountId() {
