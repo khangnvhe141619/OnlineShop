@@ -120,7 +120,7 @@
                                                 <div class="comment clearfix">
                                                     <div class="comment-avatar"><img src="" /></div>
                                                     <div class="comment-content clearfix">
-                                                        <div class="comment-author font-alt"><a href=""></a></div>
+                                                        <div class="comment-author font-alt"><a href=""> </a></div>
                                                         <div class="comment-body">
                                                            
                                                         </div>
@@ -136,7 +136,7 @@
                                                 <div class="row">
                                                     <div class="col-sm-12">
                                                         <div class="form-group">
-                                                            <textarea class="form-control" id="" name="content" rows="4" placeholder="Review"></textarea>
+                                                            <textarea class="form-control" id="" name="content" rows="4" placeholder="Review"> </textarea>
                                                         </div>
                                                     </div>
                                                     <c:if test="" >
