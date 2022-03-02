@@ -26,7 +26,9 @@
                     <div class="signup-form">
                         <h2 class="form-title">Forgot password</h2>
                         <form action="<%=request.getContextPath()%>/forgotPasswordController" method="POST">
-                           
+                        <c:if test="${emailError}">
+								<div style="color: red">Email does not exist !!!</div>
+							</c:if>
                             <div class="form-group">
                                 <label for="email"><i class="zmdi zmdi-email"></i></label>
                                 <input type="email" name="email" id="email" placeholder="Your Email" value=""/>

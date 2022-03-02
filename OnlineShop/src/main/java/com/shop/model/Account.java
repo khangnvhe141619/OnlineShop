@@ -51,6 +51,12 @@ public class Account {
 		this.avatar = avatar;
 	}
 
+	public Account(int accountId, String password) {
+		super();
+		this.accountId = accountId;
+		this.password = password;
+	}
+
 	public int getAccountId() {
 		return accountId;
 	}

@@ -180,18 +180,6 @@ public class AccountDAOImpl implements AccountDAO {
 		return check;
 	}
 	
-	public static void main(String[] args) throws SQLException {
-		AccountDAO accountDAO = new AccountDAOImpl();
-		Account account = new Account(7, "khaffng", "vankhffang", "khang@gmaffil.com", "03213fsdfs213","ddfesd");
-		boolean check = accountDAO.getUpdateAccount(account);
-		if(check == true) {
-			System.out.println("true");
-		} else {
-			System.out.println("false");
-		}
-	}
-
-
 	@Override
 	public Account findPassword(String email) throws SQLException {
 		String sql = "SELECT Username, Password FROM Account WHERE Email LIKE ?";
@@ -224,4 +212,59 @@ public class AccountDAOImpl implements AccountDAO {
 
 	}
 
+	@Override
+	public boolean getChangePassword(Account account) throws SQLException {
+		boolean check = false;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.GET_CHANGE_PASSWORD);
+			pre.setString(1, account.getPassword());
+			pre.setInt(2, account.getAccountId());
+			check = pre.executeUpdate() == 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return check;
+	}
+	
+	@Override
+	public Account getCheckPassword(int accountID, String password) throws SQLException {
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.GET_CHECK_PASSWORD);
+			pre.setString(1, password);
+			pre.setInt(2, accountID);
+			rs = pre.executeQuery();
+			while (rs.next()) {
+				return new Account(rs.getInt(1), rs.getString(2));
+			}
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return null;
+	}
+	
+	public static void main(String[] args) throws SQLException {
+		AccountDAO accountDAO = new AccountDAOImpl();
+		Account account = accountDAO.getCheckPassword(1, "zxdsdadasdc");
+		System.out.println(account);
+	}
 }

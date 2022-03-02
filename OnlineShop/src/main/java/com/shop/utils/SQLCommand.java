@@ -10,6 +10,10 @@ public class SQLCommand {
 	
 	public static final String GET_ACCOUNT_FROM_EMAIL = "SELECT * FROM Account WHERE Email LIKE ?";
 	
+	public static final String GET_CHANGE_PASSWORD = "UPDATE Account SET Password = ? WHERE AccountID = ?";
+	
+	public static final String GET_CHECK_PASSWORD = "SELECT * FROM Account WHERE Password = ? AND AccountID = ?";
+	
 	public static final String INSERT_ACCOUNT = "INSERT INTO Account(Username, Password, CreatedDate, Role, Active)\r\n"
 			+ "VALUES(?,?,?,1,1)";
 	
