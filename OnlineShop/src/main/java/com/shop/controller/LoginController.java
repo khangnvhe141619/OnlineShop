@@ -47,6 +47,7 @@ public class LoginController extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("email", email);
 				session.setAttribute("account",account.getAccountId());
+				session.setAttribute("username",account.getUsername());
 				request.getRequestDispatcher("views/Home.jsp").forward(request, response);
 			} else {
 				request.setAttribute("failedLogin", true);
