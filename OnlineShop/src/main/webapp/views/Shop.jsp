@@ -129,7 +129,7 @@
                                 <div class="pagination font-alt " id="pagger">
                                   <a href="#"><i class="fa fa-angle-left"></i></a>
                                    <c:forEach begin="1" end="${endpage }" var="i">
-                                   		<a href="<%=request.getContextPath()%>/list?index=${i}">${i }</a>
+                                   		<a href="<%=request.getContextPath()%>/search?index=${i}&&category=${cate}&&name=${name}&&to=${to}&&end=${end}">${i }</a>
                                    </c:forEach>
                                     <a href="#"><i class="fa fa-angle-right"></i></a>
                                 </div>
