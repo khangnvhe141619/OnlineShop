@@ -16,11 +16,21 @@ public class Validation {
 		return dateTime;
 	}
 
+	public static int convertStringToInt(String n) {
+		int number = 0;
+		try {
+			number = Integer.parseInt(n);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return number;
+	}
+
 	public static void main(String[] args) {
 		String s = "2022-01-25 10:15:12";
 		LocalDateTime ld = Validation.getLocalDateTime(s);
 		System.out.println(ld);
-		String sd=Validation.getStringFromLocalDateTime(ld);
+		String sd = Validation.getStringFromLocalDateTime(ld);
 		System.out.println(sd);
 	}
 }

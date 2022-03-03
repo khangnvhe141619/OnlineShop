@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
   <head>
@@ -30,7 +30,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="<%=request.getContextPath()%>/resources/common/assets/images/favicons/favicon-16x16.png">
     <link rel="manifest" href="/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="assets/images/favicons/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="<%=request.getContextPath()%>/resources/common/assets/images/favicons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <!--  
     Stylesheets
@@ -54,13 +54,14 @@
     <!-- Main stylesheet and color file-->
     <link href="<%=request.getContextPath()%>/resources/common/assets/css/style.css" rel="stylesheet">
     <link id="color-scheme" href="<%=request.getContextPath()%>/resources/common/assets/css/colors/default.css" rel="stylesheet">
+  
   </head>
   <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
     <main>
       <div class="page-loader">
         <div class="loader">Loading...</div>
       </div>
-     <!-- header -->
+      <!-- header -->
 		<jsp:include page="components/header.jsp"></jsp:include>
 		<!-- end header -->
       <div class="main">
@@ -68,107 +69,197 @@
           <div class="container">
             <div class="row">
               <div class="col-sm-6 col-sm-offset-3">
-                <h2 class="module-title font-alt">Blog</h2>
+                <h2 class="module-title font-alt">Blog Standard</h2>
                 <div class="module-subtitle font-serif">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</div>
               </div>
             </div>
           </div>
         </section>
-        <section class="module">
+        <section class="module">      
           <div class="container">
-            <div class="row multi-columns-row post-columns">
-              <div class="col-sm-6 col-md-4 col-lg-4">
-                <div class="post">
-                  <div class="post-thumbnail"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/assets/images/post-1.jpg" alt="Blog-post Thumbnail"/></a></div>
-                  <div class="post-header font-alt">
-                    <h2 class="post-title"><a href="#">Our trip to the Alps</a></h2>
-                    <div class="post-meta">By&nbsp;<a href="#">Mark Stone</a>&nbsp;| 23 November | 3 Comments
-                    </div>
-                  </div>
-                  <div class="post-entry">
-                    <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-                  </div>
-                  <div class="post-more"><a class="more-link" href="#">Read more</a></div>
+					<c:if test="${result == 0}">
+						<div style="margin-bottom: 3%; font-size: 20px; color: red;">No
+							result</div>
+					</c:if>
+					<c:if test="${result > 0}">
+						<div style="margin-bottom: 3%; font-size: 20px; color: red;">There
+							are ${result} results related to "${search}"</div>
+					</c:if>
+					<div class="row">                       
+              <div class="col-sm-8">                                   
+              <c:forEach items="${lstPost}" var="pst">
+							<div class="post">								
+									<div class="post-images-slider">
+										<ul class="slides">
+											<li><img
+												src="<%=request.getContextPath()%>/resources/common/assets/images/post-1.jpg"
+												alt="Blog Slider Image" /></li>
+											<li><img
+												src="<%=request.getContextPath()%>/resources/common/assets/images/post-3.jpg"
+												alt="Blog Slider Image" /></li>
+										</ul>
+									</div>
+
+									<div class="post-header font-alt">
+										<h2 class="post-title">
+											<a href="#">${pst.title}</a>
+										</h2>
+										<div class="post-meta">
+											By&nbsp;<a href="#">${pst.authorName}</a>| ${pst.createdDate} | 3
+											Comments | <a href="#">Marketing, </a><a href="#">Web
+												Design</a>
+										</div>
+									</div>
+									<div class="post-entry">
+										<p>${pst.shortDesc}</p>
+									</div>
+									<div class="post-more">
+										<a class="more-link" href="#">Read more</a>
+									</div>								
+							</div>
+							</c:forEach>
+							<div class="pagination font-alt">							
+							<c:if test="${check == 0}">
+								<div class="pagination">
+									<c:if test="${tag == 1}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/listPostController?page=1">&laquo;Pre</a>
+										</li>
+									</c:if>
+									<c:if test="${tag != 1}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/listPostController?page=${tag-1}">&laquo;Pre</a>
+										</li>
+									</c:if>
+									<c:forEach begin="1" end="${total}" var="i">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/listPostController?page=${i}"
+											class="nar-item ${tag == i? ' active ' : ''}">${i}</a></li>
+									</c:forEach>
+									<c:if test="${tag != total}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/listPostController?page=${tag+1}">Next
+												&raquo;</a></li>
+									</c:if>
+									<c:if test="${tag == total}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/listPostController?page=${total}">Next
+												&raquo;</a>
+									</c:if>
+								</div>
+							</c:if>
+							<c:if test="${check == 1}">
+								<div class="pagination">
+									<c:if test="${tag == 1}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/searchPostController?page=1">&laquo;Pre</a>
+										</li>
+									</c:if>
+									<c:if test="${tag != 1}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/searchPostController?page=${tag - 1}">&laquo;Pre</a>
+										</li>
+									</c:if>
+									<c:forEach begin="1" end="${total}" var="i">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/searchPostController?page=${i}"
+											class="${tag == i? "active":""}">${i}</a></li>
+									</c:forEach>
+									<c:if test="${tag != total}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/searchPostController?page=${tag + 1}">Next
+												&raquo;</a></li>
+									</c:if>
+									<c:if test="${tag == total}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/searchPostController?page=${total}">Next
+												&raquo;</a>
+									</c:if>
+								</div>
+							</c:if>
+							</div>
+
+						</div>
+						
+              <!-- Right side bar -->
+              <div class="col-sm-4 col-md-3 col-md-offset-1 sidebar">
+                <div class="widget">
+								<form role="form" action="<%=request.getContextPath()%>/searchPostController" method="POST">
+									<div class="">
+										<div class="input-group-prepend">
+											<span class="input-group-text"><i class="fa fa-filter"
+												aria-hidden="true"> Filter By</i></span>
+										</div>
+										<select style="margin-bottom: 5%;" class="form-control" name="select">
+											<option value="" selected="selected">------ Choose ------</option>
+											<option value="pTitle">Title</option>
+											<option value="pAuthor">Author</option>
+											<option value="pTag">Tag</option>
+										</select>
+									</div>
+
+									<div class="search-box">
+										<input class="form-control" type="text" name=search value="${search}" 
+											placeholder="Search..." />
+										<button class="search-btn" type="submit">
+											<i class="fa fa-search"></i>
+										</button>
+									</div>
+								</form>
+							</div>               
+                <div class="widget">
+                  <h5 class="widget-title font-alt">Popular Posts</h5>
+                  <ul class="widget-posts">
+                    <li class="clearfix">
+                      <div class="widget-posts-image"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/assets/images/rp-1.jpg" alt="Post Thumbnail"/></a></div>
+                      <div class="widget-posts-body">
+                        <div class="widget-posts-title"><a href="#">Designer Desk Essentials</a></div>
+                        <div class="widget-posts-meta">23 january</div>
+                      </div>
+                    </li>
+                    <li class="clearfix">
+                      <div class="widget-posts-image"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/assets/images/rp-2.jpg" alt="Post Thumbnail"/></a></div>
+                      <div class="widget-posts-body">
+                        <div class="widget-posts-title"><a href="#">Realistic Business Card Mockup</a></div>
+                        <div class="widget-posts-meta">15 February</div>
+                      </div>
+                    </li>
+                    <li class="clearfix">
+                      <div class="widget-posts-image"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/assets/images/rp-3.jpg" alt="Post Thumbnail"/></a></div>
+                      <div class="widget-posts-body">
+                        <div class="widget-posts-title"><a href="#">Eco bag Mockup</a></div>
+                        <div class="widget-posts-meta">21 February</div>
+                      </div>
+                    </li>
+                    <li class="clearfix">
+                      <div class="widget-posts-image"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/assets/images/rp-4.jpg" alt="Post Thumbnail"/></a></div>
+                      <div class="widget-posts-body">
+                        <div class="widget-posts-title"><a href="#">Bottle Mockup</a></div>
+                        <div class="widget-posts-meta">2 March</div>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
-              </div>
-              <div class="col-sm-6 col-md-4 col-lg-4">
-                <div class="post">
-                  <div class="post-thumbnail"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/assets/images/post-2.jpg" alt="Blog-post Thumbnail"/></a></div>
-                  <div class="post-header font-alt">
-                    <h2 class="post-title"><a href="#">Shore after the tide</a></h2>
-                    <div class="post-meta">By&nbsp;<a href="#">Andy River</a>&nbsp;| 11 November | 4 Comments
-                    </div>
-                  </div>
-                  <div class="post-entry">
-                    <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-                  </div>
-                  <div class="post-more"><a class="more-link" href="#">Read more</a></div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-4 col-lg-4">
-                <div class="post">
-                  <div class="post-thumbnail"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/assets/images/post-3.jpg" alt="Blog-post Thumbnail"/></a></div>
-                  <div class="post-header font-alt">
-                    <h2 class="post-title"><a href="#">We in New Zealand</a></h2>
-                    <div class="post-meta">By&nbsp;<a href="#">Dylan Woods</a>&nbsp;| 5 November | 15 Comments
-                    </div>
-                  </div>
-                  <div class="post-entry">
-                    <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-                  </div>
-                  <div class="post-more"><a class="more-link" href="#">Read more</a></div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-4 col-lg-4">
-                <div class="post">
-                  <div class="post-thumbnail"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/assets/images/post-4.jpg" alt="Blog-post Thumbnail"/></a></div>
-                  <div class="post-header font-alt">
-                    <h2 class="post-title"><a href="#">Plane in the field</a></h2>
-                    <div class="post-meta">By&nbsp;<a href="#">Mark Stone</a>&nbsp;| 23 November | 3 Comments
-                    </div>
-                  </div>
-                  <div class="post-entry">
-                    <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-                  </div>
-                  <div class="post-more"><a class="more-link" href="#">Read more</a></div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-4 col-lg-4">
-                <div class="post">
-                  <div class="post-thumbnail"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/assets/images/post-5.jpg" alt="Blog-post Thumbnail"/></a></div>
-                  <div class="post-header font-alt">
-                    <h2 class="post-title"><a href="#">Clock</a></h2>
-                    <div class="post-meta">By&nbsp;<a href="#">Andy River</a>&nbsp;| 11 November | 4 Comments
-                    </div>
-                  </div>
-                  <div class="post-entry">
-                    <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-                  </div>
-                  <div class="post-more"><a class="more-link" href="#">Read more</a></div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-4 col-lg-4">
-                <div class="post">
-                  <div class="post-thumbnail"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/assets/images/post-6.jpg" alt="Blog-post Thumbnail"/></a></div>
-                  <div class="post-header font-alt">
-                    <h2 class="post-title"><a href="#">Lighthouse to the shore</a></h2>
-                    <div class="post-meta">By&nbsp;<a href="#">Dylan Woods</a>&nbsp;| 5 November | 15 Comments
-                    </div>
-                  </div>
-                  <div class="post-entry">
-                    <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-                  </div>
-                  <div class="post-more"><a class="more-link" href="#">Read more</a></div>
-                </div>
-              </div>
+							<div class="widget">
+								<h5 class="widget-title font-alt">Tag</h5>
+								<div class="tags font-serif">
+									<a href="#" rel="tag">Blog</a><a href="#" rel="tag">Photo</a><a
+										href="#" rel="tag">Video</a><a href="#" rel="tag">Image</a><a
+										href="#" rel="tag">Minimal</a><a href="#" rel="tag">Post</a><a
+										href="#" rel="tag">Theme</a><a href="#" rel="tag">Ideas</a><a
+										href="#" rel="tag">Tags</a><a href="#" rel="tag">Bootstrap</a><a
+										href="#" rel="tag">Popular</a><a href="#" rel="tag">English</a>
+								</div>
+							</div>
+						</div>
+              <!-- Right side bar end -->
             </div>
-            <div class="pagination font-alt"><a href="#"><i class="fa fa-angle-left"></i></a><a class="active" href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#"><i class="fa fa-angle-right"></i></a></div>
           </div>
         </section>
-			<!-- footer -->
+        <!-- footer -->
 			<jsp:include page="components/footer.jsp"></jsp:include>
 			<!-- end footer -->
-		</div>
+      </div>
       <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
     </main>
     <!--  
