@@ -85,24 +85,24 @@
                                     </tr>
                                     <c:forEach items="${sessionScope.items}" var="i">
                                         <tr>
-                                            <td class="hidden-xs"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/images/${i.pro.img}" style="margin-top: 0px" alt=""/></a></td>
+                                            <td class="hidden-xs"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/images/${i.product.image}" style="margin-top: 0px" alt=""/></a></td>
                                             <td>
-                                                <h5 class="product-title font-alt"><a href="detailproduct?id=${i.pro.id}">${i.pro.name}</a></h5>
+                                                <h5 class="product-title font-alt"><a href="<%=request.getContextPath()%>/details?id=${i.product.productID}">${i.product.productName}</a></h5>
                                             </td>
                                             <td class="hidden-xs">
-                                                <h5 class="product-title font-alt">$${i.pro.price}</h5>
+                                                <h5 class="product-title font-alt">$${i.product.price}</h5>
                                             </td>
                                             <td>
-                                                <!--<input type="button" value=" - " onclick="remove(${i.pro.id})" />-->
-                                                <a style="border: ridge  1px; padding: 5px" href="addcart?id=${i.pro.id}&quantity=-1" >-</a>
+                                                <!--<input type="button" value=" - " onclick="remove(${i.product.productID})" />-->
+                                                <a style="border: ridge  1px; padding: 5px" href="<%=request.getContextPath()%>/addCart?id=${i.product.productID}&quantity=-1" >-</a>
                                                 <input  type="text" disabled="true" name="" value="${i.quantity}" style="width: 60px"/>
-                                                <a style="border: ridge  1px; padding: 5px" href="addcart?id=${i.pro.id}&quantity=1" >+</a>
-                                                <!--<input  type="button" value=" + " onclick="updown(${i.pro.id},1)"  />-->
+                                                <a style="border: ridge  1px; padding: 5px" href="<%=request.getContextPath()%>/addCart?id=${i.product.productID}&quantity=1" >+</a>
+                                                <!--<input  type="button" value=" + " onclick="updown(${i.product.productID},1)"  />-->
                                             </td>
                                             <td>
-                                                <h5 class="product-title font-alt">$${i.quantity * i.pro.price}</h5>
+                                                <h5 class="product-title font-alt">$${i.quantity * i.product.price}</h5>
                                             </td>
-                                            <td class="pr-remove"><a href="addcart?id=${i.pro.id}&quantity=${0-i.quantity}" title="Remove"><i class="fa fa-times"></i></a></td>
+                                            <td class="pr-remove"><a href="<%=request.getContextPath()%>/addCart?id=${i.product.productID}&quantity=${0-i.quantity}" title="Remove"><i class="fa fa-times"></i></a></td>
                                         </tr>
                                     </c:forEach>
                                     <!--</tbody>-->
@@ -143,7 +143,7 @@
                                             </tr>
                                             <tr class="shop-Cart-totalprice">
                                                 <th>Total :</th>
-                                                <td>$${sessionScope.total * 1.1}</td>
+                                                <td>$${sessionScope.total * 0.1 + sessionScope.total}</td>
                                             </tr>
                                         </tbody>
                                     </table>
