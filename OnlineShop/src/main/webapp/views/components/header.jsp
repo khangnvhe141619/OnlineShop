@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<<<<<<< HEAD
 	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
@@ -31,6 +32,23 @@
 						</ul></li>
 					<li><a href="<%=request.getContextPath()%>/views/Cart.jsp">View
 							Cart[ <c:if test="${sessionScope.size == null}">
+=======
+<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="<%=request.getContextPath()%>/views/Home.jsp">Tomee</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="custom-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="<%=request.getContextPath()%>/views/Home.jsp">Home</a></li>
+                            <li class="dropdown"><a class="dropdown-toggle" href="<%=request.getContextPath()%>/list" data-toggle="dropdown">Shop</a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="shop?typeid=1">Book</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="<%=request.getContextPath()%>/views/Cart.jsp">View Cart[
+                                    <c:if test="${sessionScope.size == null}">
+>>>>>>> branch 'main' of https://github.com/khangnvhe141619/OnlineShop.git
                                         0
                                     </c:if> <c:if
 								test="${sessionScope.size != null}">

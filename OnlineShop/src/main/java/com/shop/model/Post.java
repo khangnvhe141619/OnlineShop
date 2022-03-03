@@ -6,6 +6,7 @@
 package com.shop.model;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -13,88 +14,76 @@ import java.sql.Date;
  */
 public class Post {
     private int postId;
-    private int authorId;
+    private String authorName;
     private String tittle;
     private String shortDesc;
     private String content;
-    private Date createdDate;    
+    private LocalDateTime createdDate;    
     
     public Post() {
     }
 
-    public Post(int authorId, String tittle, String shortDesc, String content, Date createdDate) {
-        super();
-        this.authorId = authorId;
-        this.tittle = tittle;
-        this.shortDesc = shortDesc;
-        this.content = content;
-        this.createdDate = createdDate;
-    }
-    
-    
-    public Post(int postId, int authorId, String tittle, String shortDesc, String content, Date createdDate) {
-        super();
-        this.postId = postId;
-        this.authorId = authorId;
-        this.tittle = tittle;
-        this.shortDesc = shortDesc;
-        this.content = content;
-        this.createdDate = createdDate;
-    }
+	public Post(int postId, String authorName, String tittle, String shortDesc, String content, LocalDateTime createdDate) {
+		super();
+		this.postId = postId;
+		this.authorName = authorName;
+		this.tittle = tittle;
+		this.shortDesc = shortDesc;
+		this.content = content;
+		this.createdDate = createdDate;
+	}
 
-    public int getPostId() {
-        return postId;
-    }
+	public int getPostId() {
+		return postId;
+	}
 
-    public void setPostId(int postId) {
-        this.postId = postId;
-    }
+	public void setPostId(int postId) {
+		this.postId = postId;
+	}
 
-    public int getAuthorId() {
-        return authorId;
-    }
+	public String getAuthorName() {
+		return authorName;
+	}
 
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
-    }
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
+	}
 
-    public String getTittle() {
-        return tittle;
-    }
+	public String getTittle() {
+		return tittle;
+	}
 
-    public void setTittle(String tittle) {
-        this.tittle = tittle;
-    }
+	public void setTittle(String tittle) {
+		this.tittle = tittle;
+	}
 
-    public String getShortDesc() {
-        return shortDesc;
-    }
+	public String getShortDesc() {
+		return shortDesc;
+	}
 
-    public void setShortDesc(String shortDesc) {
-        this.shortDesc = shortDesc;
-    }
+	public void setShortDesc(String shortDesc) {
+		this.shortDesc = shortDesc;
+	}
 
-    public String getContent() {
-        return content;
-    }
+	public String getContent() {
+		return content;
+	}
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+	public void setContent(String content) {
+		this.content = content;
+	}
 
-    public Date getCreatedDate() {
-        return createdDate;
-    }
+	public LocalDateTime getCreatedDate() {
+		return createdDate;
+	}
 
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
+	public void setCreatedDate(LocalDateTime createdDate) {
+		this.createdDate = createdDate;
+	}
 
-    @Override
-    public String toString() {
-        return "Post{" + "postId=" + postId + ", authorId=" + authorId + ", tittle=" + tittle + ", shortDesc=" + shortDesc + ", content=" + content + ", createdDate=" + createdDate + '}';
-    }
-    
-    
-    
+	@Override
+	public String toString() {
+		return "Post [postId=" + postId + ", authorName=" + authorName + ", tittle=" + tittle + ", shortDesc="
+				+ shortDesc + ", content=" + content + ", createdDate=" + createdDate + "]";
+	}
 }

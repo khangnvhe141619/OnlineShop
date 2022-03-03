@@ -232,17 +232,6 @@ CREATE TABLE [dbo].[Contact]
 
 )
 
-CREATE TABLE [dbo].[MessageSender]
-(
-	ID					int				IDENTITY(1,1),
-	FullName			varchar(255)	NOT NULL,
-	Email				varchar(255)	NOT NULL,
-	MessageText			varchar(max)	NOT NULL,
-	SentDate			datetime2		,
-
-	CONSTRAINT PK_id_message PRIMARY KEY(ID)
-)
-
 CREATE TABLE [dbo].[Subscriber]
 (
 	ID					int				IDENTITY(1,1),
@@ -359,9 +348,7 @@ GO
 INSERT [dbo].[Review] ([ProductId], [AccountId], [Content], [Ratings], [CreatedDate]) VALUES (1, 2, 'good', 5, CAST(N'2022-02-02T00:00:00.0000000' AS DateTime2))
 INSERT [dbo].[Review] ([ProductId], [AccountId], [Content], [Ratings], [CreatedDate]) VALUES (1, 2, 'hay', 5, CAST(N'2022-02-12T00:00:00.0000000' AS DateTime2))
 GO
-INSERT [dbo].[MessageSender] ([Email], [FullName], [MessageText], [SentDate]) VALUES ('khanhg1@gmail.com', 'Khang', 'hello', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
-GO
-INSERT [dbo].[Contact] ([ShopName], [Desc], [Email], [Phone], [Address]) VALUES ('Teemo', 'This is our website.', 'hotroswp@gmail.com', '+84 1122 3344 11', 'Km29 Highway 08, Thach Hoa, Thach That, Hanoi, Vietnam')
+INSERT [dbo].[Contact] ([ShopName], [Desc], [Email], [Phone], [Address]) VALUES ('Tomee', 'This is our website.', 'hotroswp@gmail.com', '+84 1122 3344 11', 'Km29 Highway 08, Thach Hoa, Thach That, Hanoi, Vietnam')
 GO
 INSERT [dbo].[Subscriber] ([FullName], [Email], [SubscribeDate]) VALUES ('Khang', 'khang@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))
 INSERT [dbo].[Subscriber] ([FullName], [Email], [SubscribeDate]) VALUES ('Khang', 'abcxyz@gmail.com', CAST(N'2022-02-16T00:00:00.0000000' AS DateTime2))

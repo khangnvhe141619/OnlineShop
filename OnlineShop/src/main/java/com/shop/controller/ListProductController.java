@@ -34,6 +34,8 @@ public class ListProductController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
 		try {
 			ProductDAOImpl pd = new ProductDAOImpl();
 			CategoryDAOImpl ct = new CategoryDAOImpl();
@@ -72,6 +74,8 @@ public class ListProductController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
 		doGet(request, response);
 	}
 

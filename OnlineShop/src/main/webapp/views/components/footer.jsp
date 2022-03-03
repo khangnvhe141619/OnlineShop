@@ -23,7 +23,7 @@
 					%>
 					<h5 class="widget-title font-alt">About <%=c.getName()%></h5>
 						<p><%=c.getDesc()%>.</p>						
-						<p>Email: <a href="Getintouch.jsp"><%=c.getEmail()%></a></p>
+						<p>Email: <a href="Subscribe.jsp"><%=c.getEmail()%></a></p>
 						<p>Phone: <%=c.getPhone()%></p>
 						Address: <%=c.getAddress()%>				
 					</div>
@@ -94,7 +94,7 @@
 			<div class="row">
 				<div class="col-sm-6">
 					<p class="copyright font-alt">
-						&copy; 2022&nbsp;<a href="Home.jsp"><%=c.getName()%></a>, All Rights
+						&copy; 2022&nbsp;<a href="<%=request.getContextPath()%>/views/Home.jsp"><%=c.getName()%></a>, All Rights
 						Reserved
 					</p>
 				</div>
