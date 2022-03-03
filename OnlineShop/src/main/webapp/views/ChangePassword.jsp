@@ -131,7 +131,7 @@
 							<br>
 						</c:if>
 						<form class="form" role="form"
-							action="<%=request.getContextPath()%>/ChangePassword" method="post" onsubmit="return Validate()">
+							action="<%=request.getContextPath()%>/changePassword" method="post" onsubmit="return Validate()">
 							<c:if test="${PasswordIncorrect}">
 								<div style="color: red;">Password incorrect !!!</div>
 							</c:if>
