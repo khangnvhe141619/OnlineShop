@@ -28,4 +28,11 @@ public class SQLCommand {
 	public static final String UPDATE_ACCOUNT = "UPDATE Account SET Username = ?, FullName = ?, Email = ?, PhoneNumber = ?, Avatar = ?\r\n"
 			+ "WHERE AccountID = ?\r\n";
 
+	public static final String GET_LIST_ORDER = "SELECT O.Total, OS.Description, P.Image, P.ProductName, P.Price, OD.Quantity\r\n"
+			+ "FROM [Order] O JOIN OrderDetail OD \r\n"
+			+ "ON O.OrderID = OD.OrderID JOIN OrderStatus OS \r\n"
+			+ "ON OS.ID = O.StatusId JOIN Product P\r\n"
+			+ "ON P.ProductId = OD.ProductId\r\n"
+			+ "WHERE O.AccountId = ?";
+	
 }

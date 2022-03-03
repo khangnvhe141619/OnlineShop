@@ -50,7 +50,7 @@ public class CheckOutController extends HttpServlet {
 			request.getSession().removeAttribute("total");
 			request.getSession().removeAttribute("size");
 			request.setAttribute("notification", "Buy Successful !!!");
-			request.setAttribute("move", "shop");
+			request.setAttribute("move", "viewOrdered");
 			request.getRequestDispatcher("views/Notification.jsp").forward(request, response);
 		} else {
 			request.setAttribute("error", "You have to login to CheckOut!!!");

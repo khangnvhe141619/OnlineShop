@@ -79,11 +79,14 @@ public class Order {
 	public void setStatusId(int statusId) {
 		this.statusId = statusId;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Order [orderId=" + orderId + ", shipId=" + shipId + ", accountId=" + accountId + ", orderDate=" + orderDate + "]";
+		return "Order [orderId=" + orderId + ", shipId=" + shipId + ", accountId=" + accountId + ", orderDate="
+				+ orderDate + ", total=" + total + ", statusId=" + statusId + "]";
 	}
+	
+	
 	
 
 
