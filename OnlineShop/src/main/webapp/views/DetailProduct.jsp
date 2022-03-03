@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
@@ -69,7 +68,7 @@
                 <section class="module" style="padding-top: 0px">
                     <div class="container">
                         <div class="row">
-                             <div class="shop-item-detail"><a href="<%=request.getContextPath()%>/details?id=${p.productID}" class="btn btn-round btn-b"><span class="icon-basket">View Detail Product</span></a></div>
+                         <div class="col-sm-6 mb-sm-40"><a class="gallery" href="<%=request.getContextPath()%>/resources/common/images/products/${p.image}"><img src="<%=request.getContextPath()%>/resources/common/images/products/${p.image}" alt="Single Product Image"/></a>
                                 
                             </div>
                             <div class="col-sm-6" style="padding-top: 100px">
@@ -82,7 +81,7 @@
                                     <div class="starability-result" data-rating="${p.price}"> </div>
                                 <div class="row mb-20">
                                     <div class="col-sm-12">
-                                        <div class="price font-alt"><span class="amount">${p.price}</span></div>
+                                        <div class="price font-alt"><span class="amount">${p.price} VND</span></div>
                                     </div>
                                 </div>
                                 <div class="row mb-20">

@@ -94,7 +94,7 @@
 			<div class="row">
 				<div class="col-sm-6">
 					<p class="copyright font-alt">
-						&copy; 2022&nbsp;<a href="Home.jsp"><%=c.getName()%></a>, All Rights
+						&copy; 2022&nbsp;<a href="<%=request.getContextPath()%>/views/Home.jsp"><%=c.getName()%></a>, All Rights
 						Reserved
 					</p>
 				</div>
