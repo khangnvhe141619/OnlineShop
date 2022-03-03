@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class Post {
     private int postId;
     private String authorName;
-    private String tittle;
+    private String title;
     private String shortDesc;
     private String content;
     private LocalDateTime createdDate;    
@@ -23,11 +23,11 @@ public class Post {
     public Post() {
     }
 
-	public Post(int postId, String authorName, String tittle, String shortDesc, String content, LocalDateTime createdDate) {
+	public Post(int postId, String authorName, String title, String shortDesc, String content, LocalDateTime createdDate) {
 		super();
 		this.postId = postId;
 		this.authorName = authorName;
-		this.tittle = tittle;
+		this.title = title;
 		this.shortDesc = shortDesc;
 		this.content = content;
 		this.createdDate = createdDate;
@@ -50,11 +50,11 @@ public class Post {
 	}
 
 	public String getTittle() {
-		return tittle;
+		return title;
 	}
 
 	public void setTittle(String tittle) {
-		this.tittle = tittle;
+		this.title = tittle;
 	}
 
 	public String getShortDesc() {
@@ -83,7 +83,7 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return "Post [postId=" + postId + ", authorName=" + authorName + ", tittle=" + tittle + ", shortDesc="
+		return "Post [postId=" + postId + ", authorName=" + authorName + ", title=" + title + ", shortDesc="
 				+ shortDesc + ", content=" + content + ", createdDate=" + createdDate + "]";
 	}
 }

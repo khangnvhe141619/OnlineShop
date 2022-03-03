@@ -200,15 +200,7 @@ public class Product {
 				+ productName + ", image=" + image + ", description=" + description + ", createdDate=" + createdDate
 				+ ", issuingCompany=" + issuingCompany + ", publicationDate=" + publicationDate + ", coverType="
 				+ coverType + ", publishingCompany=" + publishingCompany + ", quantity=" + quantity + ", price=" + price
-				+ ", numberPage=" + numberPage + ", getStt()=" + getStt() + ", getProductID()=" + getProductID()
-				+ ", getCategoryId()=" + getCategoryId() + ", getProductName()=" + getProductName() + ", getImage()="
-				+ getImage() + ", getDescription()=" + getDescription() + ", getCreatedDate()=" + getCreatedDate()
-				+ ", getIssuingCompany()=" + getIssuingCompany() + ", getPublicationDate()=" + getPublicationDate()
-				+ ", getCoverType()=" + getCoverType() + ", getPublishingCompany()=" + getPublishingCompany()
-				+ ", getQuantity()=" + getQuantity() + ", getPrice()=" + getPrice() + ", getNumberPage()="
-				+ getNumberPage() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+				+ ", numberPage=" + numberPage + "]";
 	}
-
 
 }

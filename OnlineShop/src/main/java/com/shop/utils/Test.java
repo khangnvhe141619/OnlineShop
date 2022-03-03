@@ -8,33 +8,36 @@ import java.util.List;
 import javax.management.InvalidApplicationException;
 
 import com.shop.dao.AccountDAO;
+import com.shop.dao.PostDAO;
 import com.shop.dao.ProductDAO;
 import com.shop.dao.impl.AccountDAOImpl;
+import com.shop.dao.impl.PostDAOImpl;
 import com.shop.dao.impl.ProductDAOImpl;
 import com.shop.dao.impl.ReviewDAOImpl;
 import com.shop.model.Account;
+import com.shop.model.Post;
 import com.shop.model.Product;
 import com.shop.service.EmailMessage;
 import com.shop.service.EmailUtility;
 
 public class Test {
 
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		ProductDAO pd = new ProductDAOImpl();
-		List<Product> lp = pd.getListAllProduct(1);
-		for (Product product : lp) {
-			System.out.println(product.toString());
-		}
-		Product p = pd.getProductById(1);
-		System.out.println(p);
-		LocalDateTime cDate=Validation.getLocalDateTime("2022-02-12 20:10:15");
-		LocalDateTime pDate=Validation.getLocalDateTime("2022-02-13 20:10:15");
+//		ProductDAO pd = new ProductDAOImpl();
+//		List<Product> lp = pd.getListAllProduct(1);
+//		for (Product product : lp) {
+//			System.out.println(product.toString());
+//		}
+//		Product p = pd.getProductById(1);
+//		System.out.println(p);
+//		LocalDateTime cDate = Validation.getLocalDateTime("2022-02-12 20:10:15");
+//		LocalDateTime pDate = Validation.getLocalDateTime("2022-02-13 20:10:15");
 //		System.out.println(cDate+" - "+pDate);
 //		Product p1=new Product(1, "PP", "pp.jpg", "aa", cDate, "vv", pDate, 1, "alo", 10, 20000, 40);
 //		boolean add=pd.insertProduct(p1);
 //		System.out.println(add);
-		
+
 //		Product p2=new Product(4 ,1, "PP", "pp.jpg", "bb", cDate, "vv", pDate, 1, "alo", 10, 20000, 40);
 //		boolean up=pd.updateProduct(p2);
 //		System.out.println(up);
@@ -87,5 +90,11 @@ public class Test {
 //	    } catch (InvalidApplicationException e) {
 //	      // TODO Auto-generated catch block
 //	    }
-}
+		
+		PostDAO pstDao=new PostDAOImpl();
+		List<Post> pst=pstDao.getAllPost(1);
+		pst.forEach(st->{
+			System.out.println(st);
+		});
+	}
 }
