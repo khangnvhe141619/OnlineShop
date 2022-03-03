@@ -1,14 +1,11 @@
 package com.shop.model;
 
-import java.sql.Date;
-import java.time.LocalDate;
 
 public class Order {
 	private int orderId;
 	private int shipId;
 	private int accountId;
-	private LocalDate orderDate;
-	private LocalDate EstimateDelivery;
+	private String orderDate;
 	private Double total;
 	private int statusId;
 
@@ -16,14 +13,21 @@ public class Order {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Order(int orderId, int shipId, int accountId, LocalDate orderDate, LocalDate estimateDelivery, Double total,
-			int statusId) {
+	public Order(int orderId, int shipId, int accountId, String orderDate, Double total, int statusId) {
 		super();
 		this.orderId = orderId;
 		this.shipId = shipId;
 		this.accountId = accountId;
 		this.orderDate = orderDate;
-		EstimateDelivery = estimateDelivery;
+		this.total = total;
+		this.statusId = statusId;
+	}
+	
+	public Order(int shipId, int accountId, String orderDate, Double total, int statusId) {
+		super();
+		this.shipId = shipId;
+		this.accountId = accountId;
+		this.orderDate = orderDate;
 		this.total = total;
 		this.statusId = statusId;
 	}
@@ -52,20 +56,12 @@ public class Order {
 		this.accountId = accountId;
 	}
 
-	public LocalDate getOrderDate() {
+	public String getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(LocalDate orderDate) {
+	public void setOrderDate(String orderDate) {
 		this.orderDate = orderDate;
-	}
-
-	public LocalDate getEstimateDelivery() {
-		return EstimateDelivery;
-	}
-
-	public void setEstimateDelivery(LocalDate estimateDelivery) {
-		EstimateDelivery = estimateDelivery;
 	}
 
 	public Double getTotal() {
@@ -83,12 +79,10 @@ public class Order {
 	public void setStatusId(int statusId) {
 		this.statusId = statusId;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Order [orderId=" + orderId + ", shipId=" + shipId + ", accountId=" + accountId + ", orderDate="
-				+ orderDate + ", EstimateDelivery=" + EstimateDelivery + ", total=" + total + ", statusId=" + statusId
-				+ "]";
+		return "Order [orderId=" + orderId + ", shipId=" + shipId + ", accountId=" + accountId + ", orderDate=" + orderDate + "]";
 	}
 	
 
