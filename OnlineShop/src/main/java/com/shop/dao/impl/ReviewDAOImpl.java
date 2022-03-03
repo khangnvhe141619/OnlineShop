@@ -1,12 +1,15 @@
 package com.shop.dao.impl;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.shop.dao.ReviewDAO;
+import com.shop.model.Account;
 import com.shop.model.Review;
 import com.shop.utils.DBConnection;
 
@@ -20,7 +23,8 @@ public  class ReviewDAOImpl implements ReviewDAO {
 		List<Review> list = new ArrayList<Review>();
 		Review rv= null;
 		try {
-			String sql="select r.ReviewID,r.ProductId,r.AccountId,r.Content,r.Ratings,r.CreatedDate from Review as r, Account as a\r\n"
+			String sql="select *\n"
+					+ "from Review as r, Account as a					\n"
 					+ "where r.AccountId = a.AccountID and productid = ?";
 			conn = DBConnection.getInstance().getConnection();
 			ps= conn.prepareStatement(sql);
@@ -30,10 +34,13 @@ public  class ReviewDAOImpl implements ReviewDAO {
 				rv= new Review();
 				rv.setReviewid(rs.getInt("ReviewID"));
 				rv.setProductid(rs.getInt("ProductId"));
-				rv.setAccountid(rs.getInt("AccountId"));
+				Account acc = new Account();
+				acc.setUsername(rs.getString("Username"));
+				acc.setAvatar(rs.getString("Avatar"));
+				rv.setAccount(acc);
 				rv.setContent(rs.getString("Content"));
 				rv.setRatings(rs.getInt("Ratings"));
-				rv.setCreatedate(rs.getDate("CreatedDate"));
+				rv.setCreatedate(rs.getString("CreatedDate"));
 				list.add(rv);
 			}
 			
@@ -43,41 +50,52 @@ public  class ReviewDAOImpl implements ReviewDAO {
 		return list;
 	}
 
-//	public static void main(String[] args)  {
-//		ReviewDAOImpl rv = new ReviewDAOImpl();
-////		String str= "2017-1-1";
-////		Date date = Date.valueOf(str);
-////		try {
-////			Review a= new Review(1, "cho", 5, date);
-////			boolean kq = rv.editReview(a);
-////			if(kq==true) {
-////				System.out.println("sccc");
-////			}else {
-////				System.err.println("failes");
-////			}
-////				
-////		} catch (Exception e) {
-////			// TODO: handle exception
-////		}
+	public static void main(String[] args)  {
+		ReviewDAOImpl rv = new ReviewDAOImpl();
+//		String str= "2017-1-1";
+//		Date date = Date.valueOf(str);
+//		Account a = new Account();
+//		a= a.getAccountId("");
+//		try {
+//			Review a1= new Review(1, a, "abc", 1, date);
+//			boolean kq = rv.editReview(a1);
+//			if(kq==true) {
+//				System.out.println("sccc");
+//			}else {
+//				System.err.println("failes");
+//			}
+//				
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
 //		List<Review> ls = rv.getReviews(1);
 //		for (Review review : ls) {
 //			System.out.println(review.toString());
 //		}
-//		
-//	}
+		LocalDate localDate = java.time.LocalDate.now();
+	     String date = localDate.toString();
+	   
+		Boolean kq= rv.addReview(1, 1, "aaaa", 2, date);
+			if(kq==true) {
+		System.out.println("sccc");
+			}else {
+			System.err.println("failes");
+		}
+	}
 
-	public boolean addReview(Review review) {
+	public boolean addReview(int pId,int accId, String content,int rate,String creatdate) {
 		int row=0;
 		try {
 			String sql = "INSERT INTO Review (ProductId,AccountId,Content,Ratings,CreatedDate)\r\n"
 					+ "VALUES(?,?,?,?,?)";
 			conn = DBConnection.getInstance().getConnection();
 			ps= conn.prepareStatement(sql);
-			ps.setInt(1,review.getProductid());
-			ps.setInt(2, review.getAccountid());
-			ps.setString(3, review.getContent());
-			ps.setInt(4, review.getRatings());
-			ps.setDate(5, review.getCreatedate());
+			ps.setInt(1,pId);
+			
+			ps.setInt(2, accId);
+			ps.setString(3, content);
+			ps.setInt(4, rate);
+			ps.setString(5,creatdate);
 			row = ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -95,7 +113,7 @@ public  class ReviewDAOImpl implements ReviewDAO {
 			ps= conn.prepareStatement(sql);
 			ps.setString(1, review.getContent());
 			ps.setInt(2, review.getRatings());
-			ps.setDate(3, review.getCreatedate());
+			ps.setString(3, review.getCreatedate());
 			ps.setInt(4, review.getReviewid());
 			row = ps.executeUpdate();
 		} catch (Exception e) {
@@ -121,7 +139,5 @@ public  class ReviewDAOImpl implements ReviewDAO {
 		}
 		return row>0;
 	}
-    public static void main(String[] args) {
-        
-    }
+
 }

@@ -1,4 +1,4 @@
-﻿IF DB_ID('OnlineShopDB') IS NOT NULL
+IF DB_ID('OnlineShopDB') IS NOT NULL
 BEGIN
 	USE master
 	DROP DATABASE [OnlineShopDB]
@@ -174,7 +174,11 @@ CREATE TABLE [dbo].[OrderDetail]
 	OrderId				int				,
 	ProductId			int				,
 	Quantity			int				NOT NULL,
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> branch 'main' of https://github.com/khangnvhe141619/OnlineShop.git
 	CONSTRAINT FK_order_id FOREIGN KEY(OrderId) REFERENCES [Order](OrderID),
 	CONSTRAINT FK_product_id_3 FOREIGN KEY(ProductId) REFERENCES Product(ProductID)
 )
@@ -308,11 +312,14 @@ INSERT [dbo].[Shipper] ([ShipperName], [Email], [Phone]) VALUES ('Phan Van Be','
 INSERT [dbo].[Shipper] ([ShipperName], [Email], [Phone]) VALUES ('Pham Van Bach','vlback@gmail.com', '0111111111')
 INSERT [dbo].[Shipper] ([ShipperName], [Email], [Phone]) VALUES ('Nguyen Thai Binh','binhnv@gmail.com', '0111112222')
 GO
-INSERT [dbo].[Order] ([ShipperId], [AccountId], [OrderDate], [Total], [StatusId], [ProductId], [Quantity]) VALUES (1, 2, CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), 24.0000, 1, 2, 2)
+INSERT [dbo].[Order] ([ShipperId], [AccountId], [OrderDate], [Total], [StatusId]) VALUES (1, 2, CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), 24.0000, 1)
 
 GO
 INSERT [dbo].[OrderDetail] ([OrderId], [ProductID], [Quantity]) VALUES (1, 2, 2)
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'main' of https://github.com/khangnvhe141619/OnlineShop.git
 GO
 INSERT [dbo].[Post] ([Author], [Title], [ShortDesc], [Content], [CreatedDate]) VALUES ('David', N'The best fashion influencers to follow for sartorial inspiration', N'From our favourite UK influencers to the best missives from Milan and the coolest New Yorkers, read on some of the best fashion blogs out there, and for even more inspiration, do head to our separate black fashion influencer round-up.', N'From our favourite UK influencers to the best missives from Milan and the coolest New Yorkers, read on some of the best fashion blogs out there, and for even more inspiration, do head to our separate black fashion influencer round-up.
 Fancy some shopping deals? Check out these amazing sales: Zara Black Friday, ASOS Black Friday, Missoma Black Friday and Gucci Black Friday.', CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2))
