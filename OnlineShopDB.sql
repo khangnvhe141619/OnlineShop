@@ -1,4 +1,4 @@
-﻿IF DB_ID('OnlineShopDB') IS NOT NULL
+IF DB_ID('OnlineShopDB') IS NOT NULL
 BEGIN
 	USE master
 	DROP DATABASE [OnlineShopDB]

@@ -150,7 +150,7 @@
                                     <c:if test="${requestScope.error != null}" >
                                         <h5 style="color:red">${requestScope.error}</h5>
                                     </c:if>
-                                    <a href="checkout" class="btn btn-lg btn-block btn-round btn-d" >Proceed to Checkout</a>
+                                    <a href="<%=request.getContextPath()%>/checkOutController" class="btn btn-lg btn-block btn-round btn-d" >Proceed to Checkout</a>
                                 </div>
                             </div>
                         </div>
