@@ -121,20 +121,6 @@
                             <div class="col-sm-6" style="padding-top: 100px">
                                 <div class="row">
                                     <div class="col-sm-12">
-=======
-		<div class="main">
-			<section class="module" style="padding-top: 0px">
-				<div class="container">
-					<div class="row">
-						<div class="col-sm-6 mb-sm-40">
-							<a class="gallery" href="<%=request.getContextPath()%>/resources/common/images/products/${p.image}"><img
-								src="<%=request.getContextPath()%>/resources/common/images/products/${p.image}" alt="Single Product Image" /></a>
-						</div>
-					</div>
-					<div class="col-sm-6" style="padding-top: 100px">
-						<div class="row">
-							<div class="col-sm-12">
->>>>>>> c6a4fb492098f5341123edb0cf68756b70c10de2
 
 								<h1 class="product-title font-alt">${p.productName}</h1>
 							</div>
