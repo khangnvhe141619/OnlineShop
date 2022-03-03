@@ -36,7 +36,7 @@ public class PostDAOImpl implements PostDAO {
 				post=new Post();
 				post.setPostId(rs.getInt("PostID"));
 				post.setAuthorName(rs.getString("Author"));
-				post.setTittle(rs.getString("Tiltle"));
+				post.setTittle(rs.getString("Title"));
 				post.setShortDesc(rs.getString("ShortDesc"));
 				post.setContent(rs.getString("Content"));
 				post.setCreatedDate(rs.getTimestamp("CreatedDate").toLocalDateTime());
@@ -90,7 +90,7 @@ public class PostDAOImpl implements PostDAO {
 	}
 
 	public boolean updatePost(Post post) throws SQLException {
-		String sql = "UPDATE Post SET Author=?, Tittle=?, ShortDesc=?, Content=?\r\n" + "WHERE PostID=?";
+		String sql = "UPDATE Post SET Author=?, Title=?, ShortDesc=?, Content=?\r\n" + "WHERE PostID=?";
 		int row = 0;
 		try {
 			con = DBConnection.getInstance().getConnection();
@@ -141,5 +141,19 @@ public class PostDAOImpl implements PostDAO {
 			}
 		}
 		return row > 0;
+	}
+	public static void main(String[] args) {
+		PostDAO pstDao=new PostDAOImpl();
+		List<Post> pst;
+		try {
+			pst = pstDao.getAllPost(1);
+			pst.forEach(st->{
+				System.out.println(st);
+			});
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }
