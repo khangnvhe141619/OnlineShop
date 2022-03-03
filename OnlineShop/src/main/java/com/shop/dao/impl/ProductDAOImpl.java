@@ -206,6 +206,38 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
+	public List<Product> getAllProduct(){
+		String sql = "SELECT * FROM PRODUCT";
+		Product product = null;
+		List<Product> lstProduct = new ArrayList<Product>();
+		try {
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				product = new Product();
+				product.setProductID(rs.getInt("ProductID"));
+				product.setCategoryId(rs.getInt("CategoryId"));
+				product.setProductName(rs.getString("ProductName"));
+				product.setImage(rs.getString("Image"));
+				product.setDescription(rs.getString("Description"));
+				product.setCreatedDate(rs.getTimestamp("CreatedDate").toLocalDateTime());
+				product.setIssuingCompany(rs.getString("IssuingCompany"));
+				product.setPublicationDate(rs.getTimestamp("PublicationDate").toLocalDateTime());
+				product.setCoverType(rs.getInt("CoverTypeId"));
+				product.setPublishingCompany(rs.getString("PublishingCompany"));
+				product.setQuantity(rs.getInt("Quantity"));
+				product.setPrice(rs.getDouble("Price"));
+				product.setNumberPage(rs.getInt("NumberPage"));
+				lstProduct.add(product);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return lstProduct;
+	}
+
+	@Override
 	public int countProduct() throws SQLException {
 		String sql = "SELECT COUNT(*) FROM Product";
 		int count = 0;
@@ -235,13 +267,13 @@ public class ProductDAOImpl implements ProductDAO {
 
 	public static void main(String[] args) throws SQLException {
 		ProductDAOImpl pd = new ProductDAOImpl();
-//		List<Product> ls = pd.searchProduct(1,1,"a", 10000, 20000);
-//		for (Product product : ls) {
-//			System.out.println(product.toString());
-//		}
-		int c = pd.countSearch(1, null, 10000, 20000);
-			System.out.println(c);
+		List<Product> ls = pd.getAllProduct();
+		for (Product product : ls) {
+			System.out.println(product.toString());
 		}
+//		int c = pd.countSearch(1, null, 10000, 20000);
+//			System.out.println(c);
+	}
 
 	public int countSearch(int cateid, String pname, int to, int end) throws SQLException {
 		String sql = "SELECT COUNT(*)\r\n" + "From Product\r\n" + "WHERE 1=1  ";
@@ -378,9 +410,9 @@ public class ProductDAOImpl implements ProductDAO {
 				}
 
 			}
-			ps.setInt(paramCount+1, index * 3 - 2);
-			ps.setInt(paramCount+2, index * 3 );
-			
+			ps.setInt(paramCount + 1, index * 3 - 2);
+			ps.setInt(paramCount + 2, index * 3);
+
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Product product = new Product();

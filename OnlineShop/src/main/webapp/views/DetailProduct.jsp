@@ -92,7 +92,7 @@
                                     </div>
                                 </div>
                                 <div class="row mb-20">
-                                    <form action="addcart" method="POST">
+                                    <form action="<%=request.getContextPath()%>/addCart" method="POST">
                                         <div class="col-sm-4 mb-sm-20">
                                             <input class="form-control input-lg" type="number" name="quantity" value="1" max="40" min="1" required="required"/>
                                         </div>

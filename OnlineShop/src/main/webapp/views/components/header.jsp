@@ -28,7 +28,7 @@
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="shop?typeid=1">Book</a></li>
 						</ul></li>
-					<li><a href="<%=request.getContextPath()%>/views/Cart.jsp">View
+					<li><a href="<%=request.getContextPath()%>/viewCart">View
 							Cart[ <c:if test="${sessionScope.size == null}">
                                         0
                                     </c:if> <c:if
