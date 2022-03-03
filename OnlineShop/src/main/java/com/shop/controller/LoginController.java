@@ -45,6 +45,7 @@ public class LoginController extends HttpServlet {
 			Account account = accountDAO.getLogin(email, pass);
 			if(account != null) {
 				HttpSession session = request.getSession();
+				session.setAttribute("acc", account);
 				session.setAttribute("email", email);
 				session.setAttribute("account",account.getAccountId());
 				session.setAttribute("username",account.getUsername());
