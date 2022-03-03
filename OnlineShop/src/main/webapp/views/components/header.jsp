@@ -37,6 +37,7 @@
                                     </c:if> ]
 					</a></li>
 					<li><a href="<%=request.getContextPath()%>/contactController">Contact</a></li>
+					<li><a href="<%=request.getContextPath()%>/listPostController">Blog</a></li>
 					<li><a href="<%=request.getContextPath()%>/views/FAQ.jsp">FAQ</a></li>
 					<c:if test="${sessionScope.email == null}">
 						<li><a href="<%=request.getContextPath()%>/views/Login.jsp">Login</a></li>

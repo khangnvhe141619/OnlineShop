@@ -6,11 +6,20 @@ import java.util.List;
 import com.shop.model.Post;
 
 public interface PostDAO {
-	public List<Post> getAllPost(int row) throws Exception;
-
+	
+	public Post getPostInformation(String id) throws SQLException;
+	
 	public boolean insertPost(Post post) throws SQLException;
 
 	public boolean updatePost(Post post) throws SQLException;
 
 	public boolean deletePost(int postId) throws SQLException;
+	
+	public List<Post> getAllPost(int row) throws Exception;
+	
+	public int countTotalPost() throws SQLException;
+	
+	public List<Post> getListPostByOption(String option, String txt, int row) throws SQLException;
+	
+	public int countPostByOption(String option, String txt) throws SQLException;
 }
