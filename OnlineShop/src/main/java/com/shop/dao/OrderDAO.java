@@ -11,4 +11,8 @@ public interface OrderDAO {
 	void getInsertOrder(ArrayList<Item> items, Order order);
 	
 	List<ProductOrderShip> getListOrders(int account) throws SQLException;
+	
+	List<ProductOrderShip> getListOrdersByPending(int account) throws SQLException;
+	
+	List<ProductOrderShip> getListOrdersByCompleted(int account) throws SQLException;
 }
