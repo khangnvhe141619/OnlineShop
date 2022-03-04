@@ -52,6 +52,7 @@
 										Information</a></li>
 								<li><a href="<%=request.getContextPath()%>/changePassword">Change
 										Password</a></li>
+								<li><a href="<%=request.getContextPath()%>/viewOrdered"> My purchase order</a></li>
 								<li><a
 									href="<%=request.getContextPath()%>/logoutController">Sign
 										Out</a></li>
