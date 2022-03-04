@@ -64,9 +64,24 @@
             <div class="main">
                 <section class="module">
                     <div class="container">
+                    	<div class="row">
+                            <div class="col-sm-4">
+                                <a class="module-title font-alt" href="<%=request.getContextPath()%>/viewOrdered" 
+                                style="font-size: 30px; font-weight:600; margin: 40%; color: ${color2};">All</a>
+                            </div>
+                            <div class="col-sm-4">
+                                <a class="module-title font-alt" href="<%=request.getContextPath()%>/viewOrdered?pending=1" 
+                                style="font-size: 30px; font-weight:600; margin: 30%; color: ${color};">PENDING</a>
+                            </div>
+                            <div class="col-sm-4">
+                                <a class="module-title font-alt" href="<%=request.getContextPath()%>/viewOrdered?completed=1" 
+                                style="font-size: 30px; font-weight:600; margin: 30%; color: ${color1};">COMPLETED</a>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-sm-6 col-sm-offset-3">
-                                <h1 class="module-title font-alt">All</h1>
+                            	<br>
+                                <h1 class="module-title font-alt">${HEADER}</h1>
                             </div>
                         </div>
                         <hr class="divider-w pt-20">
@@ -74,19 +89,21 @@
                             <div class="col-sm-12">
                                 <table class="table table-striped table-border checkout-table">
                                     <!--<tbody>-->
-                                    <tr>
-                                        <th>Image</th>
-                                        <th>Name</th>
-                                        <th>Price</th>
-                                        <th>Quantity</th>
-                                        <th>Total</th>
-                                        <th>Status</th>
-                                    </tr>
                                     <c:forEach items="${listOrder}" var="i">
+	                                    <tr>
+	                                        <th>Image</th>
+	                                        <th>Name</th>
+	                                        <th>Price</th>
+	                                        <th>Quantity</th>
+	                                        <th>Total</th>
+	                                        <th>Status</th>
+	                                    </tr>
                                         <tr>
-                                            <td><a href="#"><img src="<%=request.getContextPath()%>/resources/common/images/products/${i.image}"/></a></td>
                                             <td>
-                                                <h5 class="product-title font-alt">${i.productName}</h5>
+                                            	<h5 class="product-title font-alt"><img src="<%=request.getContextPath()%>/resources/common/images/products/${i.image}"/></h5>
+                                            </td>
+                                            <td>
+                                                <a href="<%=request.getContextPath()%>/details?id=${i.productID}">${i.productName}</a>
                                             </td>
                                             <td class="hidden-xs">
                                                 <h5 class="product-title font-alt">$${i.price}</h5>
@@ -98,9 +115,26 @@
                                                 <h5 class="product-title font-alt">$${i.price * i.quantity}</h5>
                                             </td>
                                             <td>
-                                                <h5 class="product-title font-alt">${i.description}</h5>
+                                            	<c:if test="${i.description == pending}">
+                                            		<h5 class="product-title font-alt" style="color: red;">${i.description}</h5>
+                                            	</c:if>
+                                            	<c:if test="${i.description == completed}">
+                                            		<h5 class="product-title font-alt" style="color: green;">${i.description}</h5>
+                                            	</c:if>
                                             </td>
                                         </tr>
+                                        <tr align="right">
+            								<td colspan="6">
+            									<div class="row mb-20">
+							<form action="addCart?quantity=1" method="POST">
+								<div class="col-sm-12">
+									<input type="hidden" name="id" value="${i.productID}" /> 
+									<input class="btn btn-lg btn-block btn-round btn-b" type="submit" value="Buy Again" style="background-color: #EE4D2D;"/>
+								</div>
+							</form>
+						</div>
+            								</td>
+        								</tr>
                                     </c:forEach>
                                     <!--</tbody>-->
                                 </table>
