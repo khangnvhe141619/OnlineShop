@@ -7,13 +7,14 @@ public class ProductOrderShip {
 	private String productName;
 	private double price;
 	private int quantity;
+	private int productID;
 	
 	public ProductOrderShip() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public ProductOrderShip(double total, String description, String image, String productName, double price,
-			int quantity) {
+			int quantity, int productID) {
 		super();
 		this.total = total;
 		this.description = description;
@@ -21,6 +22,7 @@ public class ProductOrderShip {
 		this.productName = productName;
 		this.price = price;
 		this.quantity = quantity;
+		this.productID = productID;
 	}
 
 	public double getTotal() {
@@ -71,9 +73,20 @@ public class ProductOrderShip {
 		this.quantity = quantity;
 	}
 
+	public int getProductID() {
+		return productID;
+	}
+
+	public void setProductID(int productID) {
+		this.productID = productID;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductOrderShip [total=" + total + ", description=" + description + ", image=" + image
-				+ ", productName=" + productName + ", price=" + price + ", quantity=" + quantity + "]";
+				+ ", productName=" + productName + ", price=" + price + ", quantity=" + quantity + ", productID="
+				+ productID + "]";
 	}
+
+	
 }
