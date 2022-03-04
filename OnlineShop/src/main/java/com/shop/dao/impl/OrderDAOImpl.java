@@ -6,13 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.shop.dao.OrderDAO;
-import com.shop.dao.ProductDAO;
-import com.shop.model.Account;
 import com.shop.model.Item;
 import com.shop.model.Order;
-import com.shop.model.Product;
 import com.shop.model.ProductOrderShip;
 import com.shop.utils.DBConnection;
 import com.shop.utils.SQLCommand;
@@ -70,6 +66,77 @@ public class OrderDAOImpl implements OrderDAO{
 				productOrderShip.setProductName(rs.getString("ProductName"));
 				productOrderShip.setPrice(rs.getDouble("Price"));
 				productOrderShip.setQuantity(rs.getInt("Quantity"));
+				productOrderShip.setProductID(rs.getInt("ProductID"));
+				orders.add(productOrderShip);
+			}
+			
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return orders;
+	}
+	
+	@Override
+	public List<ProductOrderShip> getListOrdersByPending(int account) throws SQLException {
+		List<ProductOrderShip> orders = new ArrayList<>();
+		ProductOrderShip productOrderShip = null;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.GET_LIST_ORDER_BY_PENDING);
+			pre.setInt(1, account);
+			rs = pre.executeQuery();
+			while (rs.next()) {
+				productOrderShip = new ProductOrderShip();
+				productOrderShip.setTotal(rs.getDouble("Total"));
+				productOrderShip.setDescription(rs.getString("Description"));
+				productOrderShip.setImage(rs.getString("Image"));
+				productOrderShip.setProductName(rs.getString("ProductName"));
+				productOrderShip.setPrice(rs.getDouble("Price"));
+				productOrderShip.setQuantity(rs.getInt("Quantity"));
+				productOrderShip.setProductID(rs.getInt("ProductID"));
+				orders.add(productOrderShip);
+			}
+			
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return orders;
+	}
+	
+	@Override
+	public List<ProductOrderShip> getListOrdersByCompleted(int account) throws SQLException {
+		List<ProductOrderShip> orders = new ArrayList<>();
+		ProductOrderShip productOrderShip = null;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.GET_LIST_ORDER_BY_COMPLETED);
+			pre.setInt(1, account);
+			rs = pre.executeQuery();
+			while (rs.next()) {
+				productOrderShip = new ProductOrderShip();
+				productOrderShip.setTotal(rs.getDouble("Total"));
+				productOrderShip.setDescription(rs.getString("Description"));
+				productOrderShip.setImage(rs.getString("Image"));
+				productOrderShip.setProductName(rs.getString("ProductName"));
+				productOrderShip.setPrice(rs.getDouble("Price"));
+				productOrderShip.setQuantity(rs.getInt("Quantity"));
+				productOrderShip.setProductID(rs.getInt("ProductID"));
 				orders.add(productOrderShip);
 			}
 			
@@ -89,7 +156,7 @@ public class OrderDAOImpl implements OrderDAO{
 	
 	public static void main(String[] args) throws SQLException {
 		OrderDAO pd = new OrderDAOImpl();
-		List<ProductOrderShip> lp = pd.getListOrders(2);
+		List<ProductOrderShip> lp = pd.getListOrdersByPending(2);
 		for (ProductOrderShip product : lp) {
 			System.out.println(product.toString());
 		}
