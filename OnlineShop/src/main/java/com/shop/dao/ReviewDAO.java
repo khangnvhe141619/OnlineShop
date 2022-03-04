@@ -9,4 +9,5 @@ public interface ReviewDAO  {
 	boolean addReview(int pId,int accId, String content,int rate,String creatdate);
 	boolean editReview(Review review);
 	boolean deleteReview(int reviewID);
+	 boolean isBought(int productid, int accid);
 } 
