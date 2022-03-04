@@ -37,11 +37,29 @@ public class ViewOrderedController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		int account = (int) session.getAttribute("account");
+		String pending = request.getParameter("pending");
+		String completed = request.getParameter("completed");
 		if(session.getAttribute("account") != null) {
 			OrderDAO dao = new OrderDAOImpl();
 			try {
-				List<ProductOrderShip> listOrder = dao.getListOrders(account);
-				request.setAttribute("listOrder", listOrder);
+				if(pending != null) {
+					List<ProductOrderShip> listOrder = dao.getListOrdersByPending(account);
+					request.setAttribute("color", "#EE4D2D");
+					request.setAttribute("HEADER", "PENDING");
+					request.setAttribute("listOrder", listOrder);
+				} else if(completed != null) {
+					List<ProductOrderShip> listOrder = dao.getListOrdersByCompleted(account);
+					request.setAttribute("color1", "#EE4D2D");
+					request.setAttribute("HEADER", "COMPLETED");
+					request.setAttribute("listOrder", listOrder);
+				} else {
+					List<ProductOrderShip> listOrder = dao.getListOrders(account);
+					request.setAttribute("color2", "#EE4D2D");
+					request.setAttribute("HEADER", "ALL");
+					request.setAttribute("listOrder", listOrder);
+				}
+				request.setAttribute("pending", "Pending");
+				request.setAttribute("completed", "Completed");
 				request.getRequestDispatcher("views/ProductOrderShip.jsp").forward(request, response);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
