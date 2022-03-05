@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,13 +69,13 @@
                             <p class="text-muted m-b-30 font-13"> Fill in the form below: </p>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
-                                    <form action="functions/new_admin.html" method="post">
+                                   <form class="form" role="form" action="<%=request.getContextPath()%>/addDepartment" method="post" onsubmit="return showCheck()">
                                         <div class="form-group">
                                             <label for="inputDepartmentName">Department Name</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-users"></i></div>
                                                 <input type="text" name="departmentName" class="form-control"
-                                                    id="" placeholder="Enter department name" required="">
+                                                    id="departmentName" placeholder="Enter department name" required="">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -82,12 +83,11 @@
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-pencil-square-o"></i></div>
                                                 <input type="text" name="departmentDesc"
-                                                    class="form-control" id=""
+                                                    class="form-control" id="departmentDesc"
                                                     placeholder="Enter department description">
                                             </div>
-                                        </div>                           
-                                        <button type="submit" name="submit"
-                                            class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
+                                        </div>                        
+                                        <button type="submit" name="submit" class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
                                     </form>
                                 </div>
                             </div>
@@ -152,6 +152,7 @@
         <!-- /#page-wrapper -->
     </div>
     <!-- /#wrapper -->
+    <script src="<%=request.getContextPath()%>/resources/admin/js/delete.js"></script>
     <!-- jQuery -->
     <script src="<%=request.getContextPath()%>/resources/admin/plugins/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
