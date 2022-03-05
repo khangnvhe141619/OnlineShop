@@ -45,6 +45,8 @@ public class ListPostController extends HttpServlet {
 				if (postDAO.countTotalPost() % 3 != 0) {
 					total = total + 1;
 				}
+				request.setAttribute("isPaging", 1);
+				request.setAttribute("result", 1);
 				request.setAttribute("check", 0);
 				request.setAttribute("lstPost", lstPost);
 				request.setAttribute("total", total);
@@ -57,6 +59,8 @@ public class ListPostController extends HttpServlet {
 				if (postDAO.countTotalPost() % 3 != 0) {
 					total += 1;
 				}
+				request.setAttribute("isPaging", 1);
+				request.setAttribute("result", 1);
 				request.setAttribute("check", 0);
 				request.setAttribute("lstPost", lstPost);
 				request.setAttribute("total", total);

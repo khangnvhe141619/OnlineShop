@@ -22,4 +22,5 @@ public interface PostDAO {
 	public List<Post> getListPostByOption(String option, String txt, int row) throws SQLException;
 	
 	public int countPostByOption(String option, String txt) throws SQLException;
+	
 }

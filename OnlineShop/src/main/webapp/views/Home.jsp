@@ -100,7 +100,7 @@
 						</div>
 						<div class="col-sm-6 col-md-4 col-lg-2">
 							<div class="callout-btn-box">
-								<a class="btn btn-w btn-round" href="#">get a quote</a>
+								<a class="btn btn-w btn-round" href="#">Get a quote</a>
 							</div>
 						</div>
 					</div>

@@ -4,7 +4,6 @@ import com.shop.dao.PostDAO;
 import com.shop.model.Post;
 import com.shop.utils.DBConnection;
 import com.shop.utils.Validation;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,7 +23,8 @@ public class PostDAOImpl implements PostDAO {
 	public List<Post> getAllPost(int row) throws SQLException {
 		List<Post> list = new ArrayList<Post>();
 		Post post = null;
-		String sql = "SELECT * FROM Post \r\n" + "ORDER BY PostID OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY";
+		String sql = "SELECT * FROM Post ORDER BY CreatedDate DESC "
+				+ "OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY";
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);
@@ -293,5 +293,5 @@ public class PostDAOImpl implements PostDAO {
 			}
 		}
 		return count;
-	}
+	}	
 }
