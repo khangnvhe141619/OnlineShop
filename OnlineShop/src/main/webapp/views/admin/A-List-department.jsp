@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -87,18 +88,20 @@
                                                     <th>ACTION</th>
                                                 </tr>
                                             </thead>
+                                            <c:forEach items="${list}" var="list">
                                             <tbody>
                                                 <tr>
-                                                    <td class="max-texts"> 1</td>
-                                                    <td class="max-texts"> name </td>
-
-                                                    <td class="">desc</td>
+                                                    <td class="max-texts">${list.departmentId}</td>
+                                                    <td class="max-texts">${list.departtmentName}</td>
+                                                    <td class="">${list.departnemtDesc}</td>
                                                     <td class="">
-                                                         <a href="" onclick=""><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+                                                         <a href="" onclick="showMes(${list.departmentId})"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
                                                     </td>
                                                 </tr>
                                             </tbody>
+                                            </c:forEach>
                                         </table>
+                                        <script src="<%=request.getContextPath() %>/resources/admin/js/delete.js"></script>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-7 m-t-20"> Showing 1 - số trang</div>
