@@ -43,7 +43,7 @@ public  class ReviewDAOImpl implements ReviewDAO {
 
         return false;
     }
-
+//commit
 	public List<Review> getReviews(int productid) {
 		List<Review> list = new ArrayList<Review>();
 		Review rv= null;
