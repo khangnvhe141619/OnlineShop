@@ -77,17 +77,21 @@
         </section>
         <section class="module">      
           <div class="container">
+					<c:if test="${error}">
+						<div style="margin-bottom: 3%; font-size: 20px; color: red;">Please
+							select the topic you want to search for :v</div>
+					</c:if>
 					<c:if test="${result == 0}">
 						<div style="margin-bottom: 3%; font-size: 20px; color: red;">No
-							result</div>
+							result :v</div>
 					</c:if>
-					<c:if test="${result > 0}">
+					<c:if test="${result > 0 && isPaging == 0}">
 						<div style="margin-bottom: 3%; font-size: 20px; color: red;">There
 							are ${result} results related to "${search}"</div>
 					</c:if>
 					<div class="row">                       
               <div class="col-sm-8">                                   
-              <c:forEach items="${lstPost}" var="pst">
+                   <c:forEach items="${lstPost}" var="pst">
 							<div class="post">								
 									<div class="post-images-slider">
 										<ul class="slides">
@@ -118,6 +122,7 @@
 									</div>								
 							</div>
 							</c:forEach>
+						<c:if test="${result > 0}">
 							<div class="pagination font-alt">							
 							<c:if test="${check == 0}">
 								<div class="pagination">
@@ -178,7 +183,8 @@
 								</div>
 							</c:if>
 							</div>
-
+						</c:if>
+							
 						</div>
 						
               <!-- Right side bar -->
@@ -191,7 +197,7 @@
 												aria-hidden="true"> Filter By</i></span>
 										</div>
 										<select style="margin-bottom: 5%;" class="form-control" name="select">
-											<option value="" selected="selected">------ Choose ------</option>
+											<option value="pChoose" selected="selected">------ Choose ------</option>
 											<option value="pTitle">Title</option>
 											<option value="pAuthor">Author</option>
 											<option value="pTag">Tag</option>
@@ -209,36 +215,17 @@
 							</div>               
                 <div class="widget">
                   <h5 class="widget-title font-alt">Popular Posts</h5>
-                  <ul class="widget-posts">
-                    <li class="clearfix">
-                      <div class="widget-posts-image"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/assets/images/rp-1.jpg" alt="Post Thumbnail"/></a></div>
-                      <div class="widget-posts-body">
-                        <div class="widget-posts-title"><a href="#">Designer Desk Essentials</a></div>
-                        <div class="widget-posts-meta">23 january</div>
-                      </div>
-                    </li>
-                    <li class="clearfix">
-                      <div class="widget-posts-image"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/assets/images/rp-2.jpg" alt="Post Thumbnail"/></a></div>
-                      <div class="widget-posts-body">
-                        <div class="widget-posts-title"><a href="#">Realistic Business Card Mockup</a></div>
-                        <div class="widget-posts-meta">15 February</div>
-                      </div>
-                    </li>
-                    <li class="clearfix">
-                      <div class="widget-posts-image"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/assets/images/rp-3.jpg" alt="Post Thumbnail"/></a></div>
-                      <div class="widget-posts-body">
-                        <div class="widget-posts-title"><a href="#">Eco bag Mockup</a></div>
-                        <div class="widget-posts-meta">21 February</div>
-                      </div>
-                    </li>
+                  <c:forEach items="${lstPost}" var="pst">
+                  <ul class="widget-posts">                                           
                     <li class="clearfix">
                       <div class="widget-posts-image"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/assets/images/rp-4.jpg" alt="Post Thumbnail"/></a></div>
                       <div class="widget-posts-body">
-                        <div class="widget-posts-title"><a href="#">Bottle Mockup</a></div>
-                        <div class="widget-posts-meta">2 March</div>
+                        <div class="widget-posts-title"><a href="#">${pst.title}</a></div>
+                        <div class="widget-posts-meta">${pst.authorName}</div>
                       </div>
-                    </li>
+                    </li>                   
                   </ul>
+                  </c:forEach>
                 </div>
 							<div class="widget">
 								<h5 class="widget-title font-alt">Tag</h5>
@@ -251,7 +238,7 @@
 										href="#" rel="tag">Popular</a><a href="#" rel="tag">English</a>
 								</div>
 							</div>
-						</div>
+				</div>
               <!-- Right side bar end -->
             </div>
           </div>

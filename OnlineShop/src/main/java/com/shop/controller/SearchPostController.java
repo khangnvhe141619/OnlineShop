@@ -54,7 +54,11 @@ public class SearchPostController extends HttpServlet {
 			break;
 		case "pTag":
 			option = "tag";
-			break;		
+			break;
+		case "pChoose":
+			request.setAttribute("error", true);
+			request.getRequestDispatcher("views/Blog.jsp").forward(request, response);
+			return;
 		}
 		String index = request.getParameter("page");
 		int page = Validation.convertStringToInt(index);
@@ -69,6 +73,7 @@ public class SearchPostController extends HttpServlet {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		request.setAttribute("isPaging", 0);
 		request.setAttribute("result", sum);
 		request.setAttribute("search", search);
 		request.setAttribute("select", option);
@@ -111,7 +116,11 @@ public class SearchPostController extends HttpServlet {
 				break;
 			case "pTag":
 				option = "tag";
-				break;		
+				break;
+			case "pChoose":
+				request.setAttribute("error", true);
+				request.getRequestDispatcher("views/Blog.jsp").forward(request, response);
+				return;
 			}
 			try {
 				sum=postDAO.countPostByOption(option, search);
@@ -123,6 +132,7 @@ public class SearchPostController extends HttpServlet {
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
+			request.setAttribute("isPaging", 0);
 			request.setAttribute("result", sum);
 			request.setAttribute("search", search);
 			request.setAttribute("select", option);
