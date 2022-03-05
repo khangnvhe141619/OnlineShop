@@ -36,8 +36,7 @@
 					</div>
 					<div class="signin-form">
 						<h2 class="form-title">Login</h2>
-						<form action="<%=request.getContextPath()%>/loginController" method="POST" class="register-form"
-							id="login-form">
+						<form action="<%=request.getContextPath()%>/loginController" method="POST" class="register-form" id="login-form">
 							<c:if test="${errorLogin}">
 								<div style="color: red">Login fail</div>
 							</c:if>
