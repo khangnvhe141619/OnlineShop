@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,46 +35,24 @@
 							</div>               
                 <div class="widget">
                   <h5 class="widget-title font-alt">Popular Posts</h5>
-                  <ul class="widget-posts">
-                    <li class="clearfix">
-                      <div class="widget-posts-image"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/assets/images/rp-1.jpg" alt="Post Thumbnail"/></a></div>
-                      <div class="widget-posts-body">
-                        <div class="widget-posts-title"><a href="#">Designer Desk Essentials</a></div>
-                        <div class="widget-posts-meta">23 january</div>
-                      </div>
-                    </li>
-                    <li class="clearfix">
-                      <div class="widget-posts-image"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/assets/images/rp-2.jpg" alt="Post Thumbnail"/></a></div>
-                      <div class="widget-posts-body">
-                        <div class="widget-posts-title"><a href="#">Realistic Business Card Mockup</a></div>
-                        <div class="widget-posts-meta">15 February</div>
-                      </div>
-                    </li>
-                    <li class="clearfix">
-                      <div class="widget-posts-image"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/assets/images/rp-3.jpg" alt="Post Thumbnail"/></a></div>
-                      <div class="widget-posts-body">
-                        <div class="widget-posts-title"><a href="#">Eco bag Mockup</a></div>
-                        <div class="widget-posts-meta">21 February</div>
-                      </div>
-                    </li>
+                  <c:forEach items="${lstPost}" var="pst">
+                  <ul class="widget-posts">                                           
                     <li class="clearfix">
                       <div class="widget-posts-image"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/assets/images/rp-4.jpg" alt="Post Thumbnail"/></a></div>
                       <div class="widget-posts-body">
-                        <div class="widget-posts-title"><a href="#">Bottle Mockup</a></div>
-                        <div class="widget-posts-meta">2 March</div>
+                        <div class="widget-posts-title"><a href="#">${pst.title}</a></div>
+                        <div class="widget-posts-meta">${pst.authorName}</div>
                       </div>
-                    </li>
+                    </li>                   
                   </ul>
+                  </c:forEach>
                 </div>
 							<div class="widget">
 								<h5 class="widget-title font-alt">Tag</h5>
 								<div class="tags font-serif">
-									<a href="#" rel="tag">Blog</a><a href="#" rel="tag">Photo</a><a
-										href="#" rel="tag">Video</a><a href="#" rel="tag">Image</a><a
-										href="#" rel="tag">Minimal</a><a href="#" rel="tag">Post</a><a
-										href="#" rel="tag">Theme</a><a href="#" rel="tag">Ideas</a><a
-										href="#" rel="tag">Tags</a><a href="#" rel="tag">Bootstrap</a><a
-										href="#" rel="tag">Popular</a><a href="#" rel="tag">English</a>
+								<c:forEach items="${lstTag}" var="tag">
+									<a href="<%=request.getContextPath()%>/listPostByTag?name=${tag.tagName}&page=1" rel="tag">${tag.tagName}</a>
+										</c:forEach>
 								</div>
 							</div>
 				</div>

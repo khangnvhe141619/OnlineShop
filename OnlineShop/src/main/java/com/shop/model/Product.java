@@ -1,6 +1,5 @@
 package com.shop.model;
 
-import java.text.NumberFormat;
 import java.time.LocalDateTime;
 
 public class Product {

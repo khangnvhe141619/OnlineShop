@@ -3,15 +3,12 @@ package com.shop.dao.impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDate;
 
 import com.shop.dao.CartDAO;
 import com.shop.model.Account;
 import com.shop.model.Cart;
 import com.shop.model.Item;
-import com.shop.utils.DBConnection;
-import com.shop.utils.SQLCommand;
 
 public class CartDAOImpl implements CartDAO {
 	private Connection con;

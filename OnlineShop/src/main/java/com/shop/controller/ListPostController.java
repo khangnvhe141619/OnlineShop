@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.shop.dao.PostDAO;
+import com.shop.dao.TagDAO;
 import com.shop.dao.impl.PostDAOImpl;
+import com.shop.dao.impl.TagDAOImpl;
 import com.shop.model.Post;
+import com.shop.model.Tag;
 
 /**
  * Servlet implementation class ListPostController
@@ -37,17 +40,21 @@ public class ListPostController extends HttpServlet {
 			throws ServletException, IOException {
 		int total = 0;
 		PostDAO postDAO = new PostDAOImpl();
+		TagDAO tagDAO = new TagDAOImpl();
 		List<Post> lstPost = new ArrayList<Post>();
+		List<Tag> lstTag = new ArrayList<Tag>();
 		try {
 			if (request.getParameter("page") == null) {
 				lstPost = postDAO.getAllPost(0);
 				total = postDAO.countTotalPost() / 3;
+				lstTag = tagDAO.getAllTag();
 				if (postDAO.countTotalPost() % 3 != 0) {
 					total = total + 1;
 				}
-				request.setAttribute("isPaging", 1);
+				request.setAttribute("isSearch", 0);
 				request.setAttribute("result", 1);
 				request.setAttribute("check", 0);
+				request.setAttribute("lstTag", lstTag);
 				request.setAttribute("lstPost", lstPost);
 				request.setAttribute("total", total);
 				request.setAttribute("tag", 1);
@@ -56,12 +63,14 @@ public class ListPostController extends HttpServlet {
 				int page = Integer.parseInt(request.getParameter("page"));
 				lstPost = postDAO.getAllPost((page - 1) * 3);
 				total = postDAO.countTotalPost() / 3;
+				lstTag = tagDAO.getAllTag();
 				if (postDAO.countTotalPost() % 3 != 0) {
 					total += 1;
 				}
-				request.setAttribute("isPaging", 1);
+				request.setAttribute("isSearch", 0);
 				request.setAttribute("result", 1);
 				request.setAttribute("check", 0);
+				request.setAttribute("lstTag", lstTag);
 				request.setAttribute("lstPost", lstPost);
 				request.setAttribute("total", total);
 				request.setAttribute("tag", page);

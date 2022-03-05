@@ -85,7 +85,7 @@
 						<div style="margin-bottom: 3%; font-size: 20px; color: red;">No
 							result :v</div>
 					</c:if>
-					<c:if test="${result > 0 && isPaging == 0}">
+					<c:if test="${result > 0 && isSearch == 1}">
 						<div style="margin-bottom: 3%; font-size: 20px; color: red;">There
 							are ${result} results related to "${search}"</div>
 					</c:if>
@@ -106,7 +106,7 @@
 
 									<div class="post-header font-alt">
 										<h2 class="post-title">
-											<a href="#">${pst.title}</a>
+											<a href="<%=request.getContextPath()%>/viewDetailsPost?pId=${pst.postId}">${pst.title}</a>
 										</h2>
 										<div class="post-meta">
 											By&nbsp;<a href="#">${pst.authorName}</a>| ${pst.createdDate} | 3
@@ -118,7 +118,7 @@
 										<p>${pst.shortDesc}</p>
 									</div>
 									<div class="post-more">
-										<a class="more-link" href="#">Read more</a>
+										<a class="more-link" href="<%=request.getContextPath()%>/viewDetailsPost?pId=${pst.postId}">Read more</a>
 									</div>								
 							</div>
 							</c:forEach>
@@ -182,63 +182,42 @@
 									</c:if>
 								</div>
 							</c:if>
+							<c:if test="${check == 2}">
+								<div class="pagination">
+									<c:if test="${tag == 1}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/listPostByTag?page=1">&laquo;Pre</a>
+										</li>
+									</c:if>
+									<c:if test="${tag != 1}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/listPostByTag?page=${tag - 1}">&laquo;Pre</a>
+										</li>
+									</c:if>
+									<c:forEach begin="1" end="${total}" var="i">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/listPostByTag?page=${i}"
+											class="${tag == i? "active":""}">${i}</a></li>
+									</c:forEach>
+									<c:if test="${tag != total}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/listPostByTag?page=${tag + 1}">Next
+												&raquo;</a></li>
+									</c:if>
+									<c:if test="${tag == total}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/listPostByTag?page=${total}">Next
+												&raquo;</a>
+									</c:if>
+								</div>
+							</c:if>
 							</div>
 						</c:if>
 							
 						</div>
 						
               <!-- Right side bar -->
-              <div class="col-sm-4 col-md-3 col-md-offset-1 sidebar">
-                <div class="widget">
-								<form role="form" action="<%=request.getContextPath()%>/searchPostController" method="POST">
-									<div class="">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><i class="fa fa-filter"
-												aria-hidden="true"> Filter By</i></span>
-										</div>
-										<select style="margin-bottom: 5%;" class="form-control" name="select">
-											<option value="pChoose" selected="selected">------ Choose ------</option>
-											<option value="pTitle">Title</option>
-											<option value="pAuthor">Author</option>
-											<option value="pTag">Tag</option>
-										</select>
-									</div>
-
-									<div class="search-box">
-										<input class="form-control" type="text" name=search value="${search}" 
-											placeholder="Search..." />
-										<button class="search-btn" type="submit">
-											<i class="fa fa-search"></i>
-										</button>
-									</div>
-								</form>
-							</div>               
-                <div class="widget">
-                  <h5 class="widget-title font-alt">Popular Posts</h5>
-                  <c:forEach items="${lstPost}" var="pst">
-                  <ul class="widget-posts">                                           
-                    <li class="clearfix">
-                      <div class="widget-posts-image"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/assets/images/rp-4.jpg" alt="Post Thumbnail"/></a></div>
-                      <div class="widget-posts-body">
-                        <div class="widget-posts-title"><a href="#">${pst.title}</a></div>
-                        <div class="widget-posts-meta">${pst.authorName}</div>
-                      </div>
-                    </li>                   
-                  </ul>
-                  </c:forEach>
-                </div>
-							<div class="widget">
-								<h5 class="widget-title font-alt">Tag</h5>
-								<div class="tags font-serif">
-									<a href="#" rel="tag">Blog</a><a href="#" rel="tag">Photo</a><a
-										href="#" rel="tag">Video</a><a href="#" rel="tag">Image</a><a
-										href="#" rel="tag">Minimal</a><a href="#" rel="tag">Post</a><a
-										href="#" rel="tag">Theme</a><a href="#" rel="tag">Ideas</a><a
-										href="#" rel="tag">Tags</a><a href="#" rel="tag">Bootstrap</a><a
-										href="#" rel="tag">Popular</a><a href="#" rel="tag">English</a>
-								</div>
-							</div>
-				</div>
+              <jsp:include page="components/rightBarBlog.jsp"></jsp:include>
               <!-- Right side bar end -->
             </div>
           </div>

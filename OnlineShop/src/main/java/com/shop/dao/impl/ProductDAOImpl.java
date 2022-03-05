@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.chainsaw.Main;
-
 import com.shop.dao.ProductDAO;
 import com.shop.model.Product;
 import com.shop.utils.DBConnection;

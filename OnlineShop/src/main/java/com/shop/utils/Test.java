@@ -6,14 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.shop.dao.AccountDAO;
+import com.shop.dao.PostCmtDAO;
 import com.shop.dao.PostDAO;
 import com.shop.dao.ProductDAO;
 import com.shop.dao.impl.AccountDAOImpl;
+import com.shop.dao.impl.PostCmtDAOImpl;
 import com.shop.dao.impl.PostDAOImpl;
 import com.shop.dao.impl.ProductDAOImpl;
 import com.shop.dao.impl.ReviewDAOImpl;
 import com.shop.model.Account;
 import com.shop.model.Post;
+import com.shop.model.PostCmt;
 import com.shop.model.Product;
 import com.shop.service.EmailMessage;
 import com.shop.service.EmailUtility;
@@ -22,11 +25,11 @@ public class Test {
 
 	public static void main(String[] args) throws SQLException {
 		// TODO Auto-generated method stub
-		ProductDAO pd = new ProductDAOImpl();
-		List<Product> lp = pd.getListAllProduct(1);
-		for (Product product : lp) {
-			System.out.println(product.toString());
-		}
+//		ProductDAO pd = new ProductDAOImpl();
+//		List<Product> lp = pd.getListAllProduct(1);
+//		for (Product product : lp) {
+//			System.out.println(product.toString());
+//		}
 //		Product p = pd.getProductById(1);
 //		System.out.println(p);
 //		LocalDateTime cDate = Validation.getLocalDateTime("2022-02-12 20:10:15");
@@ -88,19 +91,25 @@ public class Test {
 //	    } catch (InvalidApplicationException e) {
 //	      // TODO Auto-generated catch block
 //	    }
-		System.out.println(1);
-		PostDAO pstDao=new PostDAOImpl();
-		List<Post> pst=null;
-		try {
-			pst = pstDao.getAllPost(0);
-			pst.forEach(st->{
-				System.out.println(st);
-			});
-			System.out.println(3);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		System.out.println(1);
+//		PostDAO pstDao=new PostDAOImpl();
+//		List<Post> pst=null;
+//		try {
+//			pst = pstDao.getAllPost(0);
+//			pst.forEach(st->{
+//				System.out.println(st);
+//			});
+//			System.out.println(3);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
+		
+		PostCmtDAO pcmtD=new PostCmtDAOImpl();
+//		List<PostCmt> lipcmt=pcmtD.getListCmtByPostID("1");
+//		lipcmt.forEach(System.out::println);
+		int i=pcmtD.countTotalCommentByPostID("1");
+		System.out.println(i);
 	}
 }
