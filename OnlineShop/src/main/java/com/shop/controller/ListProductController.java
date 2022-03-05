@@ -14,7 +14,7 @@ import com.shop.dao.impl.CategoryDAOImpl;
 import com.shop.dao.impl.ProductDAOImpl;
 import com.shop.model.Category;
 import com.shop.model.Product;
-
+//checkListproduct
 /**
  * Servlet implementation class ListProductController
  */
