@@ -38,8 +38,8 @@
                     <li> <a href="#" class="waves-effect"><i data-icon=";" class="linea-icon fa fa-group"></i> <span
                                 class="hide-menu">Department<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="A-List-department.jsp">List Departments</a></li>
-                            <li><a href="A-New-department.jsp">Create Department</a></li>
+                            <li><a href="<%=request.getContextPath() %>/listDepartmentController">List Departments</a></li>
+                            <li><a href="<%=request.getContextPath() %>/addDepartment">Create Department</a></li>
 
                         </ul>
                     </li>
