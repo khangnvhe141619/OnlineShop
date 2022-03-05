@@ -49,4 +49,9 @@ public class SQLCommand {
 			+ "ON P.ProductId = OD.ProductId\r\n"
 			+ "WHERE O.AccountId = ? AND OS.Description like 'Completed'";
 	
+	public static final String GET_LIST_DEPARTMENTS = "SELECT * FROM Department";
+	
+	public final static String GET_DELETE_DEPARTMENTS = "DELETE Department WHERE DepartmentID = ?";
+	
+	public final static String GET_INSERT_DEPARTMENTS = "INSERT INTO Department VALUES(?,?)";
 }

@@ -22,8 +22,14 @@ public class Department {
         this.departtmentName = departtmentName;
         this.departnemtDesc = departnemtDesc;
     }
+    
+    public Department(String departtmentName, String departnemtDesc) {
+		super();
+		this.departtmentName = departtmentName;
+		this.departnemtDesc = departnemtDesc;
+	}
 
-    public int getDepartmentId() {
+	public int getDepartmentId() {
         return departmentId;
     }
 
