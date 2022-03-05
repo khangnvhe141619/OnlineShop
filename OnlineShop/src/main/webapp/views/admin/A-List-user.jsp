@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -92,7 +90,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="max-texts"> 1</td>
-                                                    <td class="max-texts"><a href="user-information.html" /> username </td>
+                                                    <td class="max-texts"><a href="A-User-detail.jsp" /> username </td>
                                                     <td class="max-texts"> fullname </td>
                                                     <td class="max-texts">email</td>
                                                     <td class="">

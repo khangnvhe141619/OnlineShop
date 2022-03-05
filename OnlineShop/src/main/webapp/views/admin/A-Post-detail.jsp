@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -96,7 +95,7 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal"
-                                                    aria-hidden="true">×</button>
+                                                    aria-hidden="true">Ã—</button>
                                                 <h4 class="modal-title">Are you sure you want to delete this post?</h4>
                                             </div>
                                             <div class="modal-footer">
