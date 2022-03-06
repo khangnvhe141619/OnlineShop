@@ -95,7 +95,8 @@
                                                     <td class="max-texts">${list.departtmentName}</td>
                                                     <td class="">${list.departnemtDesc}</td>
                                                     <td class="">
-                                                         <a href="" onclick="showMes(${list.departmentId})"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+                                                         <a href="<%=request.getContextPath() %>/DeleteController?id=${list.departmentId}" 
+                                                         onclick="return testConfirmDialog()"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -195,5 +196,15 @@
     <script src="<%=request.getContextPath()%>/resources/admin/js/custom.min.js"></script>
     <!--Style Switcher -->
     <script src="<%=request.getContextPath()%>/resources/admin/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+         <script type="text/javascript">
+     function testConfirmDialog()  {
+              var result = confirm("Do you want to continue?");
+              if(result)  {
+                 return true;
+              } else {
+                 return false;
+              }
+         }
+      </script>
 </body>
 </html>
