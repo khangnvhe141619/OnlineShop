@@ -1,7 +1,5 @@
 package com.shop.model;
 
-import java.sql.Date;
-
 public class Review {
 	private int reviewid;
 	private int productid;
@@ -13,8 +11,6 @@ public class Review {
 		// TODO Auto-generated constructor stub
 	}
 	
-
-	
 	public Review(int reviewid, int productid, Account account, String content, int ratings, String createdate) {
 		super();
 		this.reviewid = reviewid;
@@ -24,8 +20,6 @@ public class Review {
 		this.ratings = ratings;
 		this.createdate = createdate;
 	}
-
-
 
 	public Review(int productid, Account account, String content, int ratings, String createdate) {
 		super();

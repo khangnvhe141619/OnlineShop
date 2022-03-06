@@ -90,7 +90,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="max-texts"> 1</td>
-                                                    <td class="max-texts"><a href="user-information.html" /> username </td>
+                                                    <td class="max-texts"><a href="A-User-detail.jsp" /> username </td>
                                                     <td class="max-texts"> fullname </td>
                                                     <td class="max-texts">email</td>
                                                     <td class="">

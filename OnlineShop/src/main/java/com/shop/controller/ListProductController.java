@@ -9,12 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.shop.dao.ProductDAO;
 import com.shop.dao.impl.CategoryDAOImpl;
 import com.shop.dao.impl.ProductDAOImpl;
 import com.shop.model.Category;
 import com.shop.model.Product;
-
+//checkListproduct
 /**
  * Servlet implementation class ListProductController
  */

@@ -12,8 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.shop.dao.PostDAO;
+import com.shop.dao.TagDAO;
 import com.shop.dao.impl.PostDAOImpl;
+import com.shop.dao.impl.TagDAOImpl;
 import com.shop.model.Post;
+import com.shop.model.Tag;
 import com.shop.utils.Validation;
 
 /**
@@ -22,26 +25,29 @@ import com.shop.utils.Validation;
 @WebServlet("/searchPostController")
 public class SearchPostController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SearchPostController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public SearchPostController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		int total = 0;
-		int sum=0;
+		int sum = 0;
+		TagDAO tagDAO = new TagDAOImpl();
 		PostDAO postDAO = new PostDAOImpl();
 		List<Post> lstPost = new ArrayList<Post>();
-		
+		List<Tag> lstTag = new ArrayList<Tag>();
 		HttpSession session = request.getSession();
-		
+
 		String search = (String) session.getAttribute("SE");
 		String option = (String) session.getAttribute("SL");
 
@@ -64,20 +70,22 @@ public class SearchPostController extends HttpServlet {
 		int page = Validation.convertStringToInt(index);
 
 		try {
-			sum=postDAO.countPostByOption(option, search);
+			sum = postDAO.countPostByOption(option, search);
 			lstPost = postDAO.getListPostByOption(option, search, (page - 1) * 3);
 			total = postDAO.countPostByOption(option, search) / 3;
+			lstTag = tagDAO.getAllTag();
 			if (postDAO.countPostByOption(option, search) % 3 != 0) {
 				total += 1;
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		request.setAttribute("isPaging", 0);
+		request.setAttribute("isSearch", 1);
 		request.setAttribute("result", sum);
 		request.setAttribute("search", search);
 		request.setAttribute("select", option);
 		request.setAttribute("check", 1);
+		request.setAttribute("lstTag", lstTag);
 		request.setAttribute("lstPost", lstPost);
 		request.setAttribute("total", total);
 		request.setAttribute("tag", page);
@@ -85,19 +93,23 @@ public class SearchPostController extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		int total = 0;
-		int sum=0;
+		int sum = 0;
+		TagDAO tagDAO = new TagDAOImpl();
 		PostDAO postDAO = new PostDAOImpl();
 		List<Post> lstPost = new ArrayList<Post>();
+		List<Tag> lstTag = new ArrayList<Tag>();
 		HttpSession session = request.getSession();
-		
+
 		if (request.getParameter("search") == null) {
 			request.getRequestDispatcher("views/Blog.jsp").forward(request, response);
 
-		}else {
+		} else {
 			String search = request.getParameter("search");
 			String option = request.getParameter("select");
 
@@ -106,7 +118,7 @@ public class SearchPostController extends HttpServlet {
 
 			session.setAttribute("SE", search);
 			session.setAttribute("SL", option);
-			
+
 			switch (option) {
 			case "pTitle":
 				option = "title";
@@ -123,20 +135,22 @@ public class SearchPostController extends HttpServlet {
 				return;
 			}
 			try {
-				sum=postDAO.countPostByOption(option, search);
+				sum = postDAO.countPostByOption(option, search);
 				lstPost = postDAO.getListPostByOption(option, search, 0);
 				total = postDAO.countPostByOption(option, search) / 3;
+				lstTag = tagDAO.getAllTag();
 				if (postDAO.countPostByOption(option, search) % 3 != 0) {
 					total += 1;
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
-			request.setAttribute("isPaging", 0);
+			request.setAttribute("isSearch", 1);
 			request.setAttribute("result", sum);
 			request.setAttribute("search", search);
 			request.setAttribute("select", option);
 			request.setAttribute("check", 1);
+			request.setAttribute("lstTag", lstTag);
 			request.setAttribute("lstPost", lstPost);
 			request.setAttribute("total", total);
 			request.setAttribute("tag", 1);

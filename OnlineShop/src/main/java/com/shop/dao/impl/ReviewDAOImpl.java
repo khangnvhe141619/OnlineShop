@@ -1,11 +1,9 @@
 package com.shop.dao.impl;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -43,7 +41,7 @@ public  class ReviewDAOImpl implements ReviewDAO {
 
         return false;
     }
-
+//commit
 	public List<Review> getReviews(int productid) {
 		List<Review> list = new ArrayList<Review>();
 		Review rv= null;

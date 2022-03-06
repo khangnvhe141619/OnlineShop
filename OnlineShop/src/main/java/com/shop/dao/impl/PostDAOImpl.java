@@ -223,7 +223,7 @@ public class PostDAOImpl implements PostDAO {
 	@Override
 	public Post getPostInformation(String id) throws SQLException {
 		Post post = null;
-		String sql = "SELECT * FROM Post \r\n" + "WHERE PostID like ?";
+		String sql = "SELECT * FROM Post \r\n" + "WHERE PostID LIKE ?";
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);

@@ -24,7 +24,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import com.shop.dao.AccountDAO;
 import com.shop.dao.impl.AccountDAOImpl;
 import com.shop.model.Account;
-
+//lalala
 /**
  * Servlet implementation class UpdateAccountController
  */

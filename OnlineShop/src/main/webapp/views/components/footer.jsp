@@ -42,13 +42,12 @@
 				</div>
 				<div class="col-sm-3">
 					<div class="widget">
-						<h5 class="widget-title font-alt">Blog Categories</h5>
+						<h5 class="widget-title font-alt">Our Expertises</h5>
 						<ul class="icon-list">
-							<li><a href="#">Photography - 7</a></li>
-							<li><a href="#">Web Design - 3</a></li>
-							<li><a href="#">Illustration - 12</a></li>
-							<li><a href="#">Marketing - 1</a></li>
-							<li><a href="#">Wordpress - 16</a></li>
+							<li><a href="#">Photography</a></li>
+							<li><a href="#">Web Design</a></li>
+							<li><a href="#">Illustration</a></li>
+							<li><a href="#">Marketing</a></li>
 						</ul>
 					</div>
 				</div>

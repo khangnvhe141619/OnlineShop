@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
@@ -109,7 +109,6 @@
 		<!-- header -->
 		<jsp:include page="components/header.jsp"></jsp:include>
 		<!-- end header -->
-		<<<<<<< HEAD
 
 		<div class="main">
 			<section class="module" style="padding-top: 0px">
@@ -231,15 +230,7 @@
 								<div class="tab-pane" id="description">
 									<p>${p.description }</p>
 								</div>
-<<<<<<< HEAD
-							</div>
-						</div>
-						<div class="row mb-20">
-							<form action="addCart" method="POST">
-								<div class="col-sm-4 mb-sm-20">
-									<input class="form-control input-lg" type="number"
-										name="quantity" value="1" max="40" min="1" required="required" />
-=======
+
 								<div class="tab-pane" id="data-sheet">
 									<table class="table table-striped ds-table table-responsive">
 										<tbody>
@@ -256,20 +247,19 @@
 												<td>${p.issuingCompany }</td>
 											</tr>
 											<tr>
-												<td>publishingCompany</td>
+												<td>Publishing Company</td>
 												<td>${p.publishingCompany }</td>
 											</tr>
 											<tr>
-												<td>quantity</td>
+												<td>Quantity</td>
 												<td>${p.quantity }</td>
 											</tr>
 											<tr>
-												<td>publicationDate</td>
+												<td>Publication Date</td>
 												<td>${p.publicationDate }</td>
 											</tr>
 										</tbody>
 									</table>
->>>>>>> branch 'main' of https://github.com/khangnvhe141619/OnlineShop.git
 								</div>
 
 							</div>
