@@ -1,6 +1,6 @@
 package com.shop.controller;
 
-import java.io.IOException;import java.security.Policy.Parameters;
+import java.io.IOException;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,10 +39,10 @@ public class DeleteController extends HttpServlet {
 				System.out.println(id);
 				if(check == true) {
 					System.out.println("true");
+					request.getRequestDispatcher("listDepartmentController").forward(request, response);
 				} else {
 					System.out.println("false");
 				}
-				response.sendRedirect("listDepartmentController");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
