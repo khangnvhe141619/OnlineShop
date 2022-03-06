@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.shop.dao.DepartmentDAO;
 import com.shop.dao.impl.DepartmentDAOImpl;
+import com.shop.model.Account;
 import com.shop.model.Department;
 
 /**
@@ -50,7 +51,10 @@ public class AddDepartmentController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		int role = (Integer) session.getAttribute("role");
 		if (session.getAttribute("account") == null) {
+			response.sendRedirect("loginController");
+		} else if (role != 1) {
 			response.sendRedirect("loginController");
 		} else {
 			String departmentName = request.getParameter("departmentName");
