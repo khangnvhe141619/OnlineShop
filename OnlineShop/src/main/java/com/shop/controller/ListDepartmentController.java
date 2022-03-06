@@ -3,7 +3,6 @@ package com.shop.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,8 +28,17 @@ public class ListDepartmentController extends HttpServlet {
 		} else {
 			DepartmentDAO dao = new DepartmentDAOImpl();
 			try {
-				List<Department> list = dao.getListDepartments();
+				int index = 1;
+				int size = 6;
+		        int count = dao.getCountDepartments();
+		        int endPage = count / size;
+		        if (count % size != 0) {
+		            endPage++;
+		        }
+				List<Department> list = dao.getListDepartments(index);
+				request.setAttribute("index", index);
 				request.setAttribute("list", list);
+				request.setAttribute("endPage", endPage);
 				request.getRequestDispatcher("views/admin/A-List-department.jsp").forward(request, response);
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -39,7 +47,34 @@ public class ListDepartmentController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		HttpSession session = request.getSession();
+		if(session.getAttribute("account") == null) {
+			response.sendRedirect("loginController");
+		} else {
+			DepartmentDAO dao = new DepartmentDAOImpl();
+			try {
+				int index = Integer.parseInt(request.getParameter("index"));
+				int size = 6;
+		        int count = dao.getCountDepartments();
+		        int endPage = count / size;
+		        if (count % size != 0) {
+		            endPage++;
+		        }
+		        if(index < 1) {
+		        	index = 1;
+		        }
+		        if(index > endPage) {
+		        	index = endPage;
+		        }
+				List<Department> list = dao.getListDepartments(index);
+				request.setAttribute("index", index);
+				request.setAttribute("list", list);
+				request.setAttribute("endPage", endPage);
+				request.getRequestDispatcher("views/admin/A-List-department.jsp").forward(request, response);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }
