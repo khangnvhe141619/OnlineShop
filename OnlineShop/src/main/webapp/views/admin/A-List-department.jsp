@@ -105,13 +105,21 @@
                                         <script src="<%=request.getContextPath() %>/resources/admin/js/delete.js"></script>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-7 m-t-20"> Showing 1 - số trang</div>
+                                     <c:forEach var="i" begin="1" end="${endPage}">
+                                        <div class="col-xs-7 m-t-20">${i}</div>
+                                     </c:forEach>
                                         <div class="col-xs-5 m-t-20">
                                             <div class="btn-group pull-right">
-                                                <button type="button" class="btn btn-default waves-effect"><i
-                                                        class="fa fa-chevron-left"></i></button>
-                                                <button type="button" class="btn btn-default waves-effect"><i
-                                                        class="fa fa-chevron-right"></i></button>
+                                            	<form class="form" role="form" action="<%=request.getContextPath()%>/listDepartmentController?index=${index-1}" method="post">
+                                                <button type="submit" class="btn btn-default waves-effect">
+                                                <i class="fa fa-chevron-left"></i>
+                                                </button>
+                                                </form>
+                                                <form class="form" role="form" action="<%=request.getContextPath()%>/listDepartmentController?index=${index+1}" method="post">
+                                                <button type="submit" class="btn btn-default waves-effect">
+                                                <i class="fa fa-chevron-right"></i>
+                                                </button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
