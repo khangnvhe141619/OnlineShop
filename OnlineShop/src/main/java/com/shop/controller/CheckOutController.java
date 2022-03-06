@@ -40,6 +40,7 @@ public class CheckOutController extends HttpServlet {
 		Account account = (Account) session.getAttribute("acc");
 		double total = (double) session.getAttribute("total");
 		if (account != null) {
+			@SuppressWarnings("unchecked")
 			ArrayList<Item> items = (ArrayList<Item>) request.getSession().getAttribute("items");
 			LocalDate localDate = java.time.LocalDate.now();
 			String date = localDate.toString();
