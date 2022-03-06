@@ -81,7 +81,7 @@
 							<h3 class="box-title m-b-0">Account Information</h3>
 							<div class="row">
 								<div class="col-sm-12 col-xs-12">
-									<form action="#" method="post">
+									<form action="<%=request.getContextPath()%>/blockUserController?accountID=${account.accountId}" method="post">
 										<div class="form-group">
 											<label for="">Avatar</label>
 											<div class="input-group">
@@ -96,7 +96,7 @@
 												</div>
 												<input type="text" name="userName" class="form-control"
 													style="border: none;" id=""
-													placeholder="${account.username}" required="">
+													value="${account.username}" required="">
 											</div>
 										</div>
 										<div class="form-group">
@@ -107,7 +107,7 @@
 												</div>
 												<input type="text" name="fName" class="form-control"
 													style="border: none;" id=""
-													placeholder="${account.fullname}" required="">
+													value="${account.fullname}" required="">
 											</div>
 										</div>
 										<div class="form-group">
@@ -117,7 +117,7 @@
 													<i class="fa fa-sticky-note"></i>
 												</div>
 												<input type="text" name="email" class="form-control"
-													style="border: none;" id="" placeholder="${account.email}"
+													style="border: none;" id="" value="${account.email}"
 													required="">
 											</div>
 										</div>
@@ -129,7 +129,7 @@
 												</div>
 												<input type="text" name="phone" class="form-control"
 													style="border: none;" id=""
-													placeholder="${account.phonenumber}" required="">
+													value="${account.phonenumber}" required="">
 											</div>
 										</div>
 										<button type="submit" name="submit"
