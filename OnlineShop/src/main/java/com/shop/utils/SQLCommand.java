@@ -49,9 +49,15 @@ public class SQLCommand {
 			+ "ON P.ProductId = OD.ProductId\r\n"
 			+ "WHERE O.AccountId = ? AND OS.Description like 'Completed'";
 	
-	public static final String GET_LIST_DEPARTMENTS = "SELECT * FROM Department";
+	public static final String GET_LIST_DEPARTMENTS = "with x as (select ROW_NUMBER() over (order by [DepartmentID]) as r,\r\n"
+			+ "DepartmentID, DepartmentName, DepartmentDesc \r\n"
+			+ "from Department)\r\n"
+			+ "select x.DepartmentID, x.DepartmentName, x.DepartmentDesc\r\n"
+			+ "from x where r between ?*6-5 and ?*6";
 	
 	public final static String GET_DELETE_DEPARTMENTS = "DELETE Department WHERE DepartmentID = ?";
 	
 	public final static String GET_INSERT_DEPARTMENTS = "INSERT INTO Department VALUES(?,?)";
+	
+	public final static String GET_COUNT_DEPARTMENTS = "SELECT COUNT (*) FROM Department";
 }
