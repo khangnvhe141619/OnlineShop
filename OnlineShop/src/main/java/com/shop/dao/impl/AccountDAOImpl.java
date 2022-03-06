@@ -338,17 +338,6 @@ public class AccountDAOImpl implements AccountDAO {
 		return 0;
 	}
 	
-	public static void main(String[] args) throws SQLException {
-		AccountDAO dao = new AccountDAOImpl();
-		Account account = dao.getInfoAccountID("1");
-			System.out.println(account.toString());
-//		if(check == true) {
-//			System.out.println("true");
-//		} else {
-//			System.out.println("false");
-//		}
-	}
-
 	@Override
 	public List<Account> getListAccountOfAdminBlock(int index) throws SQLException {
 		List<Account> accounts = new ArrayList<>();
@@ -421,6 +410,64 @@ public class AccountDAOImpl implements AccountDAO {
 			}
 		}
 
+		return check;
+	}
+
+	@Override
+	public boolean getBlockAccount(int accountID) throws SQLException {
+		boolean check = false;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.GET_BLOCK_ACCOUNT);
+			pre.setInt(1, accountID);
+			check = pre.executeUpdate() == 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return check;
+	}
+	
+	public static void main(String[] args) throws SQLException {
+		AccountDAO dao = new AccountDAOImpl();
+		boolean check = dao.getBlockAccount(9);
+		if(check == true) {
+			System.out.println("true");
+		} else {
+			System.out.println("false");
+		}
+	}
+
+	@Override
+	public boolean getUnBlockAccount(int accountID) throws SQLException {
+		boolean check = false;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.GET_UNBLOCK_ACCOUNT);
+			pre.setInt(1, accountID);
+			check = pre.executeUpdate() == 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
 		return check;
 	}
 }
