@@ -10,6 +10,8 @@ public interface AccountDAO {
 	
 	boolean getCheckUsername(String userName) throws SQLException;
 	
+	Account getInfoAccountID(String AccountID) throws SQLException;
+	
 	boolean getInsertAccount(Account account) throws SQLException;
 	
 	List<Account> getListAccount() throws SQLException;
@@ -23,4 +25,14 @@ public interface AccountDAO {
 	boolean getChangePassword(Account account) throws SQLException;
 	
 	Account getCheckPassword(int accountID, String password) throws SQLException;
+	
+	List<Account> getListAccountOfAdmin(int index) throws SQLException;
+	
+	List<Account> getListAccountOfAdminBlock(int index) throws SQLException;
+	
+	int getCountAccounts() throws SQLException;
+	
+	int getCountAccountsBlock() throws SQLException;
+	
+	boolean getDeleteAccount(int id) throws SQLException;
 }

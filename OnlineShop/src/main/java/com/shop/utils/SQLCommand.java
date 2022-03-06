@@ -6,6 +6,8 @@ public class SQLCommand {
 	
 	public static final String GET_ACCOUNT_FROM_USERNAME = "SELECT * FROM Account WHERE Username like ?";
 	
+	public static final String GET_ACCOUNT_FROM_ACCOUNTID = "SELECT * FROM Account WHERE AccountID like ?";
+	
 	public static final String GET_ACCOUNT_FROM_ID = "SELECT * FROM Account WHERE AccountID like ?";
 	
 	public static final String GET_ACCOUNT_FROM_EMAIL = "SELECT * FROM Account WHERE Email LIKE ?";
@@ -57,7 +59,25 @@ public class SQLCommand {
 	
 	public final static String GET_DELETE_DEPARTMENTS = "DELETE Department WHERE DepartmentID = ?";
 	
+	public final static String GET_DELETE_AccountID = "DELETE Account WHERE AccountID = ?";
+	
 	public final static String GET_INSERT_DEPARTMENTS = "INSERT INTO Department VALUES(?,?)";
 	
 	public final static String GET_COUNT_DEPARTMENTS = "SELECT COUNT (*) FROM Department";
+	
+	public static final String GET_LIST_ACCOUNT = "with x as (select ROW_NUMBER() over (order by [AccountID]) as r,\r\n"
+			+ "AccountID, Username, Fullname, Email \r\n"
+			+ "from Account Where Active = 1)\r\n"
+			+ "select x.AccountID, x.Username, x.Fullname, x.Email\r\n"
+			+ "from x where r between ?*6-5 and ?*6";
+	
+	public static final String GET_LIST_ACCOUNT_BLOCK = "with x as (select ROW_NUMBER() over (order by [AccountID]) as r,\r\n"
+			+ "AccountID, Username, Fullname, Email \r\n"
+			+ "from Account Where Active = 0)\r\n"
+			+ "select x.AccountID, x.Username, x.Fullname, x.Email\r\n"
+			+ "from x where r between ?*6-5 and ?*6";
+	
+	public final static String GET_COUNT_ACCOUNT = "SELECT COUNT (*) FROM Account WHERE Active = 1";
+	
+	public final static String GET_COUNT_ACCOUNT_BLOCK = "SELECT COUNT (*) FROM Account WHERE Active = 0";
 }

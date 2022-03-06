@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -64,9 +63,9 @@
                     <!-- Left sidebar -->
                     <div class="col-md-12">
                         <div class="white-box">
-                            <!-- row -->
-                            <div class="row">
-                                <h4>List Of Departments (<b style="color: orange;">số lượng</b>)
+                            <!-- row -->                       
+                            <div class="row">                        
+                                <h4>List Of Users Block (<b style="color: orange;"> số lượng</b>)
                                 </h4>
                                 <p>
                                     <form role="search" class="app-search hidden-xs" style="margin-left: 35%;">
@@ -82,40 +81,40 @@
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th style="width: 10%;">No.</th>
-                                                    <th>NAME</th>
-                                                    <th>DESCRIPTION</th>
+                                                    <th style="width: 10%;">ID</th>
+                                                    <th>USERNAME</th>
+                                                    <th>FULLNAME</th>
+                                                    <th>EMAIl</th>
                                                     <th>ACTION</th>
                                                 </tr>
                                             </thead>
                                             <c:forEach items="${list}" var="list">
                                             <tbody>
                                                 <tr>
-                                                    <td class="max-texts">${list.departmentId}</td>
-                                                    <td class="max-texts">${list.departtmentName}</td>
-                                                    <td class="">${list.departnemtDesc}</td>
+                                                    <td class="max-texts">${list.accountId}</td>
+                                                    <td class="max-texts">${list.username} </td>
+                                                    <td class="max-texts">${list.fullname} </td>
+                                                    <td class="max-texts">${list.email}</td>
                                                     <td class="">
-                                                         <a href="<%=request.getContextPath() %>/DeleteDepartmentController?id=${list.departmentId}" 
-                                                         onclick="return testConfirmDialog()"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+                                                         <a href="" onclick="">UnBlock</a>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                             </c:forEach>
                                         </table>
-                                        <script src="<%=request.getContextPath() %>/resources/admin/js/delete.js"></script>
                                     </div>
                                     <div class="row">
-                                     <c:forEach var="i" begin="1" end="${endPage}">
+                                        <c:forEach var="i" begin="1" end="${endPage}">
                                         <div class="col-xs-7 m-t-20">${i}</div>
                                      </c:forEach>
                                         <div class="col-xs-5 m-t-20">
                                             <div class="btn-group pull-right">
-                                            	<form class="form" role="form" action="<%=request.getContextPath()%>/listDepartmentController?index=${index-1}" method="post">
+                                            	<form class="form" role="form" action="<%=request.getContextPath()%>/listUserBlockController?index=${index-1}" method="post">
                                                 <button type="submit" class="btn btn-default waves-effect">
                                                 <i class="fa fa-chevron-left"></i>
                                                 </button>
                                                 </form>
-                                                <form class="form" role="form" action="<%=request.getContextPath()%>/listDepartmentController?index=${index+1}" method="post">
+                                                <form class="form" role="form" action="<%=request.getContextPath()%>/listUserBlockController?index=${index+1}" method="post">
                                                 <button type="submit" class="btn btn-default waves-effect">
                                                 <i class="fa fa-chevron-right"></i>
                                                 </button>
@@ -204,15 +203,5 @@
     <script src="<%=request.getContextPath()%>/resources/admin/js/custom.min.js"></script>
     <!--Style Switcher -->
     <script src="<%=request.getContextPath()%>/resources/admin/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
-         <script type="text/javascript">
-     function testConfirmDialog()  {
-              var result = confirm("Do you want to continue?");
-              if(result)  {
-                 return true;
-              } else {
-                 return false;
-              }
-         }
-      </script>
 </body>
 </html>

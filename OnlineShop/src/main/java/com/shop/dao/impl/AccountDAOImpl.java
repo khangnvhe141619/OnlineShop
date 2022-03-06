@@ -124,6 +124,32 @@ public class AccountDAOImpl implements AccountDAO {
 		}
 		return accounts;
 	}
+	
+	@Override
+	public List<Account> getListAccountOfAdmin(int index) throws SQLException {
+		List<Account> accounts = new ArrayList<>();
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.GET_LIST_ACCOUNT);
+			pre.setInt(1, index);
+			pre.setInt(2, index);
+			rs = pre.executeQuery();
+			while (rs.next()) {
+				accounts.add(new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+			}
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return accounts;
+	}
 
 	@Override
 	public Account getInfoAcc(String username) throws SQLException {
@@ -131,6 +157,31 @@ public class AccountDAOImpl implements AccountDAO {
 			con = DBConnection.getInstance().getConnection();
 			pre = con.prepareStatement(SQLCommand.GET_ACCOUNT_FROM_USERNAME);
 			pre.setString(1, username);
+			rs = pre.executeQuery();
+			while (rs.next()) {
+				return new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), 
+						rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getString(11));
+			}
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return null;
+	}
+	
+	@Override
+	public Account getInfoAccountID(String AccountID) throws SQLException {
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.GET_ACCOUNT_FROM_ACCOUNTID);
+			pre.setString(1, AccountID);
 			rs = pre.executeQuery();
 			while (rs.next()) {
 				return new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), 
@@ -262,9 +313,114 @@ public class AccountDAOImpl implements AccountDAO {
 		return null;
 	}
 	
+	@Override
+	public int getCountAccounts() throws SQLException {
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.GET_COUNT_ACCOUNT);
+			rs = pre.executeQuery();
+			while (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (Exception e) {
+
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return 0;
+	}
+	
 	public static void main(String[] args) throws SQLException {
-		AccountDAO accountDAO = new AccountDAOImpl();
-		Account account = accountDAO.getCheckPassword(1, "zxdsdadasdc");
-		System.out.println(account);
+		AccountDAO dao = new AccountDAOImpl();
+		Account account = dao.getInfoAccountID("1");
+			System.out.println(account.toString());
+//		if(check == true) {
+//			System.out.println("true");
+//		} else {
+//			System.out.println("false");
+//		}
+	}
+
+	@Override
+	public List<Account> getListAccountOfAdminBlock(int index) throws SQLException {
+		List<Account> accounts = new ArrayList<>();
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.GET_LIST_ACCOUNT_BLOCK);
+			pre.setInt(1, index);
+			pre.setInt(2, index);
+			rs = pre.executeQuery();
+			while (rs.next()) {
+				accounts.add(new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+			}
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return accounts;
+	}
+	
+	@Override
+	public int getCountAccountsBlock() throws SQLException {
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.GET_COUNT_ACCOUNT_BLOCK);
+			rs = pre.executeQuery();
+			while (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (Exception e) {
+
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return 0;
+	}
+	
+	@Override
+	public boolean getDeleteAccount(int id) throws SQLException {
+		boolean check = false;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			System.out.println(id);
+			pre = con.prepareStatement(SQLCommand.GET_DELETE_AccountID);
+			pre.setInt(1, id);
+			check = pre.executeUpdate() == 1;
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+
+		return check;
 	}
 }

@@ -41,6 +41,14 @@ public class Account {
 		this.createdDate = createdDate;
 	}
 	
+	public Account(int accountId, String username, String fullname, String email) {
+		super();
+		this.accountId = accountId;
+		this.username = username;
+		this.fullname = fullname;
+		this.email = email;
+	}
+
 	public Account(int accountId, String username, String fullname, String email, String phonenumber, String avatar) {
 		super();
 		this.accountId = accountId;

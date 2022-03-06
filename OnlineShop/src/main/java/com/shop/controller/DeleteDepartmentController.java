@@ -14,14 +14,14 @@ import com.shop.dao.impl.DepartmentDAOImpl;
 /**
  * Servlet implementation class DeleteController
  */
-@WebServlet("/DeleteController")
-public class DeleteController extends HttpServlet {
+@WebServlet("/DeleteDepartmentController")
+public class DeleteDepartmentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteController() {
+    public DeleteDepartmentController() {
         super();
         // TODO Auto-generated constructor stub
     }
