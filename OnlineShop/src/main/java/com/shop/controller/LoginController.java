@@ -18,6 +18,7 @@ import com.shop.model.Account;
 @WebServlet("/loginController")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private Account account;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -42,14 +43,19 @@ public class LoginController extends HttpServlet {
 			String email = request.getParameter("username");
 			String pass = request.getParameter("password");
 			AccountDAO accountDAO = new AccountDAOImpl();
-			Account account = accountDAO.getLogin(email, pass);
+			account = accountDAO.getLogin(email, pass);
+			HttpSession session = request.getSession();
 			if(account != null) {
-				HttpSession session = request.getSession();
 				session.setAttribute("acc", account);
 				session.setAttribute("email", email);
 				session.setAttribute("account",account.getAccountId());
 				session.setAttribute("username",account.getUsername());
-				request.getRequestDispatcher("views/Home.jsp").forward(request, response);
+				session.setAttribute("role",account.getRole());
+				if(account.getRole() == 1) {
+					request.getRequestDispatcher("views/admin/A-Home.jsp").forward(request, response);
+				} else {
+					request.getRequestDispatcher("views/Home.jsp").forward(request, response);
+				}
 			} else {
 				request.setAttribute("failedLogin", true);
 				request.setAttribute("email", email);
