@@ -11,21 +11,19 @@ import com.shop.dao.PostCmtDAO;
 import com.shop.model.Account;
 import com.shop.model.PostCmt;
 import com.shop.utils.DBConnection;
+import com.shop.utils.Validation;
 
-public class PostCmtDAOImpl implements PostCmtDAO{
+public class PostCmtDAOImpl implements PostCmtDAO {
 	private Connection con = null;
 	private PreparedStatement ps = null;
 	private ResultSet rs = null;
-	
+
 	@Override
 	public List<PostCmt> getListCmtByPostID(String id) throws SQLException {
 		PostCmt pCmt = null;
 		List<PostCmt> lstPostCmt = new ArrayList<PostCmt>();
-		String sql="SELECT * \r\n"
-				+ "FROM Post p, PostComment pcmt, Account a\r\n"
-				+ "WHERE pcmt.PostId = p.PostID \r\n"
-				+ "AND pcmt.AccountId = a.AccountID\r\n"
-				+ "AND p.PostID = ?";
+		String sql = "SELECT * \r\n" + "FROM Post p, PostComment pcmt, Account a\r\n"
+				+ "WHERE pcmt.PostId = p.PostID \r\n" + "AND pcmt.AccountId = a.AccountID\r\n" + "AND p.PostID = ?";
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);
@@ -62,9 +60,7 @@ public class PostCmtDAOImpl implements PostCmtDAO{
 
 	@Override
 	public int countTotalCommentByPostID(String id) throws SQLException {
-		String sql = "SELECT COUNT(*)\r\n"
-				+ "FROM Post p, PostComment pcmt\r\n"
-				+ "WHERE pcmt.PostId = p.PostID \r\n"
+		String sql = "SELECT COUNT(*)\r\n" + "FROM Post p, PostComment pcmt\r\n" + "WHERE pcmt.PostId = p.PostID \r\n"
 				+ "AND p.PostID = ?";
 		int count = 0;
 		try {
@@ -90,6 +86,25 @@ public class PostCmtDAOImpl implements PostCmtDAO{
 			}
 		}
 		return count;
+	}
+
+	@Override
+	public boolean addCommentToPost(PostCmt postCmt) throws SQLException {
+		int row = 0;
+		String sql = "INSERT [dbo].[PostComment] ([PostId], [AccountId], [Comment], [CreatedDate]) VALUES (?, ?, ?, ?)";
+		try {
+
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, postCmt.getPostId());
+			ps.setInt(2, postCmt.getAccountId());
+			ps.setString(3, postCmt.getComment());
+			ps.setString(4, Validation.getStringFromLocalDateTime(postCmt.getCreateDate()));
+			row = ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return row > 0;
 	}
 
 }

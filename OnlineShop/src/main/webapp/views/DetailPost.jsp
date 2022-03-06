@@ -104,10 +104,12 @@
                 </div>
                 <div class="comment-form">
                   <h4 class="comment-form-title font-alt">Add your comment</h4>
-                  <form action="#" method="post">
+                 
+                  <form action="<%=request.getContextPath()%>/commentPostController" method="POST">
                     <div class="form-group">
-                      <textarea class="form-control" id="comment" name="comment" rows="4" placeholder="Comment"></textarea>
+                      <textarea class="form-control" name="comment" rows="4" placeholder="Comment"></textarea>
                     </div>
+                     <input type="hidden" name="pId" value="${post.postId }" /> 
                     <button class="btn btn-round btn-d" type="submit">Post comment</button>
                   </form>
                 </div>

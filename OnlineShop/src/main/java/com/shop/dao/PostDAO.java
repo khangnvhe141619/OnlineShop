@@ -23,4 +23,6 @@ public interface PostDAO {
 	
 	public int countPostByOption(String option, String txt) throws SQLException;
 	
+	public List<Post> getTop5HotPost() throws SQLException;
+	
 }

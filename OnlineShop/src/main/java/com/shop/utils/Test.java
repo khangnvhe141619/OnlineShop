@@ -23,7 +23,7 @@ import com.shop.service.EmailUtility;
 
 public class Test {
 
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 //		ProductDAO pd = new ProductDAOImpl();
 //		List<Product> lp = pd.getListAllProduct(1);
@@ -109,7 +109,17 @@ public class Test {
 		PostCmtDAO pcmtD=new PostCmtDAOImpl();
 //		List<PostCmt> lipcmt=pcmtD.getListCmtByPostID("1");
 //		lipcmt.forEach(System.out::println);
-		int i=pcmtD.countTotalCommentByPostID("1");
-		System.out.println(i);
+//		int i=pcmtD.countTotalCommentByPostID("1");
+//		System.out.println(i);
+		PostCmt pcmt1=new PostCmt(1, 2, "ngon" ,LocalDateTime.now());
+		boolean cmtB;
+		try {
+			cmtB = pcmtD.addCommentToPost(pcmt1);
+			System.out.println(cmtB);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }

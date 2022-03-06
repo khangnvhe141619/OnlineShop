@@ -174,11 +174,7 @@ CREATE TABLE [dbo].[OrderDetail]
 	OrderId				int				,
 	ProductId			int				,
 	Quantity			int				NOT NULL,
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> branch 'main' of https://github.com/khangnvhe141619/OnlineShop.git
 	CONSTRAINT FK_order_id FOREIGN KEY(OrderId) REFERENCES [Order](OrderID),
 	CONSTRAINT FK_product_id_3 FOREIGN KEY(ProductId) REFERENCES Product(ProductID)
 )

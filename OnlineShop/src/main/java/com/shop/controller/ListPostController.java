@@ -42,10 +42,12 @@ public class ListPostController extends HttpServlet {
 		PostDAO postDAO = new PostDAOImpl();
 		TagDAO tagDAO = new TagDAOImpl();
 		List<Post> lstPost = new ArrayList<Post>();
+		List<Post> lstTop5Post = new ArrayList<Post>();
 		List<Tag> lstTag = new ArrayList<Tag>();
 		try {
 			if (request.getParameter("page") == null) {
 				lstPost = postDAO.getAllPost(0);
+				lstTop5Post = postDAO.getTop5HotPost();
 				total = postDAO.countTotalPost() / 3;
 				lstTag = tagDAO.getAllTag();
 				if (postDAO.countTotalPost() % 3 != 0) {
@@ -55,6 +57,7 @@ public class ListPostController extends HttpServlet {
 				request.setAttribute("result", 1);
 				request.setAttribute("check", 0);
 				request.setAttribute("lstTag", lstTag);
+				request.setAttribute("lstTop5Post", lstTop5Post);
 				request.setAttribute("lstPost", lstPost);
 				request.setAttribute("total", total);
 				request.setAttribute("tag", 1);
@@ -62,6 +65,7 @@ public class ListPostController extends HttpServlet {
 			} else {
 				int page = Integer.parseInt(request.getParameter("page"));
 				lstPost = postDAO.getAllPost((page - 1) * 3);
+				lstTop5Post = postDAO.getTop5HotPost();
 				total = postDAO.countTotalPost() / 3;
 				lstTag = tagDAO.getAllTag();
 				if (postDAO.countTotalPost() % 3 != 0) {
@@ -71,6 +75,7 @@ public class ListPostController extends HttpServlet {
 				request.setAttribute("result", 1);
 				request.setAttribute("check", 0);
 				request.setAttribute("lstTag", lstTag);
+				request.setAttribute("lstTop5Post", lstTop5Post);
 				request.setAttribute("lstPost", lstPost);
 				request.setAttribute("total", total);
 				request.setAttribute("tag", page);

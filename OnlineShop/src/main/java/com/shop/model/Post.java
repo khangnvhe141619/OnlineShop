@@ -12,17 +12,18 @@ import java.time.LocalDateTime;
  * @author leduc
  */
 public class Post {
-    private int postId;
-    private String authorName;
-    private String title;
-    private String shortDesc;
-    private String content;
-    private LocalDateTime createdDate;    
-    
-    public Post() {
-    }
+	private int postId;
+	private String authorName;
+	private String title;
+	private String shortDesc;
+	private String content;
+	private LocalDateTime createdDate;
 
-	public Post(int postId, String authorName, String title, String shortDesc, String content, LocalDateTime createdDate) {
+	public Post() {
+	}
+
+	public Post(int postId, String authorName, String title, String shortDesc, String content,
+			LocalDateTime createdDate) {
 		super();
 		this.postId = postId;
 		this.authorName = authorName;
@@ -49,7 +50,12 @@ public class Post {
 	}
 
 	public String getTitle() {
-		return title;
+		if (title.length() >= 50) {
+			return title.substring(0, 50) + " ...";
+		} else {
+			return title;
+		}
+
 	}
 
 	public void setTitle(String tittle) {
@@ -82,7 +88,7 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return "Post [postId=" + postId + ", authorName=" + authorName + ", title=" + title + ", shortDesc="
-				+ shortDesc + ", content=" + content + ", createdDate=" + createdDate + "]";
+		return "Post [postId=" + postId + ", authorName=" + authorName + ", title=" + title + ", shortDesc=" + shortDesc
+				+ ", content=" + content + ", createdDate=" + createdDate + "]";
 	}
 }
