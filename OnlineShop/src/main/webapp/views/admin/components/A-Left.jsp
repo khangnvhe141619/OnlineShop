@@ -47,6 +47,7 @@
                                 class="hide-menu">User<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="<%=request.getContextPath() %>/listUserController">List Users</a></li>
+                            <li><a href="<%=request.getContextPath() %>/listUserBlockController">List Users Blocked</a></li>
                         </ul>
                     </li>
                     <li> <a href="#" class="waves-effect"><i data-icon="&#xe00b;" class="fa fa-life-ring"></i> <span
