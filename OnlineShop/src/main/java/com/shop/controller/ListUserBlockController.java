@@ -62,8 +62,34 @@ public class ListUserBlockController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		HttpSession session = request.getSession();
+		if(session.getAttribute("account") == null) {
+			response.sendRedirect("loginController");
+		} else {
+			AccountDAO dao = new AccountDAOImpl();
+			try {
+				int index = Integer.parseInt(request.getParameter("index"));
+				int size = 6;
+		        int count = dao.getCountAccountsBlock();
+		        int endPage = count / size;
+		        if (count % size != 0) {
+		            endPage++;
+		        }
+		        if(index < 1) {
+		        	index = 1;
+		        }
+		        if(index > endPage) {
+		        	index = endPage;
+		        }
+				List<Account> list = dao.getListAccountOfAdminBlock(index);
+				request.setAttribute("index", index);
+				request.setAttribute("list", list);
+				request.setAttribute("endPage", endPage);
+				request.getRequestDispatcher("views/admin/A-Block-user.jsp").forward(request, response);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }
