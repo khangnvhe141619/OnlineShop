@@ -38,7 +38,7 @@ public class DeleteUserController extends HttpServlet {
 			if(check) {
 				if(check == true) {
 					System.out.println("true");
-					request.getRequestDispatcher("listUserController").forward(request, response);
+					response.sendRedirect("listUserController");
 				} else {
 					System.out.println("false");
 				}
