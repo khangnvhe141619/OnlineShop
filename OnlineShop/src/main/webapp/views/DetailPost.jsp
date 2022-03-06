@@ -74,7 +74,7 @@
                   <div class="post-thumbnail"><img src="<%=request.getContextPath()%>/resources/common/assets/images/post-4.jpg" alt="Blog Featured Image"/></div>
                   <div class="post-header font-alt">
                     <h1 class="post-title">${post.title}</h1>
-                    <div class="post-meta">By&nbsp;<a href="#">${post.authorName}</a>| ${pst.createdDate} | 3 Comments | <a href="#">Photography, </a><a href="#">Web Design</a>
+                    <div class="post-meta">By&nbsp;<a href="#">${post.authorName}</a>| ${pst.createdDate} | ${total} Comments 
                     </div>
                   </div>
                   <div class="post-entry">
@@ -96,7 +96,7 @@
                       <div class="comment-body">
                         <p>${postCmt.comment}</p>
                       </div>
-                      <div class="comment-meta font-alt">${postCmt.createDate} - <a href="#">Reply</a>
+                      <div class="comment-meta font-alt">${postCmt.createDate}
                       </div>
                     </div>
                   </div>

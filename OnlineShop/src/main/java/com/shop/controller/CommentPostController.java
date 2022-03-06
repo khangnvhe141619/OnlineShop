@@ -45,7 +45,12 @@ public class CommentPostController extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			HttpSession ss = request.getSession(true);
-			int accid = (int) ss.getAttribute("account");
+			
+			if (ss.getAttribute("account") == null) {
+				request.getRequestDispatcher("views/Login.jsp").forward(request, response);
+				return;
+			}
+			int accId = (int) ss.getAttribute("account");
 			String pId = request.getParameter("pId");
 			int postID = Validation.convertStringToInt(pId);
 
@@ -55,7 +60,7 @@ public class CommentPostController extends HttpServlet {
 			System.out.println(postID);
 
 			PostCmtDAO pCmtDAO = new PostCmtDAOImpl();
-			PostCmt postCmt = new PostCmt(postID, accid, comment, localDate);
+			PostCmt postCmt = new PostCmt(postID, accId, comment, localDate);
 			if (pCmtDAO.addCommentToPost(postCmt)) {
 				request.setAttribute("pId", postID);
 				request.getRequestDispatcher("/viewDetailsPost?pId=" + postID).forward(request, response);

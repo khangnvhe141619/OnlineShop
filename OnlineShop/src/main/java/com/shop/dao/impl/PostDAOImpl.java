@@ -23,7 +23,7 @@ public class PostDAOImpl implements PostDAO {
 	public List<Post> getAllPost(int row) throws SQLException {
 		List<Post> list = new ArrayList<Post>();
 		Post post = null;
-		String sql = "SELECT * FROM Post ORDER BY CreatedDate DESC "
+		String sql = "SELECT * FROM Post WHERE Active = 1 ORDER BY CreatedDate DESC "
 				+ "OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY";
 		try {
 			con = DBConnection.getInstance().getConnection();
@@ -39,6 +39,7 @@ public class PostDAOImpl implements PostDAO {
 				post.setShortDesc(rs.getString("ShortDesc"));
 				post.setContent(rs.getString("Content"));
 				post.setCreatedDate(rs.getTimestamp("CreatedDate").toLocalDateTime());
+				post.setActive(rs.getInt("Active"));
 				list.add(post);
 			}
 		} catch (Exception e) {
@@ -60,9 +61,7 @@ public class PostDAOImpl implements PostDAO {
 
 	public boolean insertPost(Post post) throws SQLException {
 		int row = 0;
-		String sql = "INSERT INTO [dbo].[Post]\n" + "           ([Author]\n" + "           ,[Title]\n"
-				+ "           ,[ShortDesc]\n" + "           ,[Content]\n" + "           ,[CreatedDate])\n"
-				+ "     VALUES\n" + "           (?,?,?,?,?)";
+		String sql = "INSERT [dbo].[Post] ([Author], [Title], [ShortDesc], [Content], [CreatedDate], [Active]) VALUES (?, ?, ?, ?, ?, ?";
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);
@@ -71,6 +70,7 @@ public class PostDAOImpl implements PostDAO {
 			ps.setString(3, post.getShortDesc());
 			ps.setString(4, post.getContent());
 			ps.setString(5, Validation.getStringFromLocalDateTime(post.getCreatedDate()));
+			ps.setInt(6, post.getActive());
 			row = ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -90,7 +90,7 @@ public class PostDAOImpl implements PostDAO {
 	}
 
 	public boolean updatePost(Post post) throws SQLException {
-		String sql = "UPDATE Post SET Author=?, Title=?, ShortDesc=?, Content=?\r\n" + "WHERE PostID=?";
+		String sql = "UPDATE Post SET Author = ?, Title = ?, ShortDesc = ?, Content = ?, Active = ?\r\n" + "WHERE PostID=?";
 		int row = 0;
 		try {
 			con = DBConnection.getInstance().getConnection();
@@ -99,7 +99,8 @@ public class PostDAOImpl implements PostDAO {
 			ps.setString(2, post.getTitle());
 			ps.setString(3, post.getShortDesc());
 			ps.setString(4, post.getContent());
-			ps.setInt(5, post.getPostId());
+			ps.setInt(5, post.getActive());
+			ps.setInt(6, post.getPostId());
 			row = ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -119,7 +120,7 @@ public class PostDAOImpl implements PostDAO {
 	}
 
 	public boolean deletePost(int postId) throws SQLException {
-		String sql = "DELETE Post " + "WHERE PostID=?";
+		String sql = "DELETE Post " + "WHERE PostID = ?";
 		int row = 0;
 		try {
 			con = DBConnection.getInstance().getConnection();
@@ -145,7 +146,7 @@ public class PostDAOImpl implements PostDAO {
 
 	@Override
 	public int countTotalPost() throws SQLException {
-		String sql = "SELECT COUNT(*)\r\n" + " FROM Post";
+		String sql = "SELECT COUNT(*)\r\n" + " FROM Post WHERE Active = 1";
 		int count = 0;
 		try {
 			con = DBConnection.getInstance().getConnection();
@@ -177,12 +178,12 @@ public class PostDAOImpl implements PostDAO {
 		Post post = null;
 		String sql="SELECT p.PostID, p.Author, p.Title, p.ShortDesc, p.Content, p.CreatedDate FROM Post p";
 		if (option.equals("title")) {
-			sql += " WHERE p.Title LIKE ? ";
+			sql += " WHERE p.Active = 1 AND p.Title LIKE ? ";
 		} else if (option.equals("author")) {
-			sql += " WHERE p.Author LIKE ? ";
+			sql += " WHERE p.Active = 1 AND p.Author LIKE ? ";
 		} else if (option.equals("tag")) {
-			sql += "  , Tag t ,PostTag pt\r\n" + " WHERE p.PostID=pt.PostId AND t.TagID=pt.TagId AND\r\n"
-					+ " TagName LIKE ?";
+			sql += "  , Tag t ,PostTag pt\r\n" + " WHERE p.Active = 1 AND p.PostID=pt.PostId AND t.TagID=pt.TagId AND\r\n"
+					+ " t.TagName LIKE ?";
 		}
 		sql+=" ORDER BY PostID OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY";
 		
@@ -262,12 +263,12 @@ public class PostDAOImpl implements PostDAO {
 		String sql = "SELECT COUNT(*) FROM Post ";
 
 		if (option.equals("title")) {
-			sql += " WHERE Title LIKE ?";
+			sql += " WHERE Active = 1 AND Title LIKE ?";
 		} else if (option.equals("author")) {
-			sql += " WHERE Author LIKE ?";
+			sql += " WHERE Active = 1 AND Author LIKE ?";
 		} else if (option.equals("tag")) {
-			sql += "  p, Tag t ,PostTag pt\r\n" + " WHERE p.PostID=pt.PostId AND t.TagID=pt.TagId AND\r\n"
-					+ " TagName LIKE ?";
+			sql += "  p, Tag t ,PostTag pt\r\n" + " WHERE p.Active = 1 AND p.PostID=pt.PostId AND t.TagID=pt.TagId AND\r\n"
+					+ " t.TagName LIKE ?";
 		}
 		try {
 
@@ -301,7 +302,7 @@ public class PostDAOImpl implements PostDAO {
 		Post post = null;
 		String sql = "SELECT TOP(5) *\r\n"
 				+ "FROM Post\r\n"
-				+ "ORDER BY CreatedDate DESC";
+				+ "WHERE Active = 1 ORDER BY CreatedDate DESC";
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);

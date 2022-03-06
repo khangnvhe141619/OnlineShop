@@ -109,9 +109,7 @@
 											<a href="<%=request.getContextPath()%>/viewDetailsPost?pId=${pst.postId}">${pst.title}</a>
 										</h2>
 										<div class="post-meta">
-											By&nbsp;<a href="#">${pst.authorName}</a>| ${pst.createdDate} | 3
-											Comments | <a href="#">Marketing, </a><a href="#">Web
-												Design</a>
+											By&nbsp;<a href="#">${pst.authorName}</a>| ${pst.createdDate}
 										</div>
 									</div>
 									<div class="post-entry">
