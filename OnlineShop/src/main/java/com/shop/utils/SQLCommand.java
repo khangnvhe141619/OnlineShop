@@ -14,6 +14,10 @@ public class SQLCommand {
 	
 	public static final String GET_CHANGE_PASSWORD = "UPDATE Account SET Password = ? WHERE AccountID = ?";
 	
+	public static final String GET_BLOCK_ACCOUNT = "UPDATE Account SET Active = 0 WHERE AccountID = ?";
+	
+	public static final String GET_UNBLOCK_ACCOUNT = "UPDATE Account SET Active = 1 WHERE AccountID = ?";
+	
 	public static final String GET_CHECK_PASSWORD = "SELECT * FROM Account WHERE Password = ? AND AccountID = ?";
 	
 	public static final String INSERT_ACCOUNT = "INSERT INTO Account(Username, Password, CreatedDate, Role, Active)\r\n"
