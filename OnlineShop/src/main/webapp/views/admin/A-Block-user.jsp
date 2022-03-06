@@ -96,7 +96,7 @@
                                                     <td class="max-texts">${list.fullname} </td>
                                                     <td class="max-texts">${list.email}</td>
                                                     <td class="">
-                                                         <a href="" onclick="">UnBlock</a>
+                                                         <a href="unBlockUserController?accountID=${list.accountId}">UnBlock</a>
                                                     </td>
                                                 </tr>
                                             </tbody>
