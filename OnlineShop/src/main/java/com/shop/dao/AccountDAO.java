@@ -35,4 +35,8 @@ public interface AccountDAO {
 	int getCountAccountsBlock() throws SQLException;
 	
 	boolean getDeleteAccount(int id) throws SQLException;
+	
+	boolean getBlockAccount(int accountID) throws SQLException;
+	
+	boolean getUnBlockAccount(int accountID) throws SQLException;
 }
