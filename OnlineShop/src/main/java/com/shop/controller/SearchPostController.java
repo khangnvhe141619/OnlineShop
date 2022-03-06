@@ -45,6 +45,7 @@ public class SearchPostController extends HttpServlet {
 		TagDAO tagDAO = new TagDAOImpl();
 		PostDAO postDAO = new PostDAOImpl();
 		List<Post> lstPost = new ArrayList<Post>();
+		List<Post> lstTop5Post = new ArrayList<Post>();
 		List<Tag> lstTag = new ArrayList<Tag>();
 		HttpSession session = request.getSession();
 
@@ -72,6 +73,7 @@ public class SearchPostController extends HttpServlet {
 		try {
 			sum = postDAO.countPostByOption(option, search);
 			lstPost = postDAO.getListPostByOption(option, search, (page - 1) * 3);
+			lstTop5Post = postDAO.getTop5HotPost();
 			total = postDAO.countPostByOption(option, search) / 3;
 			lstTag = tagDAO.getAllTag();
 			if (postDAO.countPostByOption(option, search) % 3 != 0) {
@@ -86,6 +88,7 @@ public class SearchPostController extends HttpServlet {
 		request.setAttribute("select", option);
 		request.setAttribute("check", 1);
 		request.setAttribute("lstTag", lstTag);
+		request.setAttribute("lstTop5Post", lstTop5Post);
 		request.setAttribute("lstPost", lstPost);
 		request.setAttribute("total", total);
 		request.setAttribute("tag", page);
@@ -103,6 +106,7 @@ public class SearchPostController extends HttpServlet {
 		TagDAO tagDAO = new TagDAOImpl();
 		PostDAO postDAO = new PostDAOImpl();
 		List<Post> lstPost = new ArrayList<Post>();
+		List<Post> lstTop5Post = new ArrayList<Post>();
 		List<Tag> lstTag = new ArrayList<Tag>();
 		HttpSession session = request.getSession();
 
@@ -137,6 +141,7 @@ public class SearchPostController extends HttpServlet {
 			try {
 				sum = postDAO.countPostByOption(option, search);
 				lstPost = postDAO.getListPostByOption(option, search, 0);
+				lstTop5Post = postDAO.getTop5HotPost();
 				total = postDAO.countPostByOption(option, search) / 3;
 				lstTag = tagDAO.getAllTag();
 				if (postDAO.countPostByOption(option, search) % 3 != 0) {
@@ -151,6 +156,7 @@ public class SearchPostController extends HttpServlet {
 			request.setAttribute("select", option);
 			request.setAttribute("check", 1);
 			request.setAttribute("lstTag", lstTag);
+			request.setAttribute("lstTop5Post", lstTop5Post);
 			request.setAttribute("lstPost", lstPost);
 			request.setAttribute("total", total);
 			request.setAttribute("tag", 1);

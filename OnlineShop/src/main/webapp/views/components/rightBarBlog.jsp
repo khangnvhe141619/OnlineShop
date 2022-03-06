@@ -35,7 +35,7 @@
 							</div>               
                 <div class="widget">
                   <h5 class="widget-title font-alt">Popular Posts</h5>
-                  <c:forEach items="${lstPost}" var="pst">
+                  <c:forEach items="${lstTop5Post}" var="pst">
                   <ul class="widget-posts">                                           
                     <li class="clearfix">
                       <div class="widget-posts-image"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/assets/images/rp-4.jpg" alt="Post Thumbnail"/></a></div>

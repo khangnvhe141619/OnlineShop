@@ -293,5 +293,43 @@ public class PostDAOImpl implements PostDAO {
 			}
 		}
 		return count;
+	}
+
+	@Override
+	public List<Post> getTop5HotPost() throws SQLException {
+		List<Post> list = new ArrayList<Post>();
+		Post post = null;
+		String sql = "SELECT TOP(5) *\r\n"
+				+ "FROM Post\r\n"
+				+ "ORDER BY CreatedDate DESC";
+		try {
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				post = new Post();
+				post.setPostId(rs.getInt("PostID"));
+				post.setAuthorName(rs.getString("Author"));
+				post.setTitle(rs.getString("Title"));
+				post.setShortDesc(rs.getString("ShortDesc"));
+				post.setContent(rs.getString("Content"));
+				post.setCreatedDate(rs.getTimestamp("CreatedDate").toLocalDateTime());
+				list.add(post);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return list;
 	}	
 }

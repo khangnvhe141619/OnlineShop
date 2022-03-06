@@ -8,5 +8,7 @@ import com.shop.model.PostCmt;
 public interface PostCmtDAO {
 	public List<PostCmt> getListCmtByPostID(String id) throws SQLException;
 	
-	public int countTotalCommentByPostID(String id) throws SQLException;;
+	public int countTotalCommentByPostID(String id) throws SQLException;
+	
+	public boolean addCommentToPost(PostCmt postCmt) throws SQLException;
 }

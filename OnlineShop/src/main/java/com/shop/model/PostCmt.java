@@ -6,6 +6,7 @@ public class PostCmt {
 	private int postCmtId;
 	private int postId;
 	private Account account;
+	private int accountId;
 	private String comment;
 	private LocalDateTime createDate;
 
@@ -18,6 +19,14 @@ public class PostCmt {
 		this.postCmtId = postCmtId;
 		this.postId = postId;
 		this.account = account;
+		this.comment = comment;
+		this.createDate = createDate;
+	}
+
+	public PostCmt(int postId, int accountId, String comment, LocalDateTime createDate) {
+		super();
+		this.postId = postId;
+		this.accountId = accountId;
 		this.comment = comment;
 		this.createDate = createDate;
 	}
@@ -44,6 +53,14 @@ public class PostCmt {
 
 	public void setAccount(Account account) {
 		this.account = account;
+	}
+
+	public int getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(int accountId) {
+		this.accountId = accountId;
 	}
 
 	public String getComment() {
