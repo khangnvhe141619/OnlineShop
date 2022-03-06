@@ -1,10 +1,7 @@
 <<<<<<< HEAD
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 =======
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
->>>>>>> 93768b0ca6799db75f8fcf0cd20e2bfc6ebff3da
 <!DOCTYPE html>
 <html lang="en">
 
