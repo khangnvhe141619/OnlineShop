@@ -17,12 +17,14 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 	private ResultSet rs;
 
 	@Override
-	public List<Department> getListDepartments() throws SQLException {
+	public List<Department> getListDepartments(int index) throws SQLException {
 		List<Department> departments = new ArrayList<>();
 		Department department = null;
 		try {
 			con = DBConnection.getInstance().getConnection();
 			pre = con.prepareStatement(SQLCommand.GET_LIST_DEPARTMENTS);
+			pre.setInt(1, index);
+			pre.setInt(2, index);
 			rs = pre.executeQuery();
 			while (rs.next()) {
 				department = new Department();
@@ -93,14 +95,42 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 
 		return check;
 	}
-	
+
+	@Override
+	public int getCountDepartments() throws SQLException {
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.GET_COUNT_DEPARTMENTS);
+			rs = pre.executeQuery();
+			while (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (Exception e) {
+
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return 0;
+	}
+
 	public static void main(String[] args) throws SQLException {
 		DepartmentDAO dao = new DepartmentDAOImpl();
-		boolean check = dao.getInsertDepartments(new Department("CC", "123"));
-		if(check == true) {
-			System.out.println("true");
-		} else {
-			System.out.println("false");
+		List<Department> list = dao.getListDepartments(2);
+		for (Department department : list) {
+			System.out.println(department.toString());
 		}
+//		if(check == true) {
+//			System.out.println("true");
+//		} else {
+//			System.out.println("false");
+//		}
 	}
 }
