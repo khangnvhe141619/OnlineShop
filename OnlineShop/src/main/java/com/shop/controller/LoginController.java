@@ -46,15 +46,22 @@ public class LoginController extends HttpServlet {
 			account = accountDAO.getLogin(email, pass);
 			HttpSession session = request.getSession();
 			if(account != null) {
-				session.setAttribute("acc", account);
-				session.setAttribute("email", email);
-				session.setAttribute("account",account.getAccountId());
-				session.setAttribute("username",account.getUsername());
-				session.setAttribute("role",account.getRole());
-				if(account.getRole() == 1) {
-					request.getRequestDispatcher("views/admin/A-Home.jsp").forward(request, response);
+				if(account.getActive() == 1) {
+					session.setAttribute("acc", account);
+					session.setAttribute("email", email);
+					session.setAttribute("account",account.getAccountId());
+					session.setAttribute("username",account.getUsername());
+					session.setAttribute("role",account.getRole());
+					if(account.getRole() == 1) {
+						request.getRequestDispatcher("views/admin/A-Home.jsp").forward(request, response);
+					} else {
+						request.getRequestDispatcher("views/Home.jsp").forward(request, response);
+					}
 				} else {
-					request.getRequestDispatcher("views/Home.jsp").forward(request, response);
+					request.setAttribute("block", true);
+					request.setAttribute("email", email);
+					request.setAttribute("pass", pass);
+					request.getRequestDispatcher("views/Login.jsp").forward(request, response);
 				}
 			} else {
 				request.setAttribute("failedLogin", true);

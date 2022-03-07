@@ -43,6 +43,9 @@
 							<c:if test="${failedLogin}">
 								<div style="color: red">Username or Password is incorrect</div>
 							</c:if>
+							<c:if test="${block}">
+								<div style="color: red">The account has been blocked</div>
+							</c:if>
 							<div class="form-group">
 								<label for="your_name"><i
 									class="zmdi zmdi-account material-icons-name"></i></label> <input
