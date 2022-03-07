@@ -6,6 +6,7 @@ public class Product {
 	private int stt;
 	private int productID;
 	private int categoryId;
+	private String cateName;
 	private String productName;
 	private String image;
 	private String description;
@@ -40,6 +41,25 @@ public class Product {
 		this.quantity = quantity;
 		this.price = price;
 		this.numberPage = numberPage;
+	}
+	
+
+	public Product(int stt, int productID, String cateName, String productName, int quantity, double price) {
+		super();
+		this.stt = stt;
+		this.productID = productID;
+		this.cateName = cateName;
+		this.productName = productName;
+		this.quantity = quantity;
+		this.price = price;
+	}
+
+	public String getCateName() {
+		return cateName;
+	}
+
+	public void setCateName(String cateName) {
+		this.cateName = cateName;
 	}
 
 	public int getStt() {

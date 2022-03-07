@@ -16,7 +16,7 @@ public interface ProductDAO {
 	public boolean updateProduct(Product product) throws SQLException;
 
 	//delete product which have id="id" from db
-	public boolean deleteProduct(String id) throws SQLException;
+	public boolean deleteProduct(int id) throws SQLException;
 
 	//get total of  product
 	public List<Product> getListAllProduct(int index) throws SQLException;

@@ -17,6 +17,6 @@ public interface CategoryDAO {
 	
 	public boolean updateCategory(Category category) throws SQLException;
 	
-	public boolean deleteCategory(String categoryId) throws SQLException;
+	public boolean deleteCategory(int categoryId) throws SQLException;
 	
 }

@@ -53,7 +53,7 @@
                     <li> <a href="#" class="waves-effect"><i data-icon="&#xe00b;" class="fa fa-life-ring"></i> <span
                                 class="hide-menu">Category<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="A-List-category.jsp">List Product Categories</a></li>
+                            <li><a href="<%=request.getContextPath() %>/CategoryController">List Product Categories</a></li>
                             <li><a href="A-New-category.jsp">Create Category</a></li>
 
                         </ul>
@@ -61,7 +61,7 @@
                     <li> <a href="#" class="waves-effect"><i data-icon=";" class="linea-icon linea-basic fa-fw"></i>
                             <span class="hide-menu">Product<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="A-List-product.jsp">List Products</a></li>
+                            <li><a href="<%=request.getContextPath() %>/ListProdtuct">List Products</a></li>
                             <li><a href="A-New-product.jsp">Create Product</a></li>
                             
                         </ul>

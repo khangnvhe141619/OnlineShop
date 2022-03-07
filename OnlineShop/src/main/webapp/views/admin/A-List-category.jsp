@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,6 +79,8 @@
                                 </p>
                                 <div class="col-lg-12 col-md-9 col-sm-12 col-xs-12 mail_listing">
                                     <div class="inbox-center">
+                                          <p style="color: red; margin-left: 40px">
+					<%=request.getAttribute("mess")!=null?request.getAttribute("mess"):"" %></p>
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
@@ -87,26 +90,32 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                            
+                                            <c:forEach items="${lsct }" var="i">
                                                 <tr>
-                                                    <td class="max-texts"> 1</td>
-                                                    <td class="max-texts"> name </td>
+                                                    <td class="max-texts"> ${i.stt }</td>
+                                                    <td class="max-texts"> ${i.categoryName} </td>
                                                     <td class="">
                                                         <a href=""><i class="fa fa-edit" aria-hidden="true"></i>Edit</a>
-                                                        <a href="" onclick=""><i class="fa fa-trash"
-                                                                aria-hidden="true"></i> Delete</a>
+                                                           <a href="<%=request.getContextPath() %>/DeleteCateController?index=${i.categoryID}" onclick="return testConfirmDialog()"><i class="fa fa-edit" aria-hidden="true"></i>Delete</a> 
                                                     </td>
                                                 </tr>
+                                                </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-7 m-t-20"> Showing 1 - so trang</div>
-                                        <div class="col-xs-5 m-t-20">
+                                        <div class="col-xs-7 m-t-20"> Showing <a>${tag }</a> - so trang <a>${endpage }</a> </div>
+                                           <div class="col-xs-5 m-t-20">
                                             <div class="btn-group pull-right">
-                                                <button type="button" class="btn btn-default waves-effect"><i
+                                            <form class="form" role="form" action="<%=request.getContextPath()%>/CategoryController?index=${tag-1==0?1:tag-1}" method="post">
+                                                <button type="submit" class="btn btn-default waves-effect"><i
                                                         class="fa fa-chevron-left"></i></button>
-                                                <button type="button" class="btn btn-default waves-effect"><i
+                                                 </form>
+                                                  <form class="form" role="form" action="<%=request.getContextPath()%>/CategoryController?index=${tag==endPage?tag:tag+1}" method="post">
+                                                <button type="submit" class="btn btn-default waves-effect"><i
                                                         class="fa fa-chevron-right"></i></button>
+                                                        </form>
                                             </div>
                                         </div>
                                     </div>
@@ -191,6 +200,19 @@
     <script src="<%=request.getContextPath()%>/resources/admin/js/custom.min.js"></script>
     <!--Style Switcher -->
     <script src="<%=request.getContextPath()%>/resources/admin/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+     <script type="text/javascript">
+    	 function testConfirmDialog()  {
+
+              var result = confirm("Do you want to continue?");
+
+              if(result)  {
+                 return true;
+              } else {
+                 return false;
+              }
+         }
+
+      </script>
 </body>
 
 </html>

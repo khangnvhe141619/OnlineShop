@@ -143,13 +143,13 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public boolean deleteProduct(String id) throws SQLException {
+	public boolean deleteProduct(int id) throws SQLException {
 		String sql = "DELETE FROM Product WHERE ProductID = ?";
 		int row = 0;
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, id);
+			ps.setInt(1, id);
 			row = ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -160,13 +160,13 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public List<Product> getListAllProduct(int index) throws SQLException {
-		String sql = "SELECT * FROM PRODUCT\r\n" + "ORDER BY ProductID\r\n" + "OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY";
+		String sql = "SELECT * FROM PRODUCT\r\n" + "ORDER BY ProductID\r\n" + "OFFSET ? ROWS FETCH NEXT 5 ROWS ONLY";
 		Product product = null;
 		List<Product> lstProduct = new ArrayList<Product>();
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, (index - 1) * 3);
+			ps.setInt(1, (index - 1) * 5);
 
 			rs = ps.executeQuery();
 			while (rs.next()) {
@@ -265,7 +265,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 	public static void main(String[] args) throws SQLException {
 		ProductDAOImpl pd = new ProductDAOImpl();
-		List<Product> ls = pd.getAllProduct();
+		List<Product> ls = pd.getListProduct(1);
 		for (Product product : ls) {
 			System.out.println(product.toString());
 		}
@@ -435,6 +435,47 @@ public class ProductDAOImpl implements ProductDAO {
 		}
 
 		return list;
+	}
+	public List<Product> getListProduct(int index) throws SQLException {
+		String sql = "with x as (select ROW_NUMBER() over (order by [ProductID]) as stt,p.ProductID,c.CategoryName,ProductName,Quantity,Price\r\n"
+				+ "			from Product p join Category c on p.CategoryId=c.CategoryID)\r\n"
+				+ "			select *\r\n"
+				+ "			from x where stt between ?*5-4 and ?*5";
+		Product product = null;
+		List<Product> lstProduct = new ArrayList<Product>();
+		try {
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, index);
+			ps.setInt(2, index);
+
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				product = new Product();
+				product.setStt(rs.getInt("stt"));
+				product.setProductID(rs.getInt("ProductID"));
+				product.setCateName(rs.getString("CategoryName"));
+				product.setProductName(rs.getString("ProductName"));
+				
+				product.setQuantity(rs.getInt("Quantity"));
+				product.setPrice(rs.getDouble("Price"));
+				lstProduct.add(product);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return lstProduct;
 	}
 
 }

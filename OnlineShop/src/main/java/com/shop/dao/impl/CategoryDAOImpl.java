@@ -157,6 +157,68 @@ public class CategoryDAOImpl implements CategoryDAO {
 		return row > 0;
 	}
 
+	public List<Category> getListCategory(int index) throws SQLException {
+		String sql = "SELECT ROW_NUMBER() over (order by CategoryID) as stt, * FROM Category \r\n"
+				+ "ORDER BY CategoryID\r\n"
+				+ "OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY";
+		Category ca = null;
+		List<Category> lsCa = new ArrayList<Category>();
+		try {
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, (index - 1) * 3);
+
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				ca = new Category();
+				ca.setStt(rs.getInt("stt"));
+				ca.setCategoryID(rs.getInt("CategoryID"));
+				ca.setCategoryName(rs.getString("CategoryName"));
+				lsCa.add(ca);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return lsCa;
+	}
+	public int countCa() throws SQLException {
+		String sql = "SELECT count(*) FROM Category \r\n"
+				+ "";
+		int count = 0;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return count;
+	}
 	@Override
 	public boolean updateCategory(Category category) throws SQLException {
 		String sql = "UPDATE Category\r\n"
@@ -188,13 +250,13 @@ public class CategoryDAOImpl implements CategoryDAO {
 	}
 
 	@Override
-	public boolean deleteCategory(String categoryId) throws SQLException {
+	public boolean deleteCategory(int categoryId) throws SQLException {
 		String sql = "DELETE FROM Category WHERE CategoryID = ?";
 		int row = 0;
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, categoryId);
+			ps.setInt(1, categoryId);
 			row = ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -203,7 +265,11 @@ public class CategoryDAOImpl implements CategoryDAO {
 		return row > 0;
 	}
 	
-    public static void main(String[] args) {
-        
+    public static void main(String[] args) throws SQLException {
+    	CategoryDAOImpl ca = new CategoryDAOImpl();
+    	List<Category> ls= ca.getListCategory(2);
+    	for (Category category : ls) {
+			System.out.println(category);
+		}
     }
 }
