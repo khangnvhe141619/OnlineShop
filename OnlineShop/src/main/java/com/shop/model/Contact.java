@@ -1,6 +1,6 @@
 package com.shop.model;
 
-
+//123
 public class Contact {
 	private String name;
 	private String desc;

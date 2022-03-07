@@ -9,6 +9,7 @@ import java.util.List;
 import com.shop.dao.OrderDAO;
 import com.shop.model.Item;
 import com.shop.model.Order;
+import com.shop.model.OrderAdmin;
 import com.shop.model.ProductOrderShip;
 import com.shop.utils.DBConnection;
 import com.shop.utils.SQLCommand;
@@ -85,6 +86,75 @@ public class OrderDAOImpl implements OrderDAO{
 	}
 	
 	@Override
+	public List<OrderAdmin> getListAllOrders() throws SQLException {
+		List<OrderAdmin> orderAdmins = new ArrayList<>();
+		OrderAdmin orderAdmin = null;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.GET_LIST_ALL_ORDER);
+			rs = pre.executeQuery();
+			while (rs.next()) {
+				orderAdmin = new OrderAdmin();
+				orderAdmin.setStt(rs.getInt("STT"));
+				orderAdmin.setShipper(rs.getString("ShipperName"));
+				orderAdmin.setCustomer(rs.getString("Username"));
+				orderAdmin.setOrderDate(rs.getString("OrderDate"));
+				orderAdmin.setTotal(rs.getDouble("Total"));
+				orderAdmin.setStatus(rs.getString("Description"));
+				orderAdmin.setOrderId(rs.getInt("OrderID"));
+				orderAdmins.add(orderAdmin);
+			}
+			
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return orderAdmins;
+	}
+	
+	@Override
+	public List<OrderAdmin> getListAllOrdersByStt(int stt) throws SQLException {
+		List<OrderAdmin> orderAdmins = new ArrayList<>();
+		OrderAdmin orderAdmin = null;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.GET_LIST_ALL_ORDER_BY_OID);
+			pre.setInt(1, stt);
+			rs = pre.executeQuery();
+			while (rs.next()) {
+				orderAdmin = new OrderAdmin();
+				orderAdmin.setStt(rs.getInt("STT"));
+				orderAdmin.setShipper(rs.getString("ShipperName"));
+				orderAdmin.setCustomer(rs.getString("Username"));
+				orderAdmin.setOrderDate(rs.getString("OrderDate"));
+				orderAdmin.setTotal(rs.getDouble("Total"));
+				orderAdmin.setStatus(rs.getString("Description"));
+				orderAdmin.setOrderId(rs.getInt("OrderID"));
+				orderAdmins.add(orderAdmin);
+			}
+			
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return orderAdmins;
+	}
+	
+	@Override
 	public List<ProductOrderShip> getListOrdersByPending(int account) throws SQLException {
 		List<ProductOrderShip> orders = new ArrayList<>();
 		ProductOrderShip productOrderShip = null;
@@ -154,11 +224,34 @@ public class OrderDAOImpl implements OrderDAO{
 		return orders;
 	}
 	
+	@Override
+	public boolean getUpdateOrder(int stt, int orderId) throws SQLException {
+		boolean check = false;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.GET_UPDATE_ORDER);
+			pre.setInt(1, stt);
+			pre.setInt(2, orderId);
+			check = pre.executeUpdate() == 1;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return check;
+	}
+	
 	public static void main(String[] args) throws SQLException {
 		OrderDAO pd = new OrderDAOImpl();
-		List<ProductOrderShip> lp = pd.getListOrdersByPending(2);
-		for (ProductOrderShip product : lp) {
-			System.out.println(product.toString());
-		}
+		pd.getUpdateOrder(1, 1);
 	}
 }

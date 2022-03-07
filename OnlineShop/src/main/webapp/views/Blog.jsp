@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
   <head>
@@ -112,7 +113,7 @@
 											<a href="<%=request.getContextPath()%>/viewDetailsPost?pId=${pst.postId}">${pst.title}</a>
 										</h2>
 										<div class="post-meta">
-											By&nbsp;<a href="#">${pst.authorName}</a>| ${pst.createdDate}
+											By&nbsp;<a href="#">${pst.authorName}</a>| ${pst.createdDate.format( DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))}
 										</div>
 									</div>
 									<div class="post-entry">
