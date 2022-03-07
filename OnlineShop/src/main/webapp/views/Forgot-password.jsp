@@ -11,7 +11,7 @@
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/common/fonts/material-icon/css/material-design-iconic-font.min.css">
-
+<!--xin comment-->
     <!-- Main css -->
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/common/css/style1.css">
 </head>
