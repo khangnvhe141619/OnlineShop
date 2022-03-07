@@ -96,10 +96,13 @@
 									<div class="post-images-slider">
 										<ul class="slides">
 											<li><img
-												src="<%=request.getContextPath()%>/resources/common/assets/images/post-1.jpg"
+												src="<%=request.getContextPath()%>/resources/common/assets/images/blog-1-img.jpg"
 												alt="Blog Slider Image" /></li>
 											<li><img
-												src="<%=request.getContextPath()%>/resources/common/assets/images/post-3.jpg"
+												src="<%=request.getContextPath()%>/resources/common/assets/images/blog-2-img.jpeg"
+												alt="Blog Slider Image" /></li>
+											<li><img
+												src="<%=request.getContextPath()%>/resources/common/assets/images/blog-2.2-img.jpg"
 												alt="Blog Slider Image" /></li>
 										</ul>
 									</div>

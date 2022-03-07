@@ -74,7 +74,7 @@
                   <div class="post-thumbnail"><img src="<%=request.getContextPath()%>/resources/common/assets/images/post-4.jpg" alt="Blog Featured Image"/></div>
                   <div class="post-header font-alt">
                     <h1 class="post-title">${post.title}</h1>
-                    <div class="post-meta">By&nbsp;<a href="#">${post.authorName}</a>| ${pst.createdDate} | ${total} Comments 
+                    <div class="post-meta">By&nbsp;<a href="#">${post.authorName}</a>| ${pst.createdDate}
                     </div>
                   </div>
                   <div class="post-entry">
@@ -82,11 +82,11 @@
                   </div>
                 </div>
                 <div class="comments">
-                <c:if test="${total == 0}">
+                <c:if test="${totalCmt == 0}">
                 <h4 class="comment-title font-alt">No Comment.</h4>
                 </c:if>
-                  <c:if test="${total > 0}">
-                <h4 class="comment-title font-alt">There are ${total} comments</h4>
+                  <c:if test="${totalCmt > 0}">
+                <h4 class="comment-title font-alt">There are ${totalCmt} comments</h4>
                 </c:if>          
                   <c:forEach items="${lstPostCmt}" var="postCmt">
                   <div class="comment clearfix">
