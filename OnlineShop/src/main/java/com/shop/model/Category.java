@@ -1,6 +1,7 @@
 package com.shop.model;
 
 public class Category {
+	private int stt;
 	private int categoryID;
 	private String categoryName;
 
@@ -8,8 +9,9 @@ public class Category {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Category(int categoryID, String categoryName) {
+	public Category(int stt,int categoryID, String categoryName) {
 		super();
+		this.stt=stt;
 		this.categoryID = categoryID;
 		this.categoryName = categoryName;
 	}
@@ -28,6 +30,15 @@ public class Category {
 
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
+	}
+	
+
+	public int getStt() {
+		return stt;
+	}
+
+	public void setStt(int stt) {
+		this.stt = stt;
 	}
 
 	@Override
