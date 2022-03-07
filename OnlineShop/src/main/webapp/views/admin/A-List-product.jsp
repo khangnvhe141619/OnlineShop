@@ -68,6 +68,7 @@
                             <div class="row">
                                 <h4>List Of Products (<b style="color: orange;">số lượng</b>)
                                 </h4>
+                           
                                 <p>
                                     <form role="search" class="app-search hidden-xs" style="margin-left: 35%;">
                                         <input type="text" placeholder="Search..." class="form-control"
@@ -79,6 +80,8 @@
                                     </p>
                                 <div class="col-lg-12 col-md-9 col-sm-12 col-xs-12 mail_listing">
                                     <div class="inbox-center">
+                                          <p style="color: red; margin-left: 40px">
+					<%=request.getAttribute("mess")!=null?request.getAttribute("mess"):"" %></p>
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
@@ -101,8 +104,8 @@
                                                     
                       
                                                     <td class="max-texts">
-                                                         <a href=""><i class="fa fa-edit" aria-hidden="true"></i>Edit</a> 
-                                                         <a href="" onclick=""><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+                                                         <a href="" onclick="return testConfirmDialog()"><i class="fa fa-edit" aria-hidden="true"></i>Edit</a> 
+                                                         <a href="<%=request.getContextPath() %>/DeleteController?index=${i.productID}" onclick="return testConfirmDialog()"><i class="fa fa-edit" aria-hidden="true"></i>Delete</a> 
                                                     </td>
                                                 </tr>
                                                 </c:forEach>
@@ -205,6 +208,20 @@
     <script src="<%=request.getContextPath()%>/resources/admin/js/custom.min.js"></script>
     <!--Style Switcher -->
     <script src="<%=request.getContextPath()%>/resources/admin/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+     <script type="text/javascript">
+    	 function testConfirmDialog()  {
+
+              var result = confirm("Do you want to continue?");
+
+              if(result)  {
+                 return true;
+              } else {
+                 return false;
+              }
+         }
+
+      </script>
+    
 </body>
 
 </html>
