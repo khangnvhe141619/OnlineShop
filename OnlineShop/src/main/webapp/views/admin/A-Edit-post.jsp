@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,8 +53,9 @@
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
                             <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Administrators</a></li>
-                            <li class="active">New</li>
+                            <li><a href="<%=request.getContextPath()%>/aListPostController">Posts</a></li>
+                            <li><a href="<%=request.getContextPath()%>/aViewPostDetail?pId=${post.postId}">Post Detail</a></li>
+                            <li class="active">Edit post</li>
                         </ol>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -63,39 +64,52 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="white-box">
-                            <h3 class="box-title m-b-0">Creating A New Post</h3>
-                            <p class="text-muted m-b-30 font-13"> Fill in the form below: </p>
+                            <h3 class="box-title m-b-0">Edit Post Information</h3>
+                            			<c:if test="${uSuccess}">
+                                        <div class="alert alert-warning">
+                                            <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
+                                            <strong>UPDATED!! </strong>
+                                            <p> The Blog Post has been updated successfully.</p>
+                                        </div>
+                                        </c:if>                                     
+                                        <c:if test="${uError}">
+                                        <div class="alert alert-danger">
+                                            <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
+                                            <strong>ERROR!! </strong>
+                                            <p> There was an error during deleting this record. Please try again.</p>
+                                        </div>
+                                        </c:if>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
-                                    <form action="<%=request.getContextPath()%>/addPostController" method="post">
+                                    <form action="<%=request.getContextPath()%>/aEditPostController" method="post">
+                                        <input type="hidden" name="pId" class="form-control" value="${post.postId}"
+                                                    id="" required="required">
                                         <div class="form-group">
                                             <label for="">Author</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-users"></i></div>
-                                                <input type="text" name="author" class="form-control"
-                                                    id="" placeholder="Enter author name" required="required">
-                                                    
+                                                <input type="text" name="author" class="form-control" value="${post.authorName}"
+                                                    id="" required="required">                                                 
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Title</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-sticky-note"></i></div>
-                                                <input type="text" name="title" class="form-control"
-                                                    id="" placeholder="Enter title" required="required">
-                                                    
+                                                <textarea name="title" class="form-control"
+                                                    id="" required="required">${post.title}</textarea>                                             
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Content</label>
                                             <div class="input-group">
-                                                <div class="input-group-addon"><i class="fa fa-phone"></i></div>
-                                                <input type="text" name="content" class="form-control"
-                                                    id="" placeholder="Enter content" required="required">                                              
+                                                <div class="input-group-addon"><i class="fa fa-sticky-note"></i></div>
+                                                <textarea name="content" class="form-control"
+                                                    id=""  required="required">${post.content}</textarea>                                              
                                             </div>
-                                        </div>                                                          
+                                        </div>                                                                                  
                                         <button type="submit" name="submit"
-                                            class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
+                                            class="btn btn-success waves-effect waves-light m-r-10">Update</button>
                                     </form>
                                 </div>
                             </div>
@@ -191,7 +205,5 @@
         });
     </script>
     <!--END CHECK IF PASSWORDS MATCH -->
-
 </body>
-
 </html>

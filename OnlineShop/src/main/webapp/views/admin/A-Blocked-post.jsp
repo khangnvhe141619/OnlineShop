@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,14 +10,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="<%=request.getContextPath()%>/resources/admin/plugins/images/icon.png">
-    <title>Company Admin | Create Admin</title>
+    <title>Company Admin</title>
     <!-- Bootstrap Core CSS -->
     <link href="<%=request.getContextPath()%>/resources/admin/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/resources/admin/plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet">
-    <!-- animation CSS -->
-    <link href="<%=request.getContextPath()%>/resources/admin/css/animate.css" rel="stylesheet">
     <!-- Menu CSS -->
     <link href="<%=request.getContextPath()%>/resources/admin/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+    <!-- morris CSS -->
+    <link href="<%=request.getContextPath()%>/resources/admin/plugins/bower_components/morrisjs/morris.css" rel="stylesheet">
     <!-- animation CSS -->
     <link href="<%=request.getContextPath()%>/resources/admin/css/animate.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -53,56 +54,133 @@
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
                             <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Administrators</a></li>
-                            <li class="active">New</li>
+                            <li class="active">Posts</li>
                         </ol>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
-                <!--.row-->
+                <!-- row -->
                 <div class="row">
+                    <!-- Left sidebar -->
                     <div class="col-md-12">
                         <div class="white-box">
-                            <h3 class="box-title m-b-0">Creating A New Post</h3>
-                            <p class="text-muted m-b-30 font-13"> Fill in the form below: </p>
+                            <!-- row -->
                             <div class="row">
-                                <div class="col-sm-12 col-xs-12">
-                                    <form action="<%=request.getContextPath()%>/addPostController" method="post">
-                                        <div class="form-group">
-                                            <label for="">Author</label>
-                                            <div class="input-group">
-                                                <div class="input-group-addon"><i class="fa fa-users"></i></div>
-                                                <input type="text" name="author" class="form-control"
-                                                    id="" placeholder="Enter author name" required="required">
-                                                    
-                                            </div>
+                                <h4>Blocked Posts (<b style="color: orange;">${totalPost}</b>)</h4>                               
+                                <div class="col-lg-12 col-md-9 col-sm-12 col-xs-12 mail_listing">
+                                    <div class="inbox-center">
+                                    <c:if test="${bSuccess}">
+                                    <div class="alert alert-warning">
+                                            <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
+                                            <strong>DONE!!! </strong>
+                                            <p> The Post has been unblocked successfully.</p>
+                                        </div> 
+                                    </c:if>
+                                    <c:if test="${bError}">
+                                        <div class="alert alert-danger">
+                                            <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
+                                            <strong>ERROR!! </strong>
+                                            <p> There was an error during deleting this record. Please try again.</p>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="">Title</label>
-                                            <div class="input-group">
-                                                <div class="input-group-addon"><i class="fa fa-sticky-note"></i></div>
-                                                <input type="text" name="title" class="form-control"
-                                                    id="" placeholder="Enter title" required="required">
+                                        </c:if>                                    
+                                        <table class="table table-hover">
+                                            <thead>                                              
+                                                <tr>
+                                                    <th style="width: 10%;">No.</th>
+                                                    <th>TITLE</th>
+                                                    <th>SHORT CONTENT</th>
+                                                    <th>DATE</th>
+                                                    <th>ACTION</th>
+                                                </tr>
+                                            </thead>
+                                            <c:forEach items="${lstPost}" var="post">
+                                            <tbody>
+                                                <tr>                                                	
+                                                    <td>${post.postId}</td>
+                                                    <td class="max-texts"><a href=""></a>${post.title}</td>
+                                                    <td class="max-texts">${post.shortDesc}</td>
                                                     
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Content</label>
-                                            <div class="input-group">
-                                                <div class="input-group-addon"><i class="fa fa-phone"></i></div>
-                                                <input type="text" name="content" class="form-control"
-                                                    id="" placeholder="Enter content" required="required">                                              
-                                            </div>
-                                        </div>                                                          
-                                        <button type="submit" name="submit"
-                                            class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
-                                    </form>
+                                                    <td class="">${post.createdDate}</td>
+                                                    <td class="">
+                                                        <a style="margin-left: 25%;" href="<%=request.getContextPath()%>/aUnBlockPostController?pId=${post.postId}" onclick=""><i style="color: green;" class="fa fa-check-circle"
+                                                                aria-hidden="true"></i> </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            </c:forEach>
+                                            
+                                        </table>
+                                    </div>
+                                    <div class="row">
+                                        <div class="pagination font-alt">							
+							<c:if test="${check == 0}">
+								<div class="pagination">
+									<c:if test="${tag == 1}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/aListBlockedPostController?page=1">&laquo;Pre</a>
+										</li>
+									</c:if>
+									<c:if test="${tag != 1}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/aListBlockedPostController?page=${tag-1}">&laquo;Pre</a>
+										</li>
+									</c:if>
+									<c:forEach begin="1" end="${total}" var="i">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/aListBlockedPostController?page=${i}"
+											class="nar-item ${tag == i? ' active ' : ''}">${i}</a></li>
+									</c:forEach>
+									<c:if test="${tag != total}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/aListBlockedPostController?page=${tag+1}">Next
+												&raquo;</a></li>
+									</c:if>
+									<c:if test="${tag == total}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/aListBlockedPostController?page=${total}">Next
+												&raquo;</a>
+									</c:if>
+								</div>
+							</c:if>
+							<c:if test="${check == 1}">
+								<div class="pagination">
+									<c:if test="${tag == 1}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/searchPostController?page=1">&laquo;Pre</a>
+										</li>
+									</c:if>
+									<c:if test="${tag != 1}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/searchPostController?page=${tag - 1}">&laquo;Pre</a>
+										</li>
+									</c:if>
+									<c:forEach begin="1" end="${total}" var="i">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/searchPostController?page=${i}"
+											class="${tag == i? "active":""}">${i}</a></li>
+									</c:forEach>
+									<c:if test="${tag != total}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/searchPostController?page=${tag + 1}">Next
+												&raquo;</a></li>
+									</c:if>
+									<c:if test="${tag == total}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/searchPostController?page=${total}">Next
+												&raquo;</a>
+									</c:if>
+								</div>
+							</c:if>
+							
+							</div>
+                                    </div>
                                 </div>
                             </div>
+                            <!-- /.row -->
                         </div>
                     </div>
                 </div>
-                <!--./row-->
+                <!-- /.row -->
                 <!-- .right-sidebar -->
                 <div class="right-sidebar">
                     <div class="slimscrollright">
@@ -149,6 +227,7 @@
                                 </li>
                                 <li><a href="javascript:void(0)" theme="megna-dark" class="megna-dark-theme">12</a></li>
                             </ul>
+
                         </div>
                     </div>
                 </div>
@@ -174,24 +253,8 @@
     <script src="<%=request.getContextPath()%>/resources/admin/js/waves.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="<%=request.getContextPath()%>/resources/admin/js/custom.min.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/admin/js/jasny-bootstrap.js"></script>
     <!--Style Switcher -->
     <script src="<%=request.getContextPath()%>/resources/admin/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
-
-    <!-- CHECK IF PASSWORDS MATCH -->
-    <script>
-        $(document).ready(function () {
-            $("#ConfirmPassword").keyup(function () {
-                if ($("#Password").val() != $("#ConfirmPassword").val()) {
-                    $("#msg").html("Password do not match").css("color", "red");
-                } else {
-                    $("#msg").html("Password matched").css("color", "green");
-                }
-            });
-        });
-    </script>
-    <!--END CHECK IF PASSWORDS MATCH -->
-
 </body>
 
 </html>

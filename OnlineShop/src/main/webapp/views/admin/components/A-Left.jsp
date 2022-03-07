@@ -70,7 +70,8 @@
                                 class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Blog<span
                                     class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="A-List-post.jsp">All Posts</a></li>
+                            <li><a href="<%=request.getContextPath()%>/aListPostController ">Posts</a></li>
+                            <li><a href="<%=request.getContextPath()%>/aListBlockedPostController">Blocked Posts</a></li>
                             <li><a href="A-New-post.jsp">Create Post</a></li>
                             <li><a href="A-Comment.jsp" class="waves-effect">Comments</a>
                             </li>

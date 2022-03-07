@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,14 +49,15 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <a href="posts.html" class="waves-effect "><i data-icon="&#xe020;"
+                        <a href="<li><a href="<%=request.getContextPath()%>/aListPostController">Posts</a></li>" class="waves-effect "><i data-icon="&#xe020;"
                                 class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Go Back</span></a>
                         <h4 class="page-title">Email .</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
                             <li><a href="#">Dashboard</a></li>
-                            <li class="active">Blog Post Detail</li>
+                            <li><a href="<%=request.getContextPath()%>/aListPostController">Posts</a></li>
+                            <li class="active">Post Detail</li>
                         </ol>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -68,28 +70,31 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-9 col-sm-8 col-xs-12 mail_listing">
                                     <div class="media m-b-30 p-t-20">
-                                        <h4 class="font-bold m-t-0">title
-                                            <i style="float:right; font-size:15px; color:orange;">Comments: row
-                                                number</i>
+                                        <h4 class="font-bold m-t-0">${post.title}
+                                            <i style="float:right; font-size:15px; color:orange;">Comments: ${sum}</i>
                                         </h4>
                                         <hr>
                                         <a class="pull-left" href="#"></a>
-                                        <div class="media-body"> <span class="media-meta pull-right">date</span>
-                                            <h4 class="text-danger m-0">author</h4>
+                                        <div class="media-body"> <span class="media-meta pull-right">${post.createdDate.format( DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))}</span>
+                                            <h4 class="text-danger m-0">${post.authorName}</h4>
                                         </div>
                                     </div>
-                                    <p>content</p>
+                                    <p>${post.content}</p>
                                     <hr>
                                     <div class="b-all p-20">
+                                    <a href="<%=request.getContextPath()%>/aEditPostController?pId=${post.postId}"
+                                            class="btn btn-danger btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light"
+                                             >Edit
+                                            This Post</a>
                                         <a href="#"
                                             class="btn btn-danger btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light"
-                                            data-toggle="modal" data-target="#responsive-modal'.$row[" id"].'">Delete
+                                            data-toggle="modal" data-target="#responsive-modal">Delete
                                             This Post</a>
                                     </div>
                                 </div>
 
                                 <!-- /.modal -->
-                                <div id="responsive-modal'.$row[" id"].'" class="modal fade" tabindex="-1" role="dialog"
+                                <div id="responsive-modal" class="modal fade" tabindex="-1" role="dialog"
                                     aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -99,8 +104,8 @@
                                                 <h4 class="modal-title">Are you sure you want to delete this post?</h4>
                                             </div>
                                             <div class="modal-footer">
-                                                <form action="functions/del_post.html" method="post">
-                                                    <input type="hidden" name="id" value="'.$row[" id"].'" />
+                                                <form action="<%=request.getContextPath()%>/aDeletePostController" method="get">
+                                                    <input type="hidden" name="pId" value="${post.postId}" />
                                                     <button type="button" class="btn btn-default waves-effect"
                                                         data-dismiss="modal">Close</button>
                                                     <button type="submit"

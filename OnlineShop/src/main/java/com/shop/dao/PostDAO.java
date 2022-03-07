@@ -13,7 +13,9 @@ public interface PostDAO {
 
 	public boolean updatePost(Post post) throws SQLException;
 
-	public boolean deletePost(int postId) throws SQLException;
+	public boolean deletePost(String postId) throws SQLException;
+	
+	public boolean blockOrUnBlockPost(int active, String id) throws SQLException;
 	
 	public List<Post> getAllPost(int row) throws Exception;
 	
@@ -25,4 +27,7 @@ public interface PostDAO {
 	
 	public List<Post> getTop5HotPost() throws SQLException;
 	
+	public List<Post> getAllBlockedPost(int row) throws Exception;
+	
+	public int countTotalBlockedPost() throws SQLException;
 }

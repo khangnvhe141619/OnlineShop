@@ -61,7 +61,7 @@ public class PostDAOImpl implements PostDAO {
 
 	public boolean insertPost(Post post) throws SQLException {
 		int row = 0;
-		String sql = "INSERT [dbo].[Post] ([Author], [Title], [ShortDesc], [Content], [CreatedDate], [Active]) VALUES (?, ?, ?, ?, ?, ?";
+		String sql = "INSERT [dbo].[Post] ([Author], [Title], [ShortDesc], [Content], [CreatedDate], [Active]) VALUES (?, ?, ?, ?, ?, ?)";
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);
@@ -119,13 +119,13 @@ public class PostDAOImpl implements PostDAO {
 		return row > 0;
 	}
 
-	public boolean deletePost(int postId) throws SQLException {
+	public boolean deletePost(String postId) throws SQLException {
 		String sql = "DELETE Post " + "WHERE PostID = ?";
 		int row = 0;
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, postId);
+			ps.setString(1, postId);
 			row = ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -332,5 +332,100 @@ public class PostDAOImpl implements PostDAO {
 			}
 		}
 		return list;
+	}
+
+	@Override
+	public boolean blockOrUnBlockPost(int active, String id) throws SQLException {
+		String sql = "UPDATE Post SET Active = ?\r\n" + "WHERE PostID = ?";
+		int row = 0;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, active);
+			ps.setString(2, id);
+			row = ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return row > 0;
+	}
+
+	@Override
+	public List<Post> getAllBlockedPost(int row) throws Exception {
+		List<Post> list = new ArrayList<Post>();
+		Post post = null;
+		String sql = "SELECT * FROM Post WHERE Active = 0 ORDER BY CreatedDate DESC "
+				+ "OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY";
+		try {
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, row);
+
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				post = new Post();
+				post.setPostId(rs.getInt("PostID"));
+				post.setAuthorName(rs.getString("Author"));
+				post.setTitle(rs.getString("Title"));
+				post.setShortDesc(rs.getString("ShortDesc"));
+				post.setContent(rs.getString("Content"));
+				post.setCreatedDate(rs.getTimestamp("CreatedDate").toLocalDateTime());
+				post.setActive(rs.getInt("Active"));
+				list.add(post);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return list;
+	}
+
+	@Override
+	public int countTotalBlockedPost() throws SQLException {
+		String sql = "SELECT COUNT(*)\r\n" + " FROM Post WHERE Active = 0";
+		int count = 0;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return count;
 	}	
 }

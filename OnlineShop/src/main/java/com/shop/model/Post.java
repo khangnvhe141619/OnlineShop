@@ -18,7 +18,7 @@ public class Post {
 	private String shortDesc;
 	private String content;
 	private LocalDateTime createdDate;
-	private int active = 1;
+	private int active;
 
 	public Post() {
 	}
@@ -32,6 +32,30 @@ public class Post {
 		this.shortDesc = shortDesc;
 		this.content = content;
 		this.createdDate = createdDate;
+		this.active = active;
+	}
+
+	
+	public Post(String authorName, String title, String shortDesc, String content, LocalDateTime createdDate,
+			int active) {
+		super();
+		this.authorName = authorName;
+		this.title = title;
+		this.shortDesc = shortDesc;
+		this.content = content;
+		this.createdDate = createdDate;
+		this.active = 1;
+	}
+
+
+
+	public Post(int postId, String authorName, String title, String shortDesc, String content, int active) {
+		super();
+		this.postId = postId;
+		this.authorName = authorName;
+		this.title = title;
+		this.shortDesc = shortDesc;
+		this.content = content;
 		this.active = active;
 	}
 
@@ -60,7 +84,7 @@ public class Post {
 	}
 
 	public String getShortDesc() {
-		return shortDesc;
+		return shortDesc.substring(0, 40)+" ...";
 	}
 
 	public void setShortDesc(String shortDesc) {

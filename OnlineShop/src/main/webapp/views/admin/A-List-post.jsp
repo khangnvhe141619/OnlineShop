@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,7 +53,7 @@
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
-                            <li><a href="index.html">Dashboard</a></li>
+                            <li><a href="#">Dashboard</a></li>
                             <li class="active">Posts</li>
                         </ol>
                     </div>
@@ -65,30 +66,30 @@
                         <div class="white-box">
                             <!-- row -->
                             <div class="row">
-                                <h4>Recent Blog Posts (<b style="color: orange;"> số lượng</b>)</h4>
-                                
+                                <h4>Blog Posts (<b style="color: orange;">${totalPost}</b>)</h4>                               
                                 <div class="col-lg-12 col-md-9 col-sm-12 col-xs-12 mail_listing">
                                     <div class="inbox-center">
-
-                                        <div class="alert alert-success">
-                                            <a href="#" class="close" data-dismiss="alert"
-                                                aria-label="close">&times;</a>
-                                            <strong>DONE!! </strong>
-                                            <p> Your new post has been successfully uploaded.</p>
-                                        </div>
-
-                                        <div class="alert alert-warning">
+                                    <c:if test="${bSuccess}">
+                                    <div class="alert alert-warning">
                                             <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
-                                            <strong>DELETED!! </strong>
-                                            <p> The Blog Post has been successfully deleted.</p>
-                                        </div>
-
+                                            <strong>BLOCKED!!! </strong>
+                                            <p> The Post has been blocked successfully.</p>
+                                        </div> 
+                                    </c:if>
+                                    <c:if test="${dSuccess}">
+                                    <div class="alert alert-warning">
+                                            <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
+                                            <strong>DELETED!!! </strong>
+                                            <p> The Post has been deleted successfully.</p>
+                                        </div> 
+                                    </c:if>
+                                    <c:if test="${bError}">
                                         <div class="alert alert-danger">
                                             <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
                                             <strong>ERROR!! </strong>
                                             <p> There was an error during deleting this record. Please try again.</p>
                                         </div>
-
+                                        </c:if>                                    
                                         <table class="table table-hover">
                                             <thead>                                              
                                                 <tr>
@@ -99,32 +100,87 @@
                                                     <th>ACTION</th>
                                                 </tr>
                                             </thead>
+                                            <c:forEach items="${lstPost}" var="post">
                                             <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td class="max-texts"><a href="post-details.html" />title</td>
-                                                    <td class="max-texts">short content</td>
-                                                    </td>
-                                                    <td class="">date</td>
+                                                <tr>                                                	
+                                                    <td>${post.postId}</td>
+                                                    <td class="max-texts"><a href=""></a>${post.title}</td>
+                                                    <td class="max-texts">${post.shortDesc}</td>
+                                                    
+                                                    <td class="">${post.createdDate}</td>
                                                     <td class="">
-                                                        <a href=""><i class="fa fa-edit" aria-hidden="true"></i>Edit</a>
-                                                        <a href="" onclick=""><i class="fa fa-trash"
-                                                                aria-hidden="true"></i> Delete</a>
+                                                        <a href="<%=request.getContextPath()%>/aViewPostDetail?pId=${post.postId}"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                                                        <a style="margin-left: 5%;" href="<%=request.getContextPath()%>/aBlockPostController?pId=${post.postId}" onclick=""><i style="color: red;" class="fa fa-ban"
+                                                                aria-hidden="true"></i> </a>
                                                     </td>
                                                 </tr>
                                             </tbody>
+                                            </c:forEach>
+                                            
                                         </table>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-7 m-t-20"> Showing 1 - row number</div>
-                                        <div class="col-xs-5 m-t-20">
-                                            <div class="btn-group pull-right">
-                                                <button type="button" class="btn btn-default waves-effect"><i
-                                                        class="fa fa-chevron-left"></i></button>
-                                                <button type="button" class="btn btn-default waves-effect"><i
-                                                        class="fa fa-chevron-right"></i></button>
-                                            </div>
-                                        </div>
+                                        <div class="pagination font-alt">							
+							<c:if test="${check == 0}">
+								<div class="pagination">
+									<c:if test="${tag == 1}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/aListPostController?page=1">&laquo;Pre</a>
+										</li>
+									</c:if>
+									<c:if test="${tag != 1}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/aListPostController?page=${tag-1}">&laquo;Pre</a>
+										</li>
+									</c:if>
+									<c:forEach begin="1" end="${total}" var="i">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/aListPostController?page=${i}"
+											class="nar-item ${tag == i? ' active ' : ''}">${i}</a></li>
+									</c:forEach>
+									<c:if test="${tag != total}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/aListPostController?page=${tag+1}">Next
+												&raquo;</a></li>
+									</c:if>
+									<c:if test="${tag == total}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/aListPostController?page=${total}">Next
+												&raquo;</a>
+									</c:if>
+								</div>
+							</c:if>
+							<c:if test="${check == 1}">
+								<div class="pagination">
+									<c:if test="${tag == 1}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/searchPostController?page=1">&laquo;Pre</a>
+										</li>
+									</c:if>
+									<c:if test="${tag != 1}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/searchPostController?page=${tag - 1}">&laquo;Pre</a>
+										</li>
+									</c:if>
+									<c:forEach begin="1" end="${total}" var="i">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/searchPostController?page=${i}"
+											class="${tag == i? "active":""}">${i}</a></li>
+									</c:forEach>
+									<c:if test="${tag != total}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/searchPostController?page=${tag + 1}">Next
+												&raquo;</a></li>
+									</c:if>
+									<c:if test="${tag == total}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/searchPostController?page=${total}">Next
+												&raquo;</a>
+									</c:if>
+								</div>
+							</c:if>
+							
+							</div>
                                     </div>
                                 </div>
                             </div>
