@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,32 +87,40 @@
                                                     <th>NAME</th>
                                                     <th>QUANTITY</th>
                                                     <th>PRICE</th>
-                                                    <th>ACTION</th>
+                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                            <c:forEach items="${listp }" var="i">
                                                 <tr>
-                                                    <td class="max-texts"> 1</td>
-                                                    <td class="max-texts"> <a href="list-category.html" />category name </td>
-                                                    <td class="max-texts"> <a href="product-detail.html" />product name </td>
-                                                    <td class="max-texts"> quantity </td>
-                                                    <td class="">price</td>
-                                                    <td class="">
+                                                    <td class="max-texts"> ${i.stt }</td>
+                                                    <td class="max-texts"> <a href="list-category.html" />${i.cateName } </td>
+                                                    <td class="max-texts"> <a href="product-detail.html" />${i.productName }</td>
+                                                    <td class="max-texts"> ${i.quantity } </td>
+                                                    <td class="">${i.price }</td>
+                                                    
+                      
+                                                    <td class="max-texts">
                                                          <a href=""><i class="fa fa-edit" aria-hidden="true"></i>Edit</a> 
                                                          <a href="" onclick=""><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
                                                     </td>
                                                 </tr>
+                                                </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-7 m-t-20"> Showing 1 - số trang</div>
-                                        <div class="col-xs-5 m-t-20">
+                                        <div class="col-xs-7 m-t-20"> Showing <a>${tag }</a> - so trang <a>${endpage }</a> </div>
+                                           <div class="col-xs-5 m-t-20">
                                             <div class="btn-group pull-right">
-                                                <button type="button" class="btn btn-default waves-effect"><i
+                                            <form class="form" role="form" action="<%=request.getContextPath()%>/ListProdtuct?index=${tag-1==0?1:tag-1}" method="post">
+                                                <button type="submit" class="btn btn-default waves-effect"><i
                                                         class="fa fa-chevron-left"></i></button>
-                                                <button type="button" class="btn btn-default waves-effect"><i
+                                                 </form>
+                                                  <form class="form" role="form" action="<%=request.getContextPath()%>/ListProdtuct?index=${tag==endPage?tag:tag+1}" method="post">
+                                                <button type="submit" class="btn btn-default waves-effect"><i
                                                         class="fa fa-chevron-right"></i></button>
+                                                        </form>
                                             </div>
                                         </div>
                                     </div>
