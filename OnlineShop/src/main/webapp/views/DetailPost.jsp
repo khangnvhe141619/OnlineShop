@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
   <head>
@@ -71,10 +71,10 @@
             
               <div style="margin-left: 16%;" class="col-sm-8">
                 <div class="post">
-                  <div class="post-thumbnail"><img src="<%=request.getContextPath()%>/resources/common/assets/images/post-4.jpg" alt="Blog Featured Image"/></div>
+                  <div class="post-thumbnail"><img src="<%=request.getContextPath()%>/resources/common/assets/images/blog-1-img.jpg" alt="Blog Featured Image"/></div>
                   <div class="post-header font-alt">
                     <h1 class="post-title">${post.title}</h1>
-                    <div class="post-meta">By&nbsp;<a href="#">${post.authorName}</a>| ${pst.createdDate}
+                    <div class="post-meta">By&nbsp;<a href="#">${post.authorName}</a>| ${post.createdDate.format( DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))}
                     </div>
                   </div>
                   <div class="post-entry">
@@ -96,7 +96,7 @@
                       <div class="comment-body">
                         <p>${postCmt.comment}</p>
                       </div>
-                      <div class="comment-meta font-alt">${postCmt.createDate}
+                      <div class="comment-meta font-alt">${postCmt.createDate.format( DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))}
                       </div>
                     </div>
                   </div>

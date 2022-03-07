@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 <head>
@@ -235,14 +236,14 @@
 										<tbody>
 											<tr>
 												<th>Title</th>
-												<th>Infor</th>
+												<th>Information</th>
 											</tr>
 											<tr>
 												<td>Name</td>
 												<td>${p.productName}</td>
 											</tr>
 											<tr>
-												<td>Isussing Company</td>
+												<td>Issuing Company</td>
 												<td>${p.issuingCompany }</td>
 											</tr>
 											<tr>
@@ -255,7 +256,7 @@
 											</tr>
 											<tr>
 												<td>Publication Date</td>
-												<td>${p.publicationDate }</td>
+												<td>${p.publicationDate.format( DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))}</td>
 											</tr>
 										</tbody>
 									</table>

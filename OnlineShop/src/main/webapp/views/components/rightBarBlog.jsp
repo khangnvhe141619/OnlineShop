@@ -18,6 +18,9 @@
 										</div>
 										<select style="margin-bottom: 5%;" class="form-control" name="select">
 											<option value="pChoose" selected="selected">------ Choose ------</option>
+											<c:if test="${select != null}">
+											<option value="${select}" selected="selected">c</option>
+											</c:if>
 											<option value="pTitle">Title</option>
 											<option value="pAuthor">Author</option>
 											<option value="pTag">Tag</option>
