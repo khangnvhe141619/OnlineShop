@@ -143,13 +143,13 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public boolean deleteProduct(String id) throws SQLException {
+	public boolean deleteProduct(int id) throws SQLException {
 		String sql = "DELETE FROM Product WHERE ProductID = ?";
 		int row = 0;
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, id);
+			ps.setInt(1, id);
 			row = ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
