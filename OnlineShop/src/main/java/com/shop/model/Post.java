@@ -18,12 +18,13 @@ public class Post {
 	private String shortDesc;
 	private String content;
 	private LocalDateTime createdDate;
+	private int active = 1;
 
 	public Post() {
 	}
 
 	public Post(int postId, String authorName, String title, String shortDesc, String content,
-			LocalDateTime createdDate) {
+			LocalDateTime createdDate, int active) {
 		super();
 		this.postId = postId;
 		this.authorName = authorName;
@@ -31,6 +32,7 @@ public class Post {
 		this.shortDesc = shortDesc;
 		this.content = content;
 		this.createdDate = createdDate;
+		this.active = active;
 	}
 
 	public int getPostId() {
@@ -50,16 +52,11 @@ public class Post {
 	}
 
 	public String getTitle() {
-		if (title.length() >= 50) {
-			return title.substring(0, 50) + " ...";
-		} else {
-			return title;
-		}
-
+		return title;
 	}
 
-	public void setTitle(String tittle) {
-		this.title = tittle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getShortDesc() {
@@ -86,9 +83,18 @@ public class Post {
 		this.createdDate = createdDate;
 	}
 
+	public int getActive() {
+		return active;
+	}
+
+	public void setActive(int active) {
+		this.active = active;
+	}
+
 	@Override
 	public String toString() {
 		return "Post [postId=" + postId + ", authorName=" + authorName + ", title=" + title + ", shortDesc=" + shortDesc
-				+ ", content=" + content + ", createdDate=" + createdDate + "]";
+				+ ", content=" + content + ", createdDate=" + createdDate + ", active=" + active + "]";
 	}
+
 }

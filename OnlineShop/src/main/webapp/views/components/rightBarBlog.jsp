@@ -40,7 +40,7 @@
                     <li class="clearfix">
                       <div class="widget-posts-image"><a href="#"><img src="<%=request.getContextPath()%>/resources/common/assets/images/rp-4.jpg" alt="Post Thumbnail"/></a></div>
                       <div class="widget-posts-body">
-                        <div class="widget-posts-title"><a href="#">${pst.title}</a></div>
+                        <div class="widget-posts-title"><a href="<%=request.getContextPath()%>/viewDetailsPost?pId=${pst.postId}">${pst.title}</a></div>
                         <div class="widget-posts-meta">${pst.authorName}</div>
                       </div>
                     </li>                   

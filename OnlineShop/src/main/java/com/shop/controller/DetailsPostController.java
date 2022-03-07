@@ -45,14 +45,14 @@ public class DetailsPostController extends HttpServlet {
 		PostCmtDAO pCmtDAO = new PostCmtDAOImpl();
 		List<PostCmt> lstPostCmt = new ArrayList<PostCmt>();
 		Post post = null;
-		int total = 0;
+		int totalCmt = 0;
 		try {
 			post = postDAO.getPostInformation(id);
 			lstPostCmt = pCmtDAO.getListCmtByPostID(id);
-			total = pCmtDAO.countTotalCommentByPostID(id);
+			totalCmt = pCmtDAO.countTotalCommentByPostID(id);
 			request.setAttribute("post", post);
 			request.setAttribute("lstPostCmt", lstPostCmt);
-			request.setAttribute("total", total);
+			request.setAttribute("totalCmt", totalCmt);
 			request.getRequestDispatcher("views/DetailPost.jsp").forward(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

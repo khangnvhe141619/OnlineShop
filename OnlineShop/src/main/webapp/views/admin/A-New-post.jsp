@@ -81,7 +81,7 @@
                                         <h4><span><i class="ti-book"></i></span>Content</h4>
                                     </li>
                                 </ul>
-                                <form id="validation" class="form-horizontal" action="functions/new_post.html"
+                                <form id="validation" class="form-horizontal" action="#"
                                     method="post">
                                     <div class="wizard-content">
                                         <div class="wizard-pane active" role="tabpanel">
@@ -104,7 +104,7 @@
                                             <div class="form-group">
                                                 <label class="col-xs-3 control-label">Short Content</label>
                                                 <div class="col-xs-5">
-                                                    <textarea class="form-control" name="content" required> </textarea>
+                                                    <textarea class="form-control" name="shortContent" required> </textarea>
                                                 </div>
                                             </div>
                                         </div>

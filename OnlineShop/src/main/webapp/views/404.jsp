@@ -51,7 +51,7 @@
         }
     </style>
 </head>
-
+<!--//sao lai can cai css o day-->
 <body>
     <section class="page_404">
         <div class="container">
