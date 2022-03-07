@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,20 +91,22 @@
                                                     <th>ACTION</th>
                                                 </tr>
                                             </thead>
+                                            <c:forEach items="${list}" var="list">
                                             <tbody>
                                                 <tr>
-                                                    <td class="max-texts"><a href="edit-order.html"/> 1</td>
-                                                    <td class="max-texts"> name </td>
-                                                    <td class="max-texts"> name </td>
-                                                    <td class="max-texts"> date </td>
-                                                    <td class="max-texts"> total </td>
-                                                    <td class="">status</td>
+                                                    <td class="max-texts"> ${list.stt} </td>
+                                                    <td class="max-texts"> ${list.shipper} </td>
+                                                    <td class="max-texts"> ${list.customer} </td>
+                                                    <td class="max-texts"> ${list.orderDate} </td>
+                                                    <td class="max-texts"> ${list.total} </td>
+                                                    <td class="max-texts"> ${list.status} </td>
                                                     <td class="">
-                                                         <a href=""><i class="fa fa-edit" aria-hidden="true"></i>Edit</a> 
+                                                         <a href="<%=request.getContextPath()%>/updateOrderAdminController?stt=${list.stt}"><i class="fa fa-edit" aria-hidden="true"></i>Edit</a> 
                                                          <a href="" onclick=""><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
                                                     </td>
                                                 </tr>
                                             </tbody>
+                                            </c:forEach>
                                         </table>
                                     </div>
                                     <div class="row">

@@ -28,6 +28,13 @@
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="shop?typeid=1">Book</a></li>
 						</ul></li>
+					<li><a href="<%=request.getContextPath()%>/contactController">Contact</a></li>
+					<li><a href="<%=request.getContextPath()%>/listPostController">Blog</a></li>
+					<li><a href="<%=request.getContextPath()%>/views/FAQ.jsp">FAQ</a></li>
+					<c:if test="${sessionScope.email == null}">
+						<li><a href="<%=request.getContextPath()%>/views/Login.jsp">Login</a></li>
+					</c:if>
+					<c:if test="${sessionScope.email != null}">
 					<li><a href="<%=request.getContextPath()%>/viewCart">View
 							Cart[ <c:if test="${sessionScope.size == null}">
                                         0
@@ -36,13 +43,6 @@
                                         ${sessionScope.size}
                                     </c:if> ]
 					</a></li>
-					<li><a href="<%=request.getContextPath()%>/contactController">Contact</a></li>
-					<li><a href="<%=request.getContextPath()%>/listPostController">Blog</a></li>
-					<li><a href="<%=request.getContextPath()%>/views/FAQ.jsp">FAQ</a></li>
-					<c:if test="${sessionScope.email == null}">
-						<li><a href="<%=request.getContextPath()%>/views/Login.jsp">Login</a></li>
-					</c:if>
-					<c:if test="${sessionScope.email != null}">
 						<li class="dropdown"><a style="color: red;"
 							class="dropdown-toggle"
 							href="<%=request.getContextPath()%>/update"

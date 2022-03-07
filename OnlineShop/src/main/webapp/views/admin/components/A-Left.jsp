@@ -89,7 +89,7 @@
                                 class="linea-icon fa fa-cart-plus"></i> <span class="hide-menu">Order<span
                                     class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="A-List-order.jsp">List Orders</a></li>
+                            <li><a href="<%=request.getContextPath() %>/listOrderController">List Orders</a></li>
                         </ul>
                     </li>
                     <li> <a href="#" class="waves-effect"><i data-icon="&#xe00b;"
@@ -113,7 +113,7 @@
                             <li><a href="A-New-user.jsp">Create Admin</a></li>
                         </ul>
                     </li>
-                    <li><a href="#" class="waves-effect"><i class="icon-logout fa-fw"></i> <span
+                    <li><a href="<%=request.getContextPath()%>/logoutController" class="waves-effect"><i class="icon-logout fa-fw"></i> <span
                                 class="hide-menu">Log out</span></a></li>
                 </ul>
             </div>
