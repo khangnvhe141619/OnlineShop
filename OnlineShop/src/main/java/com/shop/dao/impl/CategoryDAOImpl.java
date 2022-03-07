@@ -158,7 +158,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 	}
 
 	public List<Category> getListCategory(int index) throws SQLException {
-		String sql = "SELECT * FROM Category \r\n"
+		String sql = "SELECT ROW_NUMBER() over (order by CategoryID) as stt, * FROM Category \r\n"
 				+ "ORDER BY CategoryID\r\n"
 				+ "OFFSET ? ROWS FETCH NEXT 3 ROWS ONLY";
 		Category ca = null;
@@ -171,6 +171,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				ca = new Category();
+				ca.setStt(rs.getInt("stt"));
 				ca.setCategoryID(rs.getInt("CategoryID"));
 				ca.setCategoryName(rs.getString("CategoryName"));
 				lsCa.add(ca);
@@ -249,13 +250,13 @@ public class CategoryDAOImpl implements CategoryDAO {
 	}
 
 	@Override
-	public boolean deleteCategory(String categoryId) throws SQLException {
+	public boolean deleteCategory(int categoryId) throws SQLException {
 		String sql = "DELETE FROM Category WHERE CategoryID = ?";
 		int row = 0;
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, categoryId);
+			ps.setInt(1, categoryId);
 			row = ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
