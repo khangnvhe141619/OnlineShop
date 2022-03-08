@@ -96,7 +96,7 @@
                                             <label for="">Title</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-sticky-note"></i></div>
-                                                <textarea name="title" class="form-control"
+                                                <textarea rows="2" name="title" class="form-control"
                                                     id="" required="required">${post.title}</textarea>                                             
                                             </div>
                                         </div>
@@ -104,7 +104,7 @@
                                             <label for="">Content</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-sticky-note"></i></div>
-                                                <textarea name="content" class="form-control"
+                                                <textarea rows="5" name="content" class="form-control"
                                                     id=""  required="required">${post.content}</textarea>                                              
                                             </div>
                                         </div>                                                                                  
