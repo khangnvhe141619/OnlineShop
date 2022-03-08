@@ -40,7 +40,7 @@ public class ListProdtuct extends HttpServlet {
 			String pageIn=request.getParameter("index");
 			int index= 1;
 			int count = pd.countProduct();
-			int pageSize = 5;
+			int pageSize = 3;
 			int endPage = 0;
 			endPage=count/pageSize;
 			if(count%pageSize!=0) {
@@ -66,7 +66,7 @@ public class ListProdtuct extends HttpServlet {
 			String pageIn=request.getParameter("index");
 			int index= Integer.parseInt(pageIn);
 			int count = pd.countProduct();
-			int pageSize = 5;
+			int pageSize = 3;
 			int endPage = 0;
 			endPage=count/pageSize;
 			if(count%pageSize!=0) {
