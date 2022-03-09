@@ -16,7 +16,7 @@ import com.shop.model.Department;
 @WebServlet("/listDepartmentController")
 public class ListDepartmentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+  //ShowList Department     
     public ListDepartmentController() {
         super();
     }
