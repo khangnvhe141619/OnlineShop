@@ -129,15 +129,15 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 	@Override
 	public boolean insertCategory(Category category) throws SQLException {
-		String sql = "INSERT [dbo].[Category] ([CategoryID], [CategoryName]) "
-				+ "VALUES (?, ?)";
+		String sql = "INSERT [dbo].[Category] ([CategoryName]) "
+				+ "VALUES (?)";
 		int row = 0;
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);
 
-			ps.setInt(1, category.getCategoryID());
-			ps.setString(2, category.getCategoryName());	
+			
+			ps.setString(1, category.getCategoryName());	
 			
 			row = ps.executeUpdate();
 		} catch (Exception e) {
@@ -267,9 +267,9 @@ public class CategoryDAOImpl implements CategoryDAO {
 	
     public static void main(String[] args) throws SQLException {
     	CategoryDAOImpl ca = new CategoryDAOImpl();
-    	List<Category> ls= ca.getListCategory(2);
+    	List<Category> ls= ca.getListCategory(1);
     	for (Category category : ls) {
-			System.out.println(category);
+			System.out.println(category.toString());
 		}
     }
 }
