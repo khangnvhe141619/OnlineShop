@@ -15,7 +15,7 @@ public class Validation {
 		String dateTime = formatter.format(s);
 		return dateTime;
 	}
-
+//Check Valid
 	public static int convertStringToInt(String n) {
 		int number = 0;
 		try {
