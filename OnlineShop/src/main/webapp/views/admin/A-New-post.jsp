@@ -54,7 +54,7 @@
                         <ol class="breadcrumb">
                             <li><a href="#">Dashboard</a></li>
                             <li><a href="#">Administrators</a></li>
-                            <li class="active">New</li>
+                            <li class="active">New Post</li>
                         </ol>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -81,17 +81,17 @@
                                             <label for="">Title</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-sticky-note"></i></div>
-                                                <input type="text" name="title" class="form-control"
-                                                    id="" placeholder="Enter title" required="required">
+                                                <textarea rows="2" name="title" class="form-control"
+                                                    id="" placeholder="Enter title" required="required"></textarea>
                                                     
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Content</label>
                                             <div class="input-group">
-                                                <div class="input-group-addon"><i class="fa fa-phone"></i></div>
-                                                <input type="text" name="content" class="form-control"
-                                                    id="" placeholder="Enter content" required="required">                                              
+                                                <div class="input-group-addon"><i class="fa fa-sticky-note"></i></div>
+                                                <textarea rows="5" name="content" class="form-control"
+                                                    id="" placeholder="Enter content" required="required"></textarea>                                           
                                             </div>
                                         </div>                                                          
                                         <button type="submit" name="submit"

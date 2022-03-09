@@ -105,7 +105,7 @@ public class Test {
 //			e.printStackTrace();
 //		}
 		
-		
+//Test Post		
 		PostCmtDAO pcmtD=new PostCmtDAOImpl();
 //		List<PostCmt> lipcmt=pcmtD.getListCmtByPostID("1");
 //		lipcmt.forEach(System.out::println);
