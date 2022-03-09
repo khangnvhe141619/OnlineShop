@@ -21,7 +21,7 @@ public class SQLCommand {
 	public static final String GET_CHECK_PASSWORD = "SELECT * FROM Account WHERE Password = ? AND AccountID = ?";
 	
 	public static final String INSERT_ACCOUNT = "INSERT INTO Account(Username, Password, CreatedDate, Role, Active)\r\n"
-			+ "VALUES(?,?,?,1,1)";
+			+ "VALUES(?,?,?,2,1)";
 	
 	public static final String INSERT_Order = "INSERT INTO [Order] VALUES(?, ?, ?, ?, ?)";
 	
