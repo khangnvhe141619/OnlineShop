@@ -22,7 +22,7 @@ import com.shop.service.EmailUtility;
 @WebServlet("/subscribeController")
 public class SubscribeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+       //check
     /**
      * @see HttpServlet#HttpServlet()
      */
