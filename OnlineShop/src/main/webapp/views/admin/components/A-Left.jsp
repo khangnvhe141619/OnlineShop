@@ -72,8 +72,7 @@
                         <ul class="nav nav-second-level">
                             <li><a href="<%=request.getContextPath()%>/aListPostController ">Posts</a></li>
                             <li><a href="<%=request.getContextPath()%>/aListBlockedPostController">Blocked Posts</a></li>
-                            <li><a href="A-New-post.jsp">Create Post</a></li>
-                            <li><a href="A-Comment.jsp" class="waves-effect">Comments</a>
+                            <li><a href="<%=request.getContextPath()%>/addPostController">Create Post</a></li>
                             </li>
                         </ul>
                     </li>
@@ -81,8 +80,8 @@
                                 class="linea-icon fa fa-truck"></i> <span class="hide-menu">Shipper<span
                                     class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="A-List-shipper.jsp">List Shippers</a></li>
-                            <li><a href="A-New-shipper.jsp">Create Shipper</a></li>
+                            <li><a href="<%=request.getContextPath()%>/aListShipperController">List Shippers</a></li>
+                            <li><a href="<%=request.getContextPath()%>/addShipperController">Create Shipper</a></li>
 
                         </ul>
                     </li>
@@ -101,7 +100,7 @@
                             <li><a href="A-New-coupon.jsp">Create Coupon</a></li>
                         </ul>
                     </li>
-                    <li><a href="A-List-subscriber.jsp" class="waves-effect"><i data-icon="n"
+                    <li><a href="<%=request.getContextPath()%>/aListSubscriberController" class="waves-effect"><i data-icon="n"
                                 class="linea-icon fa fa-thumbs-o-up"></i> <span class="hide-menu">Subscribers</span></a>
                     </li>
 
@@ -111,7 +110,6 @@
                             <span class="hide-menu">Access<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="#">Administrators</a></li>
-                            <li><a href="A-New-user.jsp">Create Admin</a></li>
                         </ul>
                     </li>
                     <li><a href="<%=request.getContextPath()%>/logoutController" class="waves-effect"><i class="icon-logout fa-fw"></i> <span

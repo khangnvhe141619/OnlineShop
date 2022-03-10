@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import com.shop.dao.OrderDAO;
 import com.shop.dao.impl.OrderDAOImpl;
-import com.shop.model.Order;
 import com.shop.model.ProductOrderShip;
 
 /**

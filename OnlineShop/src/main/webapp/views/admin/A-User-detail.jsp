@@ -11,7 +11,7 @@
 <meta name="author" content="">
 <link rel="icon" type="image/png" sizes="16x16"
 	href="<%=request.getContextPath()%>/resources/admin/plugins/images/icon.png">
-<title>Company Admin | Create Admin</title>
+<title>Company Admin | User Detail</title>
 <!-- Bootstrap Core CSS -->
 <link
 	href="<%=request.getContextPath()%>/resources/admin/bootstrap/dist/css/bootstrap.min.css"
@@ -107,7 +107,7 @@
 												</div>
 												<input type="text" name="fName" class="form-control"
 													style="border: none;" id=""
-													value="${account.fullname}" required="">
+													value="${account.fullname}" >
 											</div>
 										</div>
 										<div class="form-group">
@@ -118,7 +118,7 @@
 												</div>
 												<input type="text" name="email" class="form-control"
 													style="border: none;" id="" value="${account.email}"
-													required="">
+													>
 											</div>
 										</div>
 										<div class="form-group">
@@ -129,7 +129,7 @@
 												</div>
 												<input type="text" name="phone" class="form-control"
 													style="border: none;" id=""
-													value="${account.phonenumber}" required="">
+													value="${account.phonenumber}" >
 											</div>
 										</div>
 										<button type="submit" name="submit"
@@ -204,8 +204,7 @@
 				<!-- /.right-sidebar -->
 			</div>
 			<!-- /.container-fluid -->
-			<footer class="footer text-center"> 2018 &copy; Company
-				Admin </footer>
+			  <jsp:include page="components/A-Footer.jsp"></jsp:include>
 		</div>
 		<!-- /#page-wrapper -->
 	</div>

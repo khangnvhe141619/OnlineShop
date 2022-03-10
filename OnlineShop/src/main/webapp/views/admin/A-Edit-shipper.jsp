@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="<%=request.getContextPath()%>/resources/admin/plugins/images/icon.png">
-    <title>Company Admin | Create Admin</title>
+    <title>Company Admin | Edit Shipper</title>
     <!-- Bootstrap Core CSS -->
     <link href="<%=request.getContextPath()%>/resources/admin/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/resources/admin/plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet">
@@ -52,8 +53,8 @@
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
                             <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Administrators</a></li>
-                            <li class="active">New</li>
+                            <li><a href="<%=request.getContextPath()%>/aListShipperController">Shipper</a></li>
+                            <li class="active">Edit Shipper</li>
                         </ol>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -62,17 +63,19 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="white-box">
-                            <h3 class="box-title m-b-0">Edit Order Information</h3>
+                            <h3 class="box-title m-b-0">Edit Shipper Information</h3>
+                            <c:if test="${sEdit}">
+                            <p style="color: red;">Edited successfully!</p>
+                            </c:if>                         
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
-                                    <form action="#" method="post">
-                                        
+                                    <form action="<%=request.getContextPath()%>/aEditShipperController" method="POST">                                      
                                         <div class="form-group">
                                             <label for="">Full Name</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-users"></i></div>
-                                                <input type="text" name="shipperName" class="form-control"
-                                                    id="" placeholder="Enter full name" required="">
+                                                <input type="text" name="shipperName" class="form-control" value="${shipper.shipperName}"
+                                                    id="" required="required" pattern="[A-Za-z0-9_]{,50}">
                                                     
                                             </div>
                                         </div>
@@ -80,8 +83,8 @@
                                             <label for="">Email</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-sticky-note"></i></div>
-                                                <input type="text" name="email" class="form-control"
-                                                    id="" placeholder="Enter email" required="">
+                                                <input type="text" name="email" class="form-control" value="${shipper.email}"
+                                                    id="" required="required" pattern="[^\s@]+@[^\s@]+\.[^\s@]+$">
                                                     
                                             </div>
                                         </div>
@@ -89,11 +92,13 @@
                                             <label for="">Phone</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-phone"></i></div>
-                                                <input type="text" name="phone" class="form-control"
-                                                    id="" placeholder="Enter phone number" required="">
+                                                <input type="text" name="phone" class="form-control" value="${shipper.phone}"
+                                                    id="" required="required" pattern="[0-9]{10,15}">
                                                     
                                             </div>
-                                        </div>                                                                 
+                                        </div>
+                                        <input type="hidden" name="sId" class="form-control" value="${shipper.shipperID}"
+                                                    id="" required="required">                                                                 
                                         <button type="submit" name="submit"
                                             class="btn btn-success waves-effect waves-light m-r-10">Update</button>
                                     </form>
@@ -155,7 +160,7 @@
                 <!-- /.right-sidebar -->
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2018 &copy; Company Admin </footer>
+            <jsp:include page="components/A-Footer.jsp"></jsp:include>
         </div>
         <!-- /#page-wrapper -->
     </div>

@@ -10,7 +10,7 @@
 <meta name="author" content="">
 <link rel="icon" type="image/png" sizes="16x16"
 	href="<%=request.getContextPath()%>/resources/admin/plugins/images/icon.png">
-<title>Company Admin | Create Admin</title>
+<title>Company Admin | Edit Order</title>
 <!-- Bootstrap Core CSS -->
 <link
 	href="<%=request.getContextPath()%>/resources/admin/bootstrap/dist/css/bootstrap.min.css"
@@ -212,7 +212,7 @@
 				<!-- /.right-sidebar -->
 			</div>
 			<!-- /.container-fluid -->
-			<footer class="footer text-center"> 2018 &copy; Company
+            <jsp:include page="components/A-Footer.jsp"></jsp:include>
 				Admin </footer>
 		</div>
 		<!-- /#page-wrapper -->

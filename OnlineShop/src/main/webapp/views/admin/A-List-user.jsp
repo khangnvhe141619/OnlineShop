@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="<%=request.getContextPath()%>/resources/admin/plugins/images/icon.png">
-    <title>Company Admin</title>
+    <title>Company Admin | List Users</title>
     <!-- Bootstrap Core CSS -->
     <link href="<%=request.getContextPath()%>/resources/admin/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/resources/admin/plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet">
@@ -67,15 +67,6 @@
                             <div class="row">                        
                                 <h4>List Of Users (<b style="color: orange;">số lượng</b>)
                                 </h4>
-                                <p>
-                                    <form role="search" class="app-search hidden-xs" style="margin-left: 35%;">
-                                        <input type="text" placeholder="Search..." class="form-control"
-                                            style="margin: auto; border: 0.5px solid ; border-color: rgba(228, 221, 221, 0.822);">
-                                        <button type="button" class="btn btn-default waves-effect"
-                                            style="background-color: rgb(255, 255, 255); border-radius: 70%;"><i
-                                                class="fa fa-search"></i></button>
-                                    </form>
-                                    </p>
                                 <div class="col-lg-12 col-md-9 col-sm-12 col-xs-12 mail_listing">
                                     <div class="inbox-center">
                                         <table class="table table-hover">
@@ -96,9 +87,9 @@
                                                     <td class="max-texts">${list.fullname} </td>
                                                     <td class="max-texts">${list.email}</td>
                                                     <td class="">
-                                                         <a href="<%=request.getContextPath()%>/userDetailController?AcountID=${list.accountId}"><i class="fa fa-edit" aria-hidden="true"></i>Edit</a> 
-                                                         <a href="<%=request.getContextPath() %>/DeleteUserController?id=${list.accountId}" 
-                                                         onclick="return testConfirmDialog()"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+                                                         <a href="<%=request.getContextPath()%>/userDetailController?AcountID=${list.accountId}"><i class="fa fa-edit" aria-hidden="true"></i></a> 
+                                                         <a style="margin-left: 10%;" href="<%=request.getContextPath() %>/DeleteUserController?id=${list.accountId}" 
+                                                         onclick="return testConfirmDialog()"><i style="color: red;" class="fa fa-trash" aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -148,25 +139,25 @@
                                 <li>
                                     <div class="checkbox checkbox-warning">
                                         <input id="checkbox2" type="checkbox" checked="" class="fxsdr">
-                                        <label for="checkbox2"> Fix Sidebar </label>
+                                        <label for="checkbox2"> Fix Side bar </label>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="checkbox checkbox-success">
                                         <input id="checkbox4" type="checkbox" class="open-close">
-                                        <label for="checkbox4"> Toggle Sidebar </label>
+                                        <label for="checkbox4"> Toggle Side bar </label>
                                     </div>
                                 </li>
                             </ul>
                             <ul id="themecolors" class="m-t-20">
-                                <li><b>With Light sidebar</b></li>
+                                <li><b>With Light side bar</b></li>
                                 <li><a href="javascript:void(0)" theme="default" class="default-theme">1</a></li>
                                 <li><a href="javascript:void(0)" theme="green" class="green-theme">2</a></li>
                                 <li><a href="javascript:void(0)" theme="gray" class="yellow-theme">3</a></li>
                                 <li><a href="javascript:void(0)" theme="blue" class="blue-theme working">4</a></li>
                                 <li><a href="javascript:void(0)" theme="purple" class="purple-theme">5</a></li>
                                 <li><a href="javascript:void(0)" theme="megna" class="megna-theme">6</a></li>
-                                <li><b>With Dark sidebar</b></li>
+                                <li><b>With Dark side bar</b></li>
                                 <br />
                                 <li><a href="javascript:void(0)" theme="default-dark" class="default-dark-theme">7</a>
                                 </li>
@@ -184,7 +175,7 @@
                 <!-- /.right-sidebar -->
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2018 &copy; Company Admin </footer>
+            <jsp:include page="components/A-Footer.jsp"></jsp:include>
         </div>
         <!-- /#page-wrapper -->
     </div>

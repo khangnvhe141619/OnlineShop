@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="<%=request.getContextPath()%>/resources/admin/plugins/images/icon.png">
-    <title>Company Admin | Create Admin</title>
+    <title>Company Admin | Create New Shipper</title>
     <!-- Bootstrap Core CSS -->
     <link href="<%=request.getContextPath()%>/resources/admin/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/resources/admin/plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet">
@@ -53,7 +54,7 @@
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
                             <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Administrators</a></li>
+                            <li><a href="<%=request.getContextPath()%>/aListShipperController">Shipper</a></li>
                             <li class="active">New</li>
                         </ol>
                     </div>
@@ -64,16 +65,16 @@
                     <div class="col-md-12">
                         <div class="white-box">
                             <h3 class="box-title m-b-0">Creating A New Shipper</h3>
-                            <p class="text-muted m-b-30 font-13"> Fill in the form below: </p>
+                            <p class="text-muted m-b-30 font-13"> Fill in the form below: </p>                          
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
-                                    <form action="functions/new_admin.html" method="post">
+                                    <form action="<%=request.getContextPath()%>/addShipperController" method="POST">
                                         <div class="form-group">
                                             <label for="">Full Name</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-users"></i></div>
                                                 <input type="text" name="shipperName" class="form-control"
-                                                    id="" placeholder="Enter full name" required="">
+                                                    id="" placeholder="Enter full name" required="required" pattern="[A-Za-z0-9_]{,50}">
                                                     
                                             </div>
                                         </div>
@@ -82,7 +83,7 @@
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-sticky-note"></i></div>
                                                 <input type="text" name="email" class="form-control"
-                                                    id="" placeholder="Enter email" required="">
+                                                    id="" placeholder="Enter email" required="required" pattern="[^\s@]+@[^\s@]+\.[^\s@]+$">
                                                     
                                             </div>
                                         </div>
@@ -91,7 +92,7 @@
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-phone"></i></div>
                                                 <input type="text" name="phone" class="form-control"
-                                                    id="" placeholder="Enter phone number" required="">
+                                                    id="" placeholder="Enter phone number" required="required" pattern="[0-9]{10,15}">
                                                     
                                             </div>
                                         </div>                                                                 
@@ -156,7 +157,7 @@
                 <!-- /.right-sidebar -->
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2018 &copy; Company Admin </footer>
+            <jsp:include page="components/A-Footer.jsp"></jsp:include>
         </div>
         <!-- /#page-wrapper -->
     </div>

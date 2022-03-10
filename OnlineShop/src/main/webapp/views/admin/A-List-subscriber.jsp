@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="<%=request.getContextPath()%>/resources/admin/plugins/images/icon.png">
-    <title>Company Admin</title>
+    <title>Company Admin | List Subscribers</title>
     <!-- Bootstrap Core CSS -->
     <link href="<%=request.getContextPath()%>/resources/admin/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/resources/admin/plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet">
@@ -54,8 +56,7 @@
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
                             <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Subscribers</a></li>
-                            <li class="active">All</li>
+                            <li class="active">Subscribers</li>
                         </ol>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -64,28 +65,63 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title m-b-0">Company Subscribers</h3>
-                            <p class="text-muted m-b-30">Export data to Copy, CSV, Excel, PDF & Print</p>
+                            <h3 class="box-title m-b-0">Subscribers (${totalSubscribe})</h3>
                                                       
                             <div class="table-responsive">
                                 <table id="example23" class="display nowrap" cellspacing="0" width="100%">
                                     <thead>
                                         <tr>
                                             <th style="width: 10%;">No.</th>
-                                            <th>Email</th>
-                                            <th>Date</th>
+                                            <th>FULLNAME</th>
+                                            <th>EMAIL</th>
+                                            <th>DATE</th>
                                         </tr>
                                     </thead>
+                                    <c:forEach items="${lstSubscriber}" var="sub">
                                     <tbody>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Email</td>
-                                            <td>Date</td>
+                                            <td>${sub.id}</td>
+                                            <td>${sub.fullName}</td>
+                                            <td>${sub.email}</td>
+                                            <td>${sub.subscribeDate.format( DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))}</td>                                   
                                         </tr>
                                     </tbody>
-                                    
+                                    </c:forEach>
                                 </table>
                             </div>
+                            <div class="row">
+                            <div class="pagination font-alt">							
+							<c:if test="${check == 0}">
+								<div class="pagination">
+									<c:if test="${tag == 1}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/aListSubscriberController?page=1">&laquo;Pre</a>
+										</li>
+									</c:if>
+									<c:if test="${tag != 1}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/aListSubscriberController?page=${tag-1}">&laquo;Pre</a>
+										</li>
+									</c:if>
+									<c:forEach begin="1" end="${total}" var="i">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/aListSubscriberController?page=${i}"
+											class="nar-item ${tag == i? ' active ' : ''}">${i}</a></li>
+									</c:forEach>
+									<c:if test="${tag != total}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/aListSubscriberController?page=${tag+1}">Next
+												&raquo;</a></li>
+									</c:if>
+									<c:if test="${tag == total}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/aListSubscriberController?page=${total}">Next
+												&raquo;</a>
+									</c:if>
+								</div>
+							</c:if>						
+                                    </div>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -107,25 +143,25 @@
                                 <li>
                                     <div class="checkbox checkbox-warning">
                                         <input id="checkbox2" type="checkbox" checked="" class="fxsdr">
-                                        <label for="checkbox2"> Fix Sidebar </label>
+                                        <label for="checkbox2"> Fix Side bar </label>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="checkbox checkbox-success">
                                         <input id="checkbox4" type="checkbox" class="open-close">
-                                        <label for="checkbox4"> Toggle Sidebar </label>
+                                        <label for="checkbox4"> Toggle Side bar </label>
                                     </div>
                                 </li>
                             </ul>
                             <ul id="themecolors" class="m-t-20">
-                                <li><b>With Light sidebar</b></li>
+                                <li><b>With Light side bar</b></li>
                                 <li><a href="javascript:void(0)" theme="default" class="default-theme">1</a></li>
                                 <li><a href="javascript:void(0)" theme="green" class="green-theme">2</a></li>
                                 <li><a href="javascript:void(0)" theme="gray" class="yellow-theme">3</a></li>
                                 <li><a href="javascript:void(0)" theme="blue" class="blue-theme working">4</a></li>
                                 <li><a href="javascript:void(0)" theme="purple" class="purple-theme">5</a></li>
                                 <li><a href="javascript:void(0)" theme="megna" class="megna-theme">6</a></li>
-                                <li><b>With Dark sidebar</b></li>
+                                <li><b>With Dark side bar</b></li>
                                 <br />
                                 <li><a href="javascript:void(0)" theme="default-dark" class="default-dark-theme">7</a>
                                 </li>
@@ -143,7 +179,7 @@
                 <!-- /.right-sidebar -->
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2018 &copy; Company Admin</footer>
+            <jsp:include page="components/A-Footer.jsp"></jsp:include>
         </div>
         <!-- /#page-wrapper -->
     </div>
@@ -172,53 +208,7 @@
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
     <!-- end - This is for export functionality only -->
-    <script>
-        $(document).ready(function () {
-            $('#myTable').DataTable();
-            $(document).ready(function () {
-                var table = $('#example').DataTable({
-                    "columnDefs": [{
-                        "visible": false,
-                        "targets": 2
-                    }],
-                    "order": [
-                        [2, 'asc']
-                    ],
-                    "displayLength": 25,
-                    "drawCallback": function (settings) {
-                        var api = this.api();
-                        var rows = api.rows({
-                            page: 'current'
-                        }).nodes();
-                        var last = null;
-                        api.column(2, {
-                            page: 'current'
-                        }).data().each(function (group, i) {
-                            if (last !== group) {
-                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
-                                last = group;
-                            }
-                        });
-                    }
-                });
-                // Order by the grouping
-                $('#example tbody').on('click', 'tr.group', function () {
-                    var currentOrder = table.order()[0];
-                    if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
-                        table.order([2, 'desc']).draw();
-                    } else {
-                        table.order([2, 'asc']).draw();
-                    }
-                });
-            });
-        });
-        $('#example23').DataTable({
-            dom: 'Bfrtip',
-            buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print'
-            ]
-        });
-    </script>
+    
     <!--Style Switcher -->
     <script src="<%=request.getContextPath()%>/resources/admin/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
 </body>

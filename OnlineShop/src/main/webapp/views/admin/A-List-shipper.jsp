@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="<%=request.getContextPath()%>/resources/admin/plugins/images/icon.png">
-    <title>Company Admin</title>
+    <title>Company Admin | List Shippers</title>
     <!-- Bootstrap Core CSS -->
     <link href="<%=request.getContextPath()%>/resources/admin/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/resources/admin/plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet">
@@ -52,7 +53,8 @@
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
-                            <li><a href="index.html">Dashboard</a></li>
+                        	<li><a href="#">Dashboard</a></li>
+                            <li><a href="<%=request.getContextPath()%>/aListShipperController">Shipper</a></li>
                             <li class="active">Posts</li>
                         </ol>
                     </div>
@@ -65,19 +67,31 @@
                         <div class="white-box">
                             <!-- row -->
                             <div class="row">
-                                <h4>List Of Shippers (<b style="color: orange;">số lượng</b>)
-                                </h4>
-                                <p>
-                                    <form role="search" class="app-search hidden-xs" style="margin-left: 35%;">
-                                        <input type="text" placeholder="Search..." class="form-control"
-                                            style="margin: auto; border: 0.5px solid ; border-color: rgba(228, 221, 221, 0.822);">
-                                        <button type="button" class="btn btn-default waves-effect"
-                                            style="background-color: rgb(255, 255, 255); border-radius: 70%;"><i
-                                                class="fa fa-search"></i></button>
-                                    </form>
-                                    </p>
+                                <h4>List Of Shippers (<b style="color: orange;">${totalShipper}</b>)
+                                </h4>                        
                                 <div class="col-lg-12 col-md-9 col-sm-12 col-xs-12 mail_listing">
                                     <div class="inbox-center">
+                                    <c:if test="${cSuccess}">
+                                    <div class="alert alert-warning">
+                                            <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
+                                            <strong>CREATED!!! </strong>
+                                            <p> The Post has been created successfully.</p>
+                                        </div> 
+                                    </c:if>                              
+                                    <c:if test="${dSuccess}">
+                                    <div class="alert alert-warning">
+                                            <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
+                                            <strong>DELETED!!! </strong>
+                                            <p> The Shipper has been deleted successfully.</p>
+                                        </div> 
+                                    </c:if>
+                                    <c:if test="${sError}">
+                                        <div class="alert alert-danger">
+                                            <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
+                                            <strong>ERROR!! </strong>
+                                            <p> There was an error during deleting this record. Please try again.</p>
+                                        </div>
+                                        </c:if>   
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
@@ -88,30 +102,54 @@
                                                     <th>ACTION</th>
                                                 </tr>
                                             </thead>
+                                            <c:forEach items="${lstShipper}"  var="shipper">
                                             <tbody>
                                                 <tr>
-                                                    <td class="max-texts"> 1</td>
-                                                    <td class="max-texts"><a href="edit-shipper.html">fullname</a></td>
-                                                    <td class="max-texts"> email </td>
-                                                    <td class="max-texts">phone</td>
+                                                    <td class="max-texts"> ${shipper.shipperID}</td>
+                                                    <td class="max-texts">${shipper.shipperName}</td>
+                                                    <td class="max-texts"> ${shipper.email} </td>
+                                                    <td class="max-texts">${shipper.phone}</td>
                                                     <td class="">
-                                                         <a href=""><i class="fa fa-edit" aria-hidden="true"></i>Edit</a> 
-                                                         <a href="" onclick=""><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+                                                        <a href="<%=request.getContextPath()%>/aEditShipperController?sId=${shipper.shipperID}"><i style="color: blue;" class="fa fa-edit" aria-hidden="true"></i></a>
+                                                        <a style="margin-left: 5%;" href="<%=request.getContextPath()%>/aDeleteShipperController?sId=${shipper.shipperID}" onclick="return deleteShipper();"><i style="color: red;" class="fa fa-trash"
+                                                                aria-hidden="true"></i> </a>
                                                     </td>
                                                 </tr>
                                             </tbody>
+                                            </c:forEach>
                                         </table>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-7 m-t-20"> Showing 1 - số trang</div>
-                                        <div class="col-xs-5 m-t-20">
-                                            <div class="btn-group pull-right">
-                                                <button type="button" class="btn btn-default waves-effect"><i
-                                                        class="fa fa-chevron-left"></i></button>
-                                                <button type="button" class="btn btn-default waves-effect"><i
-                                                        class="fa fa-chevron-right"></i></button>
-                                            </div>
-                                        </div>
+                            <div class="pagination font-alt">							
+							<c:if test="${check == 0}">
+								<div class="pagination">
+									<c:if test="${tag == 1}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/aListShipperController?page=1">&laquo;Pre</a>
+										</li>
+									</c:if>
+									<c:if test="${tag != 1}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/aListShipperController?page=${tag-1}">&laquo;Pre</a>
+										</li>
+									</c:if>
+									<c:forEach begin="1" end="${total}" var="i">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/aListShipperController?page=${i}"
+											class="nar-item ${tag == i? ' active ' : ''}">${i}</a></li>
+									</c:forEach>
+									<c:if test="${tag != total}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/aListShipperController?page=${tag+1}">Next
+												&raquo;</a></li>
+									</c:if>
+									<c:if test="${tag == total}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/aListShipperController?page=${total}">Next
+												&raquo;</a>
+									</c:if>
+								</div>
+							</c:if>						
                                     </div>
                                 </div>
                             </div>
@@ -173,7 +211,7 @@
                 <!-- /.right-sidebar -->
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2018 &copy; Company Admin </footer>
+            <jsp:include page="components/A-Footer.jsp"></jsp:include>
         </div>
         <!-- /#page-wrapper -->
     </div>
@@ -190,6 +228,7 @@
     <script src="<%=request.getContextPath()%>/resources/admin/js/jquery.slimscroll.js"></script>
     <!--Wave Effects -->
     <script src="<%=request.getContextPath()%>/resources/admin/js/waves.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/admin/js/myJS.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="<%=request.getContextPath()%>/resources/admin/js/custom.min.js"></script>
     <!--Style Switcher -->

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="<%=request.getContextPath()%>/resources/admin/plugins/images/icon.png">
-    <title>Company Admin</title>
+    <title>Company Admin | List Orders</title>
     <!-- Bootstrap Core CSS -->
     <link href="<%=request.getContextPath()%>/resources/admin/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/resources/admin/plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet">
@@ -67,16 +67,7 @@
                             <!-- row -->
                             <div class="row">
                                 <h4>List Of Orders (<b style="color: orange;">số lượng</b>)
-                                </h4>
-                                <p>
-                                    <form role="search" class="app-search hidden-xs" style="margin-left: 35%;">
-                                        <input type="text" placeholder="Search..." class="form-control"
-                                            style="margin: auto; border: 0.5px solid ; border-color: rgba(228, 221, 221, 0.822);">
-                                        <button type="button" class="btn btn-default waves-effect"
-                                            style="background-color: rgb(255, 255, 255); border-radius: 70%;"><i
-                                                class="fa fa-search"></i></button>
-                                    </form>
-                                    </p>
+                                </h4>                 
                                 <div class="col-lg-12 col-md-9 col-sm-12 col-xs-12 mail_listing">
                                     <div class="inbox-center">
                                         <table class="table table-hover">
@@ -180,7 +171,7 @@
                 <!-- /.right-sidebar -->
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2018 &copy; Company Admin </footer>
+            <jsp:include page="components/A-Footer.jsp"></jsp:include>
         </div>
         <!-- /#page-wrapper -->
     </div>
