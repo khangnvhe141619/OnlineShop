@@ -67,9 +67,9 @@
                             <p class="text-muted m-b-30 font-13"> Fill in the form below: </p>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
-                                    <form action="<%=request.getContextPath()%>/AddCategoryController" method="post">
+                                    <form action="#" method="post">
                                         <div class="form-group">
-                                            <label for="inputCategoryName" >Category Name</label>
+                                            <label for="inputCategoryName">Category Name</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
                                                 <input type="text" name="categoryName" class="form-control"

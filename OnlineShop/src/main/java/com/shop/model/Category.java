@@ -9,6 +9,13 @@ public class Category {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	public Category(String categoryName) {
+		super();
+		this.categoryName = categoryName;
+	}
+
+
 	public Category(int stt,int categoryID, String categoryName) {
 		super();
 		this.stt=stt;
@@ -43,7 +50,8 @@ public class Category {
 
 	@Override
 	public String toString() {
-		return "Category [categoryID=" + categoryID + ", categoryName=" + categoryName + "]";
+		return "Category [stt=" + stt + ", categoryID=" + categoryID + ", categoryName=" + categoryName + "]";
 	}
 
+	
 }

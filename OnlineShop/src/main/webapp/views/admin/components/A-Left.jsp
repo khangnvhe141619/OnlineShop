@@ -54,7 +54,7 @@
                                 class="hide-menu">Category<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="<%=request.getContextPath() %>/CategoryController">List Product Categories</a></li>
-                            <li><a href="A-New-category.jsp">Create Category</a></li>
+                            <li><a href="<%=request.getContextPath() %>/AddCategoryController">Create Category</a></li>
 
                         </ul>
                     </li>
@@ -62,7 +62,7 @@
                             <span class="hide-menu">Product<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="<%=request.getContextPath() %>/ListProdtuct">List Products</a></li>
-                            <li><a href="A-New-product.jsp">Create Product</a></li>
+                            <li><a href="<%=request.getContextPath() %>/AddCategoryController">Create Product</a></li>
                             
                         </ul>
                     </li>
