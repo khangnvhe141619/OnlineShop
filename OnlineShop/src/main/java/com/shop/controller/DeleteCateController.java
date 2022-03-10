@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.shop.dao.impl.CategoryDAOImpl;
-import com.shop.dao.impl.ProductDAOImpl;
 
 /**
  * Servlet implementation class DeleteCateController

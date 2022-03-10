@@ -188,12 +188,12 @@
 								<div class="pagination">
 									<c:if test="${tag == 1}">
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/listPostByTag?page=1">&laquo;Pre</a>
+											href="<%=request.getContextPath()%>/listPostByTag?page=1">&laquo;Previous</a>
 										</li>
 									</c:if>
 									<c:if test="${tag != 1}">
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/listPostByTag?page=${tag - 1}">&laquo;Pre</a>
+											href="<%=request.getContextPath()%>/listPostByTag?page=${tag - 1}">&laquo;Previous</a>
 										</li>
 									</c:if>
 									<c:forEach begin="1" end="${total}" var="i">

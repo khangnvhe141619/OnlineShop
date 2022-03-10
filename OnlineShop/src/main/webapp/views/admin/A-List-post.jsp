@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,6 +70,13 @@
                                 <h4>Blog Posts (<b style="color: orange;">${totalPost}</b>)</h4>                               
                                 <div class="col-lg-12 col-md-9 col-sm-12 col-xs-12 mail_listing">
                                     <div class="inbox-center">
+                                    <c:if test="${nSuccess}">
+                                    <div class="alert alert-warning">
+                                            <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
+                                            <strong>CREATED!!! </strong>
+                                            <p> The Post has been created successfully.</p>
+                                        </div> 
+                                    </c:if>
                                     <c:if test="${bSuccess}">
                                     <div class="alert alert-warning">
                                             <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
@@ -107,7 +115,7 @@
                                                     <td class="max-texts"><a href=""></a>${post.title}</td>
                                                     <td class="max-texts">${post.shortDesc}</td>
                                                     
-                                                    <td class="">${post.createdDate}</td>
+                                                    <td class="">${post.createdDate.format( DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))}</td>
                                                     <td class="">
                                                         <a href="<%=request.getContextPath()%>/aViewPostDetail?pId=${post.postId}"><i class="fa fa-edit" aria-hidden="true"></i></a>
                                                         <a style="margin-left: 5%;" href="<%=request.getContextPath()%>/aBlockPostController?pId=${post.postId}" onclick=""><i style="color: red;" class="fa fa-ban"

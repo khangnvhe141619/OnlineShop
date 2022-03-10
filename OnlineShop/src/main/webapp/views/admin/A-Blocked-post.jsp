@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -100,7 +101,7 @@
                                                     <td class="max-texts"><a href=""></a>${post.title}</td>
                                                     <td class="max-texts">${post.shortDesc}</td>
                                                     
-                                                    <td class="">${post.createdDate}</td>
+                                                    <td class="">${post.createdDate.format( DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))}</td>
                                                     <td class="">
                                                         <a style="margin-left: 25%;" href="<%=request.getContextPath()%>/aUnBlockPostController?pId=${post.postId}" onclick=""><i style="color: green;" class="fa fa-check-circle"
                                                                 aria-hidden="true"></i> </a>
