@@ -18,34 +18,36 @@ import com.shop.model.Product;
 @WebServlet("/ListProdtuct")
 public class ListProdtuct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ListProdtuct() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ListProdtuct() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		try {
-			ProductDAOImpl pd = new ProductDAOImpl();		
-			String pageIn=request.getParameter("index");
-			int index= 1;
+			ProductDAOImpl pd = new ProductDAOImpl();
+			String pageIn = request.getParameter("index");
+			int index = 1;
 			int count = pd.countProduct();
 			int pageSize = 3;
 			int endPage = 0;
-			endPage=count/pageSize;
-			if(count%pageSize!=0) {
+			endPage = count / pageSize;
+			if (count % pageSize != 0) {
 				endPage++;
-				
+
 			}
-			List<Product> listP= pd.getListProduct(index);
+			List<Product> listP = pd.getListProduct(index);
 			request.setAttribute("listp", listP);
 			request.setAttribute("endpage", endPage);
 			request.setAttribute("tag", index);
@@ -56,22 +58,24 @@ public class ListProdtuct extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
-			ProductDAOImpl pd = new ProductDAOImpl();		
-			String pageIn=request.getParameter("index");
-			int index= Integer.parseInt(pageIn);
+			ProductDAOImpl pd = new ProductDAOImpl();
+			String pageIn = request.getParameter("index");
+			int index = Integer.parseInt(pageIn);
 			int count = pd.countProduct();
 			int pageSize = 3;
 			int endPage = 0;
-			endPage=count/pageSize;
-			if(count%pageSize!=0) {
+			endPage = count / pageSize;
+			if (count % pageSize != 0) {
 				endPage++;
-				
+
 			}
-			List<Product> listP= pd.getListProduct(index);
+			List<Product> listP = pd.getListProduct(index);
 			request.setAttribute("listp", listP);
 			request.setAttribute("endpage", endPage);
 			request.setAttribute("tag", index);
@@ -80,7 +84,5 @@ public class ListProdtuct extends HttpServlet {
 			System.out.println("loi");
 		}
 	}
-
-	
 
 }

@@ -190,14 +190,14 @@
 							<div class="owl-item">
 								<div class="col-sm-12">
 									<div class="work-item">
-										<a href="shop?typeid=2">
+										<a href="<%=request.getContextPath()%>/search?name=&category=1&to=&end=">
 											<div class="work-image">
 												<img
 													src="<%=request.getContextPath()%>/resources/common/images/109.jpg"
 													alt="" />
 											</div>
 											<div class="work-caption font-alt">
-												<h3 class="work-title">Laptop - Macbook</h3>
+												<h3 class="work-title">Literature</h3>
 												<!--<div class="work-descr">Illustration</div>-->
 											</div>
 										</a>

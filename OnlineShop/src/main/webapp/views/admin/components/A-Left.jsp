@@ -62,7 +62,7 @@
                             <span class="hide-menu">Product<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="<%=request.getContextPath() %>/ListProdtuct">List Products</a></li>
-                            <li><a href="<%=request.getContextPath() %>/AddCategoryController">Create Product</a></li>
+                            <li><a href="<%=request.getContextPath() %>/">Create Product</a></li>
                             
                         </ul>
                     </li>

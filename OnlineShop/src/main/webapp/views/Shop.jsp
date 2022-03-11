@@ -1,6 +1,7 @@
 <%@page import="java.text.NumberFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
     <head>
@@ -111,10 +112,12 @@
                     </div>
                 </section>
                 <hr class="divider-w">
-                <section class="module-small">
-                <p style="color: red; margin-left: 40px">
-				<%=request.getAttribute("mess")!=null?request.getAttribute("mess"):"" %></p>
-                
+			
+			<section class="module-small"> 
+			<c:if test="${mess != null}">
+				<p style="color: red; margin-left: 8%;">
+					<%=request.getAttribute("mess")%></p>
+			</c:if>                    
                     <div class="container">
                         <div class="row multi-columns-row">
                             <c:forEach items="${listp}" var="p">
@@ -124,7 +127,9 @@
                                             <div class="shop-item-detail"><a href="<%=request.getContextPath()%>/details?id=${p.productID}" class="btn btn-round btn-b"><span class="icon-basket">View Detail Product</span></a></div>
                                         </div>
                                         <h4 class="shop-item-title font-alt"><a href="#">${p.productName}</a></h4>
-                                        <h5>${p.price} VND</h5>
+                                       
+                                        <h5> <fmt:formatNumber type = "number" maxIntegerDigits = "10" value = "${p.price}" /> VND
+                                        </h5>
                                     </div>
                                 </div>
                             </c:forEach>

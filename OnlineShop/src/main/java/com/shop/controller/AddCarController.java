@@ -62,12 +62,13 @@ public class AddCarController extends HttpServlet {
 			items.add(i);
 			total += pr.getPrice() * quantity;
 		}
+		request.getSession().setAttribute("pID", id);
+		request.getSession().setAttribute("quantity", quantity);
 		request.getSession().setAttribute("items", items);
 		request.getSession().setAttribute("total", total);
 		request.getSession().setAttribute("size", items.size());
 		response.sendRedirect("viewCart");
 	}
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

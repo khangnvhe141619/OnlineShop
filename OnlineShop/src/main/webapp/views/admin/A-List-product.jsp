@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,7 +91,7 @@
                                                     <td class="max-texts"> ${i.cateName } </td>
                                                     <td class="max-texts"> ${i.productName }</td>
                                                     <td class="max-texts"> ${i.quantity } </td>
-                                                    <td class="">${i.price }</td>
+                                                    <td class=""><fmt:formatNumber type = "number" maxIntegerDigits = "10" value = "${i.price }" /></td>
                                                     
                       
                                                     <td class="max-texts">

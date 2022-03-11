@@ -16,7 +16,7 @@ CREATE TABLE [dbo].[Department]
 	DepartmentName		nvarchar(255)	NOT NULL,
 	DepartmentDesc		nvarchar(255)	,
 
-	CONSTRAINT PK_department_id PRIMARY KEY(DepartmentID)
+	CONSTRAINT PK_department_id PRIMARY KEY(DepartmentID) 
 )
 
 CREATE TABLE [dbo].[Account]
@@ -34,7 +34,7 @@ CREATE TABLE [dbo].[Account]
 	CreatedDate			datetime2		,
 
 	CONSTRAINT PK_account_id PRIMARY KEY(AccountID),
-	CONSTRAINT FK_role FOREIGN KEY([Role]) REFERENCES Department(DepartmentID),
+	CONSTRAINT FK_role FOREIGN KEY([Role]) REFERENCES Department(DepartmentID) ON DELETE NO ACTION,
 )
 
 CREATE TABLE [dbo].[Address]
@@ -42,7 +42,7 @@ CREATE TABLE [dbo].[Address]
 	AccountId			int				,
 	[Address]			varchar(255)	NOT NULL,
 	
-	CONSTRAINT FK_account_id_1 FOREIGN KEY(AccountId) REFERENCES Account(AccountID),
+	CONSTRAINT FK_account_id_1 FOREIGN KEY(AccountId) REFERENCES Account(AccountID) ON DELETE CASCADE,
 )
 
 CREATE TABLE [dbo].[Category]
@@ -79,8 +79,8 @@ CREATE TABLE [dbo].[Product]
 	NumberPage			int				NOT NULL,
 
 	CONSTRAINT PK_product_id PRIMARY KEY(ProductID),
-	CONSTRAINT FK_category_id FOREIGN KEY(CategoryId) REFERENCES Category(CategoryID),
-	CONSTRAINT FK_covertype_id FOREIGN KEY(CoverTypeId) REFERENCES BookCover(BookCoverID)
+	CONSTRAINT FK_category_id FOREIGN KEY(CategoryId) REFERENCES Category(CategoryID) ON DELETE CASCADE,
+	CONSTRAINT FK_covertype_id FOREIGN KEY(CoverTypeId) REFERENCES BookCover(BookCoverID) ON DELETE CASCADE
 )
 
 CREATE TABLE [dbo].[Coupon]
@@ -122,8 +122,8 @@ CREATE TABLE [dbo].[Review]
 	CreatedDate			datetime2		,
 
 	CONSTRAINT PK_review_id PRIMARY KEY(ReviewID),
-	CONSTRAINT PK_account_id_a1 FOREIGN KEY(AccountId) REFERENCES Account(AccountID),
-	CONSTRAINT FK_product_id_2 FOREIGN KEY(ProductId) REFERENCES Product(ProductID)
+	CONSTRAINT PK_account_id_a1 FOREIGN KEY(AccountId) REFERENCES Account(AccountID) ON DELETE CASCADE,
+	CONSTRAINT FK_product_id_2 FOREIGN KEY(ProductId) REFERENCES Product(ProductID) ON DELETE CASCADE
 )
 
 CREATE TABLE [dbo].[OrderStatus]
@@ -150,8 +150,8 @@ CREATE TABLE [dbo].[Cart](
 	ProductId			int				,
 	Quantity			int				NOT NULL,
 
-	CONSTRAINT PK_account_id_a2 FOREIGN KEY(AccountId) REFERENCES Account(AccountID),
-	CONSTRAINT FK_product_id_a2 FOREIGN KEY(ProductId) REFERENCES Product(ProductID)
+	CONSTRAINT PK_account_id_a2 FOREIGN KEY(AccountId) REFERENCES Account(AccountID) ON DELETE CASCADE,
+	CONSTRAINT FK_product_id_a2 FOREIGN KEY(ProductId) REFERENCES Product(ProductID) ON DELETE CASCADE
 )
 
 CREATE TABLE [dbo].[Order]
@@ -164,9 +164,9 @@ CREATE TABLE [dbo].[Order]
 	StatusId			int				,
 
 	CONSTRAINT PK_order_id PRIMARY KEY(OrderID),
-	CONSTRAINT FK_shipper_id FOREIGN KEY(ShipperId) REFERENCES Shipper(ShipperID),
-	CONSTRAINT PK_account_id_2 FOREIGN KEY(AccountId) REFERENCES Account(AccountID),
-	CONSTRAINT FK_status_id FOREIGN KEY(StatusId) REFERENCES OrderStatus(ID)
+	CONSTRAINT FK_shipper_id FOREIGN KEY(ShipperId) REFERENCES Shipper(ShipperID) ON DELETE NO ACTION,
+	CONSTRAINT PK_account_id_2 FOREIGN KEY(AccountId) REFERENCES Account(AccountID) ON DELETE NO ACTION,
+	CONSTRAINT FK_status_id FOREIGN KEY(StatusId) REFERENCES OrderStatus(ID) ON DELETE NO ACTION
 )
 
 CREATE TABLE [dbo].[OrderDetail]
@@ -175,8 +175,8 @@ CREATE TABLE [dbo].[OrderDetail]
 	ProductId			int				,
 	Quantity			int				NOT NULL,
 
-	CONSTRAINT FK_order_id FOREIGN KEY(OrderId) REFERENCES [Order](OrderID),
-	CONSTRAINT FK_product_id_3 FOREIGN KEY(ProductId) REFERENCES Product(ProductID)
+	CONSTRAINT FK_order_id FOREIGN KEY(OrderId) REFERENCES [Order](OrderID)ON DELETE NO ACTION,
+	CONSTRAINT FK_product_id_3 FOREIGN KEY(ProductId) REFERENCES Product(ProductID) ON DELETE NO ACTION
 )
 
 CREATE TABLE [dbo].[Post]
@@ -201,8 +201,8 @@ CREATE TABLE [dbo].[PostComment]
 	CreatedDate			datetime2		,
 
 	CONSTRAINT PK_postcomment_id PRIMARY KEY(PostCommentID),
-	CONSTRAINT FK_account_id_5 FOREIGN KEY(AccountId) REFERENCES Account(AccountID),
-	CONSTRAINT FK_post_id FOREIGN KEY(PostId) REFERENCES Post(PostID),
+	CONSTRAINT FK_account_id_5 FOREIGN KEY(AccountId) REFERENCES Account(AccountID) ON DELETE CASCADE,
+	CONSTRAINT FK_post_id FOREIGN KEY(PostId) REFERENCES Post(PostID)  ON DELETE CASCADE,
 )
 
 CREATE TABLE [dbo].[Tag]
@@ -219,8 +219,8 @@ CREATE TABLE [dbo].[PostTag]
 	TagId				int				,
 
 	CONSTRAINT PK_posttag_id PRIMARY KEY(PostId, TagId),
-	CONSTRAINT FK_post_id_1 FOREIGN KEY(PostId) REFERENCES Post(PostID),
-	CONSTRAINT FK_tag_id FOREIGN KEY(TagId) REFERENCES Tag(TagID)
+	CONSTRAINT FK_post_id_1 FOREIGN KEY(PostId) REFERENCES Post(PostID) ON DELETE CASCADE,
+	CONSTRAINT FK_tag_id FOREIGN KEY(TagId) REFERENCES Tag(TagID) ON DELETE CASCADE
 )
 
 CREATE TABLE [dbo].[Contact]
@@ -368,3 +368,16 @@ INSERT [dbo].[Subscriber] ([FullName], [Email], [SubscribeDate]) VALUES ('Khang'
 hotroswp@gmail.com
 admin123@
 */
+GO
+CREATE PROCEDURE procedure_decrease_product
+	 (@id int , @amount int)
+AS
+BEGIN
+	DECLARE @total int;
+SET @total=(SELECT Quantity FROM Product WHERE ProductID = @id);
+SET @amount=@amount
+UPDATE Product 
+SET Quantity=@total-@amount
+WHERE ProductID = @id
+END
+GO

@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 <head>
@@ -128,11 +129,11 @@
 									<h1 class="product-title font-alt">${p.productName}</h1>
 								</div>
 							</div>
-							<div class="starability-result" data-rating="${p.price}"></div>
+							<div class="starability-result" data-rating="4"></div>
 							<div class="row mb-20">
 								<div class="col-sm-12">
 									<div class="price font-alt">
-										<span class="amount">${p.price}</span>
+										<span class="amount"><fmt:formatNumber type = "number" maxIntegerDigits = "10" value = "${p.price}" /> VND</span>
 									</div>
 								</div>
 							</div>
@@ -151,13 +152,16 @@
 											required="required" />
 									</div>
 									<div class="col-sm-8">
-										<input type="hidden" name="id" value="${p.productID}" /> <input
-											class="btn btn-lg btn-block btn-round btn-b" type="submit"
-											value="Add To Cart" />
+										<input type="hidden" name="id" value="${p.productID}" /> 
+										<c:if test="${p.quantity <= 0}">
+										<input class="btn btn-lg btn-block btn-round btn-b" type="submit" value="Add To Cart" disabled="disabled"/>
+										</c:if>
+										<c:if test="${p.quantity > 0}">
+										<input class="btn btn-lg btn-block btn-round btn-b" type="submit" value="Add To Cart" />
+										</c:if>					
 									</div>
 								</form>
 							</div>
-
 						</div>
 					</div>
 					<div class="row mt-70">

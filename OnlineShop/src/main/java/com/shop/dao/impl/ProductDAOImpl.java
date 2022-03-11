@@ -278,7 +278,7 @@ public class ProductDAOImpl implements ProductDAO {
 		int paramCount = 0;
 		HashMap<Integer, Object[]> params = new HashMap<>();
 		if (cateid != -1) {
-			sql += " and CategoryId =?";
+			sql += " AND CategoryId =?";
 			paramCount++;
 			Object[] param = new Object[2];
 			param[0] = "INT";
@@ -286,7 +286,7 @@ public class ProductDAOImpl implements ProductDAO {
 			params.put(paramCount, param);
 		}
 		if (pname != null && pname.trim().length() > 0) {
-			sql += " and ProductName like '%'+?+'%' ";
+			sql += " AND ProductName like '%'+?+'%' ";
 			paramCount++;
 			Object[] param = new Object[2];
 			param[0] = "STRING";
@@ -294,7 +294,7 @@ public class ProductDAOImpl implements ProductDAO {
 			params.put(paramCount, param);
 		}
 		if (to != -1) {
-			sql += " and Price between ? ";
+			sql += " AND Price between ? ";
 			paramCount++;
 			Object[] param = new Object[2];
 			param[0] = "DATE";
@@ -302,7 +302,7 @@ public class ProductDAOImpl implements ProductDAO {
 			params.put(paramCount, param);
 		}
 		if (end != -1) {
-			sql += " and ?";
+			sql += " AND ?";
 			paramCount++;
 			Object[] param = new Object[2];
 			param[0] = "END";
@@ -348,11 +348,11 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public List<Product> searchProduct(int index, int cateid, String pname, int to, int end) throws SQLException {
 		List<Product> list = new ArrayList<Product>();
-		String sql = "SELECT ROW_NUMBER() over (order by productID) as stt ,* FROM Product\n" + "WHERE 1=1 ";
+		String sql = "SELECT ROW_NUMBER() OVER (order by productID) AS stt ,* FROM Product\n" + "WHERE 1=1 ";
 		int paramCount = 0;
 		HashMap<Integer, Object[]> params = new HashMap<>();
 		if (cateid != -1) {
-			sql += " and CategoryId =?";
+			sql += " AND CategoryId =?";
 			paramCount++;
 			Object[] param = new Object[2];
 			param[0] = "INT";
@@ -360,7 +360,7 @@ public class ProductDAOImpl implements ProductDAO {
 			params.put(paramCount, param);
 		}
 		if (pname != null && pname.trim().length() > 0) {
-			sql += " and ProductName like '%'+?+'%'";
+			sql += " AND ProductName like '%'+?+'%'";
 			paramCount++;
 			Object[] param = new Object[2];
 			param[0] = "STRING";
@@ -368,7 +368,7 @@ public class ProductDAOImpl implements ProductDAO {
 			params.put(paramCount, param);
 		}
 		if (to != -1) {
-			sql += " and Price between ? ";
+			sql += " AND Price between ? ";
 			paramCount++;
 			Object[] param = new Object[2];
 			param[0] = "DATE";
@@ -376,14 +376,14 @@ public class ProductDAOImpl implements ProductDAO {
 			params.put(paramCount, param);
 		}
 		if (end != -1) {
-			sql += " and ?";
+			sql += " AND ?";
 			paramCount++;
 			Object[] param = new Object[2];
 			param[0] = "END";
 			param[1] = end;
 			params.put(paramCount, param);
 		}
-		sql = " WITH x as (" + sql + ") SELECT * from x where stt between ? and ?";
+		sql = " WITH x AS (" + sql + ") SELECT * FROM x WHERE stt BETWEEN ? AND ?";
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);
@@ -437,10 +437,10 @@ public class ProductDAOImpl implements ProductDAO {
 		return list;
 	}
 	public List<Product> getListProduct(int index) throws SQLException {
-		String sql = "with x as (select ROW_NUMBER() over (order by [ProductID]) as stt,p.ProductID,c.CategoryName,ProductName,Quantity,Price\r\n"
-				+ "			from Product p join Category c on p.CategoryId=c.CategoryID)\r\n"
-				+ "			select *\r\n"
-				+ "			from x where stt between ?*5-4 and ?*5";
+		String sql = "WITH x AS (SELECT ROW_NUMBER() OVER (order by [ProductID]) AS stt,p.ProductID,c.CategoryName,ProductName,Quantity,Price\r\n"
+				+ "			FROM Product p JOIN Category c ON p.CategoryId=c.CategoryID)\r\n"
+				+ "			SELECT *\r\n"
+				+ "			FROM x WHERE stt BETWEEN ?*5-4 AND ?*5";
 		Product product = null;
 		List<Product> lstProduct = new ArrayList<Product>();
 		try {
@@ -476,6 +476,41 @@ public class ProductDAOImpl implements ProductDAO {
 			}
 		}
 		return lstProduct;
+	}
+
+	@Override
+	public boolean decreasedProduct(int amount, int id) throws SQLException {
+//		String sql = "DECLARE @total int ,@amount int;\r\n"
+//				+ "SET @total = (SELECT Quantity FROM Product WHERE ProductID = ?);\r\n"
+//				+ "SET @amount = ?\r\n"
+//				+ "UPDATE Product \r\n"
+//				+ "SET Quantity = @total-@amount\r\n"
+//				+ "WHERE ProductID = ?";
+		int row = 0;
+		try {
+			con = DBConnection.getInstance().getConnection();			
+		//	ps = con.prepareStatement(sql);
+			ps=con.prepareCall("{Call procedure_decrease_product(?,?)}");
+
+			ps.setInt(1, id);
+			ps.setInt(2, amount);
+			
+			row = ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return row > 0;
 	}
 
 }
