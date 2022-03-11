@@ -193,7 +193,7 @@
 										<a href="<%=request.getContextPath()%>/search?name=&category=1&to=&end=">
 											<div class="work-image">
 												<img
-													src="<%=request.getContextPath()%>/resources/common/images/109.jpg"
+													src="<%=request.getContextPath()%>/resources/common/images/literature.jpg"
 													alt="" />
 											</div>
 											<div class="work-caption font-alt">
@@ -207,13 +207,13 @@
 							<div class="owl-item">
 								<div class="col-sm-12">
 									<div class="work-item">
-										<a href="#">
+										<a href="<%=request.getContextPath()%>/search?name=&category=2&to=&end=">
 											<div class="work-image">
 												<img
-													src="<%=request.getContextPath()%>/resources/common/images/SmartTV.jpg" />
+													src="<%=request.getContextPath()%>/resources/common/images/economic.png"  alt=""/>
 											</div>
 											<div class="work-caption font-alt">
-												<h3 class="work-title">Smart TV</h3>
+												<h3 class="work-title">Economic</h3>
 												<!--<div class="work-descr">Illustration</div>-->
 											</div>
 										</a>
@@ -223,14 +223,14 @@
 							<div class="owl-item">
 								<div class="col-sm-12">
 									<div class="work-item">
-										<a href="shop?typeid=1">
+										<a href="<%=request.getContextPath()%>/search?name=&category=3&to=&end=">
 											<div class="work-image">
 												<img
-													src="<%=request.getContextPath()%>/resources/common/images/115.jpg"
+													src="<%=request.getContextPath()%>/resources/common/images/dictionary.jpg"
 													alt="" />
 											</div>
 											<div class="work-caption font-alt">
-												<h3 class="work-title">Smart Phone</h3>
+												<h3 class="work-title">Dictionary </h3>
 												<!--<div class="work-descr">Illustration</div>-->
 											</div>
 										</a>
@@ -240,36 +240,20 @@
 							<div class="owl-item">
 								<div class="col-sm-12">
 									<div class="work-item">
-										<a href="shop?typeid=6">
+										<a href="<%=request.getContextPath()%>/search?name=&category=4&to=&end=">
 											<div class="work-image">
 												<img
-													src="<%=request.getContextPath()%>/resources/common/images/101.jpg"
+													src="<%=request.getContextPath()%>/resources/common/images/education.jpg"
 													alt="" />
 											</div>
 											<div class="work-caption font-alt">
-												<h3 class="work-title">Keyboard</h3>
+												<h3 class="work-title">Education - Teaching</h3>
 												<!--<div class="work-descr">Illustration</div>-->
 											</div>
 										</a>
 									</div>
 								</div>
-							</div>
-							<div class="owl-item">
-								<div class="col-sm-12">
-									<div class="work-item">
-										<a href="#">
-											<div class="work-image">
-												<img
-													src="<%=request.getContextPath()%>/resources/common/images/tulanh.jpg" />
-											</div>
-											<div class="work-caption font-alt">
-												<h3 class="work-title">Refrigerator</h3>
-												<!--<div class="work-descr">Marketing</div>-->
-											</div>
-										</a>
-									</div>
-								</div>
-							</div>
+							</div>							
 						</div>
 						<div class="col-sm-12">
 							<div class="text-center">

@@ -10,7 +10,7 @@
     Document Title
     =============================================
     -->
-    <title>Titan | Multipurpose HTML5 Template</title>
+    <title>FAQ</title>
     <!--  lalala
     Favicons
     =============================================
@@ -64,7 +64,7 @@
 		<jsp:include page="components/header.jsp"></jsp:include>
 		<!-- end header -->
       <div class="main">
-        <section class="module bg-dark-60 faq-page-header" data-background="assets/images/faq_bg.jpg">
+        <section class="module bg-dark-60 faq-page-header" data-background="<%=request.getContextPath()%>/resources/common/images/faq.jpg">
           <div class="container">
             <div class="row">
               <div class="col-sm-6 col-sm-offset-3">
