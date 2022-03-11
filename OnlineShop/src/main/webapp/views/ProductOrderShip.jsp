@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
     <head>
@@ -106,13 +107,13 @@
                                                 <a href="<%=request.getContextPath()%>/details?id=${i.productID}">${i.productName}</a>
                                             </td>
                                             <td class="hidden-xs">
-                                                <h5 class="product-title font-alt">$${i.price}</h5>
+                                                <h5 class="product-title font-alt"><fmt:formatNumber type = "number" maxIntegerDigits = "10" value = "${i.price}" /> VND</h5>
                                             </td>
                                             <td>
                                             	<h5 class="product-title font-alt">${i.quantity}</h5>
                                             </td>
                                             <td>
-                                                <h5 class="product-title font-alt">$${i.price * i.quantity}</h5>
+                                                <h5 class="product-title font-alt"><fmt:formatNumber type = "number" maxIntegerDigits = "10" value = "${i.total}" /> VND</h5>
                                             </td>
                                             <td>
                                             	<c:if test="${i.description == pending}">

@@ -66,7 +66,7 @@
 		<jsp:include page="components/header.jsp"></jsp:include>
 		<!-- end header -->
       <div class="main">
-        <section class="module bg-dark-60 blog-page-header" data-background="<%=request.getContextPath()%>/resources/common/assets/images/blog_bg.jpg">
+        <section class="module bg-dark-60 blog-page-header" data-background="<%=request.getContextPath()%>/resources/common/assets/images/blog_1.jpg">
           <div class="container">
             <div class="row">
               <div class="col-sm-6 col-sm-offset-3">
@@ -188,12 +188,12 @@
 								<div class="pagination">
 									<c:if test="${tag == 1}">
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/listPostByTag?page=1">&laquo;Pre</a>
+											href="<%=request.getContextPath()%>/listPostByTag?page=1">&laquo;Previous</a>
 										</li>
 									</c:if>
 									<c:if test="${tag != 1}">
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/listPostByTag?page=${tag - 1}">&laquo;Pre</a>
+											href="<%=request.getContextPath()%>/listPostByTag?page=${tag - 1}">&laquo;Previous</a>
 										</li>
 									</c:if>
 									<c:forEach begin="1" end="${total}" var="i">

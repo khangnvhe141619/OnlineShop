@@ -18,6 +18,13 @@ public class Shipper {
 		this.phone = phone;
 	}
 
+	public Shipper(String shipperName, String email, String phone) {
+		super();
+		this.shipperName = shipperName;
+		this.email = email;
+		this.phone = phone;
+	}
+
 	public int getShipperID() {
 		return shipperID;
 	}

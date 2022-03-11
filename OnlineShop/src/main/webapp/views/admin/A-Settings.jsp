@@ -142,7 +142,7 @@
                 <!-- /.right-sidebar -->
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2018 &copy; Company Admin </footer>
+            <jsp:include page="components/A-Footer.jsp"></jsp:include>
         </div>
         <!-- /#page-wrapper -->
     </div>

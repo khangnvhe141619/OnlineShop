@@ -26,7 +26,7 @@
 					<li class="dropdown"><a class="dropdown-toggle"
 						href="<%=request.getContextPath()%>/list" data-toggle="dropdown">Shop</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="shop?typeid=1">Book</a></li>
+							<li><a href="<%=request.getContextPath()%>/list">Book</a></li>
 						</ul></li>
 					<li><a href="<%=request.getContextPath()%>/contactController">Contact</a></li>
 					<li><a href="<%=request.getContextPath()%>/listPostController">Blog</a></li>

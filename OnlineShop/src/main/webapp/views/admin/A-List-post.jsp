@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="<%=request.getContextPath()%>/resources/admin/plugins/images/icon.png">
-    <title>Company Admin</title>
+    <title>Company Admin | List Posts</title>
     <!-- Bootstrap Core CSS -->
     <link href="<%=request.getContextPath()%>/resources/admin/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/resources/admin/plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet">
@@ -69,6 +70,13 @@
                                 <h4>Blog Posts (<b style="color: orange;">${totalPost}</b>)</h4>                               
                                 <div class="col-lg-12 col-md-9 col-sm-12 col-xs-12 mail_listing">
                                     <div class="inbox-center">
+                                    <c:if test="${nSuccess}">
+                                    <div class="alert alert-warning">
+                                            <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
+                                            <strong>CREATED!!! </strong>
+                                            <p> The Post has been created successfully.</p>
+                                        </div> 
+                                    </c:if>
                                     <c:if test="${bSuccess}">
                                     <div class="alert alert-warning">
                                             <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
@@ -107,7 +115,7 @@
                                                     <td class="max-texts"><a href=""></a>${post.title}</td>
                                                     <td class="max-texts">${post.shortDesc}</td>
                                                     
-                                                    <td class="">${post.createdDate}</td>
+                                                    <td class="">${post.createdDate.format( DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))}</td>
                                                     <td class="">
                                                         <a href="<%=request.getContextPath()%>/aViewPostDetail?pId=${post.postId}"><i class="fa fa-edit" aria-hidden="true"></i></a>
                                                         <a style="margin-left: 5%;" href="<%=request.getContextPath()%>/aBlockPostController?pId=${post.postId}" onclick=""><i style="color: red;" class="fa fa-ban"
@@ -119,8 +127,8 @@
                                             
                                         </table>
                                     </div>
-                                    <div class="row">
-                                        <div class="pagination font-alt">							
+                      <div class="row">
+                          <div class="pagination font-alt">							
 							<c:if test="${check == 0}">
 								<div class="pagination">
 									<c:if test="${tag == 1}">
@@ -149,37 +157,7 @@
 												&raquo;</a>
 									</c:if>
 								</div>
-							</c:if>
-							<c:if test="${check == 1}">
-								<div class="pagination">
-									<c:if test="${tag == 1}">
-										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/searchPostController?page=1">&laquo;Pre</a>
-										</li>
-									</c:if>
-									<c:if test="${tag != 1}">
-										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/searchPostController?page=${tag - 1}">&laquo;Pre</a>
-										</li>
-									</c:if>
-									<c:forEach begin="1" end="${total}" var="i">
-										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/searchPostController?page=${i}"
-											class="${tag == i? "active":""}">${i}</a></li>
-									</c:forEach>
-									<c:if test="${tag != total}">
-										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/searchPostController?page=${tag + 1}">Next
-												&raquo;</a></li>
-									</c:if>
-									<c:if test="${tag == total}">
-										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/searchPostController?page=${total}">Next
-												&raquo;</a>
-									</c:if>
-								</div>
-							</c:if>
-							
+							</c:if>					
 							</div>
                                     </div>
                                 </div>
@@ -242,7 +220,7 @@
                 <!-- /.right-sidebar -->
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2018 &copy; Company Admin </footer>
+            <jsp:include page="components/A-Footer.jsp"></jsp:include>
         </div>
         <!-- /#page-wrapper -->
     </div>

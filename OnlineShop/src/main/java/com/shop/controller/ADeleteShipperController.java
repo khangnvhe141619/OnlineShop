@@ -9,19 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.shop.dao.impl.CategoryDAOImpl;
+import com.shop.dao.PostDAO;
+import com.shop.dao.ShipperDAO;
+import com.shop.dao.impl.PostDAOImpl;
+import com.shop.dao.impl.ShipperDAOImpl;
 
 /**
- * Servlet implementation class DeleteCateController
+ * Servlet implementation class ADeleteShipperController
  */
-@WebServlet("/DeleteCateController")
-public class DeleteCateController extends HttpServlet {
+@WebServlet("/aDeleteShipperController")
+public class ADeleteShipperController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteCateController() {
+    public ADeleteShipperController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,24 +33,20 @@ public class DeleteCateController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CategoryDAOImpl pd = new CategoryDAOImpl();		
-		String pageIn=request.getParameter("index");
-		int index= Integer.parseInt(pageIn);
-		boolean kq;
+		ShipperDAO shipperDAO = new ShipperDAOImpl();
+		String id = request.getParameter("sId");
 		try {
-			kq = pd.deleteCategory(index);
-			if(kq==true) {
-				request.setAttribute("mess", "Delete successfull");
-				request.getRequestDispatcher("/CategoryController?index=1").forward(request, response);
+			if(shipperDAO.deleteShipper(id)) {
+				request.setAttribute("dSuccess", true);
+				request.getRequestDispatcher("/aListShipperController").forward(request, response);
 			}else {
-				request.setAttribute("mess", "Delete False");
-				request.getRequestDispatcher("/CategoryController?index=1").forward(request, response);
+				request.setAttribute("sError", true);
+				request.getRequestDispatcher("/aListShipperController").forward(request, response);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 
 	/**

@@ -84,7 +84,7 @@ public class Post {
 	}
 
 	public String getShortDesc() {
-		return shortDesc.substring(0, 40)+" ...";
+		return shortDesc;
 	}
 
 	public void setShortDesc(String shortDesc) {

@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="<%=request.getContextPath()%>/resources/admin/plugins/images/icon.png">
-    <title>Company Admin</title>
+    <title>Company Admin | List Orders</title>
     <!-- Bootstrap Core CSS -->
     <link href="<%=request.getContextPath()%>/resources/admin/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/resources/admin/plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet">
@@ -67,16 +68,7 @@
                             <!-- row -->
                             <div class="row">
                                 <h4>List Of Orders (<b style="color: orange;">số lượng</b>)
-                                </h4>
-                                <p>
-                                    <form role="search" class="app-search hidden-xs" style="margin-left: 35%;">
-                                        <input type="text" placeholder="Search..." class="form-control"
-                                            style="margin: auto; border: 0.5px solid ; border-color: rgba(228, 221, 221, 0.822);">
-                                        <button type="button" class="btn btn-default waves-effect"
-                                            style="background-color: rgb(255, 255, 255); border-radius: 70%;"><i
-                                                class="fa fa-search"></i></button>
-                                    </form>
-                                    </p>
+                                </h4>                 
                                 <div class="col-lg-12 col-md-9 col-sm-12 col-xs-12 mail_listing">
                                     <div class="inbox-center">
                                         <table class="table table-hover">
@@ -98,11 +90,11 @@
                                                     <td class="max-texts"> ${list.shipper} </td>
                                                     <td class="max-texts"> ${list.customer} </td>
                                                     <td class="max-texts"> ${list.orderDate} </td>
-                                                    <td class="max-texts"> ${list.total} </td>
+                                                    <td class="max-texts"> <fmt:formatNumber type = "number" maxIntegerDigits = "10" value = "${list.total}" /> </td>
                                                     <td class="max-texts"> ${list.status} </td>
                                                     <td class="">
-                                                         <a href="<%=request.getContextPath()%>/updateOrderAdminController?stt=${list.stt}"><i class="fa fa-edit" aria-hidden="true"></i>Edit</a> 
-                                                         <a href="" onclick=""><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+                                                         <a href="<%=request.getContextPath()%>/updateOrderAdminController?stt=${list.stt}"><i class="fa fa-edit" aria-hidden="true"></i></a> 
+                                                         <a style="margin-left: 5%;" href="" onclick=""><i style="color: red;" class="fa fa-trash" aria-hidden="true"></i> </a>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -110,7 +102,7 @@
                                         </table>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-7 m-t-20"> Showing 1 - số trang</div>
+                                        <div class="col-xs-7 m-t-20"> Showing 1 </div>
                                         <div class="col-xs-5 m-t-20">
                                             <div class="btn-group pull-right">
                                                 <button type="button" class="btn btn-default waves-effect"><i
@@ -180,7 +172,7 @@
                 <!-- /.right-sidebar -->
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2018 &copy; Company Admin </footer>
+            <jsp:include page="components/A-Footer.jsp"></jsp:include>
         </div>
         <!-- /#page-wrapper -->
     </div>

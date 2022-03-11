@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="<%=request.getContextPath()%>/resources/admin/plugins/images/icon.png">
-    <title>Company Admin</title>
+    <title>Company Admin | Blocked Post</title>
     <!-- Bootstrap Core CSS -->
     <link href="<%=request.getContextPath()%>/resources/admin/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/resources/admin/plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet">
@@ -100,7 +101,7 @@
                                                     <td class="max-texts"><a href=""></a>${post.title}</td>
                                                     <td class="max-texts">${post.shortDesc}</td>
                                                     
-                                                    <td class="">${post.createdDate}</td>
+                                                    <td class="">${post.createdDate.format( DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))}</td>
                                                     <td class="">
                                                         <a style="margin-left: 25%;" href="<%=request.getContextPath()%>/aUnBlockPostController?pId=${post.postId}" onclick=""><i style="color: green;" class="fa fa-check-circle"
                                                                 aria-hidden="true"></i> </a>
@@ -234,7 +235,7 @@
                 <!-- /.right-sidebar -->
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2018 &copy; Company Admin </footer>
+            <jsp:include page="components/A-Footer.jsp"></jsp:include>
         </div>
         <!-- /#page-wrapper -->
     </div>

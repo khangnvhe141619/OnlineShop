@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="<%=request.getContextPath()%>/resources/admin/plugins/images/icon.png">
-    <title>Company Admin | Create Admin</title>
+    <title>Company Admin | Create New Post</title>
     <!-- Bootstrap Core CSS -->
     <link href="<%=request.getContextPath()%>/resources/admin/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/resources/admin/plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet">
@@ -53,7 +53,7 @@
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
                             <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Administrators</a></li>
+                            <li><a href="<%=request.getContextPath()%>/aListPostController">Blog</a></li>
                             <li class="active">New Post</li>
                         </ol>
                     </div>

@@ -2,7 +2,6 @@ package com.shop.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.shop.dao.impl.ProductDAOImpl;
-import com.shop.model.Product;
 
 /**
  * Servlet implementation class DeleteController
