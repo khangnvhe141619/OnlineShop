@@ -15,7 +15,7 @@ import com.shop.model.Category;
 import com.shop.model.Product;
 
 /**
- * Servlet implementation class SearchProductController
+ * Servlet implementation class SearchProductController 123
  */
 @WebServlet("/search")
 public class SearchProductController extends HttpServlet {
