@@ -16,7 +16,7 @@ import com.shop.service.EmailMessage;
 import com.shop.service.EmailUtility;
 
 /**
- * Servlet implementation class ForgotPasswordController
+ * Servlet implementation class ForgotPasswordController 123
  */
 @WebServlet("/forgotPasswordController")
 public class ForgotPasswordController extends HttpServlet {
