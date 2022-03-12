@@ -21,7 +21,7 @@ import com.shop.service.EmailMessage;
 import com.shop.service.EmailUtility;
 
 /**
- * Servlet implementation class CheckOutController
+ * Servlet implementation class CheckOutController 123456
  */
 @WebServlet("/checkOutController")
 public class CheckOutController extends HttpServlet {
