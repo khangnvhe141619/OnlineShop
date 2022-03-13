@@ -14,7 +14,7 @@ import com.shop.dao.impl.ContactDAOImpl;
 import com.shop.model.Contact;
 
 /**
- * Servlet implementation class ContactController
+ * Servlet implementation class ContactController 123
  */
 @WebServlet("/contactController")
 public class ContactController extends HttpServlet {
