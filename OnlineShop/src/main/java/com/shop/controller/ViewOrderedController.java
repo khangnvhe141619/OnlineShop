@@ -21,7 +21,7 @@ import com.shop.model.ProductOrderShip;
 @WebServlet("/viewOrdered")
 public class ViewOrderedController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+   //121221    
     /**
      * @see HttpServlet#HttpServlet()
      */
