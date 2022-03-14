@@ -28,7 +28,7 @@ public class UserDetailController extends HttpServlet {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-/12333
+//12333
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
