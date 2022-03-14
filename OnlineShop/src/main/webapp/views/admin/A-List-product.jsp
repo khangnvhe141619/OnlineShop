@@ -95,7 +95,7 @@
                                                     
                       
                                                     <td class="max-texts">
-                                                         <a href="" onclick="return testConfirmDialog()"><i class="fa fa-edit" aria-hidden="true"></i></a> 
+                                                         <a href="<%=request.getContextPath() %>/AEditProduct?index=${i.productID}" ><i class="fa fa-edit" aria-hidden="true"></i></a> 
                                                          <a style="margin-left: 5%;" href="<%=request.getContextPath() %>/DeleteController?index=${i.productID}" onclick="return testConfirmDialog()"><i style="color: red;" class="fa fa-trash" aria-hidden="true"></i></a> 
                                                     </td>
                                                 </tr>
