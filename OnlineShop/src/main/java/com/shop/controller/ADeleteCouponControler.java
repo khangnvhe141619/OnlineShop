@@ -9,20 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.shop.dao.PostDAO;
-import com.shop.dao.impl.PostDAOImpl;
+import com.shop.dao.impl.CouponDAOImpl;
+import com.shop.dao.impl.ProductDAOImpl;
+import com.shop.model.Coupon;
 
 /**
- * Servlet implementation class ADeletePostController 123
+ * Servlet implementation class ADeleteCouponControler
  */
-@WebServlet("/aDeletePostController")
-public class ADeletePostController extends HttpServlet {
+@WebServlet("/ADeleteCouponControler")
+public class ADeleteCouponControler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ADeletePostController() {
+    public ADeleteCouponControler() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,20 +32,24 @@ public class ADeletePostController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PostDAO postDAO = new PostDAOImpl();
-		String id = request.getParameter("pId");
+		CouponDAOImpl cp = new CouponDAOImpl();	
+		String code=request.getParameter("index");
+	
+		boolean kq;
 		try {
-			if(postDAO.deletePost(id)) {
-				request.setAttribute("dSuccess", true);
-				request.getRequestDispatcher("/aListPostController").forward(request, response);
+			kq = cp.deleteCoupon(code);
+			if(kq==true) {
+				request.setAttribute("mess", "Delete successfull");
+				request.getRequestDispatcher("AlistCoupon?index=1").forward(request, response);
 			}else {
-				request.setAttribute("bError", true);
-				request.getRequestDispatcher("/aListPostController").forward(request, response);
+				request.setAttribute("mess", "Delete False");
+				request.getRequestDispatcher("AlistCoupon?index=1").forward(request, response);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 	/**

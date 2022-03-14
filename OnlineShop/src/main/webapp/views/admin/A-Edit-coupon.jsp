@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,12 +67,12 @@
                             <h3 class="box-title m-b-0">Update Coupon</h3>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
-                                    <form action="#" method="post">
+                                    <form action="<%=request.getContextPath()%>/AEditCoupon" method="post">
                                         <div class="form-group">
                                             <label for="">Coupon Code</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-ticket"></i></div>
-                                                <input type="text" name="couponCode" class="form-control"
+                                                <input type="text" name="couponCode" value="${cp.couponId }" class="form-control"
                                                     id="" readonly>
                                             </div>
                                         </div>
@@ -79,7 +80,7 @@
                                             <label for="">Description</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-pencil-square-o"></i></div>
-                                                <input type="text" name="couponDesc"
+                                                <input type="text" name="couponDesc" value="${cp.discountDesc }"
                                                     class="form-control" id=""
                                                     placeholder="Enter description">
                                             </div>
@@ -90,7 +91,7 @@
                                                 <div class="input-group-addon"><i class="fa fa-percent"></i></div>
                                                 <input type="number" name="percent"
                                                     class="form-control" id=""
-                                                    placeholder="Enter percent">
+                                                    placeholder="Enter percent" value="${cp.discountPercent }">
                                             </div>
                                         </div> 
                                         <div class="form-group">
@@ -99,7 +100,7 @@
                                                 <div class="input-group-addon"><i class="fa fa-plus"></i></div>
                                                 <input type="number" name="quantity"
                                                     class="form-control" id=""
-                                                    placeholder="Enter quantity">
+                                                    placeholder="Enter quantity" value="${cp.quantity }">
                                             </div>
                                         </div>                            
                                         <button type="submit" name="submit"

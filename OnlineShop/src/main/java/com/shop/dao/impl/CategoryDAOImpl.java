@@ -62,8 +62,8 @@ public class CategoryDAOImpl implements CategoryDAO {
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				category = new Category();
-				category.setCategoryID(0);
-				category.setCategoryName(categoryId);				
+				category.setCategoryID(rs.getInt(1));
+				category.setCategoryName(rs.getString(2));				
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

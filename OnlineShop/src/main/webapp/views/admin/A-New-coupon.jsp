@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,7 +68,7 @@
                             <p class="text-muted m-b-30 font-13"> Fill in the form below: </p>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
-                                    <form action="functions/new_admin.html" method="post">
+                                    <form action="<%=request.getContextPath()%>/AddCoupon" method="post">
                                         <div class="form-group">
                                             <label for="">Coupon Code</label>
                                             <div class="input-group">

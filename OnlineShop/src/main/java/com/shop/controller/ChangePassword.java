@@ -13,7 +13,7 @@ import com.shop.dao.impl.AccountDAOImpl;
 import com.shop.model.Account;
 
 /**
- * Servlet implementation class ChangePassword 124
+ * Servlet implementation class ChangePassword 12345
  */
 @WebServlet("/changePassword")
 public class ChangePassword extends HttpServlet {
