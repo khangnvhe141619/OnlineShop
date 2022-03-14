@@ -18,7 +18,7 @@ public class Product {
 	private int quantity;
 	private double price;
 	private int numberPage;
-	
+
 	public Product() {
 		// TODO Auto-generated constructor stub
 	}
