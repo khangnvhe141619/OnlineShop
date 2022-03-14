@@ -46,6 +46,7 @@ public class ListUserController extends HttpServlet {
 		            endPage++;
 		        }
 				List<Account> list = dao.getListAccountOfAdmin(index);
+				request.setAttribute("count", count);
 				request.setAttribute("index", index);
 				request.setAttribute("list", list);
 				request.setAttribute("endPage", endPage);
@@ -80,6 +81,7 @@ public class ListUserController extends HttpServlet {
 		        	index = endPage;
 		        }
 		        List<Account> list = dao.getListAccountOfAdmin(index);
+		        request.setAttribute("count", count);
 				request.setAttribute("index", index);
 				request.setAttribute("list", list);
 				request.setAttribute("endPage", endPage);

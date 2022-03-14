@@ -48,6 +48,7 @@ public class ListUserBlockController extends HttpServlet {
 		            endPage++;
 		        }
 				List<Account> list = dao.getListAccountOfAdminBlock(index);
+				request.setAttribute("count", count);
 				request.setAttribute("index", index);
 				request.setAttribute("list", list);
 				request.setAttribute("endPage", endPage);
@@ -82,6 +83,7 @@ public class ListUserBlockController extends HttpServlet {
 		        	index = endPage;
 		        }
 				List<Account> list = dao.getListAccountOfAdminBlock(index);
+				request.setAttribute("count", count);
 				request.setAttribute("index", index);
 				request.setAttribute("list", list);
 				request.setAttribute("endPage", endPage);

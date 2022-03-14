@@ -193,7 +193,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 		return lsCa;
 	}
 	public int countCa() throws SQLException {
-		String sql = "SELECT count(*) FROM Category \r\n"
+		String sql = "SELECT COUNT(*) FROM Category \r\n"
 				+ "";
 		int count = 0;
 		try {

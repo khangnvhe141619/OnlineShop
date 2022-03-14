@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -142,15 +144,15 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-6 col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title">Recent Comments</h3>
+                            <h3 class="box-title">Product</h3>
                             <div class="comment-center">
                                 <div class="comment-body">
                                     <div class="mail-contnet">
 
                                         <hr>
-                                        <a href="comments.html"
+                                        <a href="<%=request.getContextPath()%>/ListProdtuct"
                                             class="btn btn-info btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">View
-                                            All Comments</a>
+                                            All Products</a>
                                     </div>
 
                                 </div>
@@ -160,17 +162,7 @@
 
                     <div class="col-md-12 col-lg-6 col-sm-12">
                         <div class="white-box">
-                            <!-- <h3 class="box-title">Recent Blog Posts
-                              <div class="col-md-3 col-sm-4 col-xs-6 pull-right">
-                                <select class="form-control pull-right row b-none">
-                                  <option>March 2022</option>
-                                  <option>April 2022</option>
-                                  <option>May 2022</option>
-                                  <option>June 2022</option>
-                                  <option>July 2022</option>
-                                </select>
-                              </div>
-                            </h3> -->
+                           
                             <div class="row sales-report">
                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                     <h2>Company 2022</h2>
@@ -182,24 +174,25 @@
                             </div>
                             <div class="table-responsive">
                                 <table class="table ">
-                                    <i style="color:brown;">No Posts Yet :( Upload Company's first blog post today! </i>
                                     <thead>
                                         <tr>
-                                            <th>TITLE</th>
+                                            <th>AUTHOR</th>
                                             <th>DATE</th>
-                                            <th>COMMENTS</th>
+                                            <th>TITLE</th>
                                         </tr>
                                     </thead>
+                                    <c:forEach items="${lstPost}" var="p">
                                     <tbody>
                                         <tr>
-                                            <td class="txt-oflo">title</td>
-                                            <td class="txt-oflo">date</td>
-                                            <td><span class="text-success">comment</span></td>
+                                            <td class="txt-oflo">${p.authorName}</td>
+                                            <td class="txt-oflo">${p.createdDate.format( DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))}</td>
+                                            <td><span class="text-success">${p.title}</span></td>
                                         </tr>
                                     </tbody>
-
+                                    </c:forEach>
+                                    
                                 </table>
-                                <a href="posts.html"
+                                <a href="<%=request.getContextPath()%>/aListPostController "
                                     class="btn btn-info btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">View
                                     All Posts</a>
                             </div>

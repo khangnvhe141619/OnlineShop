@@ -136,6 +136,7 @@
 													<select name="status" id="" class="form-control">
 														<option value="1">Pending</option>
 														<option value="2">Completed</option>
+														<option value="3">Cancel</option>
 													</select>
 												</div>
 											</div>
@@ -213,7 +214,6 @@
 			</div>
 			<!-- /.container-fluid -->
             <jsp:include page="components/A-Footer.jsp"></jsp:include>
-				Admin </footer>
 		</div>
 		<!-- /#page-wrapper -->
 	</div>

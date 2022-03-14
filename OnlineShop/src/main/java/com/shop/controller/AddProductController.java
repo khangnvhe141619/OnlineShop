@@ -105,10 +105,10 @@ public class AddProductController extends HttpServlet {
 			ProductDAOImpl pd = new ProductDAOImpl();
 			boolean kq = pd.insertProduct(product);
 			if (kq == true) {
-				request.setAttribute("mess", "ADD success");
+				request.setAttribute("mess", "Add Successfully!");
 				request.getRequestDispatcher("ListProdtuct?index=1").forward(request, response);
 			} else {
-				request.setAttribute("mess", "ADD False");
+				request.setAttribute("mess", "ADD Failed!");
 				request.getRequestDispatcher("ListProdtuct?index=1").forward(request, response);
 			}
 		} catch (Exception e) {

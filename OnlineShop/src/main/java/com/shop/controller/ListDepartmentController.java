@@ -36,6 +36,7 @@ public class ListDepartmentController extends HttpServlet {
 		            endPage++;
 		        }
 				List<Department> list = dao.getListDepartments(index);
+				request.setAttribute("count", count);
 				request.setAttribute("index", index);
 				request.setAttribute("list", list);
 				request.setAttribute("endPage", endPage);
@@ -67,6 +68,7 @@ public class ListDepartmentController extends HttpServlet {
 		        	index = endPage;
 		        }
 				List<Department> list = dao.getListDepartments(index);
+				request.setAttribute("count", count);
 				request.setAttribute("index", index);
 				request.setAttribute("list", list);
 				request.setAttribute("endPage", endPage);

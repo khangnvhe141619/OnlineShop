@@ -81,7 +81,7 @@
 							<!-- row -->
 							<div class="row">
 								<h4>
-									List Of Products (<b style="color: orange;">số lượng
+									List Of Coupons (<b style="color: orange;">
 										${count }</b>)
 								</h4>
 

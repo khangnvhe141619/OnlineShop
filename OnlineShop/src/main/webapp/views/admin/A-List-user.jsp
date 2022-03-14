@@ -65,7 +65,7 @@
                         <div class="white-box">
                             <!-- row -->                       
                             <div class="row">                        
-                                <h4>List Of Users (<b style="color: orange;">số lượng</b>)
+                                <h4>List Of Users (<b style="color: orange;">${count}</b>)
                                 </h4>
                                 <div class="col-lg-12 col-md-9 col-sm-12 col-xs-12 mail_listing">
                                     <div class="inbox-center">

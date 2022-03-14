@@ -27,11 +27,11 @@
                         </a>
                         <ul class="nav nav-second-level">
                             <li><a href="A-Settings.jsp"><i class="ti-settings"></i> Account Setting</a></li>
-                            <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                            <li><a href="<%=request.getContextPath()%>/logoutController"><i class="fa fa-power-off"></i> Logout</a></li>
                         </ul>
                     </li>
                     <li class="nav-small-cap m-t-10">--- Main Menu</li>
-                    <li> <a href="A-Home.jsp" class="waves-effect active"><i class="linea-icon linea-basic fa-fw"
+                    <li> <a href="<%=request.getContextPath()%>/aHomeController" class="waves-effect active"><i class="linea-icon linea-basic fa-fw"
                                 data-icon="v"></i> <span class="hide-menu"> Dashboard </span></span></a>
                     </li>
 
@@ -46,8 +46,8 @@
                     <li> <a href="#" class="waves-effect"><i data-icon="" class="fa fa-user"></i> <span
                                 class="hide-menu">User<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="<%=request.getContextPath() %>/listUserController">List Users</a></li>
-                            <li><a href="<%=request.getContextPath() %>/listUserBlockController">List Users Blocked</a></li>
+                            <li><a href="<%=request.getContextPath()%>/listUserController">List Users</a></li>
+                            <li><a href="<%=request.getContextPath()%>/listUserBlockController">List Users Blocked</a></li>
                         </ul>
                     </li>
                     <li> <a href="#" class="waves-effect"><i data-icon="&#xe00b;" class="fa fa-life-ring"></i> <span

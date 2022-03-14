@@ -113,7 +113,12 @@
                                                 <tr>                                                	
                                                     <td>${post.postId}</td>
                                                     <td class="max-texts"><a href=""></a>${post.title}</td>
+                                                    <c:if test="${post.shortDesc.length() > 50}">
+                                                    <td class="max-texts">${post.shortDesc.substring(0, 40)}</td>
+                                                    </c:if>
+                                                    <c:if test="${post.shortDesc.length() < 50}">
                                                     <td class="max-texts">${post.shortDesc}</td>
+                                                    </c:if>
                                                     
                                                     <td class="">${post.createdDate.format( DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))}</td>
                                                     <td class="">
