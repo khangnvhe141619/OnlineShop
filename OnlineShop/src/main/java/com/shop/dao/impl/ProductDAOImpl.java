@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.shop.dao.ProductDAO;
+import com.shop.model.BookCover;
 import com.shop.model.Product;
 import com.shop.utils.DBConnection;
 import com.shop.utils.Validation;
@@ -265,8 +266,8 @@ public class ProductDAOImpl implements ProductDAO {
 
 	public static void main(String[] args) throws SQLException {
 		ProductDAOImpl pd = new ProductDAOImpl();
-		List<Product> ls = pd.getListProduct(1);
-		for (Product product : ls) {
+		List<BookCover> ls = pd.getAllBookcover();
+		for (BookCover product : ls) {
 			System.out.println(product.toString());
 		}
 //		int c = pd.countSearch(1, null, 10000, 20000);
@@ -512,5 +513,22 @@ public class ProductDAOImpl implements ProductDAO {
 		}
 		return row > 0;
 	}
-
+	public List<BookCover> getAllBookcover(){
+		List<BookCover> ls = new ArrayList<BookCover>();
+		String sql= "SELECT * FROM BookCover";
+		try {
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				BookCover bk = new BookCover();
+				bk.setBookCoverId(rs.getInt(1));
+				bk.setBookCoverName(rs.getString(2));
+				ls.add(bk);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return ls;
+	}
 }
