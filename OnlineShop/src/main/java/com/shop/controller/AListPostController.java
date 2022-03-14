@@ -23,7 +23,7 @@ import com.shop.model.Tag;
 @WebServlet("/aListPostController")
 public class AListPostController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+//1233
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
