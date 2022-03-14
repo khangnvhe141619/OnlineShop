@@ -73,7 +73,7 @@
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
                                                 <input type="text" name="categoryName" class="form-control"
-                                                    id="" placeholder="Enter category name" required="">
+                                                    value="${category.categoryName }" placeholder="Enter category name" required="">
                                             </div>
                                         </div>                                                          
                                         <button type="submit" name="submit"
