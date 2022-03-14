@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,17 +68,16 @@
                             <p class="text-muted m-b-30 font-13"> Fill in the form below: </p>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
-                                    <form action="#" method="post">
+                                    <form action="<%=request.getContextPath()%>/AddProductController" method="post" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label for="inputCategory">Category</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-life-ring"></i>
                                                 </div>                                  
                                                     <select name="category" id="" class="form-control">
-                                                        <option value="volvo">Volvo</option>
-                                                        <option value="saab">Saab</option>
-                                                        <option value="mercedes">Mercedes</option>
-                                                        <option value="audi">Audi</option>
+                                                    <c:forEach items="${listCategory }" var="i">
+                                                        <option ${categoryID == o.categoryID ? "selected":"" }  value="${i.categoryID }">${i.categoryName }</option>
+                                                       </c:forEach>
                                                       </select>
                                             </div>
                                         </div>
@@ -85,7 +85,7 @@
                                             <label for="inputDepartmentName">Product Name</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-users"></i></div>
-                                                <input type="text" name="departmentName" class="form-control"
+                                                <input type="text" name="productName" class="form-control"
                                                     id="" placeholder="Enter department name" required="">
                                                     
                                             </div>
@@ -131,10 +131,9 @@
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-pencil-square-o"></i></div>
                                                 <select name="coverType" id="" class="form-control">
-                                                    <option value="volvo">Volvo</option>
-                                                    <option value="saab">Saab</option>
-                                                    <option value="mercedes">Mercedes</option>
-                                                    <option value="audi">Audi</option>
+                                                <c:forEach items="${listBK }" var="i">
+                                                    <option value="${i.bookCoverId }">${i.bookCoverName }</option>
+                                                   </c:forEach>
                                                   </select>
                                             </div>
                                         </div>
