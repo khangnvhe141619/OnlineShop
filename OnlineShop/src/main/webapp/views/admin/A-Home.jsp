@@ -27,6 +27,7 @@
     <!-- color CSS -->
     <link href="<%=request.getContextPath()%>/resources/admin/css/colors/blue.css" id="theme" rel="stylesheet"> 
 </head>
+<!--check home jsp-->
 <body>
     <!-- Preloader -->
     <div class="preloader">
