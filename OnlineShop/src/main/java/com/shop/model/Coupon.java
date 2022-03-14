@@ -11,7 +11,8 @@ package com.shop.model;
  * @author leduc
  */
 public class Coupon {
-    private int couponId;
+	private int stt;
+    private String couponId;
     private String discountDesc;
     private int discountPercent;
     private int quantity;
@@ -19,18 +20,55 @@ public class Coupon {
     public Coupon() {
     }
 
-    public Coupon(int couponId, String discountDesc, int discountPercent, int quantity) {
-        this.couponId = couponId;
-        this.discountDesc = discountDesc;
-        this.discountPercent = discountPercent;
-        this.quantity = quantity;
-    }
+   
 
-	public int getCouponId() {
+	public Coupon(String discountDesc, int discountPercent, int quantity) {
+		super();
+		this.discountDesc = discountDesc;
+		this.discountPercent = discountPercent;
+		this.quantity = quantity;
+	}
+
+
+
+	public Coupon(String couponId, String discountDesc, int discountPercent, int quantity) {
+		super();
+		this.couponId = couponId;
+		this.discountDesc = discountDesc;
+		this.discountPercent = discountPercent;
+		this.quantity = quantity;
+	}
+
+
+
+	public Coupon(int stt, String couponId, String discountDesc, int discountPercent, int quantity) {
+		super();
+		this.stt = stt;
+		this.couponId = couponId;
+		this.discountDesc = discountDesc;
+		this.discountPercent = discountPercent;
+		this.quantity = quantity;
+	}
+
+
+
+	public int getStt() {
+		return stt;
+	}
+
+
+
+	public void setStt(int stt) {
+		this.stt = stt;
+	}
+
+
+
+	public String getCouponId() {
 		return couponId;
 	}
 
-	public void setCouponId(int couponId) {
+	public void setCouponId(String couponId) {
 		this.couponId = couponId;
 	}
 
