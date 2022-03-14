@@ -131,4 +131,3 @@
         <script src="<%=request.getContextPath()%>/resources/common/assets/js/main.js"></script>
     </body>
 </html>
-
