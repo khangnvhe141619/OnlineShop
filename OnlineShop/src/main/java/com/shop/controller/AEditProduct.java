@@ -70,7 +70,7 @@ public class AEditProduct extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
+//12345
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
