@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.shop.dao.impl.CategoryDAOImpl;
 
 /**
- * Servlet implementation class DeleteCateController
+ * Servlet implementation class DeleteCateController 1234
  */
 @WebServlet("/DeleteCateController")
 public class DeleteCateController extends HttpServlet {

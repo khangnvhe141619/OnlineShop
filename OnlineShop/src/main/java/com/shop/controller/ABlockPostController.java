@@ -13,7 +13,7 @@ import com.shop.dao.PostDAO;
 import com.shop.dao.impl.PostDAOImpl;
 
 /**
- * Servlet implementation class ABlockPostController
+ * Servlet implementation class ABlockPostController 123
  */
 @WebServlet("/aBlockPostController")
 public class ABlockPostController extends HttpServlet {

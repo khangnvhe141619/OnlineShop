@@ -13,7 +13,7 @@ import com.shop.dao.PostDAO;
 import com.shop.dao.impl.PostDAOImpl;
 
 /**
- * Servlet implementation class ADeletePostController
+ * Servlet implementation class ADeletePostController 123
  */
 @WebServlet("/aDeletePostController")
 public class ADeletePostController extends HttpServlet {

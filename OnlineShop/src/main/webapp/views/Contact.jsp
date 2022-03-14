@@ -66,7 +66,7 @@
 		<!-- end header -->
 		
             <div class="main">
-                <section class="module bg-dark-60 shop-page-header" data-background="<%=request.getContextPath()%>/resources/common/images/contact_us_1.png">
+                <section class="module bg-dark-60 shop-page-header" data-background="<%=request.getContextPath()%>/resources/common/images/contact_us.jpg">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-6 col-sm-offset-3">

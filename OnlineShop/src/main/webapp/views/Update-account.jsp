@@ -63,7 +63,7 @@
 		<jsp:include page="components/header.jsp"></jsp:include>
 		<!-- end header -->
         <div class="main">
-            <section class="module bg-dark-30 about-page-header" >
+            <section class="module bg-dark-30 about-page-header" data-background="<%=request.getContextPath()%>/resources/common/images/user_detail.jpg">
                      <!--data-background="assets/images/about_bg.jpg"-->
                      
                 <div class="container">

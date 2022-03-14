@@ -18,7 +18,7 @@ import com.shop.model.Post;
 import com.shop.model.Tag;
 
 /**
- * Servlet implementation class AListBlockedPostController
+ * Servlet implementation class AListBlockedPostController 123
  */
 @WebServlet("/aListBlockedPostController")
 public class AListBlockedPostController extends HttpServlet {
