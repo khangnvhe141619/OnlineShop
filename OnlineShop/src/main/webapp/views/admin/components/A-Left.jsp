@@ -62,7 +62,7 @@
                             <span class="hide-menu">Product<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="<%=request.getContextPath() %>/ListProdtuct">List Products</a></li>
-                            <li><a href="<%=request.getContextPath() %>/">Create Product</a></li>
+                            <li><a href="<%=request.getContextPath()%>/AddProductController">Create Product</a></li>
                             
                         </ul>
                     </li>
@@ -96,8 +96,8 @@
                                 class="linea-icon fa fa-cart-plus"></i> <span class="hide-menu">Coupon<span
                                     class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="A-List-coupon.jsp">List Coupons</a></li>
-                            <li><a href="A-New-coupon.jsp">Create Coupon</a></li>
+                            <li><a href="<%=request.getContextPath() %>/AlistCoupon">List Coupons</a></li>
+                            <li><a href="<%=request.getContextPath() %>/AddCoupon">Create Coupon</a></li>
                         </ul>
                     </li>
                     <li><a href="<%=request.getContextPath()%>/aListSubscriberController" class="waves-effect"><i data-icon="n"
