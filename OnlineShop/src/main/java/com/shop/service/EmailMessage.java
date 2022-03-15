@@ -11,7 +11,7 @@ public class EmailMessage {
 	public static final int HTML_MSG = 1;
 	public static final int TEXT_MSG = 2;
 
-	public String () {
+	public String getTo() {
 		return to;
 	}
 
