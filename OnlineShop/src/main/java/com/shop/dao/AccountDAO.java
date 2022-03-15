@@ -6,7 +6,7 @@ import com.shop.model.Account;
 
 
 public interface AccountDAO {
-	Account getLogin(String userName, String password) throws 
+	Account getLogin(String userName, String password) throws SQLException;
 	
 	boolean getCheckUsername(String userName) throws SQLException;
 	
