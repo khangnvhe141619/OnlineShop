@@ -16,7 +16,7 @@ import com.shop.dao.impl.PostDAOImpl;
  * Servlet implementation class ABlockPostController 123
  */
 @WebServlet("/aBlockPostController")
-public class ABlockPostController extends HttpServlet {
+public class ABlockPostController extends  {
 	private static final long serialVersionUID = 1L;
        
     /**
