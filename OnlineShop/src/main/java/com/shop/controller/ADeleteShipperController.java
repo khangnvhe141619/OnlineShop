@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.shop.dao.PostDAO;
 import com.shop.dao.ShipperDAO;
-import com.shop.dao.impl.PostDAOImpl;
 import com.shop.dao.impl.ShipperDAOImpl;
 
 /**

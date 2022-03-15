@@ -18,13 +18,13 @@ import com.shop.model.Account;
  * Servlet implementation class UserDetailController
  */
 @WebServlet("/userDetailController")
-public class UserDetailController extends HttpServlet {
+public class AUserDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public UserDetailController() {
+	public AUserDetailController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

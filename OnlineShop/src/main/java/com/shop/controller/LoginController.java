@@ -53,7 +53,7 @@ public class LoginController extends HttpServlet {
 					session.setAttribute("username",account.getUsername());
 					session.setAttribute("role",account.getRole());
 					if(account.getRole() == 1) {
-						request.getRequestDispatcher("views/admin/A-Home.jsp").forward(request, response);
+						request.getRequestDispatcher("/aHomeController").forward(request, response);
 					} else {
 						request.getRequestDispatcher("views/Home.jsp").forward(request, response);
 					}

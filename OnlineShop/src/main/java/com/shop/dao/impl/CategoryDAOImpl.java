@@ -11,7 +11,6 @@ import com.shop.dao.CategoryDAO;
 import com.shop.model.Category;
 import com.shop.model.Product;
 import com.shop.utils.DBConnection;
-import com.shop.utils.Validation;
 
 public class CategoryDAOImpl implements CategoryDAO {
 	private Connection con;

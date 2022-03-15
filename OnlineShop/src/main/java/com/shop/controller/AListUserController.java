@@ -3,33 +3,31 @@ package com.shop.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import com.shop.dao.AccountDAO;
 import com.shop.dao.impl.AccountDAOImpl;
 import com.shop.model.Account;
 
 /**
- * Servlet implementation class ListUserBlockController
+ * Servlet implementation class ListUserController
  */
-@WebServlet("/listUserBlockController")
-public class ListUserBlockController extends HttpServlet {
+@WebServlet("/listUserController")
+public class AListUserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListUserBlockController() {
+    public AListUserController() {
         super();
         // TODO Auto-generated constructor stub
     }
-
+//123
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -42,17 +40,17 @@ public class ListUserBlockController extends HttpServlet {
 			try {
 				int index = 1;
 				int size = 6;
-		        int count = dao.getCountAccountsBlock();
+		        int count = dao.getCountAccounts();
 		        int endPage = count / size;
 		        if (count % size != 0) {
 		            endPage++;
 		        }
-				List<Account> list = dao.getListAccountOfAdminBlock(index);
+				List<Account> list = dao.getListAccountOfAdmin(index);
 				request.setAttribute("count", count);
 				request.setAttribute("index", index);
 				request.setAttribute("list", list);
 				request.setAttribute("endPage", endPage);
-				request.getRequestDispatcher("views/admin/A-Block-user.jsp").forward(request, response);
+				request.getRequestDispatcher("views/admin/A-List-user.jsp").forward(request, response);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -71,7 +69,7 @@ public class ListUserBlockController extends HttpServlet {
 			try {
 				int index = Integer.parseInt(request.getParameter("index"));
 				int size = 6;
-		        int count = dao.getCountAccountsBlock();
+		        int count = dao.getCountAccounts();
 		        int endPage = count / size;
 		        if (count % size != 0) {
 		            endPage++;
@@ -82,12 +80,12 @@ public class ListUserBlockController extends HttpServlet {
 		        if(index > endPage) {
 		        	index = endPage;
 		        }
-				List<Account> list = dao.getListAccountOfAdminBlock(index);
-				request.setAttribute("count", count);
+		        List<Account> list = dao.getListAccountOfAdmin(index);
+		        request.setAttribute("count", count);
 				request.setAttribute("index", index);
 				request.setAttribute("list", list);
 				request.setAttribute("endPage", endPage);
-				request.getRequestDispatcher("views/admin/A-Block-user.jsp").forward(request, response);
+				request.getRequestDispatcher("views/admin/A-List-user.jsp").forward(request, response);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

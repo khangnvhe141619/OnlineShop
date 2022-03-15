@@ -16,13 +16,13 @@ import com.shop.model.Category;
  * Servlet implementation class CategoryController 12333
  */
 @WebServlet("/CategoryController")
-public class CategoryController extends HttpServlet {
+public class AListCategoryController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public CategoryController() {
+	public AListCategoryController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

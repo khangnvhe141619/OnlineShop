@@ -22,7 +22,7 @@
                     </li>
                     <li class="user-pro">
                         <a href="#" class="waves-effect"><img src="<%=request.getContextPath()%>/resources/admin/plugins/images/user.jpg" alt="user-img"
-                                class="img-circle"> <span class="hide-menu"> Account<span
+                                class="img-circle"> <span class="hide-menu"> ${acc.username}<span
                                     class="fa arrow"></span></span>
                         </a>
                         <ul class="nav nav-second-level">

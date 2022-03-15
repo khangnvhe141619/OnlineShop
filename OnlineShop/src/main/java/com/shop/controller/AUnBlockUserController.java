@@ -16,13 +16,13 @@ import com.shop.dao.impl.AccountDAOImpl;
  * Servlet implementation class UnBlockUserController
  */
 @WebServlet("/unBlockUserController")
-public class UnBlockUserController extends HttpServlet {
+public class AUnBlockUserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UnBlockUserController() {
+    public AUnBlockUserController() {
         super();
         // TODO Auto-generated constructor stub
     }

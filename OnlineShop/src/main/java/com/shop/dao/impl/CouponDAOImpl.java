@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.shop.dao.CouponDAO;
-import com.shop.model.Category;
 import com.shop.model.Coupon;
-import com.shop.model.Product;
 import com.shop.utils.DBConnection;
 
 public class CouponDAOImpl implements CouponDAO 
@@ -182,11 +180,7 @@ public class CouponDAOImpl implements CouponDAO
 		return row>0;
 		
 	}
-	public static void main(String[] args) throws SQLException {
-		CouponDAOImpl ca = new CouponDAOImpl();
-		Coupon c = new Coupon("123z", "1", 1, 1);
-		
-	}
+
 	public Coupon getCouponbyID(String code) throws SQLException {
 		String sql = "SELECT *\r\n"
 				+ "FROM Coupon\r\n"

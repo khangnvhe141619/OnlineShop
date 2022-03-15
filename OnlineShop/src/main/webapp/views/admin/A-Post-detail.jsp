@@ -51,12 +51,12 @@
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                         <a href="<li><a href="<%=request.getContextPath()%>/aListPostController">Posts</a></li>" class="waves-effect "><i data-icon="&#xe020;"
                                 class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Go Back</span></a>
-                        <h4 class="page-title">Email .</h4>
+                        <h4 class="page-title"></h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="<%=request.getContextPath()%>/aListPostController">Posts</a></li>
+                            <li><a href="<%=request.getContextPath()%>/aHomeController">Dashboard</a></li>
+                            <li><a href="<%=request.getContextPath()%>/aListPostController">Post</a></li>
                             <li class="active">Post Detail</li>
                         </ol>
                     </div>

@@ -48,12 +48,12 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Email .</h4>
+                        <h4 class="page-title"></h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="<%=request.getContextPath()%>/aListPostController">Posts</a></li>
+                            <li><a href="<%=request.getContextPath()%>/aHomeController">Dashboard</a></li>
+                            <li><a href="<%=request.getContextPath()%>/aListPostController">Blog</a></li>
                             <li><a href="<%=request.getContextPath()%>/aViewPostDetail?pId=${post.postId}">Post Detail</a></li>
                             <li class="active">Edit post</li>
                         </ol>

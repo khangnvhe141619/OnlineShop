@@ -233,7 +233,7 @@ public class AccountDAOImpl implements AccountDAO {
 	
 	@Override
 	public Account findPassword(String email) throws SQLException {
-		String sql = "SELECT Username, Password FROM Account WHERE Email LIKE ?";
+		String sql = "SELECT * FROM Account WHERE Email LIKE ?";
 		Account account = null;
 		try {
 			con = DBConnection.getInstance().getConnection();
@@ -242,8 +242,17 @@ public class AccountDAOImpl implements AccountDAO {
 			rs = pre.executeQuery();
 			if (rs.next()) {
 				account = new Account();
+				account.setAccountId(rs.getInt("AccountID"));
 				account.setUsername(rs.getString("Username"));
 				account.setPassword(rs.getString("Password"));
+				account.setFullname(rs.getString("FullName"));
+				account.setGender(rs.getInt("Gender"));
+				account.setEmail(rs.getString("Email"));
+				account.setPhonenumber(rs.getString("PhoneNumber"));
+				account.setAvatar(rs.getString("Avatar"));
+				account.setRole(rs.getInt("Role"));
+				account.setActive(rs.getInt("Active"));
+				account.setCreatedDate(rs.getString("CreatedDate"));
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

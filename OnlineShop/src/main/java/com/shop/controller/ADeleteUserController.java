@@ -9,19 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.shop.dao.impl.CategoryDAOImpl;
+import com.shop.dao.AccountDAO;
+import com.shop.dao.impl.AccountDAOImpl;
 
 /**
- * Servlet implementation class DeleteCateController 1234
+ * Servlet implementation class DeleteUserController
  */
-@WebServlet("/DeleteCateController")
-public class DeleteCateController extends HttpServlet {
+@WebServlet("/DeleteUserController")
+public class ADeleteUserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteCateController() {
+    public ADeleteUserController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,24 +31,22 @@ public class DeleteCateController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CategoryDAOImpl pd = new CategoryDAOImpl();		
-		String pageIn=request.getParameter("index");
-		int index= Integer.parseInt(pageIn);
-		boolean kq;
+		int id = Integer.parseInt(request.getParameter("id"));
+		AccountDAO dao = new AccountDAOImpl();
 		try {
-			kq = pd.deleteCategory(index);
-			if(kq==true) {
-				request.setAttribute("mess", "Delete successfull");
-				request.getRequestDispatcher("/CategoryController?index=1").forward(request, response);
-			}else {
-				request.setAttribute("mess", "Delete False");
-				request.getRequestDispatcher("/CategoryController?index=1").forward(request, response);
+			boolean check = dao.getDeleteAccount(id);
+			if(check) {
+				if(check == true) {
+					System.out.println("true");
+					response.sendRedirect("listUserController");
+				} else {
+					System.out.println("false");
+				}
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 
 	/**
