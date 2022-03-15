@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
-	private static DBConnection ;
+	private static DBConnection instance;
 	private static Connection connection;
 
 	public static DBConnection getInstance() {
