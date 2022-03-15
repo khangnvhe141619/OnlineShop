@@ -5,7 +5,7 @@ public class Account {
 	private int accountId;
 	private String username;
 	private String password;
-	private String fullname;
+	private String ;
 	private int gender;
 	private String email;
 	private String phonenumber;
