@@ -73,11 +73,11 @@
 						<div class="social-login">
 							<span class="social-label">Or login with</span>
 							<ul class="socials">
-								<li><a href="#"><i
+								<li><a href="http://www.Facebook.com/"><i
 										class="display-flex-center zmdi zmdi-facebook"></i></a></li>
-								<li><a href="#"><i
+								<li><a href="http://www.twiter.com"><i
 										class="display-flex-center zmdi zmdi-twitter"></i></a></li>
-								<li><a href="#"><i
+								<li><a href="http://www.google.com"><i
 										class="display-flex-center zmdi zmdi-google"></i></a></li>
 							</ul>
 						</div>

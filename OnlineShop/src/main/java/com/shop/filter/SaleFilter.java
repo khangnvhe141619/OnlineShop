@@ -15,17 +15,17 @@ import javax.servlet.http.HttpSession;
 import com.shop.model.Account;
 
 /**
- * Servlet Filter implementation class UserFilter
+ * Servlet Filter implementation class SaleFilter
  */
-@WebFilter(urlPatterns = { "/views/Update-account.jsp", "/views/ProductOrderShip.jsp", "/views/ChangePassword.jsp",
-		"/views/Cart.jsp", "/addCart", "/changePassword", "/checkOutController", "/commentPostController", "/review",
-		"/update", "/viewCart", "/viewOrdered" })
-public class UserFilter implements Filter {
+@WebFilter(urlPatterns = { "/listOrderController", "/updateOrderAdminController", "/aListShipperController",
+		"/addShipperController", "/aEditShipperController", "/aDeleteShipperController", "/AlistCoupon", "/AddCoupon",
+		"/AEditCoupon", "/ADeleteCouponControler" })
+public class SaleFilter implements Filter {
 
 	/**
 	 * Default constructor.
 	 */
-	public UserFilter() {
+	public SaleFilter() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -45,7 +45,7 @@ public class UserFilter implements Filter {
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpSession session = req.getSession();
 		Account account = (Account) session.getAttribute("acc");
-		if (account == null || account.getRole() == 0) {
+		if (account == null || account.getRole() != 3 && account.getRole() != 1) {
 			res.sendRedirect(req.getContextPath() + "/views/404.jsp");
 		} else {
 			chain.doFilter(request, response);

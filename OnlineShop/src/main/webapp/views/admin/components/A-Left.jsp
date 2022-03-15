@@ -26,7 +26,7 @@
                                     class="fa arrow"></span></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a href="A-Settings.jsp"><i class="ti-settings"></i> Account Setting</a></li>
+                            <li><a href="<%=request.getContextPath()%>/changePassword"><i class="ti-settings"></i> Account Setting</a></li>
                             <li><a href="<%=request.getContextPath()%>/logoutController"><i class="fa fa-power-off"></i> Logout</a></li>
                         </ul>
                     </li>
@@ -93,7 +93,7 @@
                         </ul>
                     </li>
                     <li> <a href="#" class="waves-effect"><i data-icon="&#xe00b;"
-                                class="linea-icon fa fa-cart-plus"></i> <span class="hide-menu">Coupon<span
+                                class="linea-icon fa fa-ticket"></i> <span class="hide-menu">Coupon<span
                                     class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="<%=request.getContextPath() %>/AlistCoupon">List Coupons</a></li>
@@ -109,7 +109,7 @@
                     <li> <a href="#" class="waves-effect"><i data-icon="H" class="linea-icon linea-basic fa-fw"></i>
                             <span class="hide-menu">Access<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="#">Administrators</a></li>
+                            <li><a href="views/Home.jsp">Shop Page</a></li>
                         </ul>
                     </li>
                     <li><a href="<%=request.getContextPath()%>/logoutController" class="waves-effect"><i class="icon-logout fa-fw"></i> <span

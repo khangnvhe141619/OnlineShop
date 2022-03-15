@@ -17,15 +17,17 @@ import com.shop.model.Account;
 /**
  * Servlet Filter implementation class AdminFilter
  */
-@WebFilter(urlPatterns = {""})
+@WebFilter(urlPatterns = { "/listDepartmentController", "/addDepartment", "/DeleteUserController",
+		"/DeleteDepartmentController", "/aListSubscriberController", "/listUserController", "/listUserBlockController",
+		"/unBlockUserController", "/userDetailController", "/blockUserController" })
 public class AdminFilter implements Filter {
 
-    /**
-     * Default constructor. 
-     */
-    public AdminFilter() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor.
+	 */
+	public AdminFilter() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see Filter#destroy()
@@ -37,13 +39,14 @@ public class AdminFilter implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpSession session = req.getSession();
 		Account account = (Account) session.getAttribute("acc");
-		if(account == null || account.getRole() != 1) {
-			res.sendRedirect(req.getContextPath() + "/loginController");
+		if (account == null || account.getRole() != 1) {
+			res.sendRedirect(req.getContextPath() + "/views/404.jsp");
 		} else {
 			chain.doFilter(request, response);
 		}

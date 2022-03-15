@@ -121,7 +121,7 @@
                                             	</c:if>
                                             	<c:if test="${i.description == completed}">
                                             		<h5 class="product-title font-alt" style="color: green;">${i.description}</h5>
-                                            	</c:if>
+                                            	</c:if>                                         	
                                             </td>
                                         </tr>
                                         <tr align="right">
