@@ -13,7 +13,7 @@ import com.shop.utils.SQLCommand;
 
 public class AccountDAOImpl implements AccountDAO {
 	private Connection con;
-	private PreparedStatement pre;
+	private PreparedStatement 
 	private ResultSet rs;
 
 	@Override
