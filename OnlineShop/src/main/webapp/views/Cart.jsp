@@ -109,26 +109,68 @@
                                 </table>
                             </div>
                         </div>
-                 
-                        <hr class="divider-w">
+					<div class="row">
+					<form action="<%=request.getContextPath()%>/applyCouponController" method="POST">
+					<div class="col-sm-3">
+							<div class="form-group">
+								<input class="form-control" type="text" id="" name="couponCode" value="${cCode}"
+									placeholder="Coupon code" />
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<button class="btn btn-round btn-g" type="submit">Apply</button>
+							</div>
+						</div>
+					</form>					
+						<div class="col-sm-3 col-sm-offset-3">
+							<div class="form-group">
+								<input class="btn btn-block btn-round btn-g pull-right" value="${mess}"
+									type="text" readonly="readonly"/>
+							</div>
+						</div>
+					</div>
+					<hr class="divider-w">
                         <div class="row mt-70">
                             <div class="col-sm-5 col-sm-offset-7">
                                 <div class="shop-Cart-totalbox">
-                                    <h4 class="font-alt">Cart Totals</h4>
+                                    <h4 class="font-alt">Cart Total</h4>
                                     <table class="table table-striped table-border checkout-table">
                                         <tbody>
                                             <tr>
                                                 <th>Cart Subtotal :</th>
                                                 <td><fmt:formatNumber type = "number" maxIntegerDigits = "10" value = "${sessionScope.total}" /> VND</td>
                                             </tr>
+                                            <c:if test="${coupon == null}">
                                             <tr>
                                                 <th>VAT (10%) :</th>
-                                                <td><fmt:formatNumber type = "number" maxIntegerDigits = "10" value = "${sessionScope.total * 0.1}" /> VND</td>
+                                                <td><fmt:formatNumber type = "number" maxIntegerDigits = "10" value = "${sessionScope.total  * 0.1}" /> VND</td>
                                             </tr>
                                             <tr class="shop-Cart-totalprice">
                                                 <th>Total :</th>
                                                 <td> <fmt:formatNumber type = "number" maxIntegerDigits = "10" value = "${sessionScope.total * 0.1 + sessionScope.total}" /> VND</td>
                                             </tr>
+                                            </c:if> 
+                                            <c:if test="${coupon != null}">
+                                            <tr>
+                                            	<th>Discount :</th>
+                                                <td><fmt:formatNumber type = "number" maxIntegerDigits = "10" value = "${coupon.discountPercent}" /> % 
+                                               <a href="<%=request.getContextPath()%>/removeCouponController"><button style="margin-left: 50%; color: red;" class=" btn-g" type="submit" >X</button></a> </td>
+                                                
+                                            </tr>
+                                            <tr>
+                                                <th>Subtotal :</th>
+                                                <td><fmt:formatNumber type = "number" maxIntegerDigits = "10" value = "${(sessionScope.total * coupon.discountPercent / 100)}" /> VND</td>
+                                            </tr>
+                                            <tr>
+                                                <th>VAT (10%) :</th>
+                                                <td><fmt:formatNumber type = "number" maxIntegerDigits = "10" value = "${(sessionScope.total * coupon.discountPercent / 100) * 0.1}" /> VND</td>
+                                            </tr>
+                                            <tr class="shop-Cart-totalprice">
+                                                <th>Total :</th>
+                                                <td> <fmt:formatNumber type = "number" maxIntegerDigits = "10" value = "${sessionScope.total - (sessionScope.total * coupon.discountPercent / 100) + ((sessionScope.total * coupon.discountPercent / 100) * 0.1)}" /> VND</td>
+                                            </tr> 
+                                            </c:if>                                                                                                                                                                     
                                         </tbody>
                                     </table>
                                     <c:if test="${requestScope.error != null}" >

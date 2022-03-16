@@ -11,8 +11,7 @@ import com.shop.dao.CouponDAO;
 import com.shop.model.Coupon;
 import com.shop.utils.DBConnection;
 
-public class CouponDAOImpl implements CouponDAO 
-{
+public class CouponDAOImpl implements CouponDAO {
 	private Connection con;
 	private PreparedStatement ps;
 	private ResultSet rs;
@@ -20,8 +19,7 @@ public class CouponDAOImpl implements CouponDAO
 	@Override
 	public List<Coupon> getListCoupon(int index) throws SQLException {
 		String sql = "SELECT ROW_NUMBER() over (order by CouponID) as stt, * FROM Coupon \r\n"
-				+ "				ORDER BY CouponID\r\n"
-				+ "				OFFSET ?  ROWS FETCH NEXT 5 ROWS ONLY";
+				+ "				ORDER BY CouponID\r\n" + "	OFFSET ?  ROWS FETCH NEXT 5 ROWS ONLY";
 		Coupon ca = null;
 		List<Coupon> lsCa = new ArrayList<Coupon>();
 		try {
@@ -52,7 +50,7 @@ public class CouponDAOImpl implements CouponDAO
 			if (con != null) {
 				con.close();
 			}
-		}// TODO Auto-generated method stub
+		} // TODO Auto-generated method stub
 		return lsCa;
 	}
 
@@ -64,11 +62,11 @@ public class CouponDAOImpl implements CouponDAO
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, coupon.getCouponId());
-			ps.setString(2,coupon.getDiscountDesc());
+			ps.setString(2, coupon.getDiscountDesc());
 			ps.setInt(3, coupon.getDiscountPercent());
 			ps.setInt(4, coupon.getQuantity());
-			row= ps.executeUpdate();
-			
+			row = ps.executeUpdate();
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -83,14 +81,13 @@ public class CouponDAOImpl implements CouponDAO
 				con.close();
 			}
 		}
-		return row>0;
-		
+		return row > 0;
+
 	}
 
 	@Override
 	public int countCoupon() throws SQLException {
-		String sql = "SELECT COUNT(*) \r\n"
-				+ "FROM Coupon";
+		String sql = "SELECT COUNT(*) \r\n" + "FROM Coupon";
 		int count = 0;
 		try {
 			con = DBConnection.getInstance().getConnection();
@@ -114,25 +111,24 @@ public class CouponDAOImpl implements CouponDAO
 			}
 		}
 		return count;
-		
+
 	}
 
 	@Override
 	public boolean updateCoupon(Coupon coupon) throws SQLException {
-		String sql = "UPDATE Coupon\r\n"
-				+ "SET CouponDesc=?,DiscountPercent=?,Quantity=?\r\n"
+		String sql = "UPDATE Coupon\r\n" + "SET CouponDesc=?,DiscountPercent=?,Quantity=?\r\n"
 				+ "WHERE CouponID like ?";
 		int row = 0;
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);
-		
-			ps.setString(1,coupon.getDiscountDesc());
+
+			ps.setString(1, coupon.getDiscountDesc());
 			ps.setInt(2, coupon.getDiscountPercent());
 			ps.setInt(3, coupon.getQuantity());
 			ps.setString(4, coupon.getCouponId());
-			row= ps.executeUpdate();
-			
+			row = ps.executeUpdate();
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -147,22 +143,20 @@ public class CouponDAOImpl implements CouponDAO
 				con.close();
 			}
 		}
-		return row>0;
-		
+		return row > 0;
+
 	}
 
 	@Override
 	public boolean deleteCoupon(String couponID) throws SQLException {
-		String sql = "\r\n"
-				+ "DELETE FROM Coupon\r\n"
-				+ "WHERE CouponID like ?";
+		String sql = "\r\n" + "DELETE FROM Coupon\r\n" + "WHERE CouponID like ?";
 		int row = 0;
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, couponID);
-			row= ps.executeUpdate();
-			
+			row = ps.executeUpdate();
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -177,14 +171,13 @@ public class CouponDAOImpl implements CouponDAO
 				con.close();
 			}
 		}
-		return row>0;
-		
+		return row > 0;
+
 	}
 
+	@Override
 	public Coupon getCouponbyID(String code) throws SQLException {
-		String sql = "SELECT *\r\n"
-				+ "FROM Coupon\r\n"
-				+ "WHERE CouponID like ?";
+		String sql = "SELECT *\r\n" + "FROM Coupon\r\n" + "WHERE CouponID LIKE ? AND Quantity > 0";
 		Coupon ca = null;
 		try {
 			con = DBConnection.getInstance().getConnection();
@@ -214,6 +207,5 @@ public class CouponDAOImpl implements CouponDAO
 		}
 		return ca;
 	}
-
 
 }
