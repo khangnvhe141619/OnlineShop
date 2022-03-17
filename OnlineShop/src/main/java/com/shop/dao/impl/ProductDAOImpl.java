@@ -20,47 +20,7 @@ public class ProductDAOImpl implements ProductDAO {
 	private PreparedStatement ps;
 	private ResultSet rs;
 
-	@Override
-	public Product getProductById(int id) throws SQLException {
-		String sql = "SELECT * \r\n" + "FROM Product\r\n" + "WHERE ProductID = ?";
-		Product product = null;
-		try {
-			con = DBConnection.getInstance().getConnection();
-			ps = con.prepareStatement(sql);
-			ps.setInt(1, id);
-			rs = ps.executeQuery();
-			if (rs.next()) {
-				product = new Product();
-				product.setProductID(rs.getInt("ProductID"));
-				product.setCategoryId(rs.getInt("CategoryId"));
-				product.setProductName(rs.getString("ProductName"));
-				product.setImage(rs.getString("Image"));
-				product.setDescription(rs.getString("Description"));
-				product.setCreatedDate(rs.getTimestamp("CreatedDate").toLocalDateTime());
-				product.setIssuingCompany(rs.getString("IssuingCompany"));
-				product.setPublicationDate(rs.getTimestamp("PublicationDate").toLocalDateTime());
-				product.setCoverType(rs.getInt("CoverTypeId"));
-				product.setPublishingCompany(rs.getString("PublishingCompany"));
-				product.setQuantity(rs.getInt("Quantity"));
-				product.setPrice(rs.getDouble("Price"));
-				product.setNumberPage(rs.getInt("NumberPage"));
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			if (rs != null) {
-				rs.close();
-			}
-			if (ps != null) {
-				ps.close();
-			}
-			if (con != null) {
-				con.close();
-			}
-		}
-		return product;
-	}
+	
 
 	@Override
 	public boolean insertProduct(Product product) throws SQLException {
