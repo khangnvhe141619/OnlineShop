@@ -19,7 +19,6 @@ public class Coupon {
 
     public Coupon() {
     }
-
    
 
 	public Coupon(String discountDesc, int discountPercent, int quantity) {

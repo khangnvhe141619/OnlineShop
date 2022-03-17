@@ -50,12 +50,12 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Email .</h4>
+                        <h4 class="page-title"></h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
-                            <li><a href="#">Dashboard</a></li>
-                            <li class="active">Posts</li>
+                            <li><a href="<%=request.getContextPath()%>/aHomeController">Dashboard</a></li>
+                            <li class="active">Blog</li>
                         </ol>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -113,7 +113,12 @@
                                                 <tr>                                                	
                                                     <td>${post.postId}</td>
                                                     <td class="max-texts"><a href=""></a>${post.title}</td>
+                                                    <c:if test="${post.shortDesc.length() > 50}">
+                                                    <td class="max-texts">${post.shortDesc.substring(0, 40)}</td>
+                                                    </c:if>
+                                                    <c:if test="${post.shortDesc.length() < 50}">
                                                     <td class="max-texts">${post.shortDesc}</td>
+                                                    </c:if>
                                                     
                                                     <td class="">${post.createdDate.format( DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))}</td>
                                                     <td class="">

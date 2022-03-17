@@ -26,7 +26,7 @@ public class AddCategoryController extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
+//1233
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -45,10 +45,10 @@ public class AddCategoryController extends HttpServlet {
 			try {
 				Boolean kq = ca.insertCategory(category);
 				if(kq==true) {
-					request.setAttribute("mess", "add successfull");
+					request.setAttribute("mess", "Add Successfully!");
 					request.getRequestDispatcher("/CategoryController?index=1").forward(request, response);
 				}else {
-					request.setAttribute("mess", "add False");
+					request.setAttribute("mess", "Add Failed!");
 					request.getRequestDispatcher("/CategoryController?index=1").forward(request, response);
 				}
 			} catch (SQLException e) {

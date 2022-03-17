@@ -33,7 +33,7 @@ public class SearchPostController extends HttpServlet {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+//1233
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -63,8 +63,7 @@ public class SearchPostController extends HttpServlet {
 			option = "tag";
 			break;
 		case "pChoose":
-			request.setAttribute("error", true);
-			request.getRequestDispatcher("views/Blog.jsp").forward(request, response);
+			request.getRequestDispatcher("/listPostController").forward(request, response);
 			return;
 		}
 		String index = request.getParameter("page");
@@ -111,7 +110,7 @@ public class SearchPostController extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		if (request.getParameter("search") == null) {
-			request.getRequestDispatcher("views/Blog.jsp").forward(request, response);
+			request.getRequestDispatcher("/listPostController").forward(request, response);
 
 		} else {
 			String search = request.getParameter("search");
@@ -135,7 +134,7 @@ public class SearchPostController extends HttpServlet {
 				break;
 			case "pChoose":
 				request.setAttribute("error", true);
-				request.getRequestDispatcher("views/Blog.jsp").forward(request, response);
+				request.getRequestDispatcher("/listPostController").forward(request, response);
 				return;
 			}
 			try {

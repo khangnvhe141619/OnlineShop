@@ -27,7 +27,7 @@ public class Validation {
 	}
 
 	public static void main(String[] args) {
-		String s = "2022-01-25 10:15:12";
+		String s = "2022-01-25 00:00:00";
 		LocalDateTime ld = Validation.getLocalDateTime(s);
 		System.out.println(ld);
 		String sd = Validation.getStringFromLocalDateTime(ld);

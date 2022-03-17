@@ -51,7 +51,7 @@
                         <h4 class="page-title">Email .</h4> </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12"> 
                         <ol class="breadcrumb">
-                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="<%=request.getContextPath()%>/ListProdtuct">Dashboard</a></li>
                             <li><a href="#">Account</a></li>
                             <li class="active">Settings</li>
                         </ol>
@@ -71,18 +71,23 @@
                                         <!-- EMAIL HIDDEN -->
                                         <input type="hidden" name="email" value="Email" />
                                         <!-- EMAIL HIDDEN -->
-
+                                        <div class="form-group">
+                                            <label for="exampleInputpwd1">Old Password</label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="ti-lock"></i></div>
+                                                <input type="password" name="oldPassword" id="Password" class="form-control" id="exampleInputpwd1" placeholder="Enter Password" required=""> </div>
+                                        </div>
                                         <div class="form-group">
                                             <label for="exampleInputpwd1">New Password</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="ti-lock"></i></div>
-                                                <input type="password" name="password" id="Password" class="form-control" id="exampleInputpwd1" placeholder="Enter Password" required=""> </div>
+                                                <input type="password" name="newPassword" id="Password" class="form-control" id="exampleInputpwd1" placeholder="Enter Password" required=""> </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputpwd2">Confirm Password</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="ti-lock"></i></div>
-                                                <input type="password" name="password2" id="ConfirmPassword" class="form-control" id="exampleInputpwd2" placeholder="Confirm Password" required=""> </div>
+                                                <input type="password" name="newPassword2" id="ConfirmPassword" class="form-control" id="exampleInputpwd2" placeholder="Confirm Password" required=""> </div>
                                                 <div id="msg" style="padding-left: 10px;"></div>
                                         </div>
                                         <button type="submit" name="submit" class="btn btn-success waves-effect waves-light m-r-10">Submit</button>

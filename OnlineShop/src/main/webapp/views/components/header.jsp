@@ -53,6 +53,11 @@
 								<li><a href="<%=request.getContextPath()%>/changePassword">Change
 										Password</a></li>
 								<li><a href="<%=request.getContextPath()%>/viewOrdered"> My purchase order</a></li>
+								<c:if test="${sessionScope.role != 2}">
+								<li><a
+									href="<%=request.getContextPath()%>/aHomeController">Management Page
+										</a></li>
+								</c:if>
 								<li><a
 									href="<%=request.getContextPath()%>/logoutController">Sign
 										Out</a></li>

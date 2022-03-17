@@ -50,12 +50,12 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Email .</h4>
+                        <h4 class="page-title"></h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
-                            <li><a href="index.html">Dashboard</a></li>
-                            <li class="active">Posts</li>
+                            <li><a href="<%=request.getContextPath()%>/aHomeController">Dashboard</a></li>
+                            <li class="active">Order</li>
                         </ol>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -67,7 +67,7 @@
                         <div class="white-box">
                             <!-- row -->
                             <div class="row">
-                                <h4>List Of Orders (<b style="color: orange;">số lượng</b>)
+                                <h4>List Of Orders
                                 </h4>                 
                                 <div class="col-lg-12 col-md-9 col-sm-12 col-xs-12 mail_listing">
                                     <div class="inbox-center">
@@ -91,10 +91,17 @@
                                                     <td class="max-texts"> ${list.customer} </td>
                                                     <td class="max-texts"> ${list.orderDate} </td>
                                                     <td class="max-texts"> <fmt:formatNumber type = "number" maxIntegerDigits = "10" value = "${list.total}" /> </td>
-                                                    <td class="max-texts"> ${list.status} </td>
+                                                    <c:if test="${list.status=='Cancel'}">
+                                                     <td class="max-texts" style="color: red;"> ${list.status} </td>
+                                                    </c:if>
+                                                    <c:if test="${list.status=='Pending'}">
+                                                     <td class="max-texts" style="color: orange;"> ${list.status} </td>
+                                                    </c:if>
+                                                   <c:if test="${list.status=='Completed'}">
+                                                     <td class="max-texts" style="color: green;"> ${list.status} </td>
+                                                    </c:if>
                                                     <td class="">
-                                                         <a href="<%=request.getContextPath()%>/updateOrderAdminController?stt=${list.stt}"><i class="fa fa-edit" aria-hidden="true"></i></a> 
-                                                         <a style="margin-left: 5%;" href="" onclick=""><i style="color: red;" class="fa fa-trash" aria-hidden="true"></i> </a>
+                                                         <a style="margin-left: 15%;" href="<%=request.getContextPath()%>/updateOrderAdminController?stt=${list.stt}"><i class="fa fa-edit" aria-hidden="true"></i></a> 
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -102,7 +109,7 @@
                                         </table>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-7 m-t-20"> Showing 1 </div>
+                                        <div class="col-xs-7 m-t-20"> </div>
                                         <div class="col-xs-5 m-t-20">
                                             <div class="btn-group pull-right">
                                                 <button type="button" class="btn btn-default waves-effect"><i

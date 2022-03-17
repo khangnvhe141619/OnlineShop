@@ -63,12 +63,12 @@
 			<div class="container-fluid">
 				<div class="row bg-title">
 					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-						<h4 class="page-title">Email .</h4>
+						<h4 class="page-title"></h4>
 					</div>
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 						<ol class="breadcrumb">
-							<li><a href="index.html">Dashboard</a></li>
-							<li class="active">Posts</li>
+							<li><a href="<%=request.getContextPath()%>/aHomeController">Dashboard</a></li>
+							<li class="active">Coupon</li>
 						</ol>
 					</div>
 					<!-- /.col-lg-12 -->
@@ -81,7 +81,7 @@
 							<!-- row -->
 							<div class="row">
 								<h4>
-									List Of Products (<b style="color: orange;">số lượng
+									List Of Coupons (<b style="color: orange;">
 										${count }</b>)
 								</h4>
 

@@ -17,17 +17,17 @@ import com.shop.model.Account;
  * Servlet implementation class ListUserController
  */
 @WebServlet("/listUserController")
-public class ListUserController extends HttpServlet {
+public class AListUserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListUserController() {
+    public AListUserController() {
         super();
         // TODO Auto-generated constructor stub
     }
-
+//123
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -46,6 +46,7 @@ public class ListUserController extends HttpServlet {
 		            endPage++;
 		        }
 				List<Account> list = dao.getListAccountOfAdmin(index);
+				request.setAttribute("count", count);
 				request.setAttribute("index", index);
 				request.setAttribute("list", list);
 				request.setAttribute("endPage", endPage);
@@ -80,6 +81,7 @@ public class ListUserController extends HttpServlet {
 		        	index = endPage;
 		        }
 		        List<Account> list = dao.getListAccountOfAdmin(index);
+		        request.setAttribute("count", count);
 				request.setAttribute("index", index);
 				request.setAttribute("list", list);
 				request.setAttribute("endPage", endPage);

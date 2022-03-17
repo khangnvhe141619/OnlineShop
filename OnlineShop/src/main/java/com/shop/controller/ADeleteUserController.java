@@ -9,19 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.shop.dao.impl.ProductDAOImpl;
+import com.shop.dao.AccountDAO;
+import com.shop.dao.impl.AccountDAOImpl;
 
 /**
- * Servlet implementation class DeleteController 12345
+ * Servlet implementation class DeleteUserController
  */
-@WebServlet("/DeleteController")
-public class DeleteProductController extends HttpServlet {
+@WebServlet("/DeleteUserController")
+public class ADeleteUserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteProductController() {
+    public ADeleteUserController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,30 +31,29 @@ public class DeleteProductController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ProductDAOImpl pd = new ProductDAOImpl();		
-		String pageIn=request.getParameter("index");
-		int index= Integer.parseInt(pageIn);
-		boolean kq;
+		int id = Integer.parseInt(request.getParameter("id"));
+		AccountDAO dao = new AccountDAOImpl();
 		try {
-			kq = pd.deleteProduct(index);
-			if(kq==true) {
-				request.setAttribute("mess", "Delete successfull");
-				request.getRequestDispatcher("/ListProdtuct?index=1").forward(request, response);
-			}else {
-				request.setAttribute("mess", "Delete False");
-				request.getRequestDispatcher("/ListProdtuct?index=1").forward(request, response);
+			boolean check = dao.getDeleteAccount(id);
+			if(check) {
+				if(check == true) {
+					System.out.println("true");
+					response.sendRedirect("listUserController");
+				} else {
+					System.out.println("false");
+				}
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

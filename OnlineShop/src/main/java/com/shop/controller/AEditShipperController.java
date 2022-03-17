@@ -9,11 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.shop.dao.PostDAO;
 import com.shop.dao.ShipperDAO;
-import com.shop.dao.impl.PostDAOImpl;
 import com.shop.dao.impl.ShipperDAOImpl;
-import com.shop.model.Post;
 import com.shop.model.Shipper;
 import com.shop.utils.Validation;
 
@@ -23,7 +20,7 @@ import com.shop.utils.Validation;
 @WebServlet("/aEditShipperController")
 public class AEditShipperController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+//1233
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */

@@ -2,29 +2,29 @@ package com.shop.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import com.shop.dao.AccountDAO;
-import com.shop.dao.impl.AccountDAOImpl;
-import com.shop.model.Account;
+import com.shop.dao.PostDAO;
+import com.shop.dao.impl.PostDAOImpl;
+import com.shop.model.Post;
 
 /**
- * Servlet implementation class UserDetailController
+ * Servlet implementation class AHomeController
  */
-@WebServlet("/userDetailController")
-public class UserDetailController extends HttpServlet {
+@WebServlet("/aHomeController")
+public class AHomeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public UserDetailController() {
+	public AHomeController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -35,19 +35,15 @@ public class UserDetailController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		if (session.getAttribute("email") == null || session.getAttribute("account") == null) {
-			response.sendRedirect("loginController");
-		} else {
-			String accountID = request.getParameter("AcountID");
-			AccountDAO accountDAO = new AccountDAOImpl();
-			try {
-				Account acc = accountDAO.getInfoAccountID(accountID);
-				request.setAttribute("account", acc);
-				request.getRequestDispatcher("views/admin/A-User-detail.jsp").forward(request, response);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+		PostDAO postDAO = new PostDAOImpl();
+		List<Post> lst = new ArrayList<Post>();
+		try {
+			lst = postDAO.getTop5HotPost();
+			request.setAttribute("lstPost", lst);
+			request.getRequestDispatcher("views/admin/A-Home.jsp").forward(request, response);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

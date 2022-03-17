@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.shop.dao.SubscriberDAO;
-import com.shop.model.Shipper;
 import com.shop.model.Subscriber;
 import com.shop.utils.DBConnection;
 import com.shop.utils.Validation;

@@ -9,20 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.shop.dao.AccountDAO;
-import com.shop.dao.impl.AccountDAOImpl;
+import com.shop.dao.impl.ProductDAOImpl;
 
 /**
- * Servlet implementation class UnBlockUserController
+ * Servlet implementation class DeleteController 12345
  */
-@WebServlet("/unBlockUserController")
-public class UnBlockUserController extends HttpServlet {
+@WebServlet("/DeleteController")
+public class ADeleteProductController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UnBlockUserController() {
+    public ADeleteProductController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,21 +30,30 @@ public class UnBlockUserController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int accountID = Integer.parseInt(request.getParameter("accountID"));
+		ProductDAOImpl pd = new ProductDAOImpl();		
+		String pageIn=request.getParameter("index");
+		int index= Integer.parseInt(pageIn);
+		boolean kq;
 		try {
-			AccountDAO dao = new AccountDAOImpl();
-			dao.getUnBlockAccount(accountID);
-			response.sendRedirect("listUserBlockController");
+			kq = pd.deleteProduct(index);
+			if(kq==true) {
+				request.setAttribute("mess", "Delete successfull");
+				request.getRequestDispatcher("/ListProdtuct?index=1").forward(request, response);
+			}else {
+				request.setAttribute("mess", "Delete False");
+				request.getRequestDispatcher("/ListProdtuct?index=1").forward(request, response);
+			}
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

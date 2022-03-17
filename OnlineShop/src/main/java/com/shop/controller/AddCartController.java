@@ -17,10 +17,10 @@ import com.shop.model.Item;
 import com.shop.model.Product;
 
 @WebServlet("/addCart")
-public class AddCarController extends HttpServlet {
+public class AddCartController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public AddCarController() {
+	public AddCartController() {
 		super();
 	}
 

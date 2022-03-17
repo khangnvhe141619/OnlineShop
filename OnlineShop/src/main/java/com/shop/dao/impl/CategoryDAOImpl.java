@@ -11,7 +11,6 @@ import com.shop.dao.CategoryDAO;
 import com.shop.model.Category;
 import com.shop.model.Product;
 import com.shop.utils.DBConnection;
-import com.shop.utils.Validation;
 
 public class CategoryDAOImpl implements CategoryDAO {
 	private Connection con;
@@ -193,7 +192,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 		return lsCa;
 	}
 	public int countCa() throws SQLException {
-		String sql = "SELECT count(*) FROM Category \r\n"
+		String sql = "SELECT COUNT(*) FROM Category \r\n"
 				+ "";
 		int count = 0;
 		try {

@@ -62,13 +62,13 @@
 			<div class="container-fluid">
 				<div class="row bg-title">
 					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-						<h4 class="page-title">Email .</h4>
+						<h4 class="page-title"></h4>
 					</div>
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 						<ol class="breadcrumb">
-							<li><a href="#">Dashboard</a></li>
-							<li><a href="#">Administrators</a></li>
-							<li class="active">New</li>
+							<li><a href="<%=request.getContextPath()%>/aHomeController">Dashboard</a></li>
+							<li><a href="#">Order</a></li>
+							<li class="active">Edit order</li>
 						</ol>
 					</div>
 					<!-- /.col-lg-12 -->
@@ -136,6 +136,7 @@
 													<select name="status" id="" class="form-control">
 														<option value="1">Pending</option>
 														<option value="2">Completed</option>
+														<option value="3">Cancel</option>
 													</select>
 												</div>
 											</div>
@@ -213,7 +214,6 @@
 			</div>
 			<!-- /.container-fluid -->
             <jsp:include page="components/A-Footer.jsp"></jsp:include>
-				Admin </footer>
 		</div>
 		<!-- /#page-wrapper -->
 	</div>

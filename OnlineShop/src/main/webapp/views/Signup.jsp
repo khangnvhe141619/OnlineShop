@@ -40,18 +40,18 @@
 							</c:if>
 							<div class="form-group">
 								<label for="name"><i class="zmdi zmdi-account-circle"></i></label>
-								<input type="text" name="username" required="true" id="name"
+								<input type="text" name="username" required="required" id="name"
 									placeholder="Username" value="${param.username}" />
 							</div>
 							<div class="form-group">
 								<label for="pass"><i class="zmdi zmdi-lock"></i></label> <input
-									type="password" name="pass" required="true" id="pass"
+									type="password" name="pass" required="required" id="pass"
 									placeholder="Password" value="${param.pass}" />
 							</div>
 							<div style="color: red;">${requestScope.error}</div>
 							<div class="form-group">
 								<label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
-								<input type="password" name="repass" required="true"
+								<input type="password" name="repass" required="required"
 									id="re_password" placeholder="Repeat your password"
 									value="${param.repass}">
 							</div>

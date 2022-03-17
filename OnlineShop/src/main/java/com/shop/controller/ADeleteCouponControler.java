@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.shop.dao.impl.CouponDAOImpl;
-import com.shop.dao.impl.ProductDAOImpl;
-import com.shop.model.Coupon;
 
 /**
  * Servlet implementation class ADeleteCouponControler

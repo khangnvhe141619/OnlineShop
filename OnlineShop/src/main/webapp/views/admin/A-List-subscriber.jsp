@@ -51,11 +51,11 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Email .</h4>
+                        <h4 class="page-title"></h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
-                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="<%=request.getContextPath()%>/aHomeController">Dashboard</a></li>
                             <li class="active">Subscribers</li>
                         </ol>
                     </div>
@@ -65,10 +65,11 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title m-b-0">Subscribers (${totalSubscribe})</h3>
+                            <h3 class="box-title m-b-0">Subscribers (<b style="color: orange;">
+										${totalSubscribe }</b>)</h3>
                                                       
                             <div class="table-responsive">
-                                <table id="example23" class="display nowrap" cellspacing="0" width="100%">
+                                <table class="table table-hover">
                                     <thead>
                                         <tr>
                                             <th style="width: 10%;">No.</th>

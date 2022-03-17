@@ -16,13 +16,13 @@ import com.shop.model.Product;
  * Servlet implementation class ListProdtuct
  */
 @WebServlet("/ListProdtuct")
-public class ListProdtuct extends HttpServlet {
+public class AListProdtuct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ListProdtuct() {
+	public AListProdtuct() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -48,6 +48,7 @@ public class ListProdtuct extends HttpServlet {
 
 			}
 			List<Product> listP = pd.getListProduct(index);
+			request.setAttribute("count", count);
 			request.setAttribute("listp", listP);
 			request.setAttribute("endpage", endPage);
 			request.setAttribute("tag", index);
@@ -76,6 +77,7 @@ public class ListProdtuct extends HttpServlet {
 
 			}
 			List<Product> listP = pd.getListProduct(index);
+			request.setAttribute("count", count);
 			request.setAttribute("listp", listP);
 			request.setAttribute("endpage", endPage);
 			request.setAttribute("tag", index);

@@ -49,12 +49,12 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Email .</h4>
+                        <h4 class="page-title"></h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
-                            <li><a href="index.html">Dashboard</a></li>
-                            <li class="active">Posts</li>
+                            <li><a href="<%=request.getContextPath()%>/aHomeController">Dashboard</a></li>
+                            <li class="active">Category</li>
                         </ol>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -66,7 +66,7 @@
                         <div class="white-box">
                             <!-- row -->
                             <div class="row">
-                                <h4>List Of Categories (<b style="color: orange;">so luong</b>)
+                                <h4>List Of Categories (<b style="color: orange;">${count }</b>)
                                 </h4>               
                                 <div class="col-lg-12 col-md-9 col-sm-12 col-xs-12 mail_listing">
                                     <div class="inbox-center">
@@ -96,7 +96,7 @@
                                         </table>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-7 m-t-20"> Showing <a>${tag }</a> - so trang <a>${endpage }</a> </div>
+                                        <div class="col-xs-7 m-t-20"> Showing <a>${tag }</a> - <a>${endpage }</a> </div>
                                            <div class="col-xs-5 m-t-20">
                                             <div class="btn-group pull-right">
                                             <form class="form" role="form" action="<%=request.getContextPath()%>/CategoryController?index=${tag-1==0?1:tag-1}" method="post">

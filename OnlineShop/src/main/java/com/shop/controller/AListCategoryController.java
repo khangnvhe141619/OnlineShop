@@ -16,31 +16,33 @@ import com.shop.model.Category;
  * Servlet implementation class CategoryController 12333
  */
 @WebServlet("/CategoryController")
-public class CategoryController extends HttpServlet {
+public class AListCategoryController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CategoryController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public AListCategoryController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
-		
+
 			CategoryDAOImpl ct = new CategoryDAOImpl();
-			int index= 1;
+			int index = 1;
 			int count = ct.countCa();
 			int pageSize = 3;
 			int endPage = 0;
-			endPage=count/pageSize;
-			if(count%pageSize!=0) {
-				endPage++;	
+			endPage = count / pageSize;
+			if (count % pageSize != 0) {
+				endPage++;
 			}
 			List<Category> lsct = ct.getListCategory(index);
 			request.setAttribute("lsct", lsct);
@@ -54,24 +56,26 @@ public class CategoryController extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
-			
+
 			CategoryDAOImpl ct = new CategoryDAOImpl();
 
-			String pageIn=request.getParameter("index");
-			if(pageIn==null) {
-				pageIn="1";
+			String pageIn = request.getParameter("index");
+			if (pageIn == null) {
+				pageIn = "1";
 			}
-			int index= Integer.parseInt(pageIn);
+			int index = Integer.parseInt(pageIn);
 			int count = ct.countCa();
 			int pageSize = 3;
 			int endPage = 0;
-			endPage=count/pageSize;
-			if(count%pageSize!=0) {
-				endPage++;	
+			endPage = count / pageSize;
+			if (count % pageSize != 0) {
+				endPage++;
 			}
 			List<Category> lsct = ct.getListCategory(index);
 			request.setAttribute("lsct", lsct);

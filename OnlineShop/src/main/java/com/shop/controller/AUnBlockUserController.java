@@ -2,26 +2,27 @@ package com.shop.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.shop.dao.DepartmentDAO;
-import com.shop.dao.impl.DepartmentDAOImpl;
 
+import com.shop.dao.AccountDAO;
+import com.shop.dao.impl.AccountDAOImpl;
 
 /**
- * Servlet implementation class DeleteController
+ * Servlet implementation class UnBlockUserController
  */
-@WebServlet("/DeleteDepartmentController")
-public class DeleteDepartmentController extends HttpServlet {
+@WebServlet("/unBlockUserController")
+public class AUnBlockUserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteDepartmentController() {
+    public AUnBlockUserController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,31 +31,21 @@ public class DeleteDepartmentController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		System.out.println(id);
-		DepartmentDAO dao = new DepartmentDAOImpl();
+		int accountID = Integer.parseInt(request.getParameter("accountID"));
 		try {
-			boolean check = dao.getDeleteDepartments(id);
-			if(check) {
-				System.out.println(id);
-				if(check == true) {
-					System.out.println("true");
-					request.getRequestDispatcher("listDepartmentController").forward(request, response);
-				} else {
-					System.out.println("false");
-				}
-			}
+			AccountDAO dao = new AccountDAOImpl();
+			dao.getUnBlockAccount(accountID);
+			response.sendRedirect("listUserBlockController");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
+//1233
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub why
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

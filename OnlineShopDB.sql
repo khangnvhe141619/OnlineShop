@@ -303,6 +303,7 @@ INSERT INTO [dbo].[WishList] ([AccountId], [ProductId]) VALUES (2, 2)
 GO
 INSERT [dbo].[OrderStatus] ([Description]) VALUES (N'Pending')
 INSERT [dbo].[OrderStatus] ([Description]) VALUES (N'Completed')
+INSERT [dbo].[OrderStatus] ([Description]) VALUES (N'Cancel')
 GO
 INSERT [dbo].[Shipper] ([ShipperName], [Email], [Phone]) VALUES ('Nguyen Van An','an@gmail.com', '0111111111')
 INSERT [dbo].[Shipper] ([ShipperName], [Email], [Phone]) VALUES ('Phan Van Be','bgio@gmail.com', '0111112222')

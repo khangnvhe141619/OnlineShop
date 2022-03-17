@@ -4,13 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.shop.dao.ContactDAO;
-import com.shop.model.Category;
 import com.shop.model.Contact;
-import com.shop.model.Product;
 import com.shop.utils.DBConnection;
 
 public class ContactDAOImpl implements ContactDAO {

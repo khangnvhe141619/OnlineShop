@@ -19,13 +19,13 @@ import com.shop.model.Account;
  * Servlet implementation class ListUserBlockController
  */
 @WebServlet("/listUserBlockController")
-public class ListUserBlockController extends HttpServlet {
+public class AListBlockedUserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListUserBlockController() {
+    public AListBlockedUserController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -48,6 +48,7 @@ public class ListUserBlockController extends HttpServlet {
 		            endPage++;
 		        }
 				List<Account> list = dao.getListAccountOfAdminBlock(index);
+				request.setAttribute("count", count);
 				request.setAttribute("index", index);
 				request.setAttribute("list", list);
 				request.setAttribute("endPage", endPage);
@@ -82,6 +83,7 @@ public class ListUserBlockController extends HttpServlet {
 		        	index = endPage;
 		        }
 				List<Account> list = dao.getListAccountOfAdminBlock(index);
+				request.setAttribute("count", count);
 				request.setAttribute("index", index);
 				request.setAttribute("list", list);
 				request.setAttribute("endPage", endPage);

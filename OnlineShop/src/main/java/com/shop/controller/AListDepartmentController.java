@@ -14,10 +14,10 @@ import com.shop.dao.impl.DepartmentDAOImpl;
 import com.shop.model.Department;
 
 @WebServlet("/listDepartmentController")
-public class ListDepartmentController extends HttpServlet {
+public class AListDepartmentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   //ShowList Department     
-    public ListDepartmentController() {
+    public AListDepartmentController() {
         super();
     }
 
@@ -36,6 +36,7 @@ public class ListDepartmentController extends HttpServlet {
 		            endPage++;
 		        }
 				List<Department> list = dao.getListDepartments(index);
+				request.setAttribute("count", count);
 				request.setAttribute("index", index);
 				request.setAttribute("list", list);
 				request.setAttribute("endPage", endPage);
@@ -67,6 +68,7 @@ public class ListDepartmentController extends HttpServlet {
 		        	index = endPage;
 		        }
 				List<Department> list = dao.getListDepartments(index);
+				request.setAttribute("count", count);
 				request.setAttribute("index", index);
 				request.setAttribute("list", list);
 				request.setAttribute("endPage", endPage);
