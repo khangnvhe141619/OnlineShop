@@ -72,32 +72,7 @@ public class AccountDAOImpl implements AccountDAO {
 		return check;
 	}
 
-	@Override
-	public boolean getInsertAccount(Account account) throws SQLException {
-		boolean check = false;
-		try {
-			con = DBConnection.getInstance().getConnection();
-			pre = con.prepareStatement(SQLCommand.INSERT_ACCOUNT);
-			pre.setString(1, account.getUsername());
-			pre.setString(2, account.getPassword());
-			pre.setString(3, account.getCreatedDate());
-			check = pre.executeUpdate() == 1;
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			if (rs != null) {
-				rs.close();
-			}
-			if (pre != null) {
-				pre.close();
-			}
-			if (con != null) {
-				con.close();
-			}
-		}
-		return check;
-	}
+	
 	
 	@Override
 	public List<Account> getListAccount() throws SQLException {
