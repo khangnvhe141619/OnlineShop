@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: Synv4
 Build-Jdk: 17
-=======
-Built-By: May
-Build-Jdk: 17.0.1
->>>>>>> 632dd9ee8aa3513766fed2b79bd155482e90a8b1
 Created-By: Maven Integration for Eclipse
 
