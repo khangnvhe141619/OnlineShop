@@ -88,9 +88,9 @@ public class SQLCommand {
 	
 	public static final String GET_LIST_ACCOUNT = "with x as (select ROW_NUMBER() over (order by [AccountID]) as r,\r\n"
 			+ "AccountID, Username, Fullname, Email \r\n"
-			+ "from Account Where Active = 1)\r\n"
+			+ "from Account Where Active = 1 AND AccountID != ?)\r\n"
 			+ "select x.AccountID, x.Username, x.Fullname, x.Email\r\n"
-			+ "from x where r between ?*6-5 and ?*6";
+			+ "from x where r between ?*6-5 and ?*6\r\n";
 	
 	public static final String GET_LIST_ACCOUNT_BLOCK = "with x as (select ROW_NUMBER() over (order by [AccountID]) as r,\r\n"
 			+ "AccountID, Username, Fullname, Email \r\n"
@@ -98,7 +98,7 @@ public class SQLCommand {
 			+ "select x.AccountID, x.Username, x.Fullname, x.Email\r\n"
 			+ "from x where r between ?*6-5 and ?*6";
 	
-	public final static String GET_COUNT_ACCOUNT = "SELECT COUNT (*) FROM Account WHERE Active = 1";
+	public final static String GET_COUNT_ACCOUNT = "SELECT COUNT (*) FROM Account WHERE Active = 1 AND AccountID != ?";
 	
 	public final static String GET_COUNT_ACCOUNT_BLOCK = "SELECT COUNT (*) FROM Account WHERE Active = 0";
 	

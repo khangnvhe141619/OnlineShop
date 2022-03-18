@@ -26,11 +26,11 @@ public interface AccountDAO {
 	
 	Account getCheckPassword(int accountID, String password) throws SQLException;
 	
-	List<Account> getListAccountOfAdmin(int index) throws SQLException;
+	List<Account> getListAccountOfAdmin(int index, int accountID) throws SQLException;
 	
 	List<Account> getListAccountOfAdminBlock(int index) throws SQLException;
 	
-	int getCountAccounts() throws SQLException;
+	int getCountAccounts(int accountID) throws SQLException;
 	
 	int getCountAccountsBlock() throws SQLException;
 	
