@@ -38,9 +38,6 @@ public class AListOrderController extends HttpServlet {
 			OrderDAO dao = new OrderDAOImpl();
 			try {
 				List<OrderAdmin> list = dao.getListAllOrders();
-				for (OrderAdmin product : list) {
-					System.out.println(product.toString());
-				}
 				request.setAttribute("list", list);
 				request.getRequestDispatcher("views/admin/A-List-order.jsp").forward(request, response);
 			} catch (SQLException e) {

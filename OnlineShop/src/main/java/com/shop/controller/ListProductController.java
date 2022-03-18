@@ -43,7 +43,7 @@ public class ListProductController extends HttpServlet {
 //			System.out.println(cate);
 //			int cateid = Integer.parseInt(cate);
 			String pageIn=request.getParameter("index");
-			if(pageIn==null) {
+			if(pageIn==null || pageIn.equalsIgnoreCase("-1")) {
 				pageIn="1";
 			}
 			int index= Integer.parseInt(pageIn);
@@ -53,7 +53,6 @@ public class ListProductController extends HttpServlet {
 			endPage=count/pageSize;
 			if(count%pageSize!=0) {
 				endPage++;
-				
 			}
 			List<Product> listP= pd.getListAllProduct(index);
 			List<Category> lsct = ct.getListAllCategory();
@@ -61,7 +60,7 @@ public class ListProductController extends HttpServlet {
 			request.setAttribute("lsct", lsct);
 			request.setAttribute("listp", listP);
 			request.setAttribute("endpage", endPage);
-//			request.setAttribute("tag", index);
+			request.setAttribute("tag", index);
 			request.getRequestDispatcher("views/Shop.jsp").forward(request, response);
 		} catch (Exception e) {
 			System.out.println("loi");

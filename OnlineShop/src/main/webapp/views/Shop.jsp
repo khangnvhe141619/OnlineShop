@@ -141,7 +141,7 @@
                                    <c:forEach begin="1" end="${endpage }" var="i">
                                    		<a class="${tag == i ? "active" :"" }"  href="<%=request.getContextPath()%>/search?index=${i}&&category=${cate}&&name=${name}&&to=${to}&&end=${end}" >${i }</a>
                                    </c:forEach>
-                                    <a href="<%=request.getContextPath()%>/search?index=${tag+1>endPage?tag:tag+1}&&category=${cate}&&name=${name}&&to=${to}&&end=${end}"><i class="fa fa-angle-right"></i></a>
+                                    <a href="<%=request.getContextPath()%>/search?index=${tag+1>endpage?tag:tag+1}&&category=${cate}&&name=${name}&&to=${to}&&end=${end}"><i class="fa fa-angle-right"></i></a>
                                 </div>
                             </div>
                         </div>

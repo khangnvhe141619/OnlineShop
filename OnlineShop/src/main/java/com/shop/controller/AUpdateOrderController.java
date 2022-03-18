@@ -36,6 +36,7 @@ public class AUpdateOrderController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int stt = Integer.parseInt(request.getParameter("stt"));
+		String shipper = request.getParameter("shipper");
 		HttpSession session = request.getSession();
 		if(session.getAttribute("account") != null) {
 			OrderDAO dao = new OrderDAOImpl();
@@ -45,6 +46,7 @@ public class AUpdateOrderController extends HttpServlet {
 				List<Shipper> list2 = dao2.getListShipper();
 				request.setAttribute("list", list);
 				request.setAttribute("list2", list2);
+				request.setAttribute("shipper", shipper);
 				request.getRequestDispatcher("views/admin/A-Edit-order.jsp").forward(request, response);
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -60,9 +62,10 @@ public class AUpdateOrderController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int oid = Integer.parseInt(request.getParameter("oid"));
 		int status = Integer.parseInt(request.getParameter("status"));
+		int shipperID = Integer.parseInt(request.getParameter("shipper"));
 		try {
 			OrderDAO dao = new OrderDAOImpl();
-			dao.getUpdateOrder(status, oid);
+			dao.getUpdateOrder(status, oid, shipperID);
 			request.getRequestDispatcher("listOrderController").forward(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

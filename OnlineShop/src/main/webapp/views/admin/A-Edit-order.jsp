@@ -89,7 +89,7 @@
 												</div>
 												<select name="shipper" id="" class="form-control">
 													<c:forEach items="${list2}" var="list">
-														<option value="${list.shipperName}">${list.shipperName}</option>
+														<option ${list.shipperName == shipper?"selected":""} value="${list.shipperID}">${list.shipperName}</option>
 													</c:forEach>
 												</select>
 											</div>

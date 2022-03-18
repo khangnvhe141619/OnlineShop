@@ -71,7 +71,6 @@ public class SearchProductController extends HttpServlet {
 				endPage++;
 
 			}
-
 			List<Product> listP = pd.searchProduct(index, cateid, name, to, end);
 			List<Category> lsct = ct.getListAllCategory();
 			if (listP.isEmpty()) {

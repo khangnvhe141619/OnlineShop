@@ -101,7 +101,7 @@
                                                      <td class="max-texts" style="color: green;"> ${list.status} </td>
                                                     </c:if>
                                                     <td class="">
-                                                         <a style="margin-left: 15%;" href="<%=request.getContextPath()%>/updateOrderAdminController?stt=${list.stt}"><i class="fa fa-edit" aria-hidden="true"></i></a> 
+                                                         <a style="margin-left: 15%;" href="<%=request.getContextPath()%>/updateOrderAdminController?stt=${list.stt}&shipper=${list.shipper}"><i class="fa fa-edit" aria-hidden="true"></i></a> 
                                                     </td>
                                                 </tr>
                                             </tbody>

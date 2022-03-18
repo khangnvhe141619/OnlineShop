@@ -21,5 +21,5 @@ public interface OrderDAO {
 	
 	List<OrderAdmin> getListAllOrdersByStt(int stt) throws SQLException;
 	
-	boolean getUpdateOrder(int stt, int orderId) throws SQLException;
+	boolean getUpdateOrder(int stt, int orderId, int shipperID) throws SQLException;
 }

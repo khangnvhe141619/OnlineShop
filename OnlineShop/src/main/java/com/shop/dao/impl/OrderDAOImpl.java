@@ -225,13 +225,14 @@ public class OrderDAOImpl implements OrderDAO{
 	}
 	
 	@Override
-	public boolean getUpdateOrder(int stt, int orderId) throws SQLException {
+	public boolean getUpdateOrder(int stt, int orderId, int shipperID) throws SQLException {
 		boolean check = false;
 		try {
 			con = DBConnection.getInstance().getConnection();
 			pre = con.prepareStatement(SQLCommand.GET_UPDATE_ORDER);
 			pre.setInt(1, stt);
-			pre.setInt(2, orderId);
+			pre.setInt(2, shipperID);
+			pre.setInt(3, orderId);
 			check = pre.executeUpdate() == 1;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -252,6 +253,6 @@ public class OrderDAOImpl implements OrderDAO{
 	
 	public static void main(String[] args) throws SQLException {
 		OrderDAO pd = new OrderDAOImpl();
-		pd.getUpdateOrder(1, 1);
+		pd.getUpdateOrder(1, 1, 1);
 	}
 }
