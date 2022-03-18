@@ -1,6 +1,10 @@
 package com.shop.dao.impl;
 
 import java.sql.Connection;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -251,8 +255,15 @@ public class OrderDAOImpl implements OrderDAO{
 		return check;
 	}
 	
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException, ParseException {
 		OrderDAO pd = new OrderDAOImpl();
-		pd.getUpdateOrder(1, 1, 1);
+		List<OrderAdmin> lp = pd.getListAllOrdersByStt(1);
+		for (OrderAdmin product : lp) {
+			Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(product.getOrderDate());
+	        System.out.println(product.getOrderDate() + "\t" + date);
+	        DateFormat dateFormat = null;
+	        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	        System.out.println(dateFormat.format(date));
+		}
 	}
 }

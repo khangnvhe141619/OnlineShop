@@ -112,8 +112,7 @@
 													<div class="input-group-addon">
 														<i class="fa fa-pencil-square-o"></i>
 													</div>
-													<input type="date" name="orderDate" class="" id=""
-														value="2018-07-22">
+													<input type="date" name="orderDate" class="" id="" value="${dateOrder}">
 												</div>
 											</div>
 
@@ -134,9 +133,9 @@
 														<i class="fa fa-life-ring"></i>
 													</div>
 													<select name="status" id="" class="form-control">
-														<option value="1">Pending</option>
-														<option value="2">Completed</option>
-														<option value="3">Cancel</option>
+														<option ${status == "Pending"?"selected":""} value="1">Pending</option>
+														<option ${status == "Completed"?"selected":""} value="2">Completed</option>
+														<option ${status == "Cancel"?"selected":""} value="3">Cancel</option>
 													</select>
 												</div>
 											</div>
