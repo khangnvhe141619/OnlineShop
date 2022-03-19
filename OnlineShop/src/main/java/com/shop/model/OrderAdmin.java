@@ -6,6 +6,7 @@ public class OrderAdmin {
 	private String shipper;
 	private String customer;
 	private String orderDate;
+	private String receiptDate;
 	private Double total;
 	private String status;
 	private int orderId;
@@ -94,9 +95,18 @@ public class OrderAdmin {
 		this.orderId = orderId;
 	}
 
+	public String getReceiptDate() {
+		return receiptDate;
+	}
+
+	public void setReceiptDate(String receiptDate) {
+		this.receiptDate = receiptDate;
+	}
+
 	@Override
 	public String toString() {
 		return "OrderAdmin [stt=" + stt + ", shipper=" + shipper + ", customer=" + customer + ", orderDate=" + orderDate
-				+ ", total=" + total + ", status=" + status + ", orderId=" + orderId + "]";
+				+ ", receiptDate=" + receiptDate + ", total=" + total + ", status=" + status + ", orderId=" + orderId
+				+ "]";
 	}
 }

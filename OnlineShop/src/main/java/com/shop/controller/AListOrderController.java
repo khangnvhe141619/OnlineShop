@@ -2,6 +2,7 @@ package com.shop.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -41,6 +42,9 @@ public class AListOrderController extends HttpServlet {
 				request.setAttribute("list", list);
 				request.getRequestDispatcher("views/admin/A-List-order.jsp").forward(request, response);
 			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {

@@ -23,7 +23,7 @@ public class SQLCommand {
 	public static final String INSERT_ACCOUNT = "INSERT INTO Account(Username, Password, CreatedDate, Role, Active)\r\n"
 			+ "VALUES(?,?,?,2,1)";
 	
-	public static final String INSERT_Order = "INSERT INTO [Order] VALUES(?, ?, ?, ?, ?)";
+	public static final String INSERT_Order = "INSERT INTO [Order] VALUES(?, ?, ?, ?, ?, ?)";
 	
 	public static final String SELECT_Order_MAX = "select max(OrderID)[mx] from [Order]";
 	
@@ -51,7 +51,7 @@ public class SQLCommand {
 			+ "ON O.StatusId = OS.ID)";
 	
 	public static final String GET_LIST_ALL_ORDER_BY_OID = "WITH x AS (SELECT ROW_NUMBER() OVER (ORDER BY [OrderDate]) AS STT,\r\n"
-			+ "S.ShipperName, A.Username, O.OrderDate, O.Total, OS.Description, O.OrderID\r\n"
+			+ "S.ShipperName, A.Username, O.OrderDate, O.ReceiptDate, O.Total, OS.Description, O.OrderID\r\n"
 			+ "FROM Account A JOIN [Order] O\r\n"
 			+ "ON A.AccountID = O.AccountId JOIN Shipper S\r\n"
 			+ "ON O.ShipperId = S.ShipperID JOIN OrderStatus OS\r\n"
@@ -102,6 +102,6 @@ public class SQLCommand {
 	
 	public final static String GET_COUNT_ACCOUNT_BLOCK = "SELECT COUNT (*) FROM Account WHERE Active = 0";
 	
-	public final static String GET_UPDATE_ORDER = "UPDATE [Order] SET StatusId = ?, ShipperId = ?, OrderDate = ?, Total = ? WHERE OrderID = ?";
+	public final static String GET_UPDATE_ORDER = "UPDATE [Order] SET StatusId = ?, ShipperId = ?, ReceiptDate = ?, Total = ? WHERE OrderID = ?";
 	
 }

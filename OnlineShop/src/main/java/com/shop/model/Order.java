@@ -6,6 +6,7 @@ public class Order {
 	private int shipId;
 	private int accountId;
 	private String orderDate;
+	private String receiptDate;
 	private Double total;
 	private int statusId;
 
@@ -30,8 +31,26 @@ public class Order {
 		this.orderDate = orderDate;
 		this.total = total;
 		this.statusId = statusId;
-	}
+	}	
 	
+	public Order(int shipId, int accountId, String orderDate, String receiptDate, Double total, int statusId) {
+		super();
+		this.shipId = shipId;
+		this.accountId = accountId;
+		this.orderDate = orderDate;
+		this.receiptDate = receiptDate;
+		this.total = total;
+		this.statusId = statusId;
+	}
+
+	public String getReceiptDate() {
+		return receiptDate;
+	}
+
+	public void setReceiptDate(String receiptDate) {
+		this.receiptDate = receiptDate;
+	}
+
 	public int getOrderId() {
 		return orderId;
 	}
