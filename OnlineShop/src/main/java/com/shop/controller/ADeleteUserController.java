@@ -38,7 +38,7 @@ public class ADeleteUserController extends HttpServlet {
 			if(check) {
 				if(check == true) {
 					System.out.println("true");
-					response.sendRedirect("listUserController");
+					response.sendRedirect("listUserBlockController");
 				} else {
 					System.out.println("false");
 				}

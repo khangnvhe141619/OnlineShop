@@ -101,6 +101,9 @@
                                 <div class="form-group">
                                     <input class="form-control input-lg" type="text" name="phonenumber" placeholder="Phone number" id="phonenumber" value="${account.phonenumber}" required>
                                 </div>
+                                <div class="form-group">
+                                    <input class="form-control input-lg" type="text" name="address" placeholder="Address" id="address" value="${address.address}" required>
+                                </div>
                                 </div>
                                 <div class="form-group " >
                                     <input class="btn btn-lg btn-block btn-round btn-b" type="submit" value="Update"/>

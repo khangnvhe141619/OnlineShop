@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.shop.dao.AccountDAO;
 import com.shop.model.Account;
+import com.shop.model.Address;
 import com.shop.utils.DBConnection;
 import com.shop.utils.SQLCommand;
 
@@ -203,6 +204,30 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 	
 	@Override
+	public Address getAddress(int accountId) throws SQLException {
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.GET_ADDRESS_FROM_ACCOUNTID);
+			pre.setInt(1, accountId);
+			rs = pre.executeQuery();
+			while (rs.next()) {
+				return new Address(rs.getInt(1), rs.getString(2));
+			}
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return null;
+	}
+	
+	@Override
 	public Account getInfoAccountID(String AccountID) throws SQLException {
 		try {
 			con = DBConnection.getInstance().getConnection();
@@ -240,6 +265,31 @@ public class AccountDAOImpl implements AccountDAO {
 			pre.setString(4, account.getPhonenumber());
 			pre.setString(5, account.getAvatar());
 			pre.setInt(6, account.getAccountId());
+			check = pre.executeUpdate() == 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return check;
+	}
+	
+	@Override
+	public boolean getUpdateAddress(int accountId, String address) throws SQLException {
+		boolean check = false;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.GET_UPDATE_ADDRESS);
+			pre.setString(1, address);
+			pre.setInt(2, accountId);
 			check = pre.executeUpdate() == 1;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -475,10 +525,7 @@ public class AccountDAOImpl implements AccountDAO {
 	
 	public static void main(String[] args) throws SQLException {
 		AccountDAO dao = new AccountDAOImpl();
-		List<Account> lp = dao.getListAccountOfAdmin(1, 1);
-		for (Account product : lp) {
-			System.out.println(product);
-		}
+		dao.getUpdateAddress(2, "Vinh");
 	}
 
 	@Override

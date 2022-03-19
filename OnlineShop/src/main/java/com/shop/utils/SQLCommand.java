@@ -6,6 +6,10 @@ public class SQLCommand {
 	
 	public static final String GET_ACCOUNT_FROM_USERNAME = "SELECT * FROM Account WHERE Username like ?";
 	
+	public static final String GET_ADDRESS_FROM_ACCOUNTID = "SELECT * FROM Address WHERE AccountID = ?";
+	
+	public static final String GET_UPDATE_ADDRESS = "UPDATE Address SET Address = ? WHERE AccountID = ?";
+	
 	public static final String GET_ACCOUNT_FROM_ACCOUNTID = "SELECT * FROM Account WHERE AccountID like ?";
 	
 	public static final String GET_ACCOUNT_FROM_ID = "SELECT * FROM Account WHERE AccountID like ?";
