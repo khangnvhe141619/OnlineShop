@@ -45,6 +45,31 @@ public class AccountDAOImpl implements AccountDAO {
 		}
 		return null;
 	}
+	
+	@Override
+	public boolean getUpdateRole(int accountId, int role) throws SQLException {
+		boolean check = false;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.GET_UPDATE_ROLE);
+			pre.setInt(1, role);
+			pre.setInt(2, accountId);
+			check = pre.executeUpdate() == 1;
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+
+		return check;
+	}
+
 
 	@Override
 	public boolean getCheckUsername(String username) throws SQLException {

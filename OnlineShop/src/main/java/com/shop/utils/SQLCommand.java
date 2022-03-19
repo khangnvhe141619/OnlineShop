@@ -80,11 +80,15 @@ public class SQLCommand {
 			+ "select x.DepartmentID, x.DepartmentName, x.DepartmentDesc\r\n"
 			+ "from x where r between ?*6-5 and ?*6";
 	
+	public static final String GET_LIST_ALL_DEPARTMENT = "SELECT * FROM Department";
+	
 	public final static String GET_DELETE_DEPARTMENTS = "DELETE Department WHERE DepartmentID = ?";
 	
 	public final static String GET_DELETE_AccountID = "DELETE Account WHERE AccountID = ?";
 	
 	public final static String GET_INSERT_DEPARTMENTS = "INSERT INTO Department VALUES(?,?)";
+	
+	public final static String GET_UPDATE_ROLE = "UPDATE Account SET Role = ? WHERE AccountID = ?";
 	
 	public final static String GET_COUNT_DEPARTMENTS = "SELECT COUNT (*) FROM Department";
 	

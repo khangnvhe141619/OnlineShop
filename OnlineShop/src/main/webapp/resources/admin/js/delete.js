@@ -6,3 +6,7 @@ function showCheck() {
 		alert("Add Department Successfully!");
 	}
 }
+
+function showUpdate() {
+	alert("Update Successfully!");
+}

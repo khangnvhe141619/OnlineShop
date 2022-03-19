@@ -13,4 +13,6 @@ public interface DepartmentDAO {
 	boolean getInsertDepartments(Department department) throws SQLException;
 	
 	int getCountDepartments() throws SQLException;
+	
+	List<Department> getListAllDepartments() throws SQLException;
 }

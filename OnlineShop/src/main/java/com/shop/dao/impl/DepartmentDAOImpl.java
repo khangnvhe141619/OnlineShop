@@ -47,6 +47,36 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 		}
 		return departments;
 	}
+	
+	@Override
+	public List<Department> getListAllDepartments() throws SQLException {
+		List<Department> departments = new ArrayList<>();
+		Department department = null;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.GET_LIST_ALL_DEPARTMENT);
+			rs = pre.executeQuery();
+			while (rs.next()) {
+				department = new Department();
+				department.setDepartmentId(rs.getInt("DepartmentID"));
+				department.setDeparttmentName(rs.getString("DepartmentName"));
+				department.setDepartnemtDesc(rs.getString("DepartmentDesc"));
+				departments.add(department);
+			}
+
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return departments;
+	}
 
 	@Override
 	public boolean getDeleteDepartments(int id) throws SQLException {
@@ -95,7 +125,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 
 		return check;
 	}
-
+	
 	@Override
 	public int getCountDepartments() throws SQLException {
 		try {
