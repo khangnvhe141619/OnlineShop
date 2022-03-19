@@ -95,9 +95,7 @@
                                         </table>
                                     </div>
                                     <div class="row">
-                                        <c:forEach var="i" begin="1" end="${endPage}">
-                                        <div class="col-xs-7 m-t-20">${i}</div>
-                                     </c:forEach>
+                                        <div class="col-xs-7 m-t-20">Showing ${index} - ${endPage}</div>
                                         <div class="col-xs-5 m-t-20">
                                             <div class="btn-group pull-right">
                                             	<form class="form" role="form" action="<%=request.getContextPath()%>/listUserBlockController?index=${index-1}" method="post">

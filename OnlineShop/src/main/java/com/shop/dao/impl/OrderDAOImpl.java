@@ -1,6 +1,10 @@
 package com.shop.dao.impl;
 
 import java.sql.Connection;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -225,13 +229,16 @@ public class OrderDAOImpl implements OrderDAO{
 	}
 	
 	@Override
-	public boolean getUpdateOrder(int stt, int orderId) throws SQLException {
+	public boolean getUpdateOrder(int status, int oid, int shipperID, String orderDate, Double total) throws SQLException {
 		boolean check = false;
 		try {
 			con = DBConnection.getInstance().getConnection();
 			pre = con.prepareStatement(SQLCommand.GET_UPDATE_ORDER);
-			pre.setInt(1, stt);
-			pre.setInt(2, orderId);
+			pre.setInt(1, status);
+			pre.setInt(2, shipperID);
+			pre.setString(3, orderDate);
+			pre.setDouble(4, total);
+			pre.setInt(5, oid);
 			check = pre.executeUpdate() == 1;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -250,8 +257,15 @@ public class OrderDAOImpl implements OrderDAO{
 		return check;
 	}
 	
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException, ParseException {
 		OrderDAO pd = new OrderDAOImpl();
-		pd.getUpdateOrder(1, 1);
+		List<OrderAdmin> lp = pd.getListAllOrdersByStt(1);
+		for (OrderAdmin product : lp) {
+			Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(product.getOrderDate());
+	        System.out.println(product.getOrderDate() + "\t" + date);
+	        DateFormat dateFormat = null;
+	        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	        System.out.println(dateFormat.format(date));
+		}
 	}
 }

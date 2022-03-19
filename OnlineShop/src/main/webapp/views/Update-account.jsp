@@ -93,13 +93,13 @@
                                     <input class="form-control input-lg" type="text"  name="username" id="username" value="${account.username}" required readonly="readonly">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control input-lg" type="text" name="fullname" id="fullname" value="${account.fullname}" required>
+                                    <input class="form-control input-lg" type="text" name="fullname" id="fullname" placeholder="Full Name" value="${account.fullname}" required>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control input-lg" type="text" name="email" id="email" value="${account.email}" required>
+                                    <input class="form-control input-lg" type="text" name="email" id="email" placeholder="Email" value="${account.email}" required>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control input-lg" type="text" name="phonenumber" id="phonenumber" value="${account.phonenumber}" required>
+                                    <input class="form-control input-lg" type="text" name="phonenumber" placeholder="Phone number" id="phonenumber" value="${account.phonenumber}" required>
                                 </div>
                                 </div>
                                 <div class="form-group " >

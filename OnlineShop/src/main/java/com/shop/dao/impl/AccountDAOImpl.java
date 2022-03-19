@@ -126,13 +126,14 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 	
 	@Override
-	public List<Account> getListAccountOfAdmin(int index) throws SQLException {
+	public List<Account> getListAccountOfAdmin(int index, int accountID) throws SQLException {
 		List<Account> accounts = new ArrayList<>();
 		try {
 			con = DBConnection.getInstance().getConnection();
 			pre = con.prepareStatement(SQLCommand.GET_LIST_ACCOUNT);
-			pre.setInt(1, index);
+			pre.setInt(1, accountID);
 			pre.setInt(2, index);
+			pre.setInt(3, index);
 			rs = pre.executeQuery();
 			while (rs.next()) {
 				accounts.add(new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
@@ -323,10 +324,11 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 	
 	@Override
-	public int getCountAccounts() throws SQLException {
+	public int getCountAccounts(int accountID) throws SQLException {
 		try {
 			con = DBConnection.getInstance().getConnection();
 			pre = con.prepareStatement(SQLCommand.GET_COUNT_ACCOUNT);
+			pre.setInt(1, accountID);
 			rs = pre.executeQuery();
 			while (rs.next()) {
 				return rs.getInt(1);
@@ -448,11 +450,9 @@ public class AccountDAOImpl implements AccountDAO {
 	
 	public static void main(String[] args) throws SQLException {
 		AccountDAO dao = new AccountDAOImpl();
-		boolean check = dao.getBlockAccount(9);
-		if(check == true) {
-			System.out.println("true");
-		} else {
-			System.out.println("false");
+		List<Account> lp = dao.getListAccountOfAdmin(1, 1);
+		for (Account product : lp) {
+			System.out.println(product);
 		}
 	}
 

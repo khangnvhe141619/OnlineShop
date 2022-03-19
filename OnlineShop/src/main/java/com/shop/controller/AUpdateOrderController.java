@@ -2,6 +2,9 @@ package com.shop.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +18,8 @@ import com.shop.dao.impl.OrderDAOImpl;
 import com.shop.dao.impl.ShipperDAOImpl;
 import com.shop.model.OrderAdmin;
 import com.shop.model.Shipper;
+import java.text.DateFormat;
+
 
 /**
  * Servlet implementation class UpdateOrderAdminController
@@ -36,17 +41,27 @@ public class AUpdateOrderController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int stt = Integer.parseInt(request.getParameter("stt"));
+		String shipper = request.getParameter("shipper");
+		String status = request.getParameter("status");
+		String dateS = request.getParameter("date");
 		HttpSession session = request.getSession();
 		if(session.getAttribute("account") != null) {
 			OrderDAO dao = new OrderDAOImpl();
 			ShipperDAO dao2 = new ShipperDAOImpl();
 			try {
+				Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dateS);
+		        DateFormat dateFormat = null;
+		        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		        String dateOrder = dateFormat.format(date);
 				List<OrderAdmin> list = dao.getListAllOrdersByStt(stt);
 				List<Shipper> list2 = dao2.getListShipper();
 				request.setAttribute("list", list);
 				request.setAttribute("list2", list2);
+				request.setAttribute("shipper", shipper);
+				request.setAttribute("status", status);
+				request.setAttribute("dateOrder", dateOrder);
 				request.getRequestDispatcher("views/admin/A-Edit-order.jsp").forward(request, response);
-			} catch (SQLException e) {
+			} catch (SQLException | ParseException e) {
 				e.printStackTrace();
 			}
 		} else {
@@ -60,9 +75,12 @@ public class AUpdateOrderController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int oid = Integer.parseInt(request.getParameter("oid"));
 		int status = Integer.parseInt(request.getParameter("status"));
+		int shipperID = Integer.parseInt(request.getParameter("shipper"));
+		String orderDate = request.getParameter("orderDate");
+		Double total = Double.parseDouble(request.getParameter("total"));
 		try {
 			OrderDAO dao = new OrderDAOImpl();
-			dao.getUpdateOrder(status, oid);
+			dao.getUpdateOrder(status, oid, shipperID, orderDate, total);
 			request.getRequestDispatcher("listOrderController").forward(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

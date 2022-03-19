@@ -19,76 +19,75 @@ import com.shop.model.Account;
 @WebServlet("/listUserController")
 public class AListUserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AListUserController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public AListUserController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 //123
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		if(session.getAttribute("account") == null) {
-			response.sendRedirect("loginController");
-		} else {
-			AccountDAO dao = new AccountDAOImpl();
-			try {
-				int index = 1;
-				int size = 6;
-		        int count = dao.getCountAccounts();
-		        int endPage = count / size;
-		        if (count % size != 0) {
-		            endPage++;
-		        }
-				List<Account> list = dao.getListAccountOfAdmin(index);
-				request.setAttribute("count", count);
-				request.setAttribute("index", index);
-				request.setAttribute("list", list);
-				request.setAttribute("endPage", endPage);
-				request.getRequestDispatcher("views/admin/A-List-user.jsp").forward(request, response);
-			} catch (SQLException e) {
-				e.printStackTrace();
+		int accountID = (Integer) session.getAttribute("account");
+		AccountDAO dao = new AccountDAOImpl();
+		try {
+			int index = 1;
+			int size = 6;
+			int count = dao.getCountAccounts(accountID);
+			int endPage = count / size;
+			if (count % size != 0) {
+				endPage++;
 			}
+			List<Account> list = dao.getListAccountOfAdmin(index, accountID);
+			request.setAttribute("count", count);
+			request.setAttribute("index", index);
+			request.setAttribute("list", list);
+			request.setAttribute("endPage", endPage);
+			request.getRequestDispatcher("views/admin/A-List-user.jsp").forward(request, response);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		if(session.getAttribute("account") == null) {
-			response.sendRedirect("loginController");
-		} else {
-			AccountDAO dao = new AccountDAOImpl();
-			try {
-				int index = Integer.parseInt(request.getParameter("index"));
-				int size = 6;
-		        int count = dao.getCountAccounts();
-		        int endPage = count / size;
-		        if (count % size != 0) {
-		            endPage++;
-		        }
-		        if(index < 1) {
-		        	index = 1;
-		        }
-		        if(index > endPage) {
-		        	index = endPage;
-		        }
-		        List<Account> list = dao.getListAccountOfAdmin(index);
-		        request.setAttribute("count", count);
-				request.setAttribute("index", index);
-				request.setAttribute("list", list);
-				request.setAttribute("endPage", endPage);
-				request.getRequestDispatcher("views/admin/A-List-user.jsp").forward(request, response);
-			} catch (SQLException e) {
-				e.printStackTrace();
+		int accountID = (Integer) session.getAttribute("account");
+		AccountDAO dao = new AccountDAOImpl();
+		try {
+			int index = Integer.parseInt(request.getParameter("index"));
+			int size = 6;
+			int count = dao.getCountAccounts(accountID);
+			int endPage = count / size;
+			if (count % size != 0) {
+				endPage++;
 			}
+			if (index < 1) {
+				index = 1;
+			}
+			if (index > endPage) {
+				index = endPage;
+			}
+			List<Account> list = dao.getListAccountOfAdmin(index, accountID);
+			request.setAttribute("count", count);
+			request.setAttribute("index", index);
+			request.setAttribute("list", list);
+			request.setAttribute("endPage", endPage);
+			request.getRequestDispatcher("views/admin/A-List-user.jsp").forward(request, response);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 
