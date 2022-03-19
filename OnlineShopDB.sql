@@ -160,6 +160,7 @@ CREATE TABLE [dbo].[Order]
 	ShipperId			int				,
 	AccountId			int				,
 	OrderDate			datetime2		NOT NULL,
+	ReceiptDate			datetime2		,
 	Total				money			NOT NULL,
 	StatusId			int				,
 
