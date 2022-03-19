@@ -82,14 +82,12 @@ public class AddProductController extends HttpServlet {
 			int coverId = Integer.parseInt(covId);
 			LocalDateTime localDate = LocalDateTime.now();
 			String publishDate = request.getParameter("publicationDate");
-			
 			LocalDateTime dateTime = Validation.getLocalDateTime(publishDate + " 00:00:00");
-
 			int quantity = Integer.parseInt(request.getParameter("quantity"));
 			Double price = Double.parseDouble(request.getParameter("price"));
 			int num = Integer.parseInt(request.getParameter("numberOfPage"));
 			String company = request.getParameter("publishingCompany");
-			String realPath = request.getServletContext().getRealPath("/images");
+			String realPath = request.getServletContext().getRealPath("/common/images/products");
 			String filename = Path.of(part.getSubmittedFileName()).getFileName().toString();
 			if (!Files.exists(Path.of(realPath))) {
 				Files.createDirectories(Path.of(realPath));
@@ -108,7 +106,8 @@ public class AddProductController extends HttpServlet {
 				request.getRequestDispatcher("ListProdtuct?index=1").forward(request, response);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			request.setAttribute("mess", "ADD Failed!");
+			request.getRequestDispatcher("ListProdtuct?index=1").forward(request, response);
 		}
 	}
 
