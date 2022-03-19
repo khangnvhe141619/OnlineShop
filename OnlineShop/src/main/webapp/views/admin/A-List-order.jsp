@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -102,7 +103,7 @@
 														<td class="max-texts">${list.stt}</td>
 														<td class="max-texts">${list.shipper}</td>
 														<td class="max-texts">${list.customer}</td>
-														<td class="max-texts">${list.orderDate}</td>
+														<td class="max-texts">${list.orderDate.format( DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"))}</td>
 														<td class="max-texts"><fmt:formatNumber type="number"
 																maxIntegerDigits="10" value="${list.total}" /></td>
 														<c:if test="${list.status=='Cancel'}">

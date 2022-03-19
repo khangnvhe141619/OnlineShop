@@ -160,15 +160,15 @@
                                             </tr>
                                             <tr>
                                                 <th>Subtotal :</th>
-                                                <td><fmt:formatNumber type = "number" maxIntegerDigits = "10" value = "${(sessionScope.total * coupon.discountPercent / 100)}" /> VND</td>
+                                                <td><fmt:formatNumber type = "number" maxIntegerDigits = "10" value = "${sessionScope.total - (sessionScope.total * coupon.discountPercent / 100)}" /> VND</td>
                                             </tr>
                                             <tr>
                                                 <th>VAT (10%) :</th>
-                                                <td><fmt:formatNumber type = "number" maxIntegerDigits = "10" value = "${(sessionScope.total * coupon.discountPercent / 100) * 0.1}" /> VND</td>
+                                                <td><fmt:formatNumber type = "number" maxIntegerDigits = "10" value = "${(sessionScope.total - (sessionScope.total * coupon.discountPercent / 100)) * 0.1}" /> VND</td>
                                             </tr>
                                             <tr class="shop-Cart-totalprice">
                                                 <th>Total :</th>
-                                                <td> <fmt:formatNumber type = "number" maxIntegerDigits = "10" value = "${sessionScope.total - (sessionScope.total * coupon.discountPercent / 100) + ((sessionScope.total * coupon.discountPercent / 100) * 0.1)}" /> VND</td>
+                                                <td> <fmt:formatNumber type = "number" maxIntegerDigits = "10" value = "${(sessionScope.total - (sessionScope.total * coupon.discountPercent / 100)) + ((sessionScope.total - (sessionScope.total * coupon.discountPercent / 100)) * 0.1)}" /> VND</td>
                                             </tr> 
                                             </c:if>                                                                                                                                                                     
                                         </tbody>
@@ -176,8 +176,20 @@
                                     <c:if test="${requestScope.error != null}" >
                                         <h5 style="color:red">${requestScope.error}</h5>
                                     </c:if>
-                                    <a href="<%=request.getContextPath()%>/checkOutController" class="btn btn-lg btn-block btn-round btn-d" >Proceed to Checkout</a>
-                                </div>
+								<c:if
+									test="${sessionScope.items == null or sessionScope.acc.role != 2}">
+									<a href="#"
+										class="btn btn-lg btn-block btn-round btn-d">Proceed to
+										Checkout</a>
+								</c:if>
+								<c:if
+									test="${sessionScope.items != null and sessionScope.acc.role == 2}">
+									<a href="<%=request.getContextPath()%>/checkOutController"
+										class="btn btn-lg btn-block btn-round btn-d">Proceed to
+										Checkout</a>
+
+								</c:if>
+							</div>
                             </div>
                         </div>
                     </div>

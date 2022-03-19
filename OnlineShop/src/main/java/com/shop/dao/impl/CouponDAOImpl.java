@@ -208,4 +208,30 @@ public class CouponDAOImpl implements CouponDAO {
 		return ca;
 	}
 
+	@Override
+	public boolean decreasedCoupon(String id) throws SQLException {
+		int row = 0;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareCall("{Call procedure_decrease_coupon(?)}");
+			ps.setString(1, id);
+
+			row = ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return row > 0;
+	}
+
 }

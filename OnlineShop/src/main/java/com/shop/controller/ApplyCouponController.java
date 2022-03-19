@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.shop.dao.CouponDAO;
 import com.shop.dao.impl.CouponDAOImpl;
@@ -53,7 +52,7 @@ public class ApplyCouponController extends HttpServlet {
 				request.setAttribute("mess", "Not exist or expired!!");
 				request.getRequestDispatcher("/viewCart").forward(request, response);
 			} else {
-				request.setAttribute("mess", "Aplly Successfully!");
+				request.setAttribute("mess", "Apply Successfully!");
 				request.getSession().setAttribute("coupon", coupon);
 				request.getRequestDispatcher("/viewCart").forward(request, response);
 			}

@@ -17,4 +17,6 @@ public interface CouponDAO {
 	public boolean deleteCoupon(String couponID) throws SQLException;
 
 	public Coupon getCouponbyID(String code) throws SQLException;
+	
+	public boolean decreasedCoupon(String id) throws SQLException;
 }
