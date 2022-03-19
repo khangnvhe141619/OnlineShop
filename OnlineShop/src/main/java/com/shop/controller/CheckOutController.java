@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.shop.dao.CouponDAO;
 import com.shop.dao.OfferDAO;
 import com.shop.dao.OrderDAO;
 import com.shop.dao.ProductDAO;
+import com.shop.dao.impl.CouponDAOImpl;
 import com.shop.dao.impl.OfferDAOImpl;
 import com.shop.dao.impl.OrderDAOImpl;
 import com.shop.dao.impl.ProductDAOImpl;
@@ -48,6 +50,7 @@ public class CheckOutController extends HttpServlet {
 		HttpSession session = request.getSession();
 		ProductDAO productDAO = new ProductDAOImpl();
 		OfferDAO offerDAO = new OfferDAOImpl();
+		CouponDAO couponDAO = new CouponDAOImpl();
 		EmailMessage emailBean = new EmailMessage();
 		Account account = (Account) session.getAttribute("acc");
 		double total = (double) session.getAttribute("total");
@@ -63,9 +66,9 @@ public class CheckOutController extends HttpServlet {
 			ArrayList<Item> items = (ArrayList<Item>) request.getSession().getAttribute("items");
 			System.out.println(total);
 			int discountPercent = coupon.getDiscountPercent();
-			total = (double) total * discountPercent / 100;
-			double vat = total / 10;
-			total += vat;
+			double subTotal = (double) total - (total * discountPercent / 100);
+			double vat = subTotal / 10;
+			total = subTotal + vat;
 			LocalDate localDate = java.time.LocalDate.now();
 			String date = localDate.toString();
 			OrderDAO orderDAO = new OrderDAOImpl();
@@ -73,6 +76,7 @@ public class CheckOutController extends HttpServlet {
 			orderDAO.getInsertOrder(items, order);
 			try {
 				offerDAO.insertOffer(productID, couponId);
+				couponDAO.decreasedCoupon(couponId);
 				productDAO.decreasedProduct(quantity, productID);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -112,6 +116,7 @@ public class CheckOutController extends HttpServlet {
 			// TODO: handle exception
 		}
 		request.getSession().removeAttribute("pID");
+		request.getSession().removeAttribute("coupon");
 		request.getSession().removeAttribute("quantity");
 		request.getSession().removeAttribute("items");
 		request.getSession().removeAttribute("total");

@@ -120,7 +120,7 @@
                                                     <td class="max-texts">${post.shortDesc}</td>
                                                     </c:if>
                                                     
-                                                    <td class="">${post.createdDate.format( DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))}</td>
+                                                    <td class="">${post.createdDate.format( DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"))}</td>
                                                     <td class="">
                                                         <a href="<%=request.getContextPath()%>/aViewPostDetail?pId=${post.postId}"><i class="fa fa-edit" aria-hidden="true"></i></a>
                                                         <a style="margin-left: 5%;" href="<%=request.getContextPath()%>/aBlockPostController?pId=${post.postId}" onclick=""><i style="color: red;" class="fa fa-ban"

@@ -2,8 +2,7 @@
 <%@page import="com.shop.model.Contact"%>
 <%@page import="com.shop.dao.impl.ContactDAOImpl"%>
 <%@page import="com.shop.dao.ContactDAO"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -30,13 +29,13 @@
 				</div>
 				<div class="col-sm-3">
 					<div class="widget">
-						<h5 class="widget-title font-alt">Recent Comments</h5>
+						<h5 class="widget-title font-alt">Group 4</h5>
 						<ul class="icon-list">
-							<li>Maria on <a href="#">Designer Desk Essentials</a></li>
-							<li>John on <a href="#">Realistic Business Card Mockup</a></li>
-							<li>Andy on <a href="#">Eco bag Mockup</a></li>
-							<li>Jack on <a href="#">Bottle Mockup</a></li>
-							<li>Mark on <a href="#">Our trip to the Alps</a></li>
+							<li>Nguyễn Văn Khang</li>
+							<li>Nguyễn Sỹ Đồng</li>
+							<li>Nguyễn Văn Sỹ </li>
+							<li>Lê Đức Anh </li>
+							<li>Hà Anh Dũng </li>
 						</ul>
 					</div>
 				</div>

@@ -205,7 +205,7 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public List<Product> getAllProduct(){
+	public List<Product> getAllProduct() {
 		String sql = "SELECT * FROM PRODUCT";
 		Product product = null;
 		List<Product> lstProduct = new ArrayList<Product>();
@@ -437,11 +437,11 @@ public class ProductDAOImpl implements ProductDAO {
 
 		return list;
 	}
+
 	public List<Product> getListProduct(int index) throws SQLException {
 		String sql = "WITH x AS (SELECT ROW_NUMBER() OVER (order by [ProductID]) AS stt,p.ProductID,c.CategoryName,ProductName,Quantity,Price\r\n"
 				+ "			FROM Product p JOIN Category c ON p.CategoryId=c.CategoryID)\r\n"
-				+ "			SELECT *\r\n"
-				+ "			FROM x WHERE stt BETWEEN ?*5-4 AND ?*5";
+				+ "			SELECT *\r\n" + "			FROM x WHERE stt BETWEEN ?*5-4 AND ?*5";
 		Product product = null;
 		List<Product> lstProduct = new ArrayList<Product>();
 		try {
@@ -457,7 +457,7 @@ public class ProductDAOImpl implements ProductDAO {
 				product.setProductID(rs.getInt("ProductID"));
 				product.setCateName(rs.getString("CategoryName"));
 				product.setProductName(rs.getString("ProductName"));
-				
+
 				product.setQuantity(rs.getInt("Quantity"));
 				product.setPrice(rs.getDouble("Price"));
 				lstProduct.add(product);
@@ -481,21 +481,14 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public boolean decreasedProduct(int amount, int id) throws SQLException {
-//		String sql = "DECLARE @total int ,@amount int;\r\n"
-//				+ "SET @total = (SELECT Quantity FROM Product WHERE ProductID = ?);\r\n"
-//				+ "SET @amount = ?\r\n"
-//				+ "UPDATE Product \r\n"
-//				+ "SET Quantity = @total-@amount\r\n"
-//				+ "WHERE ProductID = ?";
 		int row = 0;
 		try {
-			con = DBConnection.getInstance().getConnection();			
-		//	ps = con.prepareStatement(sql);
-			ps=con.prepareCall("{Call procedure_decrease_product(?,?)}");
+			con = DBConnection.getInstance().getConnection();
+			ps = con.prepareCall("{Call procedure_decrease_product(?,?)}");
 
 			ps.setInt(1, id);
 			ps.setInt(2, amount);
-			
+
 			row = ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -513,14 +506,15 @@ public class ProductDAOImpl implements ProductDAO {
 		}
 		return row > 0;
 	}
-	public List<BookCover> getAllBookcover(){
+
+	public List<BookCover> getAllBookcover() {
 		List<BookCover> ls = new ArrayList<BookCover>();
-		String sql= "SELECT * FROM BookCover";
+		String sql = "SELECT * FROM BookCover";
 		try {
 			con = DBConnection.getInstance().getConnection();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				BookCover bk = new BookCover();
 				bk.setBookCoverId(rs.getInt(1));
 				bk.setBookCoverName(rs.getString(2));

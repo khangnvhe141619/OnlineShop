@@ -382,3 +382,14 @@ SET Quantity=@total-@amount
 WHERE ProductID = @id
 END
 GO
+CREATE PROCEDURE procedure_decrease_coupon
+	 (@id varchar(10))
+AS
+BEGIN
+	DECLARE @total int;
+SET @total=(SELECT Quantity FROM Coupon WHERE CouponID LIKE @id);
+UPDATE Coupon 
+SET Quantity=@total-1
+WHERE CouponID LIKE @id
+END
+GO
