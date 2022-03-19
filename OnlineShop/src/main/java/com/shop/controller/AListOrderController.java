@@ -38,8 +38,18 @@ public class AListOrderController extends HttpServlet {
 		if(session.getAttribute("account") != null) {
 			OrderDAO dao = new OrderDAOImpl();
 			try {
-				List<OrderAdmin> list = dao.getListAllOrders();
+				int index = 1;
+				int size = 6;
+		        int count = dao.getCountOrder();
+		        int endPage = count / size;
+		        if (count % size != 0) {
+		            endPage++;
+		        }
+				List<OrderAdmin> list = dao.getListAllOrders(index);
+				request.setAttribute("count", count);
+				request.setAttribute("index", index);
 				request.setAttribute("list", list);
+				request.setAttribute("endPage", endPage);
 				request.getRequestDispatcher("views/admin/A-List-order.jsp").forward(request, response);
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -56,8 +66,38 @@ public class AListOrderController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		HttpSession session = request.getSession();
+		if(session.getAttribute("account") != null) {
+			OrderDAO dao = new OrderDAOImpl();
+			try {
+				int index = Integer.parseInt(request.getParameter("index"));
+				int size = 6;
+		        int count = dao.getCountOrder();
+		        int endPage = count / size;
+		        if (count % size != 0) {
+		            endPage++;
+		        }
+		        if(index < 1) {
+		        	index = 1;
+		        }
+		        if(index > endPage) {
+		        	index = endPage;
+		        }
+				List<OrderAdmin> list = dao.getListAllOrders(index);
+				request.setAttribute("count", count);
+				request.setAttribute("index", index);
+				request.setAttribute("list", list);
+				request.setAttribute("endPage", endPage);
+				request.getRequestDispatcher("views/admin/A-List-order.jsp").forward(request, response);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			response.sendRedirect("loginController");
+		}
 	}
 
 }

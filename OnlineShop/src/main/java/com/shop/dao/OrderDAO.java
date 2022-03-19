@@ -18,9 +18,11 @@ public interface OrderDAO {
 	
 	List<ProductOrderShip> getListOrdersByCompleted(int account) throws SQLException;
 	
-	List<OrderAdmin> getListAllOrders() throws SQLException, ParseException;
+	List<OrderAdmin> getListAllOrders(int index) throws SQLException, ParseException;
 	
 	List<OrderAdmin> getListAllOrdersByStt(int stt) throws SQLException;
 	
 	boolean getUpdateOrder(int status, int oid, int shipperID, String receiptDate, Double total) throws SQLException;
+	
+	int getCountOrder() throws SQLException;
 }

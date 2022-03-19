@@ -92,12 +92,14 @@ public class OrderDAOImpl implements OrderDAO{
 	}
 	
 	@Override
-	public List<OrderAdmin> getListAllOrders() throws SQLException, ParseException {
+	public List<OrderAdmin> getListAllOrders(int index) throws SQLException, ParseException {
 		List<OrderAdmin> orderAdmins = new ArrayList<>();
 		OrderAdmin orderAdmin = null;
 		try {
 			con = DBConnection.getInstance().getConnection();
 			pre = con.prepareStatement(SQLCommand.GET_LIST_ALL_ORDER);
+			pre.setInt(1, index);
+			pre.setInt(2, index);
 			rs = pre.executeQuery();
 			while (rs.next()) {
 				Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rs.getString("OrderDate"));
@@ -126,6 +128,31 @@ public class OrderDAOImpl implements OrderDAO{
 			}
 		}
 		return orderAdmins;
+	}
+	
+	@Override
+	public int getCountOrder() throws SQLException {
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.GET_COUNT_ORDER);
+			rs = pre.executeQuery();
+			while (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (Exception e) {
+
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return 0;
 	}
 	
 	@Override
