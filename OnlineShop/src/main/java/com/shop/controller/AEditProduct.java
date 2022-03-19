@@ -53,22 +53,28 @@ public class AEditProduct extends HttpServlet {
 		List<Category> listCate = new ArrayList<>();
 		List<BookCover> listBK = new ArrayList<>();
 		index = Integer.parseInt(request.getParameter("index"));
-
+		String cate =request.getParameter("cateName");
+		String cover= request.getParameter("cover");
+		System.out.println(cover);
+		int coverID= Integer.parseInt(cover);
+		
 		try {
 			Product p = pd.getProductById(index);
 			listCate = cateDAO.getListAllCategory();
 			listBK = pd.getAllBookcover();
-
+			request.setAttribute("coverid", coverID);
+			request.setAttribute("cate", cate);
 			request.setAttribute("product", p);
 			request.setAttribute("listCategory", listCate);
 			request.setAttribute("listBK", listBK);
 			request.getRequestDispatcher("views/admin/A-Product-detail.jsp").forward(request, response);
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			request.setAttribute("mess", "Edit false");
+			request.getRequestDispatcher("ListProdtuct?index=1").forward(request, response);
 		}
 	}
-//12345
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -122,8 +128,8 @@ public class AEditProduct extends HttpServlet {
 				request.getRequestDispatcher("ListProdtuct?index=1").forward(request, response);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			request.setAttribute("mess", "Edit false");
+			request.getRequestDispatcher("ListProdtuct?index=1").forward(request, response);
 		}
 	}
 
