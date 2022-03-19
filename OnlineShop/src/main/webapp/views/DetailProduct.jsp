@@ -180,7 +180,8 @@
 										<c:forEach items="${listRv }" var="r">
 											<div class="comment clearfix">
 												<div class="comment-avatar">
-													<img src="" />
+													  <img src="uploads/${r.account.avatar}" />
+
 												</div>
 												<div class="comment-content clearfix">
 													<div class="comment-author font-alt">
