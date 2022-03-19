@@ -229,14 +229,16 @@ public class OrderDAOImpl implements OrderDAO{
 	}
 	
 	@Override
-	public boolean getUpdateOrder(int stt, int orderId, int shipperID) throws SQLException {
+	public boolean getUpdateOrder(int status, int oid, int shipperID, String orderDate, Double total) throws SQLException {
 		boolean check = false;
 		try {
 			con = DBConnection.getInstance().getConnection();
 			pre = con.prepareStatement(SQLCommand.GET_UPDATE_ORDER);
-			pre.setInt(1, stt);
+			pre.setInt(1, status);
 			pre.setInt(2, shipperID);
-			pre.setInt(3, orderId);
+			pre.setString(3, orderDate);
+			pre.setDouble(4, total);
+			pre.setInt(5, oid);
 			check = pre.executeUpdate() == 1;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

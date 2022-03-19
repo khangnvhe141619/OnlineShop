@@ -60,7 +60,6 @@ public class AUpdateOrderController extends HttpServlet {
 				request.setAttribute("shipper", shipper);
 				request.setAttribute("status", status);
 				request.setAttribute("dateOrder", dateOrder);
-				System.out.println(dateOrder);
 				request.getRequestDispatcher("views/admin/A-Edit-order.jsp").forward(request, response);
 			} catch (SQLException | ParseException e) {
 				e.printStackTrace();
@@ -77,9 +76,11 @@ public class AUpdateOrderController extends HttpServlet {
 		int oid = Integer.parseInt(request.getParameter("oid"));
 		int status = Integer.parseInt(request.getParameter("status"));
 		int shipperID = Integer.parseInt(request.getParameter("shipper"));
+		String orderDate = request.getParameter("orderDate");
+		Double total = Double.parseDouble(request.getParameter("total"));
 		try {
 			OrderDAO dao = new OrderDAOImpl();
-			dao.getUpdateOrder(status, oid, shipperID);
+			dao.getUpdateOrder(status, oid, shipperID, orderDate, total);
 			request.getRequestDispatcher("listOrderController").forward(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

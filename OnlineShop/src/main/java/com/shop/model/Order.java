@@ -31,7 +31,7 @@ public class Order {
 		this.total = total;
 		this.statusId = statusId;
 	}
-
+	
 	public int getOrderId() {
 		return orderId;
 	}

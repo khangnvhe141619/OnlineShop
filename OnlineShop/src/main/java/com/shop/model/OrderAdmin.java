@@ -25,6 +25,18 @@ public class OrderAdmin {
 		this.status = status;
 		this.orderId = orderId;
 	}
+	
+	
+
+	public OrderAdmin(String shipper, String customer, String orderDate, Double total, String status, int orderId) {
+		super();
+		this.shipper = shipper;
+		this.customer = customer;
+		this.orderDate = orderDate;
+		this.total = total;
+		this.status = status;
+		this.orderId = orderId;
+	}
 
 	public int getStt() {
 		return stt;

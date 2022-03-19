@@ -102,6 +102,6 @@ public class SQLCommand {
 	
 	public final static String GET_COUNT_ACCOUNT_BLOCK = "SELECT COUNT (*) FROM Account WHERE Active = 0";
 	
-	public final static String GET_UPDATE_ORDER = "UPDATE [Order] SET StatusId = ?, ShipperId = ? WHERE OrderID = ?";
+	public final static String GET_UPDATE_ORDER = "UPDATE [Order] SET StatusId = ?, ShipperId = ?, OrderDate = ?, Total = ? WHERE OrderID = ?";
 	
 }
