@@ -66,7 +66,7 @@
                                 Look like you're lost
                             </h3>
                             <p>The page you are looking for not avaible!</p>
-                            <a href="Home.jsp" class="link_404">Go to Home</a>
+                            <a href="Login.jsp" class="link_404">Go to Home</a>
                         </div>
                     </div>
                 </div>

@@ -23,7 +23,7 @@ public class SQLCommand {
 	public static final String INSERT_ACCOUNT = "INSERT INTO Account(Username, Password, CreatedDate, Role, Active)\r\n"
 			+ "VALUES(?,?,?,2,1)";
 	
-	public static final String INSERT_Order = "INSERT INTO [Order] VALUES(?, ?, ?, ?, ?)";
+	public static final String INSERT_Order = "INSERT INTO [Order] VALUES(?, ?, ?, ?, ?, ?)";
 	
 	public static final String SELECT_Order_MAX = "select max(OrderID)[mx] from [Order]";
 	
@@ -43,15 +43,17 @@ public class SQLCommand {
 			+ "ON P.ProductId = OD.ProductId\r\n"
 			+ "WHERE O.AccountId = ?";
 	
-	public static final String GET_LIST_ALL_ORDER = "(SELECT ROW_NUMBER() OVER (ORDER BY [OrderDate]) AS STT,\r\n"
+	public static final String GET_LIST_ALL_ORDER = "with x as (SELECT ROW_NUMBER() OVER (ORDER BY [OrderDate]) AS STT,\r\n"
 			+ "S.ShipperName, A.Username, O.OrderDate, O.Total, OS.Description, O.OrderID\r\n"
 			+ "FROM Account A JOIN [Order] O\r\n"
 			+ "ON A.AccountID = O.AccountId JOIN Shipper S\r\n"
 			+ "ON O.ShipperId = S.ShipperID JOIN OrderStatus OS\r\n"
-			+ "ON O.StatusId = OS.ID)";
+			+ "ON O.StatusId = OS.ID)\r\n"
+			+ "select x.STT, x.ShipperName, x.Username, x.OrderDate, x.Total, x.Description, x.OrderID\r\n"
+			+ "from x where STT between ?*6-5 and ?*6";
 	
 	public static final String GET_LIST_ALL_ORDER_BY_OID = "WITH x AS (SELECT ROW_NUMBER() OVER (ORDER BY [OrderDate]) AS STT,\r\n"
-			+ "S.ShipperName, A.Username, O.OrderDate, O.Total, OS.Description, O.OrderID\r\n"
+			+ "S.ShipperName, A.Username, O.OrderDate, O.ReceiptDate, O.Total, OS.Description, O.OrderID\r\n"
 			+ "FROM Account A JOIN [Order] O\r\n"
 			+ "ON A.AccountID = O.AccountId JOIN Shipper S\r\n"
 			+ "ON O.ShipperId = S.ShipperID JOIN OrderStatus OS\r\n"
@@ -78,13 +80,19 @@ public class SQLCommand {
 			+ "select x.DepartmentID, x.DepartmentName, x.DepartmentDesc\r\n"
 			+ "from x where r between ?*6-5 and ?*6";
 	
+	public static final String GET_LIST_ALL_DEPARTMENT = "SELECT * FROM Department";
+	
 	public final static String GET_DELETE_DEPARTMENTS = "DELETE Department WHERE DepartmentID = ?";
 	
 	public final static String GET_DELETE_AccountID = "DELETE Account WHERE AccountID = ?";
 	
 	public final static String GET_INSERT_DEPARTMENTS = "INSERT INTO Department VALUES(?,?)";
 	
+	public final static String GET_UPDATE_ROLE = "UPDATE Account SET Role = ? WHERE AccountID = ?";
+	
 	public final static String GET_COUNT_DEPARTMENTS = "SELECT COUNT (*) FROM Department";
+	
+	public final static String GET_COUNT_ORDER = "SELECT COUNT (*) FROM [Order]";
 	
 	public static final String GET_LIST_ACCOUNT = "with x as (select ROW_NUMBER() over (order by [AccountID]) as r,\r\n"
 			+ "AccountID, Username, Fullname, Email \r\n"
@@ -102,6 +110,6 @@ public class SQLCommand {
 	
 	public final static String GET_COUNT_ACCOUNT_BLOCK = "SELECT COUNT (*) FROM Account WHERE Active = 0";
 	
-	public final static String GET_UPDATE_ORDER = "UPDATE [Order] SET StatusId = ?, ShipperId = ?, OrderDate = ?, Total = ? WHERE OrderID = ?";
+	public final static String GET_UPDATE_ORDER = "UPDATE [Order] SET StatusId = ?, ShipperId = ?, ReceiptDate = ?, Total = ? WHERE OrderID = ?";
 	
 }

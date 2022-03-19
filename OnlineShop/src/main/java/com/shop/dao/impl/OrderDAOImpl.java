@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,8 +32,9 @@ public class OrderDAOImpl implements OrderDAO{
 			pre.setInt(1, order.getShipId());
 			pre.setInt(2, order.getAccountId());
 			pre.setString(3, order.getOrderDate());
-			pre.setDouble(4, order.getTotal());
-			pre.setInt(5, order.getStatusId());
+			pre.setString(4, order.getReceiptDate());
+			pre.setDouble(5, order.getTotal());
+			pre.setInt(6, order.getStatusId());
 			pre.executeUpdate();
 			int orderid = 0;
 			pre = con.prepareStatement(SQLCommand.SELECT_Order_MAX);
@@ -90,19 +92,24 @@ public class OrderDAOImpl implements OrderDAO{
 	}
 	
 	@Override
-	public List<OrderAdmin> getListAllOrders() throws SQLException {
+	public List<OrderAdmin> getListAllOrders(int index) throws SQLException, ParseException {
 		List<OrderAdmin> orderAdmins = new ArrayList<>();
 		OrderAdmin orderAdmin = null;
 		try {
 			con = DBConnection.getInstance().getConnection();
 			pre = con.prepareStatement(SQLCommand.GET_LIST_ALL_ORDER);
+			pre.setInt(1, index);
+			pre.setInt(2, index);
 			rs = pre.executeQuery();
 			while (rs.next()) {
+				Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rs.getString("OrderDate"));
+		        DateFormat dateFormat = null;
+		        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				orderAdmin = new OrderAdmin();
 				orderAdmin.setStt(rs.getInt("STT"));
 				orderAdmin.setShipper(rs.getString("ShipperName"));
 				orderAdmin.setCustomer(rs.getString("Username"));
-				orderAdmin.setOrderDate(rs.getString("OrderDate"));
+				orderAdmin.setOrderDate(dateFormat.format(date));
 				orderAdmin.setTotal(rs.getDouble("Total"));
 				orderAdmin.setStatus(rs.getString("Description"));
 				orderAdmin.setOrderId(rs.getInt("OrderID"));
@@ -124,6 +131,31 @@ public class OrderDAOImpl implements OrderDAO{
 	}
 	
 	@Override
+	public int getCountOrder() throws SQLException {
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.GET_COUNT_ORDER);
+			rs = pre.executeQuery();
+			while (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (Exception e) {
+
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return 0;
+	}
+	
+	@Override
 	public List<OrderAdmin> getListAllOrdersByStt(int stt) throws SQLException {
 		List<OrderAdmin> orderAdmins = new ArrayList<>();
 		OrderAdmin orderAdmin = null;
@@ -134,6 +166,10 @@ public class OrderDAOImpl implements OrderDAO{
 			rs = pre.executeQuery();
 			while (rs.next()) {
 				orderAdmin = new OrderAdmin();
+				Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rs.getString("ReceiptDate"));
+			    DateFormat dateFormat = null;
+			    dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			    orderAdmin.setReceiptDate(dateFormat.format(date));
 				orderAdmin.setStt(rs.getInt("STT"));
 				orderAdmin.setShipper(rs.getString("ShipperName"));
 				orderAdmin.setCustomer(rs.getString("Username"));
@@ -143,7 +179,9 @@ public class OrderDAOImpl implements OrderDAO{
 				orderAdmin.setOrderId(rs.getInt("OrderID"));
 				orderAdmins.add(orderAdmin);
 			}
-			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (rs != null) {
 				rs.close();
@@ -229,14 +267,14 @@ public class OrderDAOImpl implements OrderDAO{
 	}
 	
 	@Override
-	public boolean getUpdateOrder(int status, int oid, int shipperID, String orderDate, Double total) throws SQLException {
+	public boolean getUpdateOrder(int status, int oid, int shipperID, String receiptDate, Double total) throws SQLException {
 		boolean check = false;
 		try {
 			con = DBConnection.getInstance().getConnection();
 			pre = con.prepareStatement(SQLCommand.GET_UPDATE_ORDER);
 			pre.setInt(1, status);
 			pre.setInt(2, shipperID);
-			pre.setString(3, orderDate);
+			pre.setString(3, receiptDate);
 			pre.setDouble(4, total);
 			pre.setInt(5, oid);
 			check = pre.executeUpdate() == 1;
@@ -258,14 +296,8 @@ public class OrderDAOImpl implements OrderDAO{
 	}
 	
 	public static void main(String[] args) throws SQLException, ParseException {
-		OrderDAO pd = new OrderDAOImpl();
-		List<OrderAdmin> lp = pd.getListAllOrdersByStt(1);
-		for (OrderAdmin product : lp) {
-			Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(product.getOrderDate());
-	        System.out.println(product.getOrderDate() + "\t" + date);
-	        DateFormat dateFormat = null;
-	        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	        System.out.println(dateFormat.format(date));
-		}
+		LocalDate localDate = java.time.LocalDate.now();
+		String date = localDate.toString();
+		System.out.println(LocalDate.parse(date).plusDays(1).toString());
 	}
 }

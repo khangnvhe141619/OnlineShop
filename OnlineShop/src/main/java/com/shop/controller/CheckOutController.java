@@ -71,8 +71,9 @@ public class CheckOutController extends HttpServlet {
 			total = subTotal + vat;
 			LocalDate localDate = java.time.LocalDate.now();
 			String date = localDate.toString();
+			String receiptDate = LocalDate.parse(date).plusDays(4).toString();
 			OrderDAO orderDAO = new OrderDAOImpl();
-			Order order = new Order(1, account.getAccountId(), date, total, 1);
+			Order order = new Order(1, account.getAccountId(), date, receiptDate, total, 1);
 			orderDAO.getInsertOrder(items, order);
 			try {
 				offerDAO.insertOffer(productID, couponId);
@@ -90,8 +91,9 @@ public class CheckOutController extends HttpServlet {
 			total += vat;
 			LocalDate localDate = java.time.LocalDate.now();
 			String date = localDate.toString();
+			String receiptDate = LocalDate.parse(date).plusDays(4).toString();
 			OrderDAO orderDAO = new OrderDAOImpl();
-			Order order = new Order(1, account.getAccountId(), date, total, 1);
+			Order order = new Order(1, account.getAccountId(), date, receiptDate, total, 1);
 			orderDAO.getInsertOrder(items, order);
 			try {
 				productDAO.decreasedProduct(quantity, productID);

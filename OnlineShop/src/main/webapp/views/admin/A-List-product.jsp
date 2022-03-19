@@ -95,7 +95,8 @@
                                                     
                       
                                                     <td class="max-texts">
-                                                         <a href="<%=request.getContextPath() %>/AEditProduct?index=${i.productID}" ><i class="fa fa-edit" aria-hidden="true"></i></a> 
+                                                         <a href="<%=request.getContextPath() %>/AEditProduct?index=${i.productID}&&cateName=${i.cateName}&&cover=${i.coverType}" ><i class="fa fa-edit" aria-hidden="true"></i></a> 
+
                                                          <a style="margin-left: 5%;" href="<%=request.getContextPath() %>/DeleteController?index=${i.productID}" onclick="return testConfirmDialog()"><i style="color: red;" class="fa fa-trash" aria-hidden="true"></i></a> 
                                                     </td>
                                                 </tr>
@@ -111,7 +112,7 @@
                                                 <button type="submit" class="btn btn-default waves-effect"><i
                                                         class="fa fa-chevron-left"></i></button>
                                                  </form>
-                                                  <form class="form" role="form" action="<%=request.getContextPath()%>/ListProdtuct?index=${tag==endPage?tag:tag+1}" method="post">
+                                                  <form class="form" role="form" action="<%=request.getContextPath()%>/ListProdtuct?index=${tag==endpage?tag:tag+1}" method="post">
                                                 <button type="submit" class="btn btn-default waves-effect"><i
                                                         class="fa fa-chevron-right"></i></button>
                                                         </form>

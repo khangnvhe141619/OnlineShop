@@ -81,7 +81,7 @@
 							<h3 class="box-title m-b-0">Account Information</h3>
 							<div class="row">
 								<div class="col-sm-12 col-xs-12">
-									<form action="<%=request.getContextPath()%>/blockUserController?accountID=${account.accountId}" method="post">
+									<form action="<%=request.getContextPath()%>/adminUpdateRole?accountID=${account.accountId}" method="post">
 										<div class="form-group">
 											<label for="">Avatar</label>
 											<div class="input-group">
@@ -96,7 +96,7 @@
 												</div>
 												<input type="text" name="userName" class="form-control"
 													style="border: none;" id=""
-													value="${account.username}" required="">
+													value="${account.username}" required="" readonly="readonly">
 											</div>
 										</div>
 										<div class="form-group">
@@ -107,7 +107,7 @@
 												</div>
 												<input type="text" name="fName" class="form-control"
 													style="border: none;" id=""
-													value="${account.fullname}" >
+													value="${account.fullname}" readonly="readonly">
 											</div>
 										</div>
 										<div class="form-group">
@@ -117,8 +117,7 @@
 													<i class="fa fa-sticky-note"></i>
 												</div>
 												<input type="text" name="email" class="form-control"
-													style="border: none;" id="" value="${account.email}"
-													>
+													style="border: none;" id="" value="${account.email}" readonly="readonly">
 											</div>
 										</div>
 										<div class="form-group">
@@ -129,11 +128,23 @@
 												</div>
 												<input type="text" name="phone" class="form-control"
 													style="border: none;" id=""
-													value="${account.phonenumber}" >
+													value="${account.phonenumber}" readonly="readonly">
 											</div>
 										</div>
-										<button type="submit" name="submit"
-											class="btn btn-success waves-effect waves-light m-r-10">Block</button>
+										<div class="form-group">
+										<label for="">Role</label>
+											<div class="input-group">
+												<div class="input-group-addon">
+													<i class="fa fa-life-ring"></i>
+												</div>
+												<select name="role" id="" class="form-control">
+													<c:forEach items="${list}" var="list">
+														<option ${list.departmentId == account.role?"selected":""} value="${list.departmentId}">${list.departtmentName}</option>
+													</c:forEach>
+												</select>
+											</div>
+											</div>
+											<button type="submit" name="submit" onclick="showUpdate()" class="btn btn-success waves-effect waves-light m-r-10">Update</button>
 									</form>
 								</div>
 							</div>
@@ -209,6 +220,7 @@
 		<!-- /#page-wrapper -->
 	</div>
 	<!-- /#wrapper -->
+	<script src="<%=request.getContextPath()%>/resources/admin/js/delete.js"></script>
 	<!-- jQuery -->
 	<script
 		src="<%=request.getContextPath()%>/resources/admin/plugins/bower_components/jquery/dist/jquery.min.js"></script>

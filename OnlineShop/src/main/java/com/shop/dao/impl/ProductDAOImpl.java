@@ -439,7 +439,7 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	public List<Product> getListProduct(int index) throws SQLException {
-		String sql = "WITH x AS (SELECT ROW_NUMBER() OVER (order by [ProductID]) AS stt,p.ProductID,c.CategoryName,ProductName,Quantity,Price\r\n"
+		String sql = "WITH x AS (SELECT ROW_NUMBER() OVER (order by [ProductID]) AS stt,p.ProductID,c.CategoryName,ProductName,p.CoverTypeId,Quantity,Price\r\n"
 				+ "			FROM Product p JOIN Category c ON p.CategoryId=c.CategoryID)\r\n"
 				+ "			SELECT *\r\n" + "			FROM x WHERE stt BETWEEN ?*5-4 AND ?*5";
 		Product product = null;
@@ -457,7 +457,11 @@ public class ProductDAOImpl implements ProductDAO {
 				product.setProductID(rs.getInt("ProductID"));
 				product.setCateName(rs.getString("CategoryName"));
 				product.setProductName(rs.getString("ProductName"));
+<<<<<<< HEAD
 
+=======
+				product.setCoverType(rs.getInt("CoverTypeId"));
+>>>>>>> 844d6d7d5ce557586340f2216854327b50db0139
 				product.setQuantity(rs.getInt("Quantity"));
 				product.setPrice(rs.getDouble("Price"));
 				lstProduct.add(product);

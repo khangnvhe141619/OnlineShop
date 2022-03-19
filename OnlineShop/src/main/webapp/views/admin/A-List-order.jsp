@@ -82,7 +82,7 @@
 						<div class="white-box">
 							<!-- row -->
 							<div class="row">
-								<h4>List Of Orders</h4>
+								<h4>List Of Departments (<b style="color: orange;">${count }</b>)</h4>
 								<div class="col-lg-12 col-md-9 col-sm-12 col-xs-12 mail_listing">
 									<div class="inbox-center">
 										<table class="table table-hover">
@@ -127,18 +127,22 @@
 										</table>
 									</div>
 									<div class="row">
-										<div class="col-xs-7 m-t-20"></div>
-										<div class="col-xs-5 m-t-20">
-											<div class="btn-group pull-right">
-												<button type="button" class="btn btn-default waves-effect">
-													<i class="fa fa-chevron-left"></i>
-												</button>
-												<button type="button" class="btn btn-default waves-effect">
-													<i class="fa fa-chevron-right"></i>
-												</button>
-											</div>
-										</div>
-									</div>
+                                        <div class="col-xs-7 m-t-20">Showing ${index} - ${endPage}</div>
+                                        <div class="col-xs-5 m-t-20">
+                                            <div class="btn-group pull-right">
+                                            	<form class="form" role="form" action="<%=request.getContextPath()%>/listOrderController?index=${index-1}" method="post">
+                                                <button type="submit" class="btn btn-default waves-effect">
+                                                <i class="fa fa-chevron-left"></i>
+                                                </button>
+                                                </form>
+                                                <form class="form" role="form" action="<%=request.getContextPath()%>/listOrderController?index=${index+1}" method="post">
+                                                <button type="submit" class="btn btn-default waves-effect">
+                                                <i class="fa fa-chevron-right"></i>
+                                                </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
 								</div>
 							</div>
 							<!-- /.row -->
