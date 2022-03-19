@@ -90,7 +90,7 @@
 												</div>
 												<select name="category" id="" class="form-control">
 													<c:forEach items="${listCategory }" var="i">
-														<option ${categoryID == i.categoryID ? "selected":"" }
+														<option ${cate == i.categoryName ? "selected":"" }
 															value="${i.categoryID }">${i.categoryName }</option>
 													</c:forEach>
 												</select>
@@ -109,7 +109,8 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="inputImage">Image</label>
+											<label for="inputImage">Image</label><br>
+											<img alt="" src="common/images/products/${product.image}" width="200px" height="200px"  display: flex;" />
 											<div class="input-group">
 												<div class="input-group-addon">
 													<i class="fa fa-upload"></i>
@@ -159,7 +160,7 @@
 												</div>
 												<select name="coverType" id="" class="form-control">
 													<c:forEach items="${listBK }" var="i">
-														<option value="${product.coverType }">${i.bookCoverName }</option>
+														<option ${coverid == i.bookCoverId ? "selected":"" } value="${i.bookCoverId }">${i.bookCoverName }</option>
 													</c:forEach>
 												</select>
 											</div>
@@ -177,9 +178,9 @@
 										</div>
 										<div class="form-group">
 											<label for="">Quantity</label>
-											<div class="input-group">
+											<div class="input-group">        
 												<div class="input-group-addon">
-													<i class="fa fa-pencil-square-o"></i>
+													<i class="fa fa-pencil-square-o"></i>                                      
 												</div>
 												<input type="number" name="quantity"
 													value="${product.quantity }" class="form-control" id=""
@@ -198,6 +199,7 @@
 										</div>
 										<div class="form-group">
 											<label for="">Number of page</label>
+											
 											<div class="input-group">
 												<div class="input-group-addon">
 													<i class="fa fa-pencil-square-o"></i>
