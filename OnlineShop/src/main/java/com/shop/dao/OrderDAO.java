@@ -1,6 +1,7 @@
 package com.shop.dao;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import com.shop.model.Item;
@@ -17,9 +18,11 @@ public interface OrderDAO {
 	
 	List<ProductOrderShip> getListOrdersByCompleted(int account) throws SQLException;
 	
-	List<OrderAdmin> getListAllOrders() throws SQLException;
+	List<OrderAdmin> getListAllOrders(int index) throws SQLException, ParseException;
 	
 	List<OrderAdmin> getListAllOrdersByStt(int stt) throws SQLException;
 	
-	boolean getUpdateOrder(int status, int oid, int shipperID, String orderDate, Double total) throws SQLException;
+	boolean getUpdateOrder(int status, int oid, int shipperID, String receiptDate, Double total) throws SQLException;
+	
+	int getCountOrder() throws SQLException;
 }

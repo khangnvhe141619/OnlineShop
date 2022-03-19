@@ -102,7 +102,7 @@
 														<i class="fa fa-users"></i>
 													</div>
 													<input type="text" name="account" class="form-control"
-														id="" value="${list.customer}" required="">
+														id="" value="${list.customer}" required="" readonly="readonly">
 												</div>
 											</div>
 
@@ -112,9 +112,20 @@
 													<div class="input-group-addon">
 														<i class="fa fa-pencil-square-o"></i>
 													</div>
-													<input type="date" name="orderDate" class="" id="" value="${dateOrder}">
+													<input type="date" name="orderDate" class="" id="" value="${dateOrder}" readonly="readonly">
 												</div>
 											</div>
+											
+											<div class="form-group">
+												<label for="">Receipt Date</label>
+												<div class="input-group">
+													<div class="input-group-addon">
+														<i class="fa fa-pencil-square-o"></i>
+													</div>
+													<input type="date" name="receiptDate" class="" id="" value="${list.receiptDate}">
+												</div>
+											</div>
+											
 
 											<div class="form-group">
 												<label for="">Total</label>
