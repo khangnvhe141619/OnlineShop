@@ -15,4 +15,6 @@ public interface DepartmentDAO {
 	int getCountDepartments() throws SQLException;
 	
 	List<Department> getListAllDepartments() throws SQLException;
+	
+	int countAccountByID(int id) throws SQLException;
 }

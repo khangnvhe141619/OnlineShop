@@ -70,6 +70,20 @@
                                 </h4>
                                 <div class="col-lg-12 col-md-9 col-sm-12 col-xs-12 mail_listing">
                                     <div class="inbox-center">
+                                    <c:if test="${dSuccess}">
+                                    <div class="alert alert-warning">
+                                            <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
+                                            <strong>DELETED!!! </strong>
+                                            <p> The Department has been deleted successfully.</p>
+                                        </div> 
+                                    </c:if>
+                                    <c:if test="${dError}">
+                                        <div class="alert alert-danger">
+                                            <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
+                                            <strong>ERROR!! </strong>
+                                            <p> There was an error during deleting this record. Please try again.</p>
+                                        </div>
+                                        </c:if> 
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>

@@ -22,8 +22,6 @@ public class PostCmtDAOImpl implements PostCmtDAO {
 	public List<PostCmt> getListCmtByPostID(String id) throws SQLException {
 		PostCmt pCmt = null;
 		List<PostCmt> lstPostCmt = new ArrayList<PostCmt>();
-//		String sql = "SELECT * \r\n" + "FROM Post p, PostComment pcmt, Account a\r\n"
-//				+ "WHERE pcmt.PostId = p.PostID \r\n" + "AND pcmt.AccountId = a.AccountID\r\n" + "AND p.PostID = ?";
 		
 		String sql="SELECT pcmt.PostCommentID, pcmt.PostId,a.Username, a.Avatar, pcmt.Comment, pcmt.CreatedDate\r\n"
 				+ "FROM Post p, PostComment pcmt, Account a\r\n"

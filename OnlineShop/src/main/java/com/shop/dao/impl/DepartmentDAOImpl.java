@@ -163,4 +163,33 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 //			System.out.println("false");
 //		}
 	}
+
+	@Override
+	public int countAccountByID(int id) throws SQLException {
+		String sql = "SELECT COUNT(*) FROM Account A, Department D WHERE D.DepartmentID = A.Role AND D.DepartmentID = ?";
+		int count = 0;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(sql);
+			pre.setInt(1, id);
+			rs = pre.executeQuery();
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return count;
+	}
 }

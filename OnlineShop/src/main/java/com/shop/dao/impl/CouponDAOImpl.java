@@ -56,7 +56,7 @@ public class CouponDAOImpl implements CouponDAO {
 
 	@Override
 	public Boolean insertCoupon(Coupon coupon) throws SQLException {
-		String sql = "INSERT INTO Coupon VALUES(?,?,?,?)";
+		String sql = "INSERT INTO Coupon VALUES(?, ?, ?, ?)";
 		int row = 0;
 		try {
 			con = DBConnection.getInstance().getConnection();
@@ -117,7 +117,7 @@ public class CouponDAOImpl implements CouponDAO {
 	@Override
 	public boolean updateCoupon(Coupon coupon) throws SQLException {
 		String sql = "UPDATE Coupon\r\n" + "SET CouponDesc=?,DiscountPercent=?,Quantity=?\r\n"
-				+ "WHERE CouponID like ?";
+				+ "WHERE CouponID LIKE ?";
 		int row = 0;
 		try {
 			con = DBConnection.getInstance().getConnection();
@@ -149,7 +149,7 @@ public class CouponDAOImpl implements CouponDAO {
 
 	@Override
 	public boolean deleteCoupon(String couponID) throws SQLException {
-		String sql = "\r\n" + "DELETE FROM Coupon\r\n" + "WHERE CouponID like ?";
+		String sql = "\r\n" + "DELETE FROM Coupon\r\n" + "WHERE CouponID LIKE ?";
 		int row = 0;
 		try {
 			con = DBConnection.getInstance().getConnection();
