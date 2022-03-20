@@ -74,7 +74,7 @@ public class AUpdateOrderController extends HttpServlet {
 		try {
 			OrderDAO dao = new OrderDAOImpl();
 			dao.getUpdateOrder(status, oid, shipperID, receiptDate, total);
-			request.getRequestDispatcher("listOrderController").forward(request, response);
+			request.getRequestDispatcher("listOrderController?index=1").forward(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

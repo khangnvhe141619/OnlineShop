@@ -57,7 +57,10 @@ public class CheckOutController extends HttpServlet {
 
 		int productID = (int) session.getAttribute(("pID"));
 		int quantity = (int) session.getAttribute(("quantity"));
-
+		if(account.getFullname() == null || account.getFullname() == "") {
+			response.sendRedirect("update");
+			return;
+		}
 		if (session.getAttribute("coupon") != null) {
 			Coupon coupon = (Coupon) session.getAttribute("coupon");
 			String couponId = coupon.getCouponId();

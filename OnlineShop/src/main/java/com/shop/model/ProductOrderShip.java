@@ -5,6 +5,7 @@ public class ProductOrderShip {
 	private String description;
 	private String image;
 	private String productName;
+	private String receiptDate;
 	private double price;
 	private int quantity;
 	private int productID;
@@ -13,17 +14,22 @@ public class ProductOrderShip {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProductOrderShip(double total, String description, String image, String productName, double price,
-			int quantity, int productID) {
+	
+
+	public ProductOrderShip(double total, String description, String image, String productName, String receiptDate,
+			double price, int quantity, int productID) {
 		super();
 		this.total = total;
 		this.description = description;
 		this.image = image;
 		this.productName = productName;
+		this.receiptDate = receiptDate;
 		this.price = price;
 		this.quantity = quantity;
 		this.productID = productID;
 	}
+
+
 
 	public double getTotal() {
 		return total;
@@ -80,13 +86,28 @@ public class ProductOrderShip {
 	public void setProductID(int productID) {
 		this.productID = productID;
 	}
+	
+	
+
+	public String getReceiptDate() {
+		return receiptDate;
+	}
+
+
+
+	public void setReceiptDate(String receiptDate) {
+		this.receiptDate = receiptDate;
+	}
 
 	@Override
 	public String toString() {
 		return "ProductOrderShip [total=" + total + ", description=" + description + ", image=" + image
-				+ ", productName=" + productName + ", price=" + price + ", quantity=" + quantity + ", productID="
-				+ productID + "]";
+				+ ", productName=" + productName + ", receiptDate=" + receiptDate + ", price=" + price + ", quantity="
+				+ quantity + ", productID=" + productID + "]";
 	}
+
+
+
 
 	
 }

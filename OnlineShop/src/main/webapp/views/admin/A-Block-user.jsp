@@ -77,6 +77,7 @@
                                                     <th>FULLNAME</th>
                                                     <th>EMAIl</th>
                                                     <th>ACTION</th>
+                                                    <th>..#..</th>
                                                 </tr>
                                             </thead>
                                             <c:forEach items="${list}" var="list">
@@ -89,27 +90,14 @@
                                                     <td class="">
                                                          <a href="unBlockUserController?accountID=${list.accountId}">UnBlock</a>
                                                     </td>
+                                                    <td>
+                                                    <a style="margin-left: 10%;" href="<%=request.getContextPath() %>/DeleteUserController?id=${list.accountId}" 
+                                                         onclick="return testConfirmDialog()"><i style="color: red;" class="fa fa-trash" aria-hidden="true"></i></a>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                             </c:forEach>
                                         </table>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-7 m-t-20">Showing ${index} - ${endPage}</div>
-                                        <div class="col-xs-5 m-t-20">
-                                            <div class="btn-group pull-right">
-                                            	<form class="form" role="form" action="<%=request.getContextPath()%>/listUserBlockController?index=${index-1}" method="post">
-                                                <button type="submit" class="btn btn-default waves-effect">
-                                                <i class="fa fa-chevron-left"></i>
-                                                </button>
-                                                </form>
-                                                <form class="form" role="form" action="<%=request.getContextPath()%>/listUserBlockController?index=${index+1}" method="post">
-                                                <button type="submit" class="btn btn-default waves-effect">
-                                                <i class="fa fa-chevron-right"></i>
-                                                </button>
-                                                </form>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -192,5 +180,15 @@
     <script src="<%=request.getContextPath()%>/resources/admin/js/custom.min.js"></script>
     <!--Style Switcher -->
     <script src="<%=request.getContextPath()%>/resources/admin/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+    <script type="text/javascript">
+     function testConfirmDialog()  {
+              var result = confirm("Do you want to continue?");
+              if(result)  {
+                 return true;
+              } else {
+                 return false;
+              }
+         }
+      </script>
 </body>
 </html>

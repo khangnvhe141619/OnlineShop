@@ -36,5 +36,10 @@ public class Address {
     public void setAddress(String address) {
         this.address = address;
     }
+
+	@Override
+	public String toString() {
+		return "Address [addressId=" + addressId + ", address=" + address + "]";
+	}
     
 }

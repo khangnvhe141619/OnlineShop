@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.shop.dao.AccountDAO;
 import com.shop.model.Account;
+import com.shop.model.Address;
 import com.shop.utils.DBConnection;
 import com.shop.utils.SQLCommand;
 
@@ -203,11 +204,60 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 	
 	@Override
+	public Address getAddress(int accountId) throws SQLException {
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.GET_ADDRESS_FROM_ACCOUNTID);
+			pre.setInt(1, accountId);
+			rs = pre.executeQuery();
+			while (rs.next()) {
+				return new Address(rs.getInt(1), rs.getString(2));
+			}
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return null;
+	}
+	
+	@Override
 	public Account getInfoAccountID(String AccountID) throws SQLException {
 		try {
 			con = DBConnection.getInstance().getConnection();
 			pre = con.prepareStatement(SQLCommand.GET_ACCOUNT_FROM_ACCOUNTID);
 			pre.setString(1, AccountID);
+			rs = pre.executeQuery();
+			while (rs.next()) {
+				return new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), 
+						rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getString(11));
+			}
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return null;
+	}
+	
+	@Override
+	public Account getInfoAccountIDInt(int AccountID) throws SQLException {
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.GET_ACCOUNT_FROM_ACCOUNTID_INT);
+			pre.setInt(1, AccountID);
 			rs = pre.executeQuery();
 			while (rs.next()) {
 				return new Account(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), 
@@ -240,6 +290,59 @@ public class AccountDAOImpl implements AccountDAO {
 			pre.setString(4, account.getPhonenumber());
 			pre.setString(5, account.getAvatar());
 			pre.setInt(6, account.getAccountId());
+			check = pre.executeUpdate() == 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return check;
+	}
+	
+	@Override
+	public boolean getUpdateAccountInfo(Account account) throws SQLException {
+		boolean check = false;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.UPDATE_ACCOUNT_INFO);
+			pre.setString(1, account.getUsername());
+			pre.setString(2, account.getFullname());
+			pre.setString(3, account.getEmail());
+			pre.setString(4, account.getPhonenumber());
+			pre.setInt(5, account.getAccountId());
+			check = pre.executeUpdate() == 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (pre != null) {
+				pre.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
+		return check;
+	}
+	
+	@Override
+	public boolean getUpdateAddress(int accountId, String address) throws SQLException {
+		boolean check = false;
+		try {
+			con = DBConnection.getInstance().getConnection();
+			pre = con.prepareStatement(SQLCommand.GET_UPDATE_ADDRESS);
+			pre.setString(1, address);
+			pre.setInt(2, accountId);
 			check = pre.executeUpdate() == 1;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -475,9 +578,11 @@ public class AccountDAOImpl implements AccountDAO {
 	
 	public static void main(String[] args) throws SQLException {
 		AccountDAO dao = new AccountDAOImpl();
-		List<Account> lp = dao.getListAccountOfAdmin(1, 1);
-		for (Account product : lp) {
-			System.out.println(product);
+		boolean check = dao.getUpdateAccountInfo(new Account(2, "Khang123", "Van Khang", "123@123.com", "0123213213"));
+		if(check) {
+			System.out.println("OK");
+		} else {
+			System.out.println("NOT OK");
 		}
 	}
 

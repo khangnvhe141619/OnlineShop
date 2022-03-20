@@ -66,17 +66,24 @@ public class OrderDAOImpl implements OrderDAO{
 			pre.setInt(1, account);
 			rs = pre.executeQuery();
 			while (rs.next()) {
+				Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rs.getString("ReceiptDate"));
+		        DateFormat dateFormat = null;
+		        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				productOrderShip = new ProductOrderShip();
 				productOrderShip.setTotal(rs.getDouble("Total"));
 				productOrderShip.setDescription(rs.getString("Description"));
 				productOrderShip.setImage(rs.getString("Image"));
 				productOrderShip.setProductName(rs.getString("ProductName"));
 				productOrderShip.setPrice(rs.getDouble("Price"));
+				productOrderShip.setReceiptDate(dateFormat.format(date));
 				productOrderShip.setQuantity(rs.getInt("Quantity"));
 				productOrderShip.setProductID(rs.getInt("ProductID"));
 				orders.add(productOrderShip);
 			}
 			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (rs != null) {
 				rs.close();
@@ -206,17 +213,24 @@ public class OrderDAOImpl implements OrderDAO{
 			pre.setInt(1, account);
 			rs = pre.executeQuery();
 			while (rs.next()) {
+				Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rs.getString("ReceiptDate"));
+		        DateFormat dateFormat = null;
+		        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				productOrderShip = new ProductOrderShip();
 				productOrderShip.setTotal(rs.getDouble("Total"));
 				productOrderShip.setDescription(rs.getString("Description"));
 				productOrderShip.setImage(rs.getString("Image"));
 				productOrderShip.setProductName(rs.getString("ProductName"));
 				productOrderShip.setPrice(rs.getDouble("Price"));
+				productOrderShip.setReceiptDate(dateFormat.format(date));
 				productOrderShip.setQuantity(rs.getInt("Quantity"));
 				productOrderShip.setProductID(rs.getInt("ProductID"));
 				orders.add(productOrderShip);
 			}
 			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (rs != null) {
 				rs.close();
@@ -241,17 +255,24 @@ public class OrderDAOImpl implements OrderDAO{
 			pre.setInt(1, account);
 			rs = pre.executeQuery();
 			while (rs.next()) {
+				Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rs.getString("ReceiptDate"));
+		        DateFormat dateFormat = null;
+		        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				productOrderShip = new ProductOrderShip();
 				productOrderShip.setTotal(rs.getDouble("Total"));
 				productOrderShip.setDescription(rs.getString("Description"));
 				productOrderShip.setImage(rs.getString("Image"));
 				productOrderShip.setProductName(rs.getString("ProductName"));
 				productOrderShip.setPrice(rs.getDouble("Price"));
+				productOrderShip.setReceiptDate(dateFormat.format(date));
 				productOrderShip.setQuantity(rs.getInt("Quantity"));
 				productOrderShip.setProductID(rs.getInt("ProductID"));
 				orders.add(productOrderShip);
 			}
 			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (rs != null) {
 				rs.close();

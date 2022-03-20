@@ -24,6 +24,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import com.shop.dao.AccountDAO;
 import com.shop.dao.impl.AccountDAOImpl;
 import com.shop.model.Account;
+import com.shop.model.Address;
 //lalala
 /**
  * Servlet implementation class UpdateAccountController
@@ -42,11 +43,14 @@ public class UpdateAccountController extends HttpServlet {
 		if (session.getAttribute("email") == null || session.getAttribute("account") == null) {
 			response.sendRedirect("loginController");
 		} else {
+			int accountId = (Integer) session.getAttribute("account");
 			String email = (String) session.getAttribute("email");
 			AccountDAO accountDAO = new AccountDAOImpl();
 			try {
+				Address address = accountDAO.getAddress(accountId);
 				Account acc = accountDAO.getInfoAcc(email);
 				request.setAttribute("account", acc);
+				request.setAttribute("address", address);
 			} catch (SQLException e) {
 				request.setAttribute("errorSQL", true);
 				request.getRequestDispatcher("views/Update-account.jsp").forward(request, response);
@@ -64,6 +68,7 @@ public class UpdateAccountController extends HttpServlet {
 		String fullname = request.getParameter("fullname");
 		String email = request.getParameter("email");
 		String phonenumber = request.getParameter("phonenumber");
+		String address = request.getParameter("address");
 		HttpSession session = request.getSession();
 		int accountID = (int) session.getAttribute("account");
 		AccountDAO accountDAO = new AccountDAOImpl();
@@ -94,21 +99,29 @@ public class UpdateAccountController extends HttpServlet {
 					}
 				}
 			}
-			acc = accountDAO.getInfoAcc(username);
+			acc = accountDAO.getInfoAccountIDInt(accountID);
+			System.out.println(acc.toString());
+			System.out.println("naskljdnaskldnklasndklas");
+			address = fields.get("address");
 			username = fields.get("username");
 			fullname = fields.get("fullname");
 			email = fields.get("email");
 			phonenumber = fields.get("phonenumber");
 			System.out.println(filename);
 			Account accountNew = new Account(accountID, username, fullname, email, phonenumber, filename);
+			System.out.println(accountNew);
 			System.out.println("update oke");
 			if (filename == null || filename.equals("")) {
 				accountNew.setAvatar(acc.getAvatar());
+				System.out.println(acc.getAvatar());
 			}
-			accountDAO.getUpdateAccount(accountNew);
 			if (accountDAO.getUpdateAccount(accountNew)) {
-				request.setAttribute("account", accountNew);
-				request.getRequestDispatcher("views/Update-account.jsp").forward(request, response);
+				if(accountDAO.getUpdateAddress(accountID, address)) {
+					Address add = accountDAO.getAddress(accountID);
+					request.setAttribute("address", add);
+					request.setAttribute("account", accountNew);
+					request.getRequestDispatcher("views/Update-account.jsp").forward(request, response);
+				}
 			} else {
 				request.setAttribute("failedUpdate", true);
 				request.setAttribute("account", accountNew);

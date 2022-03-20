@@ -88,8 +88,8 @@
                                                     <td class="max-texts">${list.email}</td>
                                                     <td class="">
                                                          <a href="<%=request.getContextPath()%>/userDetailController?AcountID=${list.accountId}"><i class="fa fa-edit" aria-hidden="true"></i></a> 
-                                                         <a style="margin-left: 10%;" href="<%=request.getContextPath() %>/DeleteUserController?id=${list.accountId}" 
-                                                         onclick="return testConfirmDialog()"><i style="color: red;" class="fa fa-trash" aria-hidden="true"></i></a>
+                                                         <a style="margin-left: 10%;" href="<%=request.getContextPath() %>/blockUserController?accountID=${list.accountId}" 
+                                                         onclick="return testConfirmDialog()"><i style="color: red;" class="fa fa-ban" aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>
                                             </tbody>

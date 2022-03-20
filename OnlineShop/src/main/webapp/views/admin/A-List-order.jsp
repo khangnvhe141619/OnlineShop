@@ -82,7 +82,7 @@
 						<div class="white-box">
 							<!-- row -->
 							<div class="row">
-								<h4>List Of Departments (<b style="color: orange;">${count }</b>)</h4>
+								<h4>List Of Orders (<b style="color: orange;">${count }</b>)</h4>
 								<div class="col-lg-12 col-md-9 col-sm-12 col-xs-12 mail_listing">
 									<div class="inbox-center">
 										<table class="table table-hover">
@@ -103,7 +103,7 @@
 														<td class="max-texts">${list.stt}</td>
 														<td class="max-texts">${list.shipper}</td>
 														<td class="max-texts">${list.customer}</td>
-														<td class="max-texts">${list.orderDate.format( DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"))}</td>
+														<td class="max-texts">${list.orderDate}</td>
 														<td class="max-texts"><fmt:formatNumber type="number"
 																maxIntegerDigits="10" value="${list.total}" /></td>
 														<c:if test="${list.status=='Cancel'}">
