@@ -12,6 +12,8 @@ public class SQLCommand {
 	
 	public static final String GET_ACCOUNT_FROM_ACCOUNTID = "SELECT * FROM Account WHERE AccountID like ?";
 	
+	public static final String GET_ACCOUNT_FROM_ACCOUNTID_INT = "SELECT * FROM Account WHERE AccountID = ?";
+	
 	public static final String GET_ACCOUNT_FROM_ID = "SELECT * FROM Account WHERE AccountID like ?";
 	
 	public static final String GET_ACCOUNT_FROM_EMAIL = "SELECT * FROM Account WHERE Email LIKE ?";
@@ -38,6 +40,9 @@ public class SQLCommand {
 	public static final String LIST_SHIPPER = "SELECT * FROM Shipper";
 	
 	public static final String UPDATE_ACCOUNT = "UPDATE Account SET Username = ?, FullName = ?, Email = ?, PhoneNumber = ?, Avatar = ?\r\n"
+			+ "WHERE AccountID = ?\r\n";
+	
+	public static final String UPDATE_ACCOUNT_INFO = "UPDATE Account SET Username = ?, FullName = ?, Email = ?, PhoneNumber = ?\r\n"
 			+ "WHERE AccountID = ?\r\n";
 
 	public static final String GET_LIST_ORDER = "SELECT O.Total, OS.Description, P.Image, P.ProductName, P.Price, OD.Quantity, O.ReceiptDate,P.ProductID\r\n"

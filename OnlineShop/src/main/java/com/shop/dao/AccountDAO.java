@@ -19,11 +19,15 @@ public interface AccountDAO {
 	
 	List<Account> getListAccount() throws SQLException;
 	
+	Account getInfoAccountIDInt(int AccountID) throws SQLException;
+	
 	public Account findPassword(String email) throws SQLException;
 	
-	Account getInfoAcc(String email) throws SQLException;
+	Account getInfoAcc(String username) throws SQLException;
 	
 	Address getAddress(int accountId) throws SQLException;
+	
+	boolean getUpdateAccountInfo(Account account) throws SQLException;
 	
 	boolean getUpdateAccount(Account account) throws SQLException;
 	

@@ -58,6 +58,17 @@ public class Account {
 		this.phonenumber = phonenumber;
 		this.avatar = avatar;
 	}
+	
+	
+
+	public Account(int accountId, String username, String fullname, String email, String phonenumber) {
+		super();
+		this.accountId = accountId;
+		this.username = username;
+		this.fullname = fullname;
+		this.email = email;
+		this.phonenumber = phonenumber;
+	}
 
 	public Account(int accountId, String password) {
 		super();

@@ -99,7 +99,9 @@ public class UpdateAccountController extends HttpServlet {
 					}
 				}
 			}
-			acc = accountDAO.getInfoAcc(username);
+			acc = accountDAO.getInfoAccountIDInt(accountID);
+			System.out.println(acc.toString());
+			System.out.println("naskljdnaskldnklasndklas");
 			address = fields.get("address");
 			username = fields.get("username");
 			fullname = fields.get("fullname");
@@ -107,11 +109,12 @@ public class UpdateAccountController extends HttpServlet {
 			phonenumber = fields.get("phonenumber");
 			System.out.println(filename);
 			Account accountNew = new Account(accountID, username, fullname, email, phonenumber, filename);
+			System.out.println(accountNew);
 			System.out.println("update oke");
 			if (filename == null || filename.equals("")) {
 				accountNew.setAvatar(acc.getAvatar());
+				System.out.println(acc.getAvatar());
 			}
-			accountDAO.getUpdateAccount(accountNew);
 			if (accountDAO.getUpdateAccount(accountNew)) {
 				if(accountDAO.getUpdateAddress(accountID, address)) {
 					Address add = accountDAO.getAddress(accountID);
