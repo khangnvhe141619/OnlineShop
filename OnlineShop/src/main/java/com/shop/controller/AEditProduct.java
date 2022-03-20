@@ -53,11 +53,11 @@ public class AEditProduct extends HttpServlet {
 		List<Category> listCate = new ArrayList<>();
 		List<BookCover> listBK = new ArrayList<>();
 		index = Integer.parseInt(request.getParameter("index"));
-		String cate =request.getParameter("cateName");
-		String cover= request.getParameter("cover");
+		String cate = request.getParameter("cateName");
+		String cover = request.getParameter("cover");
 		System.out.println(cover);
-		int coverID= Integer.parseInt(cover);
-		
+		int coverID = Integer.parseInt(cover);
+
 		try {
 			Product p = pd.getProductById(index);
 			listCate = cateDAO.getListAllCategory();
@@ -95,7 +95,7 @@ public class AEditProduct extends HttpServlet {
 		int coverId = Integer.parseInt(covId);
 		LocalDateTime localDate = LocalDateTime.now();
 		String publishDate = request.getParameter("publicationDate");
-		
+
 		LocalDateTime dateTime = Validation.getLocalDateTime(publishDate + " 00:00:00");
 
 		int quantity = Integer.parseInt(request.getParameter("quantity"));

@@ -44,27 +44,18 @@ public class ChangePassword extends HttpServlet {
 			throws ServletException, IOException {
 		String currentpass = request.getParameter("currentpass");
 		String newpass = request.getParameter("newpass");
-		String repass = request.getParameter("repass");
 		HttpSession session = request.getSession();
 		int accountID = (int) session.getAttribute("account");
-		Account account = new Account(accountID, repass);
+		Account account = new Account(accountID, newpass);
 		AccountDAO accountDAO = new AccountDAOImpl();
 		try {
-			if (!newpass.equals(repass)) {
-				request.setAttribute("NotMatch", true);
-			} else if (accountDAO.getCheckPassword(accountID, currentpass) == null) {
+			if (accountDAO.getCheckPassword(accountID, currentpass) == null) {
 				request.setAttribute("PasswordIncorrect", true);
 			} else if (accountDAO.getCheckPassword(accountID, currentpass) != null) {
 				accountDAO.getChangePassword(account);
-				request.setAttribute("successfully", true);
+				request.setAttribute("success", true);
 				request.getRequestDispatcher("views/ChangePassword.jsp").forward(request, response);
-			} else {
-				request.setAttribute("failedRegister", true);
 			}
-			request.setAttribute("currentpass", currentpass);
-			request.setAttribute("newpass", newpass);
-			request.setAttribute("repass", repass);
-			request.getRequestDispatcher("views/ChangePassword.jsp").forward(request, response);
 		} catch (Exception e) {
 			request.setAttribute("errorSQL", true);
 			request.getRequestDispatcher("views/ChangePassword.jsp").forward(request, response);

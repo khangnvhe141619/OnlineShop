@@ -119,7 +119,13 @@
 						</div>
 						<div class="col-sm-3">
 							<div class="form-group">
-								<button class="btn btn-round btn-g" type="submit">Apply</button>
+							<c:if test="${sessionScope.items == null}">
+							<button class="btn btn-round btn-g" type="submit" disabled="disabled">Apply</button>
+							</c:if>
+							<c:if test="${sessionScope.items != null}">
+							<button class="btn btn-round btn-g" type="submit">Apply</button>
+							</c:if>
+								
 							</div>
 						</div>
 					</form>					
@@ -177,10 +183,9 @@
                                         <h5 style="color:red">${requestScope.error}</h5>
                                     </c:if>
 								<c:if
-									test="${sessionScope.items == null or sessionScope.acc.role != 2}">
-									<a href="#"
-										class="btn btn-lg btn-block btn-round btn-d">Proceed to
-										Checkout</a>
+									test="${sessionScope.items == null or sessionScope.acc.role != 2}">	
+										<input class="btn btn-lg btn-block btn-round btn-b" type="submit" value="Proceed to
+										Checkout" disabled="disabled"/>
 								</c:if>
 								<c:if
 									test="${sessionScope.items != null and sessionScope.acc.role == 2}">

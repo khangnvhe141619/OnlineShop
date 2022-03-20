@@ -87,8 +87,7 @@
                                                     <td class="max-texts"> ${i.stt }</td>
                                                     <td class="max-texts"> ${i.categoryName} </td>
                                                     <td class="">
-                                                        <a href="<%=request.getContextPath()%>/AEditCategory?index=${i.categoryID}"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                                                           <a style="margin-left: 5%;" href="<%=request.getContextPath() %>/DeleteCateController?index=${i.categoryID}" onclick="return testConfirmDialog()"><i style="color: red;" class="fa fa-trash" aria-hidden="true"></i></a> 
+                                                           <a style="margin-left: 10%;" href="<%=request.getContextPath() %>/DeleteCateController?index=${i.categoryID}" onclick="return testConfirmDialog()"><i style="color: red;" class="fa fa-trash" aria-hidden="true"></i></a> 
                                                     </td>
                                                 </tr>
                                                 </c:forEach>

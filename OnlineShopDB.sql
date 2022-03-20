@@ -68,7 +68,6 @@ CREATE TABLE [dbo].[Product]
 	ProductName			nvarchar(200)	NOT NULL,
 	[Image]				varchar(255)	NOT NULL,	
 	[Description]		nvarchar(max)	NOT NULL,
-	Author				nvarchar(255)	NOT NULL,
 	CreatedDate			datetime2		,
 	IssuingCompany		nvarchar(255)	NOT NULL,
 	PublicationDate		datetime2		NOT NULL,
@@ -311,7 +310,7 @@ INSERT [dbo].[Shipper] ([ShipperName], [Email], [Phone]) VALUES ('Phan Van Be','
 INSERT [dbo].[Shipper] ([ShipperName], [Email], [Phone]) VALUES ('Pham Van Bach','vlback@gmail.com', '0111111111')
 INSERT [dbo].[Shipper] ([ShipperName], [Email], [Phone]) VALUES ('Nguyen Thai Binh','binhnv@gmail.com', '0111112222')
 GO
-INSERT [dbo].[Order] ([ShipperId], [AccountId], [OrderDate], [Total], [StatusId]) VALUES (1, 2, CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), 24.0000, 1)
+INSERT [dbo].[Order] ([ShipperId], [AccountId], [OrderDate], [ReceiptDate], [Total], [StatusId]) VALUES (1, 2, CAST(N'2022-01-25T00:00:00.0000000' AS DateTime2), CAST(N'2022-01-29T00:00:00.0000000' AS DateTime2), 24.0000, 1)
 
 GO
 INSERT [dbo].[OrderDetail] ([OrderId], [ProductID], [Quantity]) VALUES (1, 2, 2)

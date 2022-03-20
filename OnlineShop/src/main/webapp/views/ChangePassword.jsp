@@ -121,17 +121,17 @@
 						<h4 class="font-alt mb-0">Change Password</h4>
 						<hr class="divider-w mt-10 mb-20">
 						<c:if test="${failedRegister}">
-							<div style="color: red;">Register failed</div>
+							<div style="color: red;">Change failed</div>
 						</c:if>
 						<c:if test="${errorSQL}">
 							<div style="color: red;">Connect SQL Server fail</div>
 						</c:if>
-						<c:if test="${successfully}">
-							<div style="color: green; font-size: 15px;">Change Password successfully !!!</div>
+						<c:if test="${success}">
+							<div style="color: green; font-size: 15px;">Change password successfully !!!</div>
 							<br>
 						</c:if>
-						<form class="form" role="form"
-							action="<%=request.getContextPath()%>/changePassword" method="post" onsubmit="return Validate()">
+						<form class="form" role="form" id="myChange" 
+							action="<%=request.getContextPath()%>/changePassword" method="post" onsubmit="return checkPassword();">
 							<c:if test="${PasswordIncorrect}">
 								<div style="color: red;">Password incorrect !!!</div>
 							</c:if>
@@ -141,17 +141,13 @@
 									placeholder="CURRENT PASSWORD" required>
 							</div>
 							<div class="form-group">
-								<input class="form-control input-lg" type="password" name="newpass"
+								<input class="form-control input-lg" type="password" name="newpass" pattern="[a-zA-Z0-9]{6, 15}" 
 									id="newpass" value="${newpass}" placeholder="NEW PASSWORD"
 									required>
-							</div>
-							<c:if test="${NotMatch}">
-								<div style="color: red;">Password and Re-Password isn't
-									match !!!</div>
-							</c:if>
+							</div>							
 							<div class="form-group">
-								<input class="form-control input-lg" type="password" name="repass"
-									id="repass" value="${repass}" placeholder="RE_PASSWORD" required>
+								<input class="form-control input-lg" type="password" name="repass" pattern="[a-zA-Z0-9]{6, 15}" 
+									id="repass" value="${repass}" placeholder="RE-PASSWORD" required>
 							</div>
 							<div class="form-group ">
 								<input class="btn btn-lg btn-block btn-round btn-b"
@@ -167,6 +163,8 @@
         JavaScripts
         =============================================
         -->
+        <script
+		src="<%=request.getContextPath()%>/resources/common/js/EditProfile.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/common/js/ChangePassword.js"></script>
 	<script
