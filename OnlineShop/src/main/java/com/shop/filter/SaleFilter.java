@@ -46,7 +46,7 @@ public class SaleFilter implements Filter {
 		HttpSession session = req.getSession();
 		Account account = (Account) session.getAttribute("acc");
 		if (account == null || account.getRole() != 3 && account.getRole() != 1) {
-			res.sendRedirect(req.getContextPath() + "/views/404.jsp");
+			res.sendRedirect(req.getContextPath() + "/loginController");
 		} else {
 			chain.doFilter(request, response);
 		}

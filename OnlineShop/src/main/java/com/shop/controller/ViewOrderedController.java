@@ -38,6 +38,7 @@ public class ViewOrderedController extends HttpServlet {
 		int account = (int) session.getAttribute("account");
 		String pending = request.getParameter("pending");
 		String completed = request.getParameter("completed");
+		String cancel = request.getParameter("cancel");
 		if(session.getAttribute("account") != null) {
 			OrderDAO dao = new OrderDAOImpl();
 			try {
@@ -51,6 +52,11 @@ public class ViewOrderedController extends HttpServlet {
 					request.setAttribute("color1", "#EE4D2D");
 					request.setAttribute("HEADER", "COMPLETED");
 					request.setAttribute("listOrder", listOrder);
+				}else if(cancel != null) {
+					List<ProductOrderShip> listOrder = dao.getListOrdersByCancel(account);
+					request.setAttribute("color3", "#EE4D2D");
+					request.setAttribute("HEADER", "CANCEL");
+					request.setAttribute("listOrder", listOrder);
 				} else {
 					List<ProductOrderShip> listOrder = dao.getListOrders(account);
 					request.setAttribute("color2", "#EE4D2D");
@@ -59,6 +65,7 @@ public class ViewOrderedController extends HttpServlet {
 				}
 				request.setAttribute("pending", "Pending");
 				request.setAttribute("completed", "Completed");
+				request.setAttribute("cancel", "Cancel");
 				request.getRequestDispatcher("views/ProductOrderShip.jsp").forward(request, response);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

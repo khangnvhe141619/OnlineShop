@@ -66,17 +66,21 @@
                 <section class="module">
                     <div class="container">
                     	<div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <a class="module-title font-alt" href="<%=request.getContextPath()%>/viewOrdered" 
                                 style="font-size: 30px; font-weight:600; margin: 40%; color: ${color2};">All</a>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <a class="module-title font-alt" href="<%=request.getContextPath()%>/viewOrdered?pending=1" 
                                 style="font-size: 30px; font-weight:600; margin: 30%; color: ${color};">PENDING</a>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <a class="module-title font-alt" href="<%=request.getContextPath()%>/viewOrdered?completed=1" 
                                 style="font-size: 30px; font-weight:600; margin: 30%; color: ${color1};">COMPLETED</a>
+                            </div>
+                            <div class="col-sm-3">
+                                <a class="module-title font-alt" href="<%=request.getContextPath()%>/viewOrdered?cancel=1" 
+                                style="font-size: 30px; font-weight:600; margin: 30%; color: ${color3};">CANCEL</a>
                             </div>
                         </div>
                         <div class="row">
@@ -121,11 +125,14 @@
                                             </td>
                                             <td>
                                             	<c:if test="${i.description == pending}">
-                                            		<h5 class="product-title font-alt" style="color: red;">${i.description}</h5>
+                                            		<h5 class="product-title font-alt" style="color: orange;">${i.description}</h5>
                                             	</c:if>
                                             	<c:if test="${i.description == completed}">
                                             		<h5 class="product-title font-alt" style="color: green;">${i.description}</h5>
-                                            	</c:if>                                         	
+                                            	</c:if>       
+                                            	<c:if test="${i.description == cancel}">
+                                            		<h5 class="product-title font-alt" style="color: red;">${i.description}</h5>
+                                            	</c:if>                                   	
                                             </td>
                                         </tr>
                                         <tr align="right">

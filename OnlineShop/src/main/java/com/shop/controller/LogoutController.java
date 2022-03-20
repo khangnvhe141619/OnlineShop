@@ -18,8 +18,7 @@ public class LogoutController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		session.invalidate();
+
 		request.getSession().removeAttribute("account");
 		request.getSession().removeAttribute("email");	
 		response.sendRedirect("views/Login.jsp");

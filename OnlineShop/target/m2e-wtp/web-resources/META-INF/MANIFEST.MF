@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: May
 Build-Jdk: 17.0.1
+=======
+Built-By: vip2021
+Build-Jdk: 16.0.2
+>>>>>>> 6b9f7414def92a1e5eb0cb985763f0eef70cda7d
 Created-By: Maven Integration for Eclipse
 
