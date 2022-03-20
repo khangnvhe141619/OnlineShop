@@ -457,11 +457,7 @@ public class ProductDAOImpl implements ProductDAO {
 				product.setProductID(rs.getInt("ProductID"));
 				product.setCateName(rs.getString("CategoryName"));
 				product.setProductName(rs.getString("ProductName"));
-<<<<<<< HEAD
-
-=======
 				product.setCoverType(rs.getInt("CoverTypeId"));
->>>>>>> 844d6d7d5ce557586340f2216854327b50db0139
 				product.setQuantity(rs.getInt("Quantity"));
 				product.setPrice(rs.getDouble("Price"));
 				lstProduct.add(product);

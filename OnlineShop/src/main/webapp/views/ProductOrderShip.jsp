@@ -97,6 +97,7 @@
 	                                        <th>Price</th>
 	                                        <th>Quantity</th>
 	                                        <th>Total</th>
+	                                        <th>Receipt Date</th>
 	                                        <th>Status</th>
 	                                    </tr>
                                         <tr>
@@ -116,6 +117,9 @@
                                                 <h5 class="product-title font-alt"><fmt:formatNumber type = "number" maxIntegerDigits = "10" value = "${i.total}" /> VND</h5>
                                             </td>
                                             <td>
+                                                <h5 class="product-title font-alt">${i.receiptDate}</h5>
+                                            </td>
+                                            <td>
                                             	<c:if test="${i.description == pending}">
                                             		<h5 class="product-title font-alt" style="color: red;">${i.description}</h5>
                                             	</c:if>
@@ -125,7 +129,7 @@
                                             </td>
                                         </tr>
                                         <tr align="right">
-            								<td colspan="6">
+            								<td colspan="7">
             									<div class="row mb-20">
 							<form action="addCart?quantity=1" method="POST">
 								<div class="col-sm-12">
