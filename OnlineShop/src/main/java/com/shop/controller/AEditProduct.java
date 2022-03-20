@@ -53,11 +53,11 @@ public class AEditProduct extends HttpServlet {
 		List<Category> listCate = new ArrayList<>();
 		List<BookCover> listBK = new ArrayList<>();
 		index = Integer.parseInt(request.getParameter("index"));
-		String cate =request.getParameter("cateName");
-		String cover= request.getParameter("cover");
+		String cate = request.getParameter("cateName");
+		String cover = request.getParameter("cover");
 		System.out.println(cover);
-		int coverID= Integer.parseInt(cover);
-		
+		int coverID = Integer.parseInt(cover);
+
 		try {
 			Product p = pd.getProductById(index);
 			listCate = cateDAO.getListAllCategory();
@@ -81,6 +81,7 @@ public class AEditProduct extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+<<<<<<< HEAD
 		CategoryDAOImpl cateDAO = new CategoryDAOImpl();
 		ProductDAOImpl pd = new ProductDAOImpl();
 		List<Category> listCate = new ArrayList<>();
@@ -95,22 +96,41 @@ public class AEditProduct extends HttpServlet {
 		int coverId = Integer.parseInt(covId);
 		LocalDateTime localDate = LocalDateTime.now();
 		String publishDate = request.getParameter("publicationDate");
-		
+
 		LocalDateTime dateTime = Validation.getLocalDateTime(publishDate + " 00:00:00");
-
-		int quantity = Integer.parseInt(request.getParameter("quantity"));
-		Double price = Double.parseDouble(request.getParameter("price"));
-		int num = Integer.parseInt(request.getParameter("numberOfPage"));
-		String company = request.getParameter("publishingCompany");
-		String realPath = request.getServletContext().getRealPath("/common/images/products");
-		String filename = Path.of(part.getSubmittedFileName()).getFileName().toString();
-		if (!Files.exists(Path.of(realPath))) {
-			Files.createDirectories(Path.of(realPath));
-		}
-
-		part.write(realPath + "/" + filename);
+=======
+>>>>>>> ab268c9ec7085f1bb471a35111d089e636a0cbd6
 
 		try {
+			CategoryDAOImpl cateDAO = new CategoryDAOImpl();
+			ProductDAOImpl pd = new ProductDAOImpl();
+			List<Category> listCate = new ArrayList<>();
+			List<BookCover> listBK = new ArrayList<>();
+			String cateId = request.getParameter("category");
+			int cID = Integer.parseInt(cateId);
+			String pName = request.getParameter("productName");
+			String des = request.getParameter("productDesc");
+			String iss = request.getParameter("issuingCompany");
+			Part part = request.getPart("productImage");
+			String covId = request.getParameter("coverType");
+			int coverId = Integer.parseInt(covId);
+			LocalDateTime localDate = LocalDateTime.now();
+			String publishDate = request.getParameter("publicationDate");
+			
+			LocalDateTime dateTime = Validation.getLocalDateTime(publishDate + " 00:00:00");
+
+			int quantity = Integer.parseInt(request.getParameter("quantity"));
+			Double price = Double.parseDouble(request.getParameter("price"));
+			int num = Integer.parseInt(request.getParameter("numberOfPage"));
+			String company = request.getParameter("publishingCompany");
+			String realPath = request.getServletContext().getRealPath("/common/images/products");
+			String filename = Path.of(part.getSubmittedFileName()).getFileName().toString();
+			if (!Files.exists(Path.of(realPath))) {
+				Files.createDirectories(Path.of(realPath));
+			}
+
+			part.write(realPath + "/" + filename);
+
 			listCate = cateDAO.getListAllCategory();
 			listBK = pd.getAllBookcover();
 
@@ -118,6 +138,7 @@ public class AEditProduct extends HttpServlet {
 					quantity, price, num);
 			Boolean kq = pd.updateProduct(product);
 			if (kq == true) {
+				
 				request.setAttribute("categoryID", cateId);
 				request.setAttribute("coverid", coverId);
 				request.setAttribute("product", product);

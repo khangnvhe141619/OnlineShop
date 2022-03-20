@@ -110,7 +110,7 @@
 										</div>
 										<div class="form-group">
 											<label for="inputImage">Image</label><br>
-											<img alt="" src="common/images/products/${product.image}" width="200px" height="200px"  display: flex;" />
+											<img alt="" src="<%=request.getContextPath()%>/common/images/products/${product.image}" width="200px" height="200px"  display: flex;" />
 											<div class="input-group">
 												<div class="input-group-addon">
 													<i class="fa fa-upload"></i>

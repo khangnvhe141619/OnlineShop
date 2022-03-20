@@ -1,7 +1,7 @@
 function validatePhone(phone) {
-		let isPhone = /^[0-9]{7,11}$/;
-		return isPhone.test(phone);
-	}
+	let isPhone = /^[0-9]{7,11}$/;
+	return isPhone.test(phone);
+}
 
 function Validate() {
 
@@ -27,5 +27,18 @@ function Validate() {
 		return false;
 	} else {
 		alert('Update Successful!');
+	}
+}
+
+function checkPassword() {
+	var newPass = document.getElementById("newpass").value;
+	var rePass = document.getElementById("repass").value;
+	var reg = new RegExp('^[a-zA-Z0-9]{2, 4}');
+
+	if (newPass == rePass) {
+		return true;
+	} else {
+		alert("Re-password must match New-password")
+		return false;
 	}
 }

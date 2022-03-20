@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -16,12 +15,15 @@
 											<span class="input-group-text"><i class="fa fa-filter"
 												aria-hidden="true"> Filter By</i></span>
 										</div>
+										
 										<select style="margin-bottom: 5%;" class="form-control" name="select">
+										
 											<option value="pChoose" selected="selected">------ Choose ------</option>
 											<option value="pTitle">Title</option>
 											<option value="pAuthor">Author</option>
-											<option value="pTag">Tag</option>																																	
-										</select>
+											<option value="pTag">Tag</option>
+											
+										</select>										
 									</div>
 
 									<div class="search-box">
