@@ -1,17 +1,11 @@
 package com.shop.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.shop.dao.AccountDAO;
-import com.shop.dao.impl.AccountDAOImpl;
-import com.shop.model.Account;
 import com.shop.service.CustomerService;
 import com.shop.service.EmailMessage;
 import com.shop.service.EmailUtility;
@@ -46,9 +40,7 @@ public class ForgotPasswordController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		AccountDAO accountDAO = new AccountDAOImpl();
 		EmailMessage emailBean = new EmailMessage();
-		Account account = null;
 		String email = request.getParameter("email").trim();
 		String newPassword = CustomerService.resetCustomerPassword(email);
 		if (newPassword == null) {

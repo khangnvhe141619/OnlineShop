@@ -50,7 +50,8 @@ public class SQLCommand {
 			+ "ON O.OrderID = OD.OrderID JOIN OrderStatus OS \r\n"
 			+ "ON OS.ID = O.StatusId JOIN Product P\r\n"
 			+ "ON P.ProductId = OD.ProductId\r\n"
-			+ "WHERE O.AccountId = ?";
+			+ "WHERE O.AccountId = ?\r\n"
+			+ "ORDER BY O.OrderID DESC";
 	
 	public static final String GET_LIST_ALL_ORDER = "with x as (SELECT ROW_NUMBER() OVER (ORDER BY [OrderDate]) AS STT,\r\n"
 			+ "S.ShipperName, A.Username, O.OrderDate, O.Total, OS.Description, O.OrderID\r\n"
@@ -74,14 +75,21 @@ public class SQLCommand {
 			+ "ON O.OrderID = OD.OrderID JOIN OrderStatus OS \r\n"
 			+ "ON OS.ID = O.StatusId JOIN Product P\r\n"
 			+ "ON P.ProductId = OD.ProductId\r\n"
-			+ "WHERE O.AccountId = ? AND OS.Description like 'Pending'";
+			+ "WHERE O.AccountId = ? AND OS.Description like 'Pending' ORDER BY O.OrderID DESC";
+	
+	public static final String GET_LIST_ORDER_BY_CANCEL = "SELECT O.Total, OS.Description, P.Image, P.ProductName, P.Price, OD.Quantity, O.ReceiptDate, P.ProductID\r\n"
+			+ "FROM [Order] O JOIN OrderDetail OD \r\n"
+			+ "ON O.OrderID = OD.OrderID JOIN OrderStatus OS \r\n"
+			+ "ON OS.ID = O.StatusId JOIN Product P\r\n"
+			+ "ON P.ProductId = OD.ProductId\r\n"
+			+ "WHERE O.AccountId = ? AND OS.Description like 'Cancel' ORDER BY O.OrderID DESC";
 	
 	public static final String GET_LIST_ORDER_BY_COMPLETED = "SELECT O.Total, OS.Description, P.Image, P.ProductName, P.Price, OD.Quantity, O.ReceiptDate, P.ProductID\r\n"
 			+ "FROM [Order] O JOIN OrderDetail OD \r\n"
 			+ "ON O.OrderID = OD.OrderID JOIN OrderStatus OS \r\n"
 			+ "ON OS.ID = O.StatusId JOIN Product P\r\n"
 			+ "ON P.ProductId = OD.ProductId\r\n"
-			+ "WHERE O.AccountId = ? AND OS.Description like 'Completed'";
+			+ "WHERE O.AccountId = ? AND OS.Description like 'Completed' ORDER BY O.OrderID DESC";
 	
 	public static final String GET_LIST_DEPARTMENTS = "with x as (select ROW_NUMBER() over (order by [DepartmentID]) as r,\r\n"
 			+ "DepartmentID, DepartmentName, DepartmentDesc \r\n"

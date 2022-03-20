@@ -148,7 +148,7 @@
 								<form action="<%=request.getContextPath()%>/addCart" method="POST">
 									<div class="col-sm-4 mb-sm-20">
 										<input class="form-control input-lg" type="number"
-											name="quantity" value="1" max="40" min="1"
+											name="quantity" value="1" max="40" min="1" id = "quantity"
 											required="required" />
 									</div>
 									<div class="col-sm-8">
@@ -157,7 +157,7 @@
 										<input class="btn btn-lg btn-block btn-round btn-b" type="submit" value="Add To Cart" disabled="disabled"/>
 										</c:if>
 										<c:if test="${p.quantity > 0}">
-										<input class="btn btn-lg btn-block btn-round btn-b" type="submit" value="Add To Cart" />
+										<input class="btn btn-lg btn-block btn-round btn-b" type="submit" onclick="return check(${p.quantity})" value="Add To Cart" />
 										</c:if>					
 									</div>
 								</form>
@@ -257,7 +257,7 @@
 											</tr>
 											<tr>
 												<td>Quantity</td>
-												<td>${p.quantity }</td>
+												<td>${p.quantity}</td>
 											</tr>
 											<tr>
 												<td>Publication Date</td>
@@ -311,5 +311,16 @@
 		src="<%=request.getContextPath()%>/resources/common/assets/js/plugins.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/common/assets/js/main.js"></script>
+	<script>
+	function check(quantityAll){
+		var quantity = document.getElementById("quantity").value;
+		if(quantityAll < quantity){
+			alert('Quantity is too much !!!');
+			return false;
+		} else {
+			return true;
+		}
+	}
+	</script>
 </body>
 </html>
