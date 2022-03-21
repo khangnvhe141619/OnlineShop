@@ -81,10 +81,6 @@ public class AEditProduct extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'main' of https://github.com/khangnvhe141619/OnlineShop.git
 		try {
 			CategoryDAOImpl cateDAO = new CategoryDAOImpl();
 			ProductDAOImpl pd = new ProductDAOImpl();
