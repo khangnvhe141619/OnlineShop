@@ -43,43 +43,26 @@
 					<div class="widget">
 						<h5 class="widget-title font-alt">Our Expertises</h5>
 						<ul class="icon-list">
-							<li><a href="#">Photography</a></li>
-							<li><a href="#">Web Design</a></li>
-							<li><a href="#">Illustration</a></li>
-							<li><a href="#">Marketing</a></li>
+							<li>Photography</li>
+							<li>Web Design</li>
+							<li>Illustration</li>
+							<li>Marketing</li>
 						</ul>
 					</div>
 				</div>
 				<div class="col-sm-3">
 					<div class="widget">
-						<h5 class="widget-title font-alt">Popular Posts</h5>
-						<ul class="widget-posts">
+						<h5 class="widget-title font-alt">Learning</h5>
+						<ul class="widget-posts">						
 							<li class="clearfix">
-								<div class="widget-posts-image">
-									<a href="#"><img
-										src="<%=request.getContextPath()%>/resources/common/assets/images/rp-1.jpg"
-										alt="Post Thumbnail" /></a>
+							<a>" Learning  never  exhausted the mind.	"
+									
+									 Leonardo da Vinci ~</a>
+								<div class="widget-posts-image ">
+									
 								</div>
-								<div class="widget-posts-body">
-									<div class="widget-posts-title">
-										<a href="#">Designer Desk Essentials</a>
-									</div>
-									<div class="widget-posts-meta">23 january</div>
-								</div>
-							</li>
-							<li class="clearfix">
-								<div class="widget-posts-image">
-									<a href="#"><img
-										src="<%=request.getContextPath()%>/resources/common/assets/images/rp-2.jpg"
-										alt="Post Thumbnail" /></a>
-								</div>
-								<div class="widget-posts-body">
-									<div class="widget-posts-title">
-										<a href="#">Realistic Business Card Mockup</a>
-									</div>
-									<div class="widget-posts-meta">15 February</div>
-								</div>
-							</li>
+								
+							</li>							
 						</ul>
 					</div>
 				</div>

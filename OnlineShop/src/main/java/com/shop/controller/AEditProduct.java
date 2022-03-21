@@ -81,7 +81,10 @@ public class AEditProduct extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'main' of https://github.com/khangnvhe141619/OnlineShop.git
 		try {
 			CategoryDAOImpl cateDAO = new CategoryDAOImpl();
 			ProductDAOImpl pd = new ProductDAOImpl();
@@ -96,8 +99,11 @@ public class AEditProduct extends HttpServlet {
 			String covId = request.getParameter("coverType");
 			int coverId = Integer.parseInt(covId);
 			LocalDateTime localDate = LocalDateTime.now();
-			String publishDate = request.getParameter("publicationDate");
 			
+			String publishDate = request.getParameter("publicationDate");
+			if(publishDate.isEmpty()) {
+				throw new SQLException();
+			}
 			LocalDateTime dateTime = Validation.getLocalDateTime(publishDate + " 00:00:00");
 
 			int quantity = Integer.parseInt(request.getParameter("quantity"));

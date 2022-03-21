@@ -275,7 +275,7 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	public int countSearch(int cateid, String pname, int to, int end) throws SQLException {
-		String sql = "SELECT COUNT(*)\r\n" + "From Product\r\n" + "WHERE 1=1  ";
+		String sql = "SELECT COUNT(*)\r\n" + "FROM Product\r\n" + "WHERE 1=1  ";
 		int paramCount = 0;
 		HashMap<Integer, Object[]> params = new HashMap<>();
 		if (cateid != -1) {
