@@ -81,31 +81,12 @@ public class AEditProduct extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-<<<<<<< HEAD
-		CategoryDAOImpl cateDAO = new CategoryDAOImpl();
-		ProductDAOImpl pd = new ProductDAOImpl();
-		List<Category> listCate = new ArrayList<>();
-		List<BookCover> listBK = new ArrayList<>();
-		String cateId = request.getParameter("category");
-		int cID = Integer.parseInt(cateId);
-		String pName = request.getParameter("productName");
-		String des = request.getParameter("productDesc");
-		String iss = request.getParameter("issuingCompany");
-		Part part = request.getPart("productImage");
-		String covId = request.getParameter("coverType");
-		int coverId = Integer.parseInt(covId);
-		LocalDateTime localDate = LocalDateTime.now();
-		String publishDate = request.getParameter("publicationDate");
-
-		LocalDateTime dateTime = Validation.getLocalDateTime(publishDate + " 00:00:00");
-=======
->>>>>>> ab268c9ec7085f1bb471a35111d089e636a0cbd6
 
 		try {
 			CategoryDAOImpl cateDAO = new CategoryDAOImpl();
 			ProductDAOImpl pd = new ProductDAOImpl();
 			List<Category> listCate = new ArrayList<>();
-			List<BookCover> listBK = new ArrayList<>();
+			List<BookCover> listBK = new ArrayList<>();;
 			String cateId = request.getParameter("category");
 			int cID = Integer.parseInt(cateId);
 			String pName = request.getParameter("productName");

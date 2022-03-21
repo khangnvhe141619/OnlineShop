@@ -102,7 +102,7 @@
                                                 <button type="submit" class="btn btn-default waves-effect"><i
                                                         class="fa fa-chevron-left"></i></button>
                                                  </form>
-                                                  <form class="form" role="form" action="<%=request.getContextPath()%>/CategoryController?index=${tag==endPage?tag:tag+1}" method="post">
+                                                  <form class="form" role="form" action="<%=request.getContextPath()%>/CategoryController?index=${tag==endpage?tag:tag+1}" method="post">
                                                 <button type="submit" class="btn btn-default waves-effect"><i
                                                         class="fa fa-chevron-right"></i></button>
                                                         </form>

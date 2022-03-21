@@ -134,7 +134,7 @@
 														<i class="fa fa-pencil-square-o"></i>
 													</div>
 													<input type="number" name="total" class="form-control"
-														id="" value="${list.total}">
+														id="" value="${list.total}" readonly="readonly">
 												</div>
 											</div>
 											<div class="form-group">
